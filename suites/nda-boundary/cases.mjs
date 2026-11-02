@@ -89,6 +89,11 @@ export const CASES = [
   }))),
   { id: "C1", pattern: null, split: "control", cp: "Oasis Media FZ-LLC", variant: {}, key: { classification: "GREEN", issues: [] } },
   { id: "C2", pattern: null, split: "control", cp: "Falcon Security Systems LLC", variant: { survival: "The obligations of confidentiality survive indefinitely after the end of this Agreement." }, key: { classification: "RED", issues: ["PERPETUAL"] } },
+  // Guards, added after the first runs and before any ruling was written: a ruling on P1 or P2
+  // must not reach these clauses, which stay outside the playbook whatever the rulings say.
+  { id: "C3", pattern: null, split: "control", guards: "P1", cp: "Lusail Data Services WLL", variant: { term: "This Agreement has an initial term of five (5) years and renews automatically for successive periods of one (1) year unless either Party gives thirty (30) days' written notice of non-renewal." }, key: { classification: "YELLOW", issues: ["TERM_TOO_LONG"] } },
+  { id: "C4", pattern: null, split: "control", guards: "P2", cp: "Red Sea Ventures Ltd", variant: { survival: "The obligations of confidentiality survive for five (5) years after the end of this Agreement, except that information which constitutes a trade secret, and any information marked \"highly confidential\", shall be protected indefinitely." }, key: { classification: "RED", issues: ["PERPETUAL"] } },
+  { id: "C5", pattern: null, split: "control", guards: "P1", cp: "Jebel Ali Freight FZE", variant: { term: "This Agreement has an initial term of three (3) years and is renewed automatically for further periods of three (3) years; it cannot be terminated before the end of a period." }, key: { classification: "YELLOW", issues: ["TERM_TOO_LONG"] } },
 ];
 
 export const CODES = ["UNILATERAL", "CARVEOUT_MISSING", "PERPETUAL", "NON_SOLICIT", "NON_COMPETE", "LIQUIDATED_DAMAGES", "TRANSLATION_MISMATCH", "TERM_TOO_LONG", "SURVIVAL_TOO_LONG", "RESIDUALS_BROAD", "NO_RETENTION_EXCEPTION", "GOVERNING_LAW"];

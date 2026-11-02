@@ -4,15 +4,8 @@
 // change in the playbook or in the law flags the rulings to review — to confirm, overturn or retire.
 // Copyright (c) 2026 ILYES M. TRAD — MIT licence.
 
-import { readFileSync } from "node:fs";
-
 export const STATUSES = ["in_force", "overturned", "retired"];
 const ISO = /^\d{4}-\d{2}-\d{2}$/;
-
-/** Reads a case-law file: { team, playbook, rulings: [...] }. */
-export function loadCaselaw(path) {
-  return JSON.parse(readFileSync(path, "utf8"));
-}
 
 /** Checks every ruling: required fields, dates, statuses, references to rulings that exist. */
 export function validateCaselaw(cl) {

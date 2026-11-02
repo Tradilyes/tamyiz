@@ -19,7 +19,8 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { CASES, CODES, PATTERNS, render } from "./cases.mjs";
 import { mine, score, signature } from "../../engine/mine.mjs";
-import { loadCaselaw, compileInstructions } from "../../engine/caselaw.mjs";
+import { compileInstructions } from "../../engine/caselaw.mjs";
+import { loadCaselaw } from "../../engine/caselaw-file.mjs";
 import { systemPrompt as cflSystemPrompt } from "../../engine/cfl.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));

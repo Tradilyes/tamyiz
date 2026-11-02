@@ -1,0 +1,345 @@
+{
+  "meta": {
+    "model": "opus",
+    "effort": "high",
+    "mode": "plain",
+    "condition": "before",
+    "as_of": "2026-11-02"
+  },
+  "runs": [
+    [
+      {
+        "case": "P1A",
+        "result": "```json\n{\"classification\": \"YELLOW\", \"issues\": [{\"code\": \"TERM_TOO_LONG\", \"quote\": \"renews automatically for successive periods of one (1) year unless either Party gives thirty (30) days' written notice of non-renewal\", \"reason\": \"The initial term is 3 years, which is within the playbook limit. But the agreement renews automatically for further 1-year periods, so unless someone sends a non-renewal notice it runs past 3 years with no set end date. Because confidentiality survives for 3 years after the end, the total exposure grows with every renewal. Fix: remove auto-renewal or cap total duration at 3 years, and diarise the 30-day notice deadline if the clause stays.\"}]}\n```",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "TERM_TOO_LONG",
+              "quote": "renews automatically for successive periods of one (1) year unless either Party gives thirty (30) days' written notice of non-renewal",
+              "reason": "The initial term is 3 years, which is within the playbook limit. But the agreement renews automatically for further 1-year periods, so unless someone sends a non-renewal notice it runs past 3 years with no set end date. Because confidentiality survives for 3 years after the end, the total exposure grows with every renewal. Fix: remove auto-renewal or cap total duration at 3 years, and diarise the 30-day notice deadline if the clause stays."
+            }
+          ]
+        },
+        "cost_usd": 0.1437022,
+        "duration_ms": 7827,
+        "turns": 1
+      },
+      {
+        "case": "P1B",
+        "result": "```json\n{\"classification\": \"YELLOW\", \"issues\": [{\"code\": \"TERM_TOO_LONG\", \"quote\": \"shall thereafter be extended by successive twelve-month periods, unless a Party notifies the other in writing, at least one month before the end of the then-current period, that it does not wish to extend it\", \"reason\": \"The first term is 36 months, which is within the 3-year limit. After that, the Agreement renews itself for 12 months at a time unless a Party gives notice. So unless someone acts, the term goes past the playbook maximum of 3 years and could keep running with no fixed end. To fix this, remove the automatic renewal or limit the total term to 3 years. All other points meet the playbook: the NDA is mutual, all five exclusions are present (cl. 4.1–4.5), survival is 3 years after the end (within 5 years), the return clause keeps copies required by law and back-ups, the only remedy is injunctive relief, there are no restrictive covenants or residuals clause, DIFC law and DIFC Courts apply, and there is only an English version, so the bilingual check does not apply.\"}]}\n```",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "TERM_TOO_LONG",
+              "quote": "shall thereafter be extended by successive twelve-month periods, unless a Party notifies the other in writing, at least one month before the end of the then-current period, that it does not wish to extend it",
+              "reason": "The first term is 36 months, which is within the 3-year limit. After that, the Agreement renews itself for 12 months at a time unless a Party gives notice. So unless someone acts, the term goes past the playbook maximum of 3 years and could keep running with no fixed end. To fix this, remove the automatic renewal or limit the total term to 3 years. All other points meet the playbook: the NDA is mutual, all five exclusions are present (cl. 4.1–4.5), survival is 3 years after the end (within 5 years), the return clause keeps copies required by law and back-ups, the only remedy is injunctive relief, there are no restrictive covenants or residuals clause, DIFC law and DIFC Courts apply, and there is only an English version, so the bilingual check does not apply."
+            }
+          ]
+        },
+        "cost_usd": 0.044654,
+        "duration_ms": 10464,
+        "turns": 1
+      },
+      {
+        "case": "P2A",
+        "result": "```json\n{\"classification\": \"RED\", \"issues\": [{\"code\": \"PERPETUAL\", \"quote\": \"information which constitutes a trade secret shall be protected for as long as it remains a trade secret under applicable law\", \"reason\": \"Clause 7 sets the general survival at five (5) years after the end of the Agreement, which is within the playbook limit. But this trade-secret exception has no fixed end date: the obligation lasts as long as the information stays a trade secret, so it could last forever. The playbook treats confidentiality without an end as PERPETUAL (RED). All other terms are within our standard positions: the NDA is mutual, the term is 2 years, all five standard exclusions are present, copies kept by law or in back-ups may be retained, the only remedy is injunctive relief, there are no non-solicit, non-compete or residuals clauses, and DIFC law and DIFC Courts apply. The NDA is in English only, so the translation check does not apply.\"}]}\n```",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "PERPETUAL",
+              "quote": "information which constitutes a trade secret shall be protected for as long as it remains a trade secret under applicable law",
+              "reason": "Clause 7 sets the general survival at five (5) years after the end of the Agreement, which is within the playbook limit. But this trade-secret exception has no fixed end date: the obligation lasts as long as the information stays a trade secret, so it could last forever. The playbook treats confidentiality without an end as PERPETUAL (RED). All other terms are within our standard positions: the NDA is mutual, the term is 2 years, all five standard exclusions are present, copies kept by law or in back-ups may be retained, the only remedy is injunctive relief, there are no non-solicit, non-compete or residuals clauses, and DIFC law and DIFC Courts apply. The NDA is in English only, so the translation check does not apply."
+            }
+          ]
+        },
+        "cost_usd": 0.0460502,
+        "duration_ms": 9550,
+        "turns": 1
+      },
+      {
+        "case": "P2B",
+        "result": "```json\n{\"classification\": \"RED\", \"issues\": [{\"code\": \"PERPETUAL\", \"quote\": \"for any Confidential Information that qualifies as a trade secret, those duties continue for so long as such information retains that status\", \"reason\": \"For general Confidential Information, survival is five years after expiry or termination, which is within the playbook limit. For trade secrets, though, the confidentiality duties have no fixed end date and could last indefinitely. The playbook codes survival without an end as PERPETUAL (RED). To fix this, cap trade-secret survival at no more than 5 years after the end of the Agreement, or get full legal review to approve the indefinite trade-secret survival.\"}]}\n```",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "PERPETUAL",
+              "quote": "for any Confidential Information that qualifies as a trade secret, those duties continue for so long as such information retains that status",
+              "reason": "For general Confidential Information, survival is five years after expiry or termination, which is within the playbook limit. For trade secrets, though, the confidentiality duties have no fixed end date and could last indefinitely. The playbook codes survival without an end as PERPETUAL (RED). To fix this, cap trade-secret survival at no more than 5 years after the end of the Agreement, or get full legal review to approve the indefinite trade-secret survival."
+            }
+          ]
+        },
+        "cost_usd": 0.042731099999999994,
+        "duration_ms": 6923,
+        "turns": 1
+      },
+      {
+        "case": "P3A",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.03654519999999999,
+        "duration_ms": 3594,
+        "turns": 1
+      },
+      {
+        "case": "P3B",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.036716399999999996,
+        "duration_ms": 4961,
+        "turns": 1
+      },
+      {
+        "case": "P4A",
+        "result": "{\"classification\": \"RED\", \"issues\": [{\"code\": \"NON_SOLICIT\", \"quote\": \"neither Party shall solicit for employment any employee of the other Party with whom it had contact in connection with the Purpose\", \"reason\": \"Clause 9 is a mutual non-solicitation restriction that runs for the term plus 12 months. The playbook does not allow any non-solicitation or no-hire clause, even with a carve-out for general advertisements, so this needs full legal review. Every other term is within the playbook: the NDA binds both parties, the term is 2 years, confidentiality survives 3 years, all five standard exclusions are there, and there is no liquidated damages, non-compete or residuals clause. Return or destruction allows copies kept by law or in back-ups, and DIFC law and courts are acceptable. The NDA is in English only, so the bilingual check does not apply.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "NON_SOLICIT",
+              "quote": "neither Party shall solicit for employment any employee of the other Party with whom it had contact in connection with the Purpose",
+              "reason": "Clause 9 is a mutual non-solicitation restriction that runs for the term plus 12 months. The playbook does not allow any non-solicitation or no-hire clause, even with a carve-out for general advertisements, so this needs full legal review. Every other term is within the playbook: the NDA binds both parties, the term is 2 years, confidentiality survives 3 years, all five standard exclusions are there, and there is no liquidated damages, non-compete or residuals clause. Return or destruction allows copies kept by law or in back-ups, and DIFC law and courts are acceptable. The NDA is in English only, so the bilingual check does not apply."
+            }
+          ]
+        },
+        "cost_usd": 0.0426444,
+        "duration_ms": 8445,
+        "turns": 1
+      },
+      {
+        "case": "P4B",
+        "result": "{\"classification\": \"RED\", \"issues\": [{\"code\": \"NON_SOLICIT\", \"quote\": \"each Party agrees not to approach, with a view to hiring, any member of the other Party's staff it has dealt with in relation to the Purpose\", \"reason\": \"Clause 9 is a non-solicitation restriction. It is mutual, lasts one year and excludes responses to public job postings, but the playbook allows no non-solicitation or no-hire clause at all, so it is RED and needs full legal review. Everything else meets the playbook: the NDA is mutual, the term is 2 years, survival is 3 years, all five exclusions are there, the permitted disclosures are standard, copies kept by law or in back-ups are allowed, the only remedy is injunctive relief, there is no non-compete or residuals clause, and DIFC law and courts apply. The NDA is in English only, so no translation check applies.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "NON_SOLICIT",
+              "quote": "each Party agrees not to approach, with a view to hiring, any member of the other Party's staff it has dealt with in relation to the Purpose",
+              "reason": "Clause 9 is a non-solicitation restriction. It is mutual, lasts one year and excludes responses to public job postings, but the playbook allows no non-solicitation or no-hire clause at all, so it is RED and needs full legal review. Everything else meets the playbook: the NDA is mutual, the term is 2 years, survival is 3 years, all five exclusions are there, the permitted disclosures are standard, copies kept by law or in back-ups are allowed, the only remedy is injunctive relief, there is no non-compete or residuals clause, and DIFC law and courts apply. The NDA is in English only, so no translation check applies."
+            }
+          ]
+        },
+        "cost_usd": 0.042293,
+        "duration_ms": 6215,
+        "turns": 1
+      },
+      {
+        "case": "P5A",
+        "result": "{\"classification\": \"YELLOW\", \"issues\": [{\"code\": \"RESIDUALS_BROAD\", \"quote\": \"Nothing in this Agreement restricts either Party from using, for any purpose, ideas, concepts, know-how or techniques retained in the unaided memory of its personnel who had access to Confidential Information\", \"reason\": \"Clause 9 lets either Party use, for any purpose, information its staff remember. Our playbook flags this as a broad residuals clause (YELLOW). Excluding patent and copyright licences does not limit that use, so this clause needs counsel review. The other terms meet our standard positions. The NDA is mutual, with a 2-year term and 3-year survival. All five exclusions are present, permitted disclosures are standard, and copies kept by law or in back-ups are allowed. Remedies are limited to injunctive relief, and DIFC law and courts apply. There are no restrictions on hiring or competing. The NDA is in English only, so no translation check applies.\"}]}",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "RESIDUALS_BROAD",
+              "quote": "Nothing in this Agreement restricts either Party from using, for any purpose, ideas, concepts, know-how or techniques retained in the unaided memory of its personnel who had access to Confidential Information",
+              "reason": "Clause 9 lets either Party use, for any purpose, information its staff remember. Our playbook flags this as a broad residuals clause (YELLOW). Excluding patent and copyright licences does not limit that use, so this clause needs counsel review. The other terms meet our standard positions. The NDA is mutual, with a 2-year term and 3-year survival. All five exclusions are present, permitted disclosures are standard, and copies kept by law or in back-ups are allowed. Remedies are limited to injunctive relief, and DIFC law and courts apply. There are no restrictions on hiring or competing. The NDA is in English only, so no translation check applies."
+            }
+          ]
+        },
+        "cost_usd": 0.0440307,
+        "duration_ms": 6631,
+        "turns": 1
+      },
+      {
+        "case": "P5B",
+        "result": "{\"classification\": \"YELLOW\", \"issues\": [{\"code\": \"RESIDUALS_BROAD\", \"quote\": \"Each Party may freely use general skills, knowledge and experience, including information retained in the unassisted memory of its employees, for any purpose\", \"reason\": \"Clause 9 lets each Party use any information its employees remember for any purpose, not only the Purpose. This is the broad residuals clause the playbook flags, and it weakens the confidentiality duty in Clause 3. All other terms meet the playbook: both Parties are bound; the term is 2 years and survival is 3 years; all five exclusions are there; copies kept by law or in back-ups are allowed; the only remedy is injunctive relief, with no liquidated damages; there is no non-solicit, non-compete or exclusivity; the governing law and courts are DIFC; and the NDA is in English only, so the translation check does not apply.\"}]}",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "RESIDUALS_BROAD",
+              "quote": "Each Party may freely use general skills, knowledge and experience, including information retained in the unassisted memory of its employees, for any purpose",
+              "reason": "Clause 9 lets each Party use any information its employees remember for any purpose, not only the Purpose. This is the broad residuals clause the playbook flags, and it weakens the confidentiality duty in Clause 3. All other terms meet the playbook: both Parties are bound; the term is 2 years and survival is 3 years; all five exclusions are there; copies kept by law or in back-ups are allowed; the only remedy is injunctive relief, with no liquidated damages; there is no non-solicit, non-compete or exclusivity; the governing law and courts are DIFC; and the NDA is in English only, so the translation check does not apply."
+            }
+          ]
+        },
+        "cost_usd": 0.043169200000000005,
+        "duration_ms": 5884,
+        "turns": 1
+      },
+      {
+        "case": "P6A",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.036498899999999994,
+        "duration_ms": 4255,
+        "turns": 1
+      },
+      {
+        "case": "P6B",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.0376524,
+        "duration_ms": 3824,
+        "turns": 1
+      },
+      {
+        "case": "P7A",
+        "result": "{\"classification\": \"RED\", \"issues\": [{\"code\": \"LIQUIDATED_DAMAGES\", \"quote\": \"it shall pay the other Party agreed compensation of AED 250,000, without prejudice to the court's power to adjust it under the applicable law\", \"reason\": \"Clause 8 sets a fixed sum of AED 250,000 that is payable if clause 3 is breached. That is liquidated damages, even though the clause calls it 'agreed compensation' and lets the court adjust it. The playbook does not allow liquidated damages or penalties, so this needs full legal review. The injunctive relief in the same clause is acceptable. Every other term meets the playbook: the NDA is mutual, the term is 2 years, confidentiality survives 3 years, all five exclusions are present, permitted disclosures are standard, there are law and back-up retention exceptions, there is no non-solicit, non-compete or residuals clause, and the governing law and forum are DIFC. The NDA is in English only, so the bilingual check does not apply.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "LIQUIDATED_DAMAGES",
+              "quote": "it shall pay the other Party agreed compensation of AED 250,000, without prejudice to the court's power to adjust it under the applicable law",
+              "reason": "Clause 8 sets a fixed sum of AED 250,000 that is payable if clause 3 is breached. That is liquidated damages, even though the clause calls it 'agreed compensation' and lets the court adjust it. The playbook does not allow liquidated damages or penalties, so this needs full legal review. The injunctive relief in the same clause is acceptable. Every other term meets the playbook: the NDA is mutual, the term is 2 years, confidentiality survives 3 years, all five exclusions are present, permitted disclosures are standard, there are law and back-up retention exceptions, there is no non-solicit, non-compete or residuals clause, and the governing law and forum are DIFC. The NDA is in English only, so the bilingual check does not apply."
+            }
+          ]
+        },
+        "cost_usd": 0.0430466,
+        "duration_ms": 5903,
+        "turns": 1
+      },
+      {
+        "case": "P7B",
+        "result": "```json\n{\"classification\": \"RED\", \"issues\": [{\"code\": \"LIQUIDATED_DAMAGES\", \"quote\": \"The Parties agree in advance that a breach of confidentiality causes damage which they assess at AED 150,000, payable on demand by the breaching Party.\", \"reason\": \"Clause 8 sets a fixed sum of AED 150,000, agreed in advance and payable on demand, for any breach of confidentiality. That is liquidated damages, which the playbook treats as RED. Injunctive relief on its own would be acceptable. All other terms are within standard positions: the NDA is mutual, the term is 2 years, survival is 3 years, all five exclusions are present, permitted disclosures are standard, return or destruction allows legal and back-up copies, there are no restrictive covenants or residuals clause, the governing law and forum are DIFC, and it is English only, so there is no translation check.\"}]}\n```",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "LIQUIDATED_DAMAGES",
+              "quote": "The Parties agree in advance that a breach of confidentiality causes damage which they assess at AED 150,000, payable on demand by the breaching Party.",
+              "reason": "Clause 8 sets a fixed sum of AED 150,000, agreed in advance and payable on demand, for any breach of confidentiality. That is liquidated damages, which the playbook treats as RED. Injunctive relief on its own would be acceptable. All other terms are within standard positions: the NDA is mutual, the term is 2 years, survival is 3 years, all five exclusions are present, permitted disclosures are standard, return or destruction allows legal and back-up copies, there are no restrictive covenants or residuals clause, the governing law and forum are DIFC, and it is English only, so there is no translation check."
+            }
+          ]
+        },
+        "cost_usd": 0.0430062,
+        "duration_ms": 5770,
+        "turns": 1
+      },
+      {
+        "case": "P8A",
+        "result": "{\"classification\": \"YELLOW\", \"issues\": [{\"code\": \"NO_RETENTION_EXCEPTION\", \"quote\": \"On request, the Receiving Party shall return or destroy all Confidential Information, except copies it must keep to comply with applicable law.\", \"reason\": \"Clause 6 lets the Receiving Party keep copies that the law requires, but not copies held in back-ups. The playbook requires both exceptions.\"}]}",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "NO_RETENTION_EXCEPTION",
+              "quote": "On request, the Receiving Party shall return or destroy all Confidential Information, except copies it must keep to comply with applicable law.",
+              "reason": "Clause 6 lets the Receiving Party keep copies that the law requires, but not copies held in back-ups. The playbook requires both exceptions."
+            }
+          ]
+        },
+        "cost_usd": 0.0401257,
+        "duration_ms": 4601,
+        "turns": 1
+      },
+      {
+        "case": "P8B",
+        "result": "```json\n{\"classification\": \"YELLOW\", \"issues\": [{\"code\": \"NO_RETENTION_EXCEPTION\", \"quote\": \"save to the extent retention is mandated by law or regulation\", \"reason\": \"Clause 6 lets the Receiving Party keep copies only where the law requires it. The playbook also requires the right to keep copies held in back-ups, and that exception is missing. Every other term matches the playbook: the NDA binds both parties, runs for 2 years with 3 years of survival, contains all five standard exclusions, has the standard permitted disclosures, provides injunctive relief only, has no restrictive covenants or residuals clause, and is governed by DIFC law with DIFC Courts jurisdiction. It is in English only, so the bilingual rule does not apply.\"}]}\n```",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "NO_RETENTION_EXCEPTION",
+              "quote": "save to the extent retention is mandated by law or regulation",
+              "reason": "Clause 6 lets the Receiving Party keep copies only where the law requires it. The playbook also requires the right to keep copies held in back-ups, and that exception is missing. Every other term matches the playbook: the NDA binds both parties, runs for 2 years with 3 years of survival, contains all five standard exclusions, has the standard permitted disclosures, provides injunctive relief only, has no restrictive covenants or residuals clause, and is governed by DIFC law with DIFC Courts jurisdiction. It is in English only, so the bilingual rule does not apply."
+            }
+          ]
+        },
+        "cost_usd": 0.04236209999999999,
+        "duration_ms": 6170,
+        "turns": 1
+      },
+      {
+        "case": "P9A",
+        "result": "{\"classification\": \"RED\", \"issues\": [{\"code\": \"UNILATERAL\", \"quote\": \"Gulf Horizon, as Receiving Party, shall use the Counterparty's Confidential Information only for the Purpose and shall protect it with no less than reasonable care.\", \"reason\": \"The title says 'Mutual', but only Gulf Horizon is bound. Clause 2 limits Confidential Information to information 'disclosed by the Counterparty to Gulf Horizon'. Clauses 3, 5 and 6 put the obligations on Gulf Horizon only. Meridian Pharma has no duty to protect information Gulf Horizon gives it. The playbook requires both parties to be bound. Everything else meets the playbook: all five exclusions are present, the term is 2 years, survival is 3 years, there is a retention exception for legal and back-up copies, the remedy is injunctive relief only, there are no restrictive covenants, and the law and courts are DIFC. The NDA is in English only, so no translation check applies.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "UNILATERAL",
+              "quote": "Gulf Horizon, as Receiving Party, shall use the Counterparty's Confidential Information only for the Purpose and shall protect it with no less than reasonable care.",
+              "reason": "The title says 'Mutual', but only Gulf Horizon is bound. Clause 2 limits Confidential Information to information 'disclosed by the Counterparty to Gulf Horizon'. Clauses 3, 5 and 6 put the obligations on Gulf Horizon only. Meridian Pharma has no duty to protect information Gulf Horizon gives it. The playbook requires both parties to be bound. Everything else meets the playbook: all five exclusions are present, the term is 2 years, survival is 3 years, there is a retention exception for legal and back-up copies, the remedy is injunctive relief only, there are no restrictive covenants, and the law and courts are DIFC. The NDA is in English only, so no translation check applies."
+            }
+          ]
+        },
+        "cost_usd": 0.0445796,
+        "duration_ms": 8304,
+        "turns": 1
+      },
+      {
+        "case": "P9B",
+        "result": "```json\n{\"classification\": \"RED\", \"issues\": [{\"code\": \"UNILATERAL\", \"quote\": \"In this Agreement, \\\"Recipient\\\" means Gulf Horizon and \\\"Discloser\\\" means the Counterparty.\", \"reason\": \"The NDA is titled 'Mutual', but clause 2 makes Gulf Horizon the only Recipient and Kyrenia Shipping the only Discloser. The confidentiality, use, permitted-disclosure and return/destruction duties in clauses 3, 5 and 6 bind only the Recipient, so only Gulf Horizon is bound. Kyrenia Shipping has no duty to protect information we share. Clause 8 says 'Each Party acknowledges', but only the 'Disclosing Party' (Kyrenia Shipping) can seek an injunction. The other terms meet the playbook: all five exclusions are present (though clause 4 uses the undefined term 'Receiving Party'), copies kept by law or in back-ups are allowed, the term is 2 years, survival is 3 years, remedies are injunctive relief only, there are no non-solicit, non-compete or residuals clauses, and the law and courts are DIFC. The NDA is in English only, so translation mismatch does not apply.\"}]}\n```",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "UNILATERAL",
+              "quote": "In this Agreement, \"Recipient\" means Gulf Horizon and \"Discloser\" means the Counterparty.",
+              "reason": "The NDA is titled 'Mutual', but clause 2 makes Gulf Horizon the only Recipient and Kyrenia Shipping the only Discloser. The confidentiality, use, permitted-disclosure and return/destruction duties in clauses 3, 5 and 6 bind only the Recipient, so only Gulf Horizon is bound. Kyrenia Shipping has no duty to protect information we share. Clause 8 says 'Each Party acknowledges', but only the 'Disclosing Party' (Kyrenia Shipping) can seek an injunction. The other terms meet the playbook: all five exclusions are present (though clause 4 uses the undefined term 'Receiving Party'), copies kept by law or in back-ups are allowed, the term is 2 years, survival is 3 years, remedies are injunctive relief only, there are no non-solicit, non-compete or residuals clauses, and the law and courts are DIFC. The NDA is in English only, so translation mismatch does not apply."
+            }
+          ]
+        },
+        "cost_usd": 0.0489415,
+        "duration_ms": 9843,
+        "turns": 1
+      },
+      {
+        "case": "P10A",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.036973900000000004,
+        "duration_ms": 5670,
+        "turns": 1
+      },
+      {
+        "case": "P10B",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.03831999999999999,
+        "duration_ms": 6995,
+        "turns": 1
+      },
+      {
+        "case": "C1",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.0357101,
+        "duration_ms": 3695,
+        "turns": 1
+      },
+      {
+        "case": "C2",
+        "result": "{\"classification\": \"RED\", \"issues\": [{\"code\": \"PERPETUAL\", \"quote\": \"The obligations of confidentiality survive indefinitely after the end of this Agreement.\", \"reason\": \"Under the playbook, confidentiality can survive for at most 5 years after the agreement ends. This clause makes it survive with no end date, which is a RED issue. The 2-year term (clause 7) is within the 3-year limit, and everything else complies: it binds both parties, all five exclusions are there, the permitted disclosures are standard, copies kept by law or in back-ups are allowed, the only remedy is injunctive relief, there are no restrictions or residuals clause, and DIFC law and the DIFC Courts are acceptable. There is only an English version, so no translation check is needed.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "PERPETUAL",
+              "quote": "The obligations of confidentiality survive indefinitely after the end of this Agreement.",
+              "reason": "Under the playbook, confidentiality can survive for at most 5 years after the agreement ends. This clause makes it survive with no end date, which is a RED issue. The 2-year term (clause 7) is within the 3-year limit, and everything else complies: it binds both parties, all five exclusions are there, the permitted disclosures are standard, copies kept by law or in back-ups are allowed, the only remedy is injunctive relief, there are no restrictions or residuals clause, and DIFC law and the DIFC Courts are acceptable. There is only an English version, so no translation check is needed."
+            }
+          ]
+        },
+        "cost_usd": 0.0387708,
+        "duration_ms": 4689,
+        "turns": 1
+      }
+    ]
+  ]
+}

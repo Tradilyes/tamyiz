@@ -1,0 +1,345 @@
+{
+  "meta": {
+    "model": "sonnet",
+    "effort": null,
+    "mode": "plain",
+    "condition": "before",
+    "as_of": "2026-11-02"
+  },
+  "runs": [
+    [
+      {
+        "case": "P1A",
+        "result": "{\"classification\":\"YELLOW\",\"issues\":[{\"code\":\"TERM_TOO_LONG\",\"quote\":\"renews automatically for successive periods of one (1) year unless either Party gives thirty (30) days' written notice of non-renewal\",\"reason\":\"The initial term is 3 years, which is within the playbook limit. The automatic one-year renewals mean the term runs past 3 years unless a Party gives notice. Fix this by removing the auto-renewal, or by capping the total term at 3 years. Survival is fixed at 3 years after the end, so it is within the 5-year limit and is not perpetual.\"}]}",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "TERM_TOO_LONG",
+              "quote": "renews automatically for successive periods of one (1) year unless either Party gives thirty (30) days' written notice of non-renewal",
+              "reason": "The initial term is 3 years, which is within the playbook limit. The automatic one-year renewals mean the term runs past 3 years unless a Party gives notice. Fix this by removing the auto-renewal, or by capping the total term at 3 years. Survival is fixed at 3 years after the end, so it is within the 5-year limit and is not perpetual."
+            }
+          ]
+        },
+        "cost_usd": 0.0719872,
+        "duration_ms": 5356,
+        "turns": 1
+      },
+      {
+        "case": "P1B",
+        "result": "{\"classification\":\"YELLOW\",\"issues\":[{\"code\":\"TERM_TOO_LONG\",\"quote\":\"This Agreement shall remain in force for thirty-six (36) months and shall thereafter be extended by successive twelve-month periods\",\"reason\":\"The initial 36-month term is within the 3-year limit. However, it renews automatically for 12-month periods unless a Party gives notice, so the term can run past 3 years. That exceeds the playbook limit. Counsel should review it, for example by removing the automatic renewal or adding a fixed end date. The survival period of three years after the end of the Agreement is within the 5-year limit.\"}]}",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "TERM_TOO_LONG",
+              "quote": "This Agreement shall remain in force for thirty-six (36) months and shall thereafter be extended by successive twelve-month periods",
+              "reason": "The initial 36-month term is within the 3-year limit. However, it renews automatically for 12-month periods unless a Party gives notice, so the term can run past 3 years. That exceeds the playbook limit. Counsel should review it, for example by removing the automatic renewal or adding a fixed end date. The survival period of three years after the end of the Agreement is within the 5-year limit."
+            }
+          ]
+        },
+        "cost_usd": 0.0220507,
+        "duration_ms": 10008,
+        "turns": 1
+      },
+      {
+        "case": "P2A",
+        "result": "{\"classification\":\"RED\",\"issues\":[{\"code\":\"PERPETUAL\",\"quote\":\"except that information which constitutes a trade secret shall be protected for as long as it remains a trade secret under applicable law\",\"reason\":\"Confidentiality generally survives 5 years after the end of the Agreement, which is within the playbook limit. The trade-secret carve-out, however, has no end date, so those obligations can last indefinitely. The playbook treats survival without an end as RED and requires full legal review.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "PERPETUAL",
+              "quote": "except that information which constitutes a trade secret shall be protected for as long as it remains a trade secret under applicable law",
+              "reason": "Confidentiality generally survives 5 years after the end of the Agreement, which is within the playbook limit. The trade-secret carve-out, however, has no end date, so those obligations can last indefinitely. The playbook treats survival without an end as RED and requires full legal review."
+            }
+          ]
+        },
+        "cost_usd": 0.021066900000000003,
+        "duration_ms": 6028,
+        "turns": 1
+      },
+      {
+        "case": "P2B",
+        "result": "{\"classification\":\"RED\",\"issues\":[{\"code\":\"PERPETUAL\",\"quote\":\"for any Confidential Information that qualifies as a trade secret, those duties continue for so long as such information retains that status\",\"reason\":\"Survival is capped at five years for most information. The trade-secret carve-out has no fixed end date, because the duties last as long as the information stays a trade secret. Under the playbook, survival 'without end' is PERPETUAL (RED), so this needs full legal review.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "PERPETUAL",
+              "quote": "for any Confidential Information that qualifies as a trade secret, those duties continue for so long as such information retains that status",
+              "reason": "Survival is capped at five years for most information. The trade-secret carve-out has no fixed end date, because the duties last as long as the information stays a trade secret. Under the playbook, survival 'without end' is PERPETUAL (RED), so this needs full legal review."
+            }
+          ]
+        },
+        "cost_usd": 0.0209473,
+        "duration_ms": 5050,
+        "turns": 1
+      },
+      {
+        "case": "P3A",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.018629399999999997,
+        "duration_ms": 5260,
+        "turns": 1
+      },
+      {
+        "case": "P3B",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.0192051,
+        "duration_ms": 5117,
+        "turns": 1
+      },
+      {
+        "case": "P4A",
+        "result": "{\"classification\": \"RED\", \"issues\": [{\"code\": \"NON_SOLICIT\", \"quote\": \"neither Party shall solicit for employment any employee of the other Party with whom it had contact in connection with the Purpose\", \"reason\": \"Clause 9 imposes a mutual employee non-solicitation restriction that runs for the term and 12 months after it. Our playbook does not allow any non-solicit or no-hire clause, even a narrow one with a carve-out for general advertisements. Full legal review is required.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "NON_SOLICIT",
+              "quote": "neither Party shall solicit for employment any employee of the other Party with whom it had contact in connection with the Purpose",
+              "reason": "Clause 9 imposes a mutual employee non-solicitation restriction that runs for the term and 12 months after it. Our playbook does not allow any non-solicit or no-hire clause, even a narrow one with a carve-out for general advertisements. Full legal review is required."
+            }
+          ]
+        },
+        "cost_usd": 0.020869099999999998,
+        "duration_ms": 4362,
+        "turns": 1
+      },
+      {
+        "case": "P4B",
+        "result": "{\"classification\": \"RED\", \"issues\": [{\"code\": \"NON_SOLICIT\", \"quote\": \"each Party agrees not to approach, with a view to hiring, any member of the other Party's staff it has dealt with in relation to the Purpose\", \"reason\": \"Clause 9 is a non-solicitation / no-hire restriction. The playbook rates this RED. The one-year limit and the carve-out for responses to public job postings do not change that. The NDA is otherwise within the playbook: it is mutual, the term is 2 years, survival is 3 years, all five exclusions are present, DIFC law and forum apply, and it is English-only, so there is no translation issue. It needs full legal review, and the staff clause should be deleted.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "NON_SOLICIT",
+              "quote": "each Party agrees not to approach, with a view to hiring, any member of the other Party's staff it has dealt with in relation to the Purpose",
+              "reason": "Clause 9 is a non-solicitation / no-hire restriction. The playbook rates this RED. The one-year limit and the carve-out for responses to public job postings do not change that. The NDA is otherwise within the playbook: it is mutual, the term is 2 years, survival is 3 years, all five exclusions are present, DIFC law and forum apply, and it is English-only, so there is no translation issue. It needs full legal review, and the staff clause should be deleted."
+            }
+          ]
+        },
+        "cost_usd": 0.022041199999999997,
+        "duration_ms": 7762,
+        "turns": 1
+      },
+      {
+        "case": "P5A",
+        "result": "{\"classification\":\"YELLOW\",\"issues\":[{\"code\":\"RESIDUALS_BROAD\",\"quote\":\"Nothing in this Agreement restricts either Party from using, for any purpose, ideas, concepts, know-how or techniques retained in the unaided memory of its personnel who had access to Confidential Information\",\"reason\":\"Clause 9 lets either Party use information retained in memory for any purpose, not just the Purpose. The playbook flags this as YELLOW, so it goes to counsel review. The carve-out for patents and copyrights does not narrow the permitted use.\"}]}",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "RESIDUALS_BROAD",
+              "quote": "Nothing in this Agreement restricts either Party from using, for any purpose, ideas, concepts, know-how or techniques retained in the unaided memory of its personnel who had access to Confidential Information",
+              "reason": "Clause 9 lets either Party use information retained in memory for any purpose, not just the Purpose. The playbook flags this as YELLOW, so it goes to counsel review. The carve-out for patents and copyrights does not narrow the permitted use."
+            }
+          ]
+        },
+        "cost_usd": 0.0223124,
+        "duration_ms": 4723,
+        "turns": 1
+      },
+      {
+        "case": "P5B",
+        "result": "{\"classification\": \"YELLOW\", \"issues\": [{\"code\": \"RESIDUALS_BROAD\", \"quote\": \"including information retained in the unassisted memory of its employees, for any purpose\", \"reason\": \"Clause 9 lets each Party use information kept in employees' memory for any purpose. That is a broad residuals clause, which the playbook rates YELLOW (counsel review). Counsel should narrow it or delete it. The final words of clause 9 ('no licence under intellectual property rights is granted') only limit IP licences. They do not limit use of the information.\"}]}",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "RESIDUALS_BROAD",
+              "quote": "including information retained in the unassisted memory of its employees, for any purpose",
+              "reason": "Clause 9 lets each Party use information kept in employees' memory for any purpose. That is a broad residuals clause, which the playbook rates YELLOW (counsel review). Counsel should narrow it or delete it. The final words of clause 9 ('no licence under intellectual property rights is granted') only limit IP licences. They do not limit use of the information."
+            }
+          ]
+        },
+        "cost_usd": 0.0218214,
+        "duration_ms": 4777,
+        "turns": 1
+      },
+      {
+        "case": "P6A",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.0195866,
+        "duration_ms": 5083,
+        "turns": 1
+      },
+      {
+        "case": "P6B",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.019381100000000002,
+        "duration_ms": 4772,
+        "turns": 1
+      },
+      {
+        "case": "P7A",
+        "result": "{\"classification\": \"RED\", \"issues\": [{\"code\": \"LIQUIDATED_DAMAGES\", \"quote\": \"it shall pay the other Party agreed compensation of AED 250,000\", \"reason\": \"Clause 8 sets a fixed sum payable on any breach of clause 3. This is liquidated damages or a penalty, which the playbook marks RED. The court's power to adjust the sum does not change that. Injunctive relief alone would be acceptable. All other terms meet the playbook: it is mutual, the term is 2 years, survival is 3 years, all five exclusions are present, the permitted disclosures and back-up retention exception are standard, there are no restrictive covenants or residuals clause, and the DIFC law and forum are acceptable. The NDA is English only, so there is no translation issue.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "LIQUIDATED_DAMAGES",
+              "quote": "it shall pay the other Party agreed compensation of AED 250,000",
+              "reason": "Clause 8 sets a fixed sum payable on any breach of clause 3. This is liquidated damages or a penalty, which the playbook marks RED. The court's power to adjust the sum does not change that. Injunctive relief alone would be acceptable. All other terms meet the playbook: it is mutual, the term is 2 years, survival is 3 years, all five exclusions are present, the permitted disclosures and back-up retention exception are standard, there are no restrictive covenants or residuals clause, and the DIFC law and forum are acceptable. The NDA is English only, so there is no translation issue."
+            }
+          ]
+        },
+        "cost_usd": 0.0219233,
+        "duration_ms": 4356,
+        "turns": 1
+      },
+      {
+        "case": "P7B",
+        "result": "{\"classification\": \"RED\", \"issues\": [{\"code\": \"LIQUIDATED_DAMAGES\", \"quote\": \"The Parties agree in advance that a breach of confidentiality causes damage which they assess at AED 150,000, payable on demand by the breaching Party.\", \"reason\": \"Clause 8 fixes a pre-agreed sum of AED 150,000, payable on demand, for any breach of confidentiality. This is liquidated damages or a penalty, which the playbook treats as RED.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "LIQUIDATED_DAMAGES",
+              "quote": "The Parties agree in advance that a breach of confidentiality causes damage which they assess at AED 150,000, payable on demand by the breaching Party.",
+              "reason": "Clause 8 fixes a pre-agreed sum of AED 150,000, payable on demand, for any breach of confidentiality. This is liquidated damages or a penalty, which the playbook treats as RED."
+            }
+          ]
+        },
+        "cost_usd": 0.018684400000000004,
+        "duration_ms": 6043,
+        "turns": 1
+      },
+      {
+        "case": "P8A",
+        "result": "{\"classification\":\"YELLOW\",\"issues\":[{\"code\":\"NO_RETENTION_EXCEPTION\",\"quote\":\"except copies it must keep to comply with applicable law\",\"reason\":\"The return or destruction clause allows only copies required by law. It has no exception for copies held in routine back-ups, which the playbook requires. Counsel review is needed to add a back-up carve-out.\"}]}",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "NO_RETENTION_EXCEPTION",
+              "quote": "except copies it must keep to comply with applicable law",
+              "reason": "The return or destruction clause allows only copies required by law. It has no exception for copies held in routine back-ups, which the playbook requires. Counsel review is needed to add a back-up carve-out."
+            }
+          ]
+        },
+        "cost_usd": 0.0207799,
+        "duration_ms": 6125,
+        "turns": 1
+      },
+      {
+        "case": "P8B",
+        "result": "{\"classification\":\"YELLOW\",\"issues\":[{\"code\":\"NO_RETENTION_EXCEPTION\",\"quote\":\"save to the extent retention is mandated by law or regulation\",\"reason\":\"The retention carve-out covers only copies that law or regulation requires. It does not let us keep copies held in routine back-ups, which the playbook requires. This needs counsel review, and the fix is to add a back-up exception.\"}]}",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "NO_RETENTION_EXCEPTION",
+              "quote": "save to the extent retention is mandated by law or regulation",
+              "reason": "The retention carve-out covers only copies that law or regulation requires. It does not let us keep copies held in routine back-ups, which the playbook requires. This needs counsel review, and the fix is to add a back-up exception."
+            }
+          ]
+        },
+        "cost_usd": 0.0222363,
+        "duration_ms": 6044,
+        "turns": 1
+      },
+      {
+        "case": "P9A",
+        "result": "{\"classification\": \"RED\", \"issues\": [{\"code\": \"UNILATERAL\", \"quote\": \"all non-public information disclosed by the Counterparty to Gulf Horizon in connection with the Purpose\", \"reason\": \"The agreement is titled mutual, but only the Counterparty's information is protected and only Gulf Horizon is bound. Clause 3 puts the use and care obligations on Gulf Horizon as Receiving Party, and nothing protects information Gulf Horizon discloses. Under the playbook, an NDA that binds only our side is UNILATERAL (RED). It needs full legal review, and the definition and clause 3 should be made reciprocal.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "UNILATERAL",
+              "quote": "all non-public information disclosed by the Counterparty to Gulf Horizon in connection with the Purpose",
+              "reason": "The agreement is titled mutual, but only the Counterparty's information is protected and only Gulf Horizon is bound. Clause 3 puts the use and care obligations on Gulf Horizon as Receiving Party, and nothing protects information Gulf Horizon discloses. Under the playbook, an NDA that binds only our side is UNILATERAL (RED). It needs full legal review, and the definition and clause 3 should be made reciprocal."
+            }
+          ]
+        },
+        "cost_usd": 0.0219823,
+        "duration_ms": 7285,
+        "turns": 1
+      },
+      {
+        "case": "P9B",
+        "result": "{\"classification\":\"RED\",\"issues\":[{\"code\":\"UNILATERAL\",\"quote\":\"In this Agreement, \\\"Recipient\\\" means Gulf Horizon and \\\"Discloser\\\" means the Counterparty.\",\"reason\":\"The agreement is titled mutual, but it fixes Gulf Horizon as the only Recipient and Kyrenia as the only Discloser. Only Gulf Horizon's side is bound by the confidentiality, use and care obligations in clauses 3 to 6. Kyrenia has no confidentiality obligations over Gulf Horizon's information. The playbook treats this as unilateral (RED), which needs full legal review. The fix is to define each Party as both Discloser and Recipient.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "UNILATERAL",
+              "quote": "In this Agreement, \"Recipient\" means Gulf Horizon and \"Discloser\" means the Counterparty.",
+              "reason": "The agreement is titled mutual, but it fixes Gulf Horizon as the only Recipient and Kyrenia as the only Discloser. Only Gulf Horizon's side is bound by the confidentiality, use and care obligations in clauses 3 to 6. Kyrenia has no confidentiality obligations over Gulf Horizon's information. The playbook treats this as unilateral (RED), which needs full legal review. The fix is to define each Party as both Discloser and Recipient."
+            }
+          ]
+        },
+        "cost_usd": 0.0216417,
+        "duration_ms": 4611,
+        "turns": 1
+      },
+      {
+        "case": "P10A",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.0193521,
+        "duration_ms": 2796,
+        "turns": 1
+      },
+      {
+        "case": "P10B",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.0188882,
+        "duration_ms": 3129,
+        "turns": 1
+      },
+      {
+        "case": "C1",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.0193803,
+        "duration_ms": 5185,
+        "turns": 1
+      },
+      {
+        "case": "C2",
+        "result": "{\"classification\": \"RED\", \"issues\": [{\"code\": \"PERPETUAL\", \"quote\": \"The obligations of confidentiality survive indefinitely after the end of this Agreement.\", \"reason\": \"Confidentiality survives without any end date. The playbook allows survival of up to 5 years after the end, and survival with no end is RED.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "PERPETUAL",
+              "quote": "The obligations of confidentiality survive indefinitely after the end of this Agreement.",
+              "reason": "Confidentiality survives without any end date. The playbook allows survival of up to 5 years after the end, and survival with no end is RED."
+            }
+          ]
+        },
+        "cost_usd": 0.0180565,
+        "duration_ms": 2190,
+        "turns": 1
+      }
+    ]
+  ]
+}
