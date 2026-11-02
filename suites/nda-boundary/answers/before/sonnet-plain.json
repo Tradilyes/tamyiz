@@ -340,6 +340,64 @@
         "duration_ms": 2190,
         "turns": 1
       }
+    ],
+    [
+      {
+        "case": "C3",
+        "result": "{\"classification\": \"YELLOW\", \"issues\": [{\"code\": \"TERM_TOO_LONG\", \"quote\": \"This Agreement has an initial term of five (5) years and renews automatically for successive periods of one (1) year\", \"reason\": \"The playbook allows a term of up to 3 years. The initial term is 5 years and it then renews automatically each year. Survival is 3 years after the end, which is within the 5-year limit, so it is not an issue. The NDA is mutual, has all five exclusions, allows retention of legally required and back-up copies, and has no non-solicit, non-compete, liquidated damages or residuals clause. Governing law and forum are DIFC and the NDA is English-only, so there is no translation mismatch. Route to counsel review. Ask for a term of 3 years or less.\"}]}",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "TERM_TOO_LONG",
+              "quote": "This Agreement has an initial term of five (5) years and renews automatically for successive periods of one (1) year",
+              "reason": "The playbook allows a term of up to 3 years. The initial term is 5 years and it then renews automatically each year. Survival is 3 years after the end, which is within the 5-year limit, so it is not an issue. The NDA is mutual, has all five exclusions, allows retention of legally required and back-up copies, and has no non-solicit, non-compete, liquidated damages or residuals clause. Governing law and forum are DIFC and the NDA is English-only, so there is no translation mismatch. Route to counsel review. Ask for a term of 3 years or less."
+            }
+          ]
+        },
+        "cost_usd": 0.0213164,
+        "duration_ms": 4369,
+        "turns": 1
+      },
+      {
+        "case": "C4",
+        "result": "{\"classification\": \"RED\", \"issues\": [{\"code\": \"PERPETUAL\", \"quote\": \"shall be protected indefinitely\", \"reason\": \"Clause 7 sets a 5-year survival period, which is within the playbook limit. It then carves out trade secrets and any information marked \\\"highly confidential\\\" for indefinite protection. That is confidentiality with no end date, and the counterparty could extend it to any information simply by marking it. The playbook treats survival without an end as RED. Ask for a fixed long-stop period, for example 5 years after the end of the Agreement, with trade secrets protected only for as long as they remain trade secrets under the law, and for the \\\"highly confidential\\\" carve-out to be deleted.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "PERPETUAL",
+              "quote": "shall be protected indefinitely",
+              "reason": "Clause 7 sets a 5-year survival period, which is within the playbook limit. It then carves out trade secrets and any information marked \"highly confidential\" for indefinite protection. That is confidentiality with no end date, and the counterparty could extend it to any information simply by marking it. The playbook treats survival without an end as RED. Ask for a fixed long-stop period, for example 5 years after the end of the Agreement, with trade secrets protected only for as long as they remain trade secrets under the law, and for the \"highly confidential\" carve-out to be deleted."
+            }
+          ]
+        },
+        "cost_usd": 0.021242999999999998,
+        "duration_ms": 4767,
+        "turns": 1
+      },
+      {
+        "case": "C5",
+        "result": "{\"classification\": \"RED\", \"issues\": [{\"code\": \"PERPETUAL\", \"quote\": \"is renewed automatically for further periods of three (3) years; it cannot be terminated before the end of a period. The obligations of confidentiality survive for three (3) years after the end of this Agreement.\", \"reason\": \"The Agreement renews automatically every three years and has no non-renewal or termination mechanism, so it never ends. The three-year survival period runs from the end of the Agreement, so it never starts. Confidentiality is therefore effectively perpetual, which the playbook rates RED.\"}, {\"code\": \"TERM_TOO_LONG\", \"quote\": \"renewed automatically for further periods of three (3) years\", \"reason\": \"The initial three-year term is within the playbook limit. The unlimited automatic renewals with no exit take the term beyond the 3-year maximum.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "PERPETUAL",
+              "quote": "is renewed automatically for further periods of three (3) years; it cannot be terminated before the end of a period. The obligations of confidentiality survive for three (3) years after the end of this Agreement.",
+              "reason": "The Agreement renews automatically every three years and has no non-renewal or termination mechanism, so it never ends. The three-year survival period runs from the end of the Agreement, so it never starts. Confidentiality is therefore effectively perpetual, which the playbook rates RED."
+            },
+            {
+              "code": "TERM_TOO_LONG",
+              "quote": "renewed automatically for further periods of three (3) years",
+              "reason": "The initial three-year term is within the playbook limit. The unlimited automatic renewals with no exit take the term beyond the 3-year maximum."
+            }
+          ]
+        },
+        "cost_usd": 0.026285500000000003,
+        "duration_ms": 7227,
+        "turns": 1
+      }
     ]
   ]
 }

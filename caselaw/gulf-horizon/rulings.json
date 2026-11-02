@@ -1,0 +1,41 @@
+{
+  "team": "Gulf Horizon Holding LLC, legal department",
+  "playbook": "suites/nda-boundary/playbook.md",
+  "note": "A fictional company: the one of the benchmark. Rulings written on 2 November 2026 by the author acting as the company's General Counsel, after reviewing how four AI reviewers read the edge NDAs P1A to P10A, and before any reviewer saw the held-out NDAs with these rulings.",
+  "rulings": [
+    {
+      "id": "R-2026-01",
+      "date": "2026-11-02",
+      "question": "A term of three years that renews automatically for one-year periods unless a Party gives notice: is it longer than the three years the playbook accepts?",
+      "holding": "No. When either Party can stop the renewal by notice, the term measured against the three-year limit is the initial term. TERM_TOO_LONG applies when the initial term exceeds three years, or when the renewal cannot be stopped by notice.",
+      "reasons": "The limit protects the company from being bound for longer than it chose. A renewal that either Party can end by a simple notice does not bind it for longer; one that cannot be stopped does.",
+      "positions": ["term"],
+      "raised_by": "edge review: all four reviewers read P1A as TERM_TOO_LONG",
+      "examples": ["P1A"],
+      "law": [],
+      "status": "in_force"
+    },
+    {
+      "id": "R-2026-02",
+      "date": "2026-11-02",
+      "question": "Confidentiality survives five years, and trade secrets are protected for as long as they remain trade secrets: is it a confidentiality obligation without end?",
+      "holding": "No. Protecting trade secrets for as long as they remain trade secrets is accepted: that protection ends when the information stops being a trade secret, and the general survival period is what is measured against the five-year limit. Any other information protected without end is still PERPETUAL.",
+      "reasons": "A trade secret keeps its value, and its legal protection, only while it stays secret; protecting it for that time is standard and ends by itself. The playbook's prohibition targets obligations that never end on ordinary confidential information.",
+      "positions": ["survival"],
+      "raised_by": "edge review: all four reviewers read P2A as PERPETUAL",
+      "examples": ["P2A"],
+      "law": [],
+      "status": "in_force"
+    }
+  ],
+  "confirmed": [
+    { "pattern": "P3", "reading": "GREEN: the fifth exclusion is present without a duty to notify", "date": "2026-11-02" },
+    { "pattern": "P4", "reading": "RED, NON_SOLICIT: any covenant not to solicit or hire staff, however narrow", "date": "2026-11-02" },
+    { "pattern": "P5", "reading": "YELLOW, RESIDUALS_BROAD: information kept in memory used for any purpose, even unaided memory", "date": "2026-11-02" },
+    { "pattern": "P6", "reading": "GREEN: arbitration seated in the DIFC or in Dubai under an accepted law", "date": "2026-11-02" },
+    { "pattern": "P7", "reading": "RED, LIQUIDATED_DAMAGES: an amount fixed in advance, whatever its name and even if the court may adjust it", "date": "2026-11-02" },
+    { "pattern": "P8", "reading": "YELLOW, NO_RETENTION_EXCEPTION: the exception must also cover back-up copies", "date": "2026-11-02" },
+    { "pattern": "P9", "reading": "RED, UNILATERAL: only Gulf Horizon bound, whatever the title", "date": "2026-11-02" },
+    { "pattern": "P10", "reading": "GREEN: an accepted law with another accepted forum", "date": "2026-11-02" }
+  ]
+}

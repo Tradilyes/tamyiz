@@ -340,6 +340,59 @@
         "duration_ms": 4689,
         "turns": 1
       }
+    ],
+    [
+      {
+        "case": "C3",
+        "result": "{\"classification\": \"YELLOW\", \"issues\": [{\"code\": \"TERM_TOO_LONG\", \"quote\": \"This Agreement has an initial term of five (5) years and renews automatically for successive periods of one (1) year\", \"reason\": \"The initial term is 5 years, above the playbook maximum of 3 years. Automatic one-year renewals can extend it further. All other terms meet the playbook: the NDA is mutual, confidentiality survives 3 years after the end (within the 5-year limit), all five standard exclusions are present, permitted disclosures are standard, return or destruction allows legal and back-up copies, remedies are limited to injunctive relief, there are no restrictive covenants or residuals clause, and DIFC law and courts apply. The NDA is in English only, so no translation check is needed.\"}]}",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "TERM_TOO_LONG",
+              "quote": "This Agreement has an initial term of five (5) years and renews automatically for successive periods of one (1) year",
+              "reason": "The initial term is 5 years, above the playbook maximum of 3 years. Automatic one-year renewals can extend it further. All other terms meet the playbook: the NDA is mutual, confidentiality survives 3 years after the end (within the 5-year limit), all five standard exclusions are present, permitted disclosures are standard, return or destruction allows legal and back-up copies, remedies are limited to injunctive relief, there are no restrictive covenants or residuals clause, and DIFC law and courts apply. The NDA is in English only, so no translation check is needed."
+            }
+          ]
+        },
+        "cost_usd": 0.040582200000000006,
+        "duration_ms": 7637,
+        "turns": 1
+      },
+      {
+        "case": "C4",
+        "result": "{\"classification\": \"RED\", \"issues\": [{\"code\": \"PERPETUAL\", \"quote\": \"except that information which constitutes a trade secret, and any information marked \\\"highly confidential\\\", shall be protected indefinitely\", \"reason\": \"Clause 7 generally limits survival to 5 years after the end, which the playbook accepts. However, it protects trade secrets and anything marked \\\"highly confidential\\\" indefinitely. That is confidentiality with no end date, which is a RED issue and needs full legal review. The other terms are within the playbook: the NDA is mutual, the 2-year term is within the 3-year limit, all five exclusions are present, the permitted disclosures are standard, and the retention exception covers both legal and back-up copies. Remedies are limited to injunctive relief, there are no restrictive covenants or residuals clause, and DIFC law and courts apply. The NDA is in English only, so the bilingual rule does not apply.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "PERPETUAL",
+              "quote": "except that information which constitutes a trade secret, and any information marked \"highly confidential\", shall be protected indefinitely",
+              "reason": "Clause 7 generally limits survival to 5 years after the end, which the playbook accepts. However, it protects trade secrets and anything marked \"highly confidential\" indefinitely. That is confidentiality with no end date, which is a RED issue and needs full legal review. The other terms are within the playbook: the NDA is mutual, the 2-year term is within the 3-year limit, all five exclusions are present, the permitted disclosures are standard, and the retention exception covers both legal and back-up copies. Remedies are limited to injunctive relief, there are no restrictive covenants or residuals clause, and DIFC law and courts apply. The NDA is in English only, so the bilingual rule does not apply."
+            }
+          ]
+        },
+        "cost_usd": 0.0432768,
+        "duration_ms": 8533,
+        "turns": 1
+      },
+      {
+        "case": "C5",
+        "result": "{\"classification\": \"YELLOW\", \"issues\": [{\"code\": \"TERM_TOO_LONG\", \"quote\": \"is renewed automatically for further periods of three (3) years; it cannot be terminated before the end of a period\", \"reason\": \"The initial term is 3 years, but the Agreement renews itself automatically for more 3-year periods with no limit on the number of renewals. It gives no non-renewal notice and no way to opt out, and it cannot be terminated during a period. So the total term can run past the 3-year maximum in our playbook, and could have no end at all. That would also push back the start of the 3-year survival period indefinitely. Fix: remove the automatic renewal, or limit the total term to 3 years, or add a right for either Party to give notice of non-renewal or terminate for convenience. Everything else meets the playbook: it is mutual, all five exclusions are there (cl. 4), permitted disclosures are standard (cl. 5), copies kept by law or in back-ups are allowed (cl. 6), survival is 3 years (cl. 7), remedies are limited to injunctive relief (cl. 8), there is no non-solicit, non-compete or residuals clause, governing law and courts are DIFC (cl. 10), and it is in English only, so the translation check does not apply.\"}]}",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "TERM_TOO_LONG",
+              "quote": "is renewed automatically for further periods of three (3) years; it cannot be terminated before the end of a period",
+              "reason": "The initial term is 3 years, but the Agreement renews itself automatically for more 3-year periods with no limit on the number of renewals. It gives no non-renewal notice and no way to opt out, and it cannot be terminated during a period. So the total term can run past the 3-year maximum in our playbook, and could have no end at all. That would also push back the start of the 3-year survival period indefinitely. Fix: remove the automatic renewal, or limit the total term to 3 years, or add a right for either Party to give notice of non-renewal or terminate for convenience. Everything else meets the playbook: it is mutual, all five exclusions are there (cl. 4), permitted disclosures are standard (cl. 5), copies kept by law or in back-ups are allowed (cl. 6), survival is 3 years (cl. 7), remedies are limited to injunctive relief (cl. 8), there is no non-solicit, non-compete or residuals clause, governing law and courts are DIFC (cl. 10), and it is in English only, so the translation check does not apply."
+            }
+          ]
+        },
+        "cost_usd": 0.05457480000000001,
+        "duration_ms": 14087,
+        "turns": 1
+      }
     ]
   ]
 }

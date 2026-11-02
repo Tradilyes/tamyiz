@@ -340,6 +340,59 @@
         "duration_ms": 6167,
         "turns": 1
       }
+    ],
+    [
+      {
+        "case": "C3",
+        "result": "```json\n{\"classification\": \"YELLOW\", \"issues\": [{\"code\": \"TERM_TOO_LONG\", \"quote\": \"This Agreement has an initial term of five (5) years and renews automatically for successive periods of one (1) year unless either Party gives thirty (30) days' written notice of non-renewal.\", \"reason\": \"The playbook allows a term of up to 3 years. This initial term is 5 years. It also renews automatically every year, so it can run longer still unless someone sends a non-renewal notice. That raises a second point: survival is 3 years from the end of the Agreement, which is within the 5-year limit, but automatic renewal can push that end date back indefinitely. Suggested edit: change 'five (5)' to 'three (3)' and delete the automatic renewal wording. Counsel review is needed before signing. All other checks pass: the NDA binds both parties; all five standard exclusions are there (4.1–4.5); permitted disclosures are standard; return or destruction allows copies kept by law and in back-ups; remedies are injunctive relief only, with no liquidated damages; there is no non-solicit, non-compete, exclusivity or residuals clause; and DIFC law and DIFC Courts are acceptable. The NDA is in English only (clause 11), so there is no Arabic version to compare. Send this triage and the NDA to Legal for final confirmation before signing.\"}]}\n```",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "TERM_TOO_LONG",
+              "quote": "This Agreement has an initial term of five (5) years and renews automatically for successive periods of one (1) year unless either Party gives thirty (30) days' written notice of non-renewal.",
+              "reason": "The playbook allows a term of up to 3 years. This initial term is 5 years. It also renews automatically every year, so it can run longer still unless someone sends a non-renewal notice. That raises a second point: survival is 3 years from the end of the Agreement, which is within the 5-year limit, but automatic renewal can push that end date back indefinitely. Suggested edit: change 'five (5)' to 'three (3)' and delete the automatic renewal wording. Counsel review is needed before signing. All other checks pass: the NDA binds both parties; all five standard exclusions are there (4.1–4.5); permitted disclosures are standard; return or destruction allows copies kept by law and in back-ups; remedies are injunctive relief only, with no liquidated damages; there is no non-solicit, non-compete, exclusivity or residuals clause; and DIFC law and DIFC Courts are acceptable. The NDA is in English only (clause 11), so there is no Arabic version to compare. Send this triage and the NDA to Legal for final confirmation before signing."
+            }
+          ]
+        },
+        "cost_usd": 0.0506318,
+        "duration_ms": 7322,
+        "turns": 1
+      },
+      {
+        "case": "C4",
+        "result": "```json\n{\"classification\": \"RED\", \"issues\": [{\"code\": \"PERPETUAL\", \"quote\": \"except that information which constitutes a trade secret, and any information marked \\\"highly confidential\\\", shall be protected indefinitely\", \"reason\": \"Clause 7 caps confidentiality survival at five years after the Agreement ends, then makes two categories of information protected with no end: trade secrets, and anything marked \\\"highly confidential\\\". The second category is not limited, because either Party can apply the label to whatever it chooses. Our playbook treats survival without end as PERPETUAL (RED) and has no exception for trade secrets. Every other position passes: the NDA is mutual; the term is 2 years; the general survival period is 5 years; all five standard exclusions are present (cl. 4.1–4.5); permitted disclosures are standard (cl. 5); copies required by law and back-up copies can be kept (cl. 6); remedies are limited to injunctive relief, with no liquidated damages (cl. 8); there is no non-solicit, non-compete, exclusivity or residuals clause; the law and courts are DIFC (cl. 10); and the NDA is in English only, so there is no translation to compare. Suggested fix: delete \\\"and any information marked \\\"highly confidential\\\",\\\" and either delete the indefinite trade-secret protection or limit it to the period the information remains a trade secret under applicable law. Do not sign today. Send this triage and the NDA to Legal for final confirmation before signing.\"}]}\n```",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "PERPETUAL",
+              "quote": "except that information which constitutes a trade secret, and any information marked \"highly confidential\", shall be protected indefinitely",
+              "reason": "Clause 7 caps confidentiality survival at five years after the Agreement ends, then makes two categories of information protected with no end: trade secrets, and anything marked \"highly confidential\". The second category is not limited, because either Party can apply the label to whatever it chooses. Our playbook treats survival without end as PERPETUAL (RED) and has no exception for trade secrets. Every other position passes: the NDA is mutual; the term is 2 years; the general survival period is 5 years; all five standard exclusions are present (cl. 4.1–4.5); permitted disclosures are standard (cl. 5); copies required by law and back-up copies can be kept (cl. 6); remedies are limited to injunctive relief, with no liquidated damages (cl. 8); there is no non-solicit, non-compete, exclusivity or residuals clause; the law and courts are DIFC (cl. 10); and the NDA is in English only, so there is no translation to compare. Suggested fix: delete \"and any information marked \"highly confidential\",\" and either delete the indefinite trade-secret protection or limit it to the period the information remains a trade secret under applicable law. Do not sign today. Send this triage and the NDA to Legal for final confirmation before signing."
+            }
+          ]
+        },
+        "cost_usd": 0.0525594,
+        "duration_ms": 7897,
+        "turns": 1
+      },
+      {
+        "case": "C5",
+        "result": "```json\n{\"classification\": \"YELLOW\", \"issues\": [{\"code\": \"TERM_TOO_LONG\", \"quote\": \"This Agreement has an initial term of three (3) years and is renewed automatically for further periods of three (3) years; it cannot be terminated before the end of a period.\", \"reason\": \"The initial term is 3 years, which the playbook allows. But the agreement renews itself for further 3-year periods, so it runs past 3 years unless someone acts. Clause 7 also bars early termination during a period, and it doesn't say how to stop a renewal (no notice period or method). The 3-year survival period only starts when the agreement ends, so the real length of the obligations is open-ended. That breaks the 3-year term limit, which is a YELLOW issue for counsel review. Suggested fix: delete the renewal wording ('and is renewed automatically for further periods of three (3) years; it cannot be terminated before the end of a period'), or add a right for either party to end the agreement on written notice. It is not PERPETUAL: the wording implies it can end at the end of a period, and survival is capped at 3 years. Every other check passes: both parties are bound; all five standard exclusions are in clause 4; permitted disclosures are standard; clause 6 allows keeping copies required by law or held in back-ups; remedies are injunctive relief only; there is no non-solicit, non-compete, exclusivity or residuals clause; DIFC law and DIFC Courts are acceptable; English is the only language, so no translation check is needed. Send this triage and the NDA to Legal for final confirmation before signing.\"}]}\n```",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "TERM_TOO_LONG",
+              "quote": "This Agreement has an initial term of three (3) years and is renewed automatically for further periods of three (3) years; it cannot be terminated before the end of a period.",
+              "reason": "The initial term is 3 years, which the playbook allows. But the agreement renews itself for further 3-year periods, so it runs past 3 years unless someone acts. Clause 7 also bars early termination during a period, and it doesn't say how to stop a renewal (no notice period or method). The 3-year survival period only starts when the agreement ends, so the real length of the obligations is open-ended. That breaks the 3-year term limit, which is a YELLOW issue for counsel review. Suggested fix: delete the renewal wording ('and is renewed automatically for further periods of three (3) years; it cannot be terminated before the end of a period'), or add a right for either party to end the agreement on written notice. It is not PERPETUAL: the wording implies it can end at the end of a period, and survival is capped at 3 years. Every other check passes: both parties are bound; all five standard exclusions are in clause 4; permitted disclosures are standard; clause 6 allows keeping copies required by law or held in back-ups; remedies are injunctive relief only; there is no non-solicit, non-compete, exclusivity or residuals clause; DIFC law and DIFC Courts are acceptable; English is the only language, so no translation check is needed. Send this triage and the NDA to Legal for final confirmation before signing."
+            }
+          ]
+        },
+        "cost_usd": 0.0609649,
+        "duration_ms": 14933,
+        "turns": 1
+      }
     ]
   ]
 }
