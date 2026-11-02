@@ -1,0 +1,471 @@
+{
+  "reviewers": [
+    "opus-plain",
+    "opus-cfl",
+    "sonnet-plain",
+    "haiku-system"
+  ],
+  "edge": {
+    "reviewers": [
+      "haiku-system",
+      "opus-cfl",
+      "opus-plain",
+      "sonnet-plain"
+    ],
+    "cases": [
+      {
+        "id": "P1A",
+        "unanimous": true,
+        "readings": [
+          {
+            "classification": "YELLOW",
+            "codes": [
+              "TERM_TOO_LONG"
+            ],
+            "reviewers": [
+              "haiku-system",
+              "opus-cfl",
+              "opus-plain",
+              "sonnet-plain"
+            ]
+          }
+        ],
+        "disputedCodes": [],
+        "routingInDispute": false
+      },
+      {
+        "id": "P2A",
+        "unanimous": true,
+        "readings": [
+          {
+            "classification": "RED",
+            "codes": [
+              "PERPETUAL"
+            ],
+            "reviewers": [
+              "haiku-system",
+              "opus-cfl",
+              "opus-plain",
+              "sonnet-plain"
+            ]
+          }
+        ],
+        "disputedCodes": [],
+        "routingInDispute": false
+      },
+      {
+        "id": "P3A",
+        "unanimous": true,
+        "readings": [
+          {
+            "classification": "GREEN",
+            "codes": [],
+            "reviewers": [
+              "haiku-system",
+              "opus-cfl",
+              "opus-plain",
+              "sonnet-plain"
+            ]
+          }
+        ],
+        "disputedCodes": [],
+        "routingInDispute": false
+      },
+      {
+        "id": "P4A",
+        "unanimous": true,
+        "readings": [
+          {
+            "classification": "RED",
+            "codes": [
+              "NON_SOLICIT"
+            ],
+            "reviewers": [
+              "haiku-system",
+              "opus-cfl",
+              "opus-plain",
+              "sonnet-plain"
+            ]
+          }
+        ],
+        "disputedCodes": [],
+        "routingInDispute": false
+      },
+      {
+        "id": "P5A",
+        "unanimous": true,
+        "readings": [
+          {
+            "classification": "YELLOW",
+            "codes": [
+              "RESIDUALS_BROAD"
+            ],
+            "reviewers": [
+              "haiku-system",
+              "opus-cfl",
+              "opus-plain",
+              "sonnet-plain"
+            ]
+          }
+        ],
+        "disputedCodes": [],
+        "routingInDispute": false
+      },
+      {
+        "id": "P6A",
+        "unanimous": true,
+        "readings": [
+          {
+            "classification": "GREEN",
+            "codes": [],
+            "reviewers": [
+              "haiku-system",
+              "opus-cfl",
+              "opus-plain",
+              "sonnet-plain"
+            ]
+          }
+        ],
+        "disputedCodes": [],
+        "routingInDispute": false
+      },
+      {
+        "id": "P7A",
+        "unanimous": true,
+        "readings": [
+          {
+            "classification": "RED",
+            "codes": [
+              "LIQUIDATED_DAMAGES"
+            ],
+            "reviewers": [
+              "haiku-system",
+              "opus-cfl",
+              "opus-plain",
+              "sonnet-plain"
+            ]
+          }
+        ],
+        "disputedCodes": [],
+        "routingInDispute": false
+      },
+      {
+        "id": "P8A",
+        "unanimous": true,
+        "readings": [
+          {
+            "classification": "YELLOW",
+            "codes": [
+              "NO_RETENTION_EXCEPTION"
+            ],
+            "reviewers": [
+              "haiku-system",
+              "opus-cfl",
+              "opus-plain",
+              "sonnet-plain"
+            ]
+          }
+        ],
+        "disputedCodes": [],
+        "routingInDispute": false
+      },
+      {
+        "id": "P9A",
+        "unanimous": true,
+        "readings": [
+          {
+            "classification": "RED",
+            "codes": [
+              "UNILATERAL"
+            ],
+            "reviewers": [
+              "haiku-system",
+              "opus-cfl",
+              "opus-plain",
+              "sonnet-plain"
+            ]
+          }
+        ],
+        "disputedCodes": [],
+        "routingInDispute": false
+      },
+      {
+        "id": "P10A",
+        "unanimous": true,
+        "readings": [
+          {
+            "classification": "GREEN",
+            "codes": [],
+            "reviewers": [
+              "haiku-system",
+              "opus-cfl",
+              "opus-plain",
+              "sonnet-plain"
+            ]
+          }
+        ],
+        "disputedCodes": [],
+        "routingInDispute": false
+      }
+    ],
+    "unanimous": 10,
+    "questions": [],
+    "pairwise": [
+      {
+        "a": "haiku-system",
+        "b": "opus-cfl",
+        "agree": 10,
+        "of": 10
+      },
+      {
+        "a": "haiku-system",
+        "b": "opus-plain",
+        "agree": 10,
+        "of": 10
+      },
+      {
+        "a": "haiku-system",
+        "b": "sonnet-plain",
+        "agree": 10,
+        "of": 10
+      },
+      {
+        "a": "opus-cfl",
+        "b": "opus-plain",
+        "agree": 10,
+        "of": 10
+      },
+      {
+        "a": "opus-cfl",
+        "b": "sonnet-plain",
+        "agree": 10,
+        "of": 10
+      },
+      {
+        "a": "opus-plain",
+        "b": "sonnet-plain",
+        "agree": 10,
+        "of": 10
+      }
+    ],
+    "pairwiseRate": 1
+  },
+  "guards": {
+    "reviewers": [
+      "haiku-system",
+      "opus-cfl",
+      "opus-plain",
+      "sonnet-plain"
+    ],
+    "cases": [
+      {
+        "id": "C1",
+        "unanimous": true,
+        "readings": [
+          {
+            "classification": "GREEN",
+            "codes": [],
+            "reviewers": [
+              "haiku-system",
+              "opus-cfl",
+              "opus-plain",
+              "sonnet-plain"
+            ]
+          }
+        ],
+        "disputedCodes": [],
+        "routingInDispute": false
+      },
+      {
+        "id": "C2",
+        "unanimous": true,
+        "readings": [
+          {
+            "classification": "RED",
+            "codes": [
+              "PERPETUAL"
+            ],
+            "reviewers": [
+              "haiku-system",
+              "opus-cfl",
+              "opus-plain",
+              "sonnet-plain"
+            ]
+          }
+        ],
+        "disputedCodes": [],
+        "routingInDispute": false
+      },
+      {
+        "id": "C3",
+        "unanimous": true,
+        "readings": [
+          {
+            "classification": "YELLOW",
+            "codes": [
+              "TERM_TOO_LONG"
+            ],
+            "reviewers": [
+              "haiku-system",
+              "opus-cfl",
+              "opus-plain",
+              "sonnet-plain"
+            ]
+          }
+        ],
+        "disputedCodes": [],
+        "routingInDispute": false
+      },
+      {
+        "id": "C4",
+        "unanimous": true,
+        "readings": [
+          {
+            "classification": "RED",
+            "codes": [
+              "PERPETUAL"
+            ],
+            "reviewers": [
+              "haiku-system",
+              "opus-cfl",
+              "opus-plain",
+              "sonnet-plain"
+            ]
+          }
+        ],
+        "disputedCodes": [],
+        "routingInDispute": false
+      },
+      {
+        "id": "C5",
+        "unanimous": false,
+        "readings": [
+          {
+            "classification": "YELLOW",
+            "codes": [
+              "TERM_TOO_LONG"
+            ],
+            "reviewers": [
+              "haiku-system",
+              "opus-cfl",
+              "opus-plain"
+            ]
+          },
+          {
+            "classification": "RED",
+            "codes": [
+              "PERPETUAL",
+              "TERM_TOO_LONG"
+            ],
+            "reviewers": [
+              "sonnet-plain"
+            ]
+          }
+        ],
+        "disputedCodes": [
+          "PERPETUAL"
+        ],
+        "routingInDispute": true
+      }
+    ],
+    "unanimous": 4,
+    "questions": [
+      {
+        "id": "C5",
+        "unanimous": false,
+        "readings": [
+          {
+            "classification": "YELLOW",
+            "codes": [
+              "TERM_TOO_LONG"
+            ],
+            "reviewers": [
+              "haiku-system",
+              "opus-cfl",
+              "opus-plain"
+            ]
+          },
+          {
+            "classification": "RED",
+            "codes": [
+              "PERPETUAL",
+              "TERM_TOO_LONG"
+            ],
+            "reviewers": [
+              "sonnet-plain"
+            ]
+          }
+        ],
+        "disputedCodes": [
+          "PERPETUAL"
+        ],
+        "routingInDispute": true
+      }
+    ],
+    "pairwise": [
+      {
+        "a": "haiku-system",
+        "b": "opus-cfl",
+        "agree": 5,
+        "of": 5
+      },
+      {
+        "a": "haiku-system",
+        "b": "opus-plain",
+        "agree": 5,
+        "of": 5
+      },
+      {
+        "a": "haiku-system",
+        "b": "sonnet-plain",
+        "agree": 4,
+        "of": 5
+      },
+      {
+        "a": "opus-cfl",
+        "b": "opus-plain",
+        "agree": 5,
+        "of": 5
+      },
+      {
+        "a": "opus-cfl",
+        "b": "sonnet-plain",
+        "agree": 4,
+        "of": 5
+      },
+      {
+        "a": "opus-plain",
+        "b": "sonnet-plain",
+        "agree": 4,
+        "of": 5
+      }
+    ],
+    "pairwiseRate": 0.9
+  },
+  "scores": {
+    "opus-plain": {
+      "testBefore": "8/10",
+      "testAfter": "10/10",
+      "controlsBefore": "5/5",
+      "controlsAfter": "5/5"
+    },
+    "opus-cfl": {
+      "testBefore": "8/10",
+      "testAfter": "10/10",
+      "controlsBefore": "5/5",
+      "controlsAfter": "5/5"
+    },
+    "sonnet-plain": {
+      "testBefore": "8/10",
+      "testAfter": "10/10",
+      "controlsBefore": "4/5",
+      "controlsAfter": "5/5"
+    },
+    "haiku-system": {
+      "testBefore": "8/10",
+      "testAfter": "10/10",
+      "controlsBefore": "5/5",
+      "controlsAfter": "5/5"
+    }
+  }
+}

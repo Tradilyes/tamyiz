@@ -1,0 +1,2666 @@
+<title>Tamyiz NDA Desk</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap">
+<style>
+/* Layout: a registry desk. A narrow docket rail names the register's sections; the open file sits
+   beside it. Rulings read like a law report: citation in the margin, question, holding, reasons. */
+:root {
+  --paper: #f3f5f4;
+  --sheet: #ffffff;
+  --ink: #17202a;
+  --muted: #5a6571;
+  --rule: #d8dde1;
+  --seal: #2e3c9a;
+  --seal-soft: #e6e9fa;
+  --go: #1d7650;
+  --go-soft: #e2f2e9;
+  --warn: #8f5a00;
+  --warn-soft: #faefd6;
+  --stop: #b2271f;
+  --stop-soft: #fae3e1;
+  --focus: #2e3c9a;
+  --display: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --body: "IBM Plex Sans", "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --arabic: "IBM Plex Sans Arabic", "Noto Naskh Arabic", "Geeza Pro", Tahoma, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e1317; --sheet: #151c22; --ink: #e6ebef; --muted: #9ba7b2; --rule: #27323b;
+    --seal: #98a8ff; --seal-soft: #1b2242; --go: #4fc48c; --go-soft: #12251c; --warn: #e6b04c; --warn-soft: #2a2111;
+    --stop: #ff7d72; --stop-soft: #2d1513; --focus: #98a8ff; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0e1317; --sheet: #151c22; --ink: #e6ebef; --muted: #9ba7b2; --rule: #27323b;
+  --seal: #98a8ff; --seal-soft: #1b2242; --go: #4fc48c; --go-soft: #12251c; --warn: #e6b04c; --warn-soft: #2a2111;
+  --stop: #ff7d72; --stop-soft: #2d1513; --focus: #98a8ff; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 15px/1.55 var(--body); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 48px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+h1 { font-size: 1.65rem; font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; font-weight: 600; }
+h3 { font-size: 1.05rem; font-weight: 600; }
+p { margin: 0; }
+a { color: var(--seal); }
+.muted { color: var(--muted); }
+.mono { font-family: var(--mono); font-size: 0.85em; }
+.label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+button, select, input, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* Masthead */
+.mast { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: end; justify-content: space-between; border-bottom: 1px solid var(--rule); padding-bottom: 14px; }
+.mast .who { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.mast .date { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+.role { border: 1px solid var(--rule); border-radius: 999px; padding: 2px 10px; font-size: 0.78rem; color: var(--muted); }
+.role.gc { border-color: var(--seal); color: var(--seal); }
+.tag { color: var(--muted); max-width: 62ch; margin-top: 6px; }
+
+/* Desk */
+.desk { display: grid; grid-template-columns: 188px minmax(0, 1fr); gap: 28px; margin-top: 20px; }
+.rail { display: flex; flex-direction: column; gap: 2px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); align-self: start; }
+.rail button { text-align: left; background: none; border: 0; border-left: 2px solid transparent; padding: 8px 12px; border-radius: 0; cursor: pointer; color: var(--muted); display: flex; justify-content: space-between; gap: 8px; }
+.rail button[aria-selected="true"] { color: var(--ink); border-left-color: var(--seal); background: var(--sheet); font-weight: 600; }
+.rail button:hover { color: var(--ink); }
+.count { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
+.panel { min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.sheet { background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field label { font-weight: 500; font-size: 0.9rem; }
+input[type="text"], textarea, select { background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 8px 10px; width: 100%; min-width: 0; max-width: 100%; }
+.pick { display: flex; gap: 8px; align-items: center; min-width: 0; flex: 1 1 260px; justify-content: flex-end; }
+.pick select { width: auto; flex: 0 1 auto; text-overflow: ellipsis; }
+textarea { min-height: 220px; resize: vertical; line-height: 1.5; font-size: 0.88rem; }
+textarea[lang="ar"] { font-family: var(--arabic); font-size: 0.95rem; }
+.btn { border: 1px solid var(--rule); background: var(--sheet); padding: 7px 14px; border-radius: 4px; cursor: pointer; }
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--seal); border-color: var(--seal); color: var(--sheet); font-weight: 600; }
+.btn:disabled { opacity: 0.55; cursor: default; }
+.note { font-size: 0.86rem; color: var(--muted); }
+.status { font-size: 0.88rem; min-height: 1.3em; }
+.status.error { color: var(--stop); }
+
+/* Routing stamp and findings */
+.stamp { display: inline-flex; gap: 10px; align-items: baseline; padding: 6px 14px; border: 2px solid currentColor; border-radius: 4px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.9rem; }
+.stamp small { font-weight: 500; letter-spacing: 0.02em; text-transform: none; font-size: 0.85rem; }
+.GREEN { color: var(--go); background: var(--go-soft); }
+.YELLOW { color: var(--warn); background: var(--warn-soft); }
+.RED { color: var(--stop); background: var(--stop-soft); }
+.pill { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.03em; }
+.issues { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--rule); }
+.issue { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 6px 16px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.issue .code { font-family: var(--mono); font-size: 0.82rem; font-weight: 500; }
+.issue blockquote { margin: 0; padding-left: 10px; border-left: 2px solid var(--rule); font-family: var(--display); font-size: 0.97rem; overflow-wrap: anywhere; }
+.issue blockquote[lang="ar"] { font-family: var(--arabic); border-left: 0; border-right: 2px solid var(--rule); padding-left: 0; padding-right: 10px; }
+.check { font-size: 0.78rem; font-weight: 600; }
+.check.ok { color: var(--go); }
+.check.bad { color: var(--stop); }
+.finding { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 4px 12px; padding: 8px 0; border-bottom: 1px dashed var(--rule); font-size: 0.9rem; }
+.conf { font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; }
+.conf.certain { color: var(--stop); } .conf.likely { color: var(--warn); } .conf.check { color: var(--muted); }
+.excerpts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; color: var(--muted); font-size: 0.84rem; }
+.excerpts [lang="ar"] { font-family: var(--arabic); text-align: right; }
+.question { border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+.readings { margin: 0; padding-left: 18px; }
+
+/* Register */
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+.scroll { overflow-x: auto; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+td.num, .tab-nums { font-variant-numeric: tabular-nums; }
+
+/* Law report */
+.report { display: flex; flex-direction: column; }
+.ruling { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 8px 20px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+.ruling:first-child { padding-top: 4px; }
+.cite { font-family: var(--mono); font-size: 0.82rem; color: var(--seal); display: flex; flex-direction: column; gap: 4px; }
+.cite .hijri { color: var(--muted); font-size: 0.74rem; }
+.ruling .q { font-family: var(--display); font-weight: 600; font-size: 1.04rem; }
+.ruling .h { font-family: var(--display); font-size: 1rem; }
+.ruling .r { color: var(--muted); font-size: 0.92rem; }
+.ruling.overturned .q, .ruling.overturned .h { text-decoration: line-through; text-decoration-color: var(--muted); color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1px solid var(--rule); border-radius: 999px; padding: 1px 9px; font-size: 0.76rem; color: var(--muted); }
+.chip.seal { border-color: var(--seal); color: var(--seal); }
+.form { display: flex; flex-direction: column; gap: 10px; border: 1px dashed var(--seal); border-radius: 6px; padding: 14px; background: var(--seal-soft); }
+.form textarea { min-height: 90px; background: var(--sheet); }
+.empty { padding: 18px; border: 1px dashed var(--rule); border-radius: 6px; color: var(--muted); }
+pre.playbook { white-space: pre-wrap; font-family: var(--body); font-size: 0.9rem; margin: 0; overflow-wrap: anywhere; }
+.sev { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px 16px; }
+.sev label { display: flex; justify-content: space-between; gap: 10px; align-items: center; font-family: var(--mono); font-size: 0.8rem; }
+.sev select { width: auto; }
+
+@media (max-width: 820px) {
+  .desk { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .rail { position: static; flex-direction: row; overflow-x: auto; gap: 4px; border-bottom: 1px solid var(--rule); }
+  .rail button { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 8px 10px; }
+  .rail button[aria-selected="true"] { border-bottom-color: var(--seal); background: none; }
+  .grid2, .excerpts { grid-template-columns: minmax(0, 1fr); }
+  .issue, .ruling, .finding { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: no-preference) { .fade { animation: fade 0.25s ease-out; } @keyframes fade { from { opacity: 0.4; } to { opacity: 1; } } }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <h1>Tamyiz NDA Desk</h1>
+      <p class="tag">Claude reads each NDA against the team's playbook and the General Counsel's rulings; code checks the two language versions, every quote and the routing. Where the playbook can be read two ways, the question goes to the General Counsel, and the ruling binds every later review.</p>
+    </div>
+    <div class="who">
+      <span class="date" id="today"></span>
+      <span class="role" id="role">Viewer</span>
+    </div>
+  </header>
+
+  <div class="desk">
+    <nav class="rail" role="tablist" aria-label="Sections">
+      <button role="tab" id="t-desk" aria-selected="true" data-tab="desk">Review an NDA</button>
+      <button role="tab" id="t-register" aria-selected="false" data-tab="register">Register <span class="count" id="c-register">0</span></button>
+      <button role="tab" id="t-questions" aria-selected="false" data-tab="questions">Questions <span class="count" id="c-questions">0</span></button>
+      <button role="tab" id="t-caselaw" aria-selected="false" data-tab="caselaw">Case law <span class="count" id="c-caselaw">0</span></button>
+      <button role="tab" id="t-probes" aria-selected="false" data-tab="probes">Edge probes</button>
+      <button role="tab" id="t-playbook" aria-selected="false" data-tab="playbook">Playbook</button>
+    </nav>
+
+    <main class="panel">
+      <!-- Review an NDA -->
+      <section id="p-desk" class="panel">
+        <div class="sheet">
+          <div class="row" style="justify-content: space-between;">
+            <h2>Review an NDA</h2>
+            <div class="pick">
+              <label class="label" for="example">Example</label>
+              <select id="example"></select>
+            </div>
+          </div>
+          <div class="field"><label for="cp">Counterparty</label><input type="text" id="cp" placeholder="Name of the other party"></div>
+          <div class="grid2">
+            <div class="field"><label for="en">English version</label><textarea id="en" spellcheck="false" placeholder="Paste the English text of the NDA"></textarea></div>
+            <div class="field"><label for="ar">Arabic version <span class="muted">(optional)</span></label><textarea id="ar" lang="ar" dir="rtl" spellcheck="false" placeholder="ألصق النص العربي هنا إن وجد"></textarea></div>
+          </div>
+          <div class="row">
+            <button class="btn primary" id="go">Review with Claude</button>
+            <button class="btn" id="check">Compare the two versions only</button>
+            <button class="btn" id="stop" hidden>Stop</button>
+            <span class="status" id="st"></span>
+          </div>
+          <p class="note">Nothing is saved until you choose to. Claude runs on your own Claude account; the checks run in this page.</p>
+        </div>
+        <div id="result"></div>
+      </section>
+
+      <!-- Register -->
+      <section id="p-register" class="panel" hidden>
+        <div class="sheet">
+          <h2>Register</h2>
+          <p class="note">Reviews saved by the team. Only the routing, the issues and their quotes are kept, never the full NDA. Everyone who can open this page can read them.</p>
+          <div id="register"></div>
+        </div>
+      </section>
+
+      <!-- Questions -->
+      <section id="p-questions" class="panel" hidden>
+        <div class="sheet">
+          <h2>Questions for the General Counsel</h2>
+          <p class="note">Points where the playbook can be read two ways. A ruling answers one of them once, for every later review. Anyone can raise a question; the General Counsel, as an editor of this page, rules.</p>
+          <div id="ask" class="form" hidden>
+            <label class="label" for="askText">Raise a question</label>
+            <textarea id="askText" placeholder="For example: is a non-solicitation limited to staff we met during the talks still a non-solicitation?"></textarea>
+            <div class="row"><button class="btn" id="askGo">Send to the General Counsel</button><span class="status" id="askSt"></span></div>
+          </div>
+          <div id="questions"></div>
+        </div>
+      </section>
+
+      <!-- Case law -->
+      <section id="p-caselaw" class="panel" hidden>
+        <div class="sheet">
+          <div class="row" style="justify-content: space-between;">
+            <h2>Case law of the team</h2>
+            <button class="btn" id="copyCl">Copy as instructions for any AI tool</button>
+          </div>
+          <p class="note">Rulings in force are added to every review as binding precedents. A ruling is never erased: when the team changes its mind, a new ruling overturns it, and both stay in the record.</p>
+          <span class="status" id="clSt"></span>
+          <div id="caselaw" class="report"></div>
+        </div>
+      </section>
+
+      <!-- Edge probes -->
+      <section id="p-probes" class="panel" hidden>
+        <div class="sheet">
+          <h2>Edge probes</h2>
+          <p class="note">Ten NDAs written at the edge of the playbook. Run them to see how Claude reads each one today, under the playbook and the rulings in force. Where its reading is not the team's, rule; where it is, confirm it, so a later model cannot drift from it unnoticed.</p>
+          <div class="row"><button class="btn primary" id="probeAll">Run the ten probes</button><button class="btn" id="probeStop" hidden>Stop</button><span class="status" id="prSt"></span></div>
+          <div class="scroll"><table id="probes"><thead><tr><th>Edge clause</th><th>Claude's reading</th><th>Team position</th><th></th></tr></thead><tbody></tbody></table></div>
+        </div>
+      </section>
+
+      <!-- Playbook -->
+      <section id="p-playbook" class="panel" hidden>
+        <div class="sheet">
+          <div class="row" style="justify-content: space-between;"><h2>Playbook</h2><span class="note" id="pbWho"></span></div>
+          <pre class="playbook" id="pbText"></pre>
+          <div id="pbEdit" class="form" hidden>
+            <label class="label" for="pbArea">Edit the playbook</label>
+            <textarea id="pbArea" style="min-height:260px"></textarea>
+            <span class="label">Severity of each code</span>
+            <div class="sev" id="sev"></div>
+            <div class="row"><button class="btn primary" id="pbSave">Save the playbook</button><span class="status" id="pbSt"></span></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+const __defs = {
+"cp:engine/parity.mjs": function () {
+// courtproof — do two language versions of a contract say the same thing?
+// Copyright (c) 2026 ILYES M. TRAD — MIT licence.
+//
+// In Gulf courts the Arabic text is the one the judge reads: in Dubai, a Court of Appeal
+// relied on an Arabic translation of an arbitration clause that let the courts decide the
+// merits, and the Court of Cassation had to go back to the English original (judgment of
+// 30 July 2024, reported by Clyde & Co). This module compares the two versions clause by
+// clause and fact by fact, exhaustively, without a model. What it cannot decide mechanically
+// (a dropped proviso, a reworded condition) it flags for the reader or for a model to check.
+
+const { align, preambleOf, headingLength } = __load("cp:engine/clauses.mjs");
+const { extractFacts, definedRoles } = __load("cp:engine/extract.mjs");
+const { guessLanguage, excerpt, normalise, wordsReClitic } = __load("cp:engine/text.mjs");
+const SEVERITY = {
+  amount: "high", currency: "high", date: "high", duration: "high", "time-unit": "high", percentage: "high", "words-vs-figures": "high",
+  exclusivity: "high", forum: "high", prohibition: "high", modality: "medium", "cross-reference": "medium",
+  number: "medium", negation: "medium", parties: "medium", "missing-clause": "high", length: "low", bound: "high",
+};
+const CONFIDENCE = {
+  amount: "certain", currency: "certain", date: "certain", duration: "certain", "time-unit": "certain", percentage: "certain", "words-vs-figures": "certain",
+  "cross-reference": "certain", number: "likely", forum: "likely", exclusivity: "likely", prohibition: "likely",
+  modality: "check", negation: "check", parties: "check", "missing-clause": "certain", length: "check", bound: "likely",
+};
+
+const RIYALS = new Set(["SAR", "QAR", "OMR"]), DINARS = new Set(["KWD", "BHD", "TND"]);
+function sameCurrency(x, y) {
+  if (x === y) return true;
+  if (x === "RIYAL?" || y === "RIYAL?") return RIYALS.has(x) || RIYALS.has(y) || x === y;
+  if (x === "DINAR?" || y === "DINAR?") return DINARS.has(x) || DINARS.has(y) || x === y;
+  return false;
+}
+const sameValue = (a, b) => a.value === b.value || (a.alternatives ?? []).includes(b.value) || (b.alternatives ?? []).includes(a.value);
+
+/** Greedy one-to-one matching of two lists; returns the unmatched items of each side. */
+function unmatched(listA, listB, eq) {
+  const usedB = new Set();
+  const leftA = [];
+  for (const a of listA) {
+    const j = listB.findIndex((b, k) => !usedB.has(k) && eq(a, b));
+    if (j >= 0) usedB.add(j); else leftA.push(a);
+  }
+  return [leftA, listB.filter((_, k) => !usedB.has(k))];
+}
+
+function finding(id, type, detail, a, b, textA, textB) {
+  return {
+    clause: id, type, severity: SEVERITY[type] ?? "medium", confidence: CONFIDENCE[type] ?? "check", detail,
+    a: { values: a.map(x => x.raw ?? x.iso ?? x.value ?? x), excerpt: a[0]?.span ? excerpt(textA, ...a[0].span) : excerpt(textA, 0, 0, 120) },
+    b: { values: b.map(x => x.raw ?? x.iso ?? x.value ?? x), excerpt: b[0]?.span ? excerpt(textB, ...b[0].span) : excerpt(textB, 0, 0, 120) },
+  };
+}
+
+function compareClause(id, A, B, langA, langB, roleMap) {
+  const fa = extractFacts(A, langA), fb = extractFacts(B, langB);
+  const out = [];
+  // Amounts and currencies.
+  let [la, lb] = unmatched(fa.amounts, fb.amounts, (x, y) => sameValue(x, y) && sameCurrency(x.currency, y.currency));
+  const curOnly = [];
+  for (const x of [...la]) {
+    const j = lb.findIndex(y => sameValue(x, y) && !sameCurrency(x.currency, y.currency));
+    if (j >= 0) { curOnly.push([x, lb[j]]); la = la.filter(z => z !== x); lb = lb.filter((_, k) => k !== j); }
+  }
+  for (const [x, y] of curOnly) out.push(finding(id, "currency", `Same figure, different currency: ${x.currency} / ${y.currency}.`, [x], [y], A, B));
+  if (la.length || lb.length) out.push(finding(id, "amount", `Amounts differ: ${la.map(x => `${x.currency} ${x.value}`).join(", ") || "—"} / ${lb.map(x => `${x.currency} ${x.value}`).join(", ") || "—"}.`, la, lb, A, B));
+  // Percentages.
+  [la, lb] = unmatched(fa.percents, fb.percents, sameValue);
+  if (la.length || lb.length) out.push(finding(id, "percentage", `Percentages differ: ${la.map(x => x.value + "%").join(", ") || "—"} / ${lb.map(x => x.value + "%").join(", ") || "—"}.`, la, lb, A, B));
+  // Dates (compared on their Gregorian equivalent, whatever the calendar used).
+  [la, lb] = unmatched(fa.dates.filter(d => d.valid), fb.dates.filter(d => d.valid), (x, y) => x.iso === y.iso);
+  if (la.length || lb.length) out.push(finding(id, "date", `Dates differ: ${la.map(x => `${x.raw} (${x.iso})`).join(", ") || "—"} / ${lb.map(x => `${x.raw} (${x.iso})`).join(", ") || "—"}.`, la, lb, A, B));
+  // Periods: value, unit, Hijri or not.
+  [la, lb] = unmatched(fa.durations, fb.durations, (x, y) => sameValue(x, y) && x.unit === y.unit && x.hijri === y.hijri);
+  const unitOnly = [];
+  for (const x of [...la]) {
+    const j = lb.findIndex(y => sameValue(x, y));
+    if (j >= 0) { unitOnly.push([x, lb[j]]); la = la.filter(z => z !== x); lb = lb.filter((_, k) => k !== j); }
+  }
+  const unitName = d => `${d.value} ${d.unit.replace("_", " ")}${d.value > 1 ? "s" : ""}${d.hijri ? " (Hijri)" : ""}`;
+  for (const [x, y] of unitOnly) out.push(finding(id, "time-unit", `Same number, different unit of time: ${unitName(x)} / ${unitName(y)}.`, [x], [y], A, B));
+  const durLeftA = la, durLeftB = lb; // reported after bare figures are reconciled below
+  // Other figures. A bare figure on one side may be a period or an amount whose unit or
+  // currency the other language puts elsewhere ("two (2) consecutive years" / "سنتين (2)").
+  let [na, nb] = unmatched(fa.numbers, fb.numbers, sameValue);
+  const absorb = (nums, others) => nums.filter(n => { const j = others.findIndex(o => sameValue(n, o)); if (j < 0) return true; others.splice(j, 1); return false; });
+  na = absorb(na, durLeftB); nb = absorb(nb, durLeftA);
+  if (durLeftA.length || durLeftB.length) out.push(finding(id, "duration", `Periods differ: ${durLeftA.map(unitName).join(", ") || "—"} / ${durLeftB.map(unitName).join(", ") || "—"}.`, durLeftA, durLeftB, A, B));
+  if (na.length || nb.length) out.push(finding(id, "number", `Figures differ: ${na.map(x => x.raw).join(", ") || "—"} / ${nb.map(x => x.raw).join(", ") || "—"}.`, na, nb, A, B));
+  // A figure written twice in one version that disagrees with itself ("1,250,000 (one million two hundred thousand)").
+  for (const [side, f, text] of [["a", fa, A], ["b", fb, B]]) {
+    for (const inc of f.inconsistencies) {
+      out.push({ clause: id, type: "words-vs-figures", severity: "high", confidence: "certain",
+        detail: `In the ${side === "a" ? "first" : "second"} version the figure in digits (${inc.digits}) and the figure in words (${inc.words}) disagree.`,
+        a: side === "a" ? { values: [inc.raw], excerpt: excerpt(text, ...inc.span) } : { values: [], excerpt: "" },
+        b: side === "b" ? { values: [inc.raw], excerpt: excerpt(text, ...inc.span) } : { values: [], excerpt: "" } });
+    }
+  }
+  // Currencies named without an amount ("prices are expressed in euros").
+  const curA = fa.currencies.filter(c => !fb.currencies.some(d => sameCurrency(c, d)));
+  const curB = fb.currencies.filter(c => !fa.currencies.some(d => sameCurrency(c, d)));
+  if ((curA.length || curB.length) && !out.some(f => f.type === "currency" || f.type === "amount")) {
+    out.push(finding(id, "currency", `Currencies named differ: ${curA.join(", ") || "—"} / ${curB.join(", ") || "—"}.`, curA, curB, A, B));
+  }
+  // The period of a rate ("8% per annum" / "8% شهرياً").
+  const rpA = fa.ratePeriods.join("+"), rpB = fb.ratePeriods.join("+");
+  if (rpA !== rpB) {
+    out.push(finding(id, "time-unit", `The period of a rate differs: ${rpA || "none"} / ${rpB || "none"} ("per annum" against "per month", for instance).`, [rpA || "none"], [rpB || "none"], A, B));
+  }
+  // Cross-references.
+  const ra = fa.refs.map(r => `${r.kind} ${r.id}${r.sub ? `(${r.sub})` : ""}`), rb = fb.refs.map(r => `${r.kind} ${r.id}${r.sub ? `(${r.sub})` : ""}`);
+  [la, lb] = unmatched(fa.refs, fb.refs, (x, y) => x.kind === y.kind && x.id === y.id);
+  if (la.length || lb.length) out.push(finding(id, "cross-reference", `References differ: ${ra.join(", ") || "—"} / ${rb.join(", ") || "—"}.`, la, lb, A, B));
+  // Forum, seat, governing law, arbitration.
+  const ea = new Set(fa.entities), eb = new Set(fb.entities);
+  const onlyA = [...ea].filter(x => !eb.has(x)), onlyB = [...eb].filter(x => !ea.has(x));
+  if (onlyA.length || onlyB.length) out.push(finding(id, "forum", `Forum, arbitration or governing law differ: ${onlyA.join(", ") || "—"} / ${onlyB.join(", ") || "—"}.`, onlyA, onlyB, A, B));
+  // Exclusivity.
+  const xa = fa.exclusivity.join("+"), xb = fb.exclusivity.join("+");
+  if (xa !== xb) out.push(finding(id, "exclusivity", `Exclusivity differs: ${xa || "none stated"} / ${xb || "none stated"}.`, [xa || "none"], [xb || "none"], A, B));
+  // Bounds: a minimum in one version, a maximum in the other.
+  const ba = fa.bounds, bb = fb.bounds;
+  const onlyMin = b => b.min > 0 && b.max === 0, onlyMax = b => b.max > 0 && b.min === 0;
+  if ((onlyMin(ba) && onlyMax(bb)) || (onlyMax(ba) && onlyMin(bb))) {
+    out.push(finding(id, "bound", `A minimum in one version, a maximum in the other ("not less than" / "not more than").`, [onlyMin(ba) ? "minimum" : "maximum"], [onlyMin(bb) ? "minimum" : "maximum"], A, B));
+  }
+  // Who may, must not. (Obligations are not compared: Arabic often states them with a plain
+  // present tense, "يدفع المشتري", where English needs "shall".)
+  const ma = fa.modality, mb = fb.modality;
+  const polarityDiffers = fa.polarity !== fb.polarity && (fa.polarity === 0 || fb.polarity === 0 || Math.abs(fa.polarity - fb.polarity) >= 2);
+  if (polarityDiffers && (ma.prohibition > 0) !== (mb.prohibition > 0)) {
+    out.push(finding(id, "prohibition", `A prohibition appears in one version only (prohibitions ${ma.prohibition} / ${mb.prohibition}, negations ${fa.negations} / ${fb.negations}).`, [`prohibitions: ${ma.prohibition}`], [`prohibitions: ${mb.prohibition}`], A, B));
+  } else if (polarityDiffers) {
+    out.push(finding(id, "negation", `Negations differ (${fa.polarity} / ${fb.polarity}): a "not" may have been added or lost.`, [`negations: ${fa.polarity}`], [`negations: ${fb.polarity}`], A, B));
+  }
+  if ((ma.permission > 0) !== (mb.permission > 0)) {
+    out.push(finding(id, "modality", `A permission ("may", "يجوز", "peut") appears in one version only (${ma.permission} / ${mb.permission}): an obligation may have become an option, or the reverse.`, [`permission: ${ma.permission}`], [`permission: ${mb.permission}`], A, B));
+  }
+  // Parties: the order in which defined roles act in the clause.
+  if (roleMap) {
+    const seq = (text, roles) => {
+      const hits = [];
+      for (const r of roles) {
+        let re, hay;
+        if (/[\u0600-\u06FF]/.test(r)) {
+          // Arabic: proclitics allowed, and "ل + ال" is written "لل" (المورد → للمورد).
+          re = wordsReClitic([r]); hay = normalise(text).text;
+        } else {
+          // Latin scripts: a defined term is capitalised ("the Distributor"); "any other
+          // distributor" is a common noun, not the party.
+          const cap = r.replace(/(^|\s)(\p{L})/gu, (m, sp, ch) => sp + ch.toUpperCase());
+          re = new RegExp(`(?<![\\p{L}])${cap.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\p{L}])`, "gu"); hay = text;
+        }
+        let m;
+        while ((m = re.exec(hay))) hits.push([m.index, r]);
+      }
+      return hits.sort((x, y) => x[0] - y[0]).map(h => h[1]);
+    };
+    const sa = seq(A, roleMap.a), sb = seq(B, roleMap.b).map(r => roleMap.a[roleMap.b.indexOf(r)]);
+    const collapse = s => s.filter((r, i) => r !== s[i - 1]);
+    const ca = collapse(sa), cb = collapse(sb);
+    const setA = new Set(ca), setB = new Set(cb);
+    const onlyInA = [...setA].filter(x => !setB.has(x)), onlyInB = [...setB].filter(x => !setA.has(x));
+    if (onlyInA.length || onlyInB.length) {
+      out.push(finding(id, "parties", `A party is named in one version only (${onlyInA.join(", ") || "—"} / ${onlyInB.map(r => roleMap.b[roleMap.a.indexOf(r)] ?? r).join(", ") || "—"}): check who holds the right or bears the obligation.`, onlyInA, onlyInB, A, B));
+    } else if (ca.length && cb.length && ca.join("|") !== cb.join("|")) {
+      out.push(finding(id, "parties", `The parties appear in a different order (${ca.join(" → ")} / ${cb.join(" → ")}): check that the same party bears each obligation.`, ca, cb, A, B));
+    }
+  }
+  return { findings: out, facts: { a: fa, b: fb } };
+}
+
+/**
+ * Compares two language versions of a contract.
+ * Returns { languages, mode, pairs, findings, unaligned, stats }.
+ */
+function parity(docA, docB, { langA, langB } = {}) {
+  const la = langA ?? guessLanguage(docA), lb = langB ?? guessLanguage(docB);
+  const al = align(docA, docB);
+  const ra = definedRoles(preambleOf(docA)), rb = definedRoles(preambleOf(docB));
+  const roleMap = ra.length >= 2 && ra.length === rb.length ? { a: ra, b: rb } : null;
+  const findings = [];
+  const pairs = [];
+  const body = (u, id) => (al.mode === "clauses" && id !== "preamble" ? u.text.slice(headingLength(u.text)) : u.text);
+  for (const p of al.pairs) {
+    const r = compareClause(p.id, body(p.a, p.id), body(p.b, p.id), la, lb, roleMap);
+    findings.push(...r.findings);
+    const ratio = p.b.text.trim().length / Math.max(1, p.a.text.trim().length);
+    pairs.push({ id: p.id, ratio, a: p.a.text, b: p.b.text, mechanical: r.findings.length });
+  }
+  // A clause much shorter or longer than the document's usual ratio may have lost or gained text.
+  // Prose only: table rows have a ratio of their own and would shift the median.
+  const isRow = id => /^S[\dA-Z]+\./.test(id);
+  const sorted = pairs.filter(p => !isRow(p.id) && p.id !== "preamble").map(p => p.ratio).sort((x, y) => x - y);
+  const median = sorted[Math.floor(sorted.length / 2)] ?? 1;
+  for (const p of pairs) {
+    const rel = p.ratio / median;
+    if (p.id !== "preamble" && !isRow(p.id) && Math.min(p.a.length, p.b.length) > 60 && (rel < 0.62 || rel > 1.6)) {
+      findings.push({ clause: p.id, type: "length", severity: "low", confidence: "check",
+        detail: `One version is ${rel < 1 ? "much shorter" : "much longer"} than usual (length ratio ${p.ratio.toFixed(2)} against a median of ${median.toFixed(2)}): a sentence or a condition may be missing.`,
+        a: { values: [p.a.trim().length + " characters"], excerpt: excerpt(p.a, 0, 0, 140) }, b: { values: [p.b.trim().length + " characters"], excerpt: excerpt(p.b, 0, 0, 140) } });
+    }
+  }
+  for (const u of al.onlyA) findings.push({ clause: u.id, type: "missing-clause", severity: "high", confidence: "certain", detail: `Clause ${u.id} exists only in the first version.`, a: { values: [u.heading], excerpt: excerpt(u.text, 0, 0, 120) }, b: { values: [], excerpt: "" } });
+  for (const u of al.onlyB) findings.push({ clause: u.id, type: "missing-clause", severity: "high", confidence: "certain", detail: `Clause ${u.id} exists only in the second version.`, a: { values: [], excerpt: "" }, b: { values: [u.heading], excerpt: excerpt(u.text, 0, 0, 120) } });
+  const order = { high: 0, medium: 1, low: 2 };
+  findings.sort((x, y) => order[x.severity] - order[y.severity] || String(x.clause).localeCompare(String(y.clause), undefined, { numeric: true }));
+  return {
+    languages: [la, lb], mode: al.mode, roles: roleMap,
+    findings,
+    pairs: pairs.map(({ id, ratio, mechanical }) => ({ id, ratio: Number(ratio.toFixed(2)), mechanical })),
+    stats: { clauses: al.pairs.length, onlyA: al.onlyA.length, onlyB: al.onlyB.length, findings: findings.length, clausesFlagged: new Set(findings.map(f => f.clause)).size },
+  };
+}
+
+/** Clause pairs for a model to read, in batches, with the mechanical findings attached. */
+function pairsForReview(docA, docB, { batchSize = 6 } = {}) {
+  const al = align(docA, docB);
+  const res = parity(docA, docB);
+  const byClause = new Map();
+  for (const f of res.findings) { if (!byClause.has(f.clause)) byClause.set(f.clause, []); byClause.get(f.clause).push(`${f.type}: ${f.detail}`); }
+  const items = al.pairs.map(p => ({ id: p.id, a: p.a.text.trim(), b: p.b.text.trim(), mechanical: byClause.get(p.id) ?? [] }));
+  const batches = [];
+  for (let i = 0; i < items.length; i += batchSize) batches.push(items.slice(i, i + batchSize));
+  return { languages: res.languages, batches, total: items.length };
+}
+
+return { parity: parity, pairsForReview: pairsForReview };
+},
+"cp:engine/clauses.mjs": function () {
+// courtproof — splitting a contract into numbered clauses, in Arabic, English or French,
+// and aligning two language versions clause by clause.
+// Copyright (c) 2026 ILYES M. TRAD — MIT licence.
+
+const { normalise, norm } = __load("cp:engine/text.mjs");
+// Arabic ordinal numbers used in headings ("المادة الأولى", "البند الحادي عشر").
+const AR_ORD_UNITS = [
+  ["الاول", "الاولي"], ["الثاني", "الثانيه"], ["الثالث", "الثالثه"], ["الرابع", "الرابعه"], ["الخامس", "الخامسه"],
+  ["السادس", "السادسه"], ["السابع", "السابعه"], ["الثامن", "الثامنه"], ["التاسع", "التاسعه"], ["العاشر", "العاشره"],
+];
+const AR_ORD_COMPOUND = ["الحادي", "الحاديه", ...AR_ORD_UNITS.slice(1, 9).flat()];
+const AR_TENS = { "العشرون": 20, "العشرين": 20, "الثلاثون": 30, "الثلاثين": 30, "الاربعون": 40, "الاربعين": 40, "الخمسون": 50, "الخمسين": 50, "الستون": 60, "الستين": 60 };
+
+function unitOrdinal(w) {
+  if (w === "الحادي" || w === "الحاديه") return 1;
+  const i = AR_ORD_UNITS.findIndex(pair => pair.includes(w));
+  return i >= 0 ? i + 1 : null;
+}
+
+/** Reads an Arabic ordinal ("الحادية عشرة", "الثانية والعشرون") from the start of a normalised string. */
+function arabicOrdinal(s) {
+  const words = s.trim().split(/\s+/).map(w => w.replace(/^[^\p{L}]+|[^\p{L}]+$/gu, "")).filter(Boolean);
+  const u = unitOrdinal(words[0]);
+  if (u !== null && u <= 9 && (words[1] === "عشر" || words[1] === "عشره")) return { value: u + 10, words: 2 };
+  if (u !== null && words[1] && words[1].startsWith("و") && AR_TENS[words[1].slice(1)]) return { value: AR_TENS[words[1].slice(1)] + u, words: 2 };
+  if (AR_TENS[words[0]]) return { value: AR_TENS[words[0]], words: 1 };
+  if (u !== null && words[0] !== "الحادي" && words[0] !== "الحاديه") return { value: u, words: 1 };
+  return null;
+}
+void AR_ORD_COMPOUND;
+
+const NUM = String.raw`(\d{1,3}(?:[.\-/]\d{1,3}){0,4})`;
+const HEADING_PATTERNS = [
+  // English and French: "Clause 12.3", "Article 5", "Section 2", "Article premier", "Article 1er"
+  new RegExp(String.raw`^(?:clause|article|section|art\.)\s*(?:n[°o]\s*)?${NUM}(?:er|st)?\b`, "u"),
+  /^(?:article|clause)\s+(premier|first)\b/u,
+  // Arabic: "المادة (12)", "البند 12.3", "المادة رقم 5", "البند الأول"
+  new RegExp(String.raw`^(?:الماده|البند|بند|ماده|الفقره|فقره)\s*(?:رقم\s*)?[(\[]?\s*${NUM}\s*[)\]]?`, "u"),
+  // Bare numbering at the start of a line: "12.", "12.3", "12.3.1", "12-", "12)". Not "(1)",
+  // which in contracts numbers the parties or the items of a list.
+  new RegExp(String.raw`^${NUM}[).-]?(?=\s+\S)`, "u"),
+];
+const AR_ORDINAL_HEADING = /^(?:الماده|البند)\s+(ال\S+(?:\s+\S+)?)/u;
+// "SCHEDULE 2 — PRICE LIST", "Annex A", "الملحق (2): قائمة الأسعار", "ملحق رقم 3".
+const SCHEDULE_HEADING = /^(?:schedule|annex|appendix|exhibit|annexe)\s+(?:no\.?\s*|n°\s*)?(\d{1,2}|[a-z])(?![\p{L}\p{N}.])/u;
+const SCHEDULE_HEADING_AR = /^(?:الملحق|ملحق)\s*(?:رقم\s*)?[(\[]?\s*(\d{1,2})\s*[)\]]?/u;
+const asciiDigitsOf = s => s;
+
+function normaliseId(raw) {
+  const r = raw.replace(/[-/]/g, ".").replace(/\.+$/, "");
+  if (r === "premier" || r === "first") return "1";
+  return r.split(".").map(x => String(Number(x))).join(".");
+}
+
+/**
+ * Splits a contract into clauses.
+ * Returns [{ id, heading, start, end, text }] with offsets in the original string.
+ * Text before the first heading is returned as the clause "preamble".
+ */
+function splitClauses(original) {
+  const lines = [];
+  let pos = 0;
+  for (const line of original.split(/\n/)) { lines.push({ line, start: pos }); pos += line.length + 1; }
+  const heads = [];
+  let schedule = null; // inside a schedule, rows and items are numbered "S2.37"
+  for (const { line, start } of lines) {
+    const stripped = line.replace(/^[\s>*#_\-–—•]+/, "");
+    const lead = line.length - stripped.length;
+    const n = norm(stripped).replace(/^\*+|\*+$/g, "");
+    const sch = stripped.length < 90 && !/[.;]\s*$/.test(stripped) ? (SCHEDULE_HEADING.exec(n) ?? SCHEDULE_HEADING_AR.exec(n)) : null;
+    if (sch) {
+      schedule = "S" + asciiDigitsOf(sch[1]).toUpperCase();
+      heads.push({ id: schedule, strong: true, schedule: true, start: start + lead, heading: stripped.slice(0, 80).trim() });
+      continue;
+    }
+    if (schedule) {
+      const row = /^\|\s*(\d{1,4})\s*\|/.exec(n) ?? /^(\d{1,3})[.)]\s+\S/.exec(n);
+      if (row) heads.push({ id: `${schedule}.${Number(row[1])}`, strong: true, schedule: true, start: start + lead, heading: stripped.slice(0, 80).trim() });
+      continue;
+    }
+    let id = null, strong = false;
+    for (let k = 0; k < HEADING_PATTERNS.length; k++) {
+      const m = HEADING_PATTERNS[k].exec(n);
+      if (m) { id = normaliseId(m[1]); strong = k < 3; break; }
+    }
+    if (!id) {
+      const m = AR_ORDINAL_HEADING.exec(n);
+      if (m) { const o = arabicOrdinal(m[1]); if (o) { id = String(o.value); strong = true; } }
+    }
+    if (!id || !/^\d+(\.\d+)*$/.test(id)) continue;
+    if (/^(19|20)\d\d$/.test(id)) continue; // a year, not a heading
+    heads.push({ id, strong, start: start + lead, heading: stripped.slice(0, 80).trim() });
+  }
+  // Bare numbers are accepted only when they continue the numbering (a line that starts with
+  // "30 days" is not clause 30). Explicit headings ("Clause 12", "المادة 12") are always kept.
+  const tuple = id => id.split(".").map(Number);
+  const follows = (a, b) => {
+    if (!a) return b[0] <= 3;
+    for (let i = 0; i < Math.max(a.length, b.length); i++) {
+      if (i >= a.length) return b[i] <= 2 && b.slice(i + 1).every(x => x <= 2);
+      if (i >= b.length) return false;
+      if (b[i] !== a[i]) return b[i] > a[i] && b[i] - a[i] <= 3 && b.slice(i + 1).every(x => x <= 2);
+    }
+    return false;
+  };
+  const seen = new Set();
+  const kept = [];
+  let last = null;
+  for (const h of heads) {
+    if (seen.has(h.id)) continue;
+    if (h.schedule) { seen.add(h.id); kept.push(h); continue; }
+    const t = tuple(h.id);
+    if (!h.strong && !follows(last, t)) continue;
+    seen.add(h.id);
+    kept.push(h);
+    last = t;
+  }
+  const clauses = [];
+  if (!kept.length || kept[0].start > 0) {
+    const end = kept.length ? kept[0].start : original.length;
+    if (original.slice(0, end).trim()) clauses.push({ id: "preamble", heading: "", start: 0, end, text: original.slice(0, end) });
+  }
+  kept.forEach((h, i) => {
+    const end = i + 1 < kept.length ? kept[i + 1].start : original.length;
+    clauses.push({ id: h.id, heading: h.heading, start: h.start, end, text: original.slice(h.start, end) });
+  });
+  return clauses;
+}
+
+/** Splits on blank lines when a document has no numbering. */
+function splitParagraphs(original) {
+  const out = [];
+  const re = /\S[\s\S]*?(?=\n\s*\n|$)/g;
+  let m, i = 0;
+  while ((m = re.exec(original))) out.push({ id: `¶${++i}`, heading: "", start: m.index, end: m.index + m[0].length, text: m[0] });
+  return out;
+}
+
+/** Splits a document, falling back to paragraphs when fewer than three headings are found. */
+function segment(original) {
+  const c = splitClauses(original);
+  return c.filter(x => x.id !== "preamble").length >= 3 ? { mode: "clauses", units: c } : { mode: "paragraphs", units: splitParagraphs(original) };
+}
+
+/**
+ * Aligns two segmented versions. Returns
+ * { pairs: [{ id, a, b }], onlyA: [...], onlyB: [...], mode }.
+ */
+function align(docA, docB) {
+  const sa = segment(docA), sb = segment(docB);
+  if (sa.mode === "clauses" && sb.mode === "clauses") {
+    const mapB = new Map(sb.units.map(u => [u.id, u]));
+    const pairs = [], onlyA = [];
+    for (const u of sa.units) {
+      if (mapB.has(u.id)) { pairs.push({ id: u.id, a: u, b: mapB.get(u.id) }); mapB.delete(u.id); }
+      else onlyA.push(u);
+    }
+    return { mode: "clauses", pairs, onlyA, onlyB: [...mapB.values()] };
+  }
+  // Paragraph mode: align by order.
+  const n = Math.min(sa.units.length, sb.units.length);
+  const pairs = [];
+  for (let i = 0; i < n; i++) pairs.push({ id: `¶${i + 1}`, a: sa.units[i], b: sb.units[i] });
+  return { mode: "paragraphs", pairs, onlyA: sa.units.slice(n), onlyB: sb.units.slice(n) };
+}
+
+/** Splits a single file holding both versions (e.g. "=== ENGLISH ===" … "=== العربية ==="). */
+function splitBilingual(original) {
+  const markers = [...original.matchAll(/^\s*(?:={3,}|#{1,3})\s*(english|anglais|الانجليزيه|الإنجليزية|arabic|arabe|العربيه|العربية|french|français|francais|الفرنسيه|الفرنسية)\b.*$/gimu)];
+  if (markers.length >= 2) {
+    const a = original.slice(markers[0].index + markers[0][0].length, markers[1].index);
+    const b = original.slice(markers[1].index + markers[1][0].length);
+    return { a, b, labels: [markers[0][1], markers[1][1]] };
+  }
+  return null;
+}
+
+/**
+ * Length, in the original text, of the numbering that opens a clause ("14.2", "Clause 14.2",
+ * "البند (14):"), so that a clause's own number is not read as one of its facts.
+ */
+function headingLength(original) {
+  const line = original.split("\n")[0];
+  const lead = line.length - line.replace(/^[\s>*#_\-–—•]+/, "").length;
+  const view = normalise(line.slice(lead));
+  const n = view.text;
+  for (const re of HEADING_PATTERNS) { const m = re.exec(n); if (m) return lead + view.map[m[0].length]; }
+  const m = AR_ORDINAL_HEADING.exec(n);
+  if (m && arabicOrdinal(m[1])) return lead + view.map[m[0].length];
+  return 0;
+}
+
+/** The text before the first clause heading: where the parties are named and defined. */
+function preambleOf(original) {
+  const c = splitClauses(original);
+  const p = c.find(x => x.id === "preamble");
+  return p ? p.text : original.slice(0, 2500);
+}
+
+
+return { normalise: normalise, arabicOrdinal: arabicOrdinal, splitClauses: splitClauses, splitParagraphs: splitParagraphs, segment: segment, align: align, splitBilingual: splitBilingual, headingLength: headingLength, preambleOf: preambleOf };
+},
+"cp:engine/text.mjs": function () {
+// courtproof — text normalisation for Arabic, English and French legal text.
+// Copyright (c) 2026 ILYES M. TRAD — MIT licence.
+//
+// Every extractor works on a *normalised view* of the text and maps its matches back
+// to the original characters, so that each finding can quote the exact words of the
+// contract. Nothing here calls a model: the same input always gives the same output.
+
+const AR_INDIC = "٠١٢٣٤٥٦٧٨٩";
+const EXT_INDIC = "۰۱۲۳۴۵۶۷۸۹";
+
+// One-for-one character replacements (length-preserving).
+const SAME_LENGTH = new Map([
+  ["٫", "."], // Arabic decimal separator
+  ["٬", ","], // Arabic thousands separator
+  ["٪", "%"], // Arabic percent sign
+  [" ", " "], [" ", " "], [" ", " "], [" ", " "], [" ", " "], [" ", " "],
+  ["’", "'"], ["‘", "'"], ["ʼ", "'"], ["“", '"'], ["”", '"'], ["„", '"'],
+  ["–", "-"], ["—", "-"], ["−", "-"], ["‐", "-"], ["‑", "-"],
+  ["أ", "ا"], ["إ", "ا"], ["آ", "ا"], ["ٱ", "ا"], // alef forms → ا
+  ["ى", "ي"], // alef maqsura → ي
+  ["ة", "ه"], // ta marbuta → ه
+  ["ؤ", "و"], // waw with hamza → و
+  ["ئ", "ي"], // yeh with hamza → ي
+]);
+
+// Characters removed from the normalised view (diacritics, tatweel, bidi controls).
+const DROPPED = /[ً-ْٰـ‎‏‪-‮⁦-⁩​﻿]/;
+
+/** Converts Arabic-Indic and extended Arabic-Indic digits to ASCII, keeping the length. */
+function asciiDigits(s) {
+  let out = "";
+  for (const ch of s) {
+    const a = AR_INDIC.indexOf(ch);
+    const e = EXT_INDIC.indexOf(ch);
+    out += a >= 0 ? String(a) : e >= 0 ? String(e) : ch;
+  }
+  return out;
+}
+
+/**
+ * Builds the normalised view used for matching.
+ * Returns { text, map } where map[i] is the index in the original string of text[i].
+ */
+function normalise(original) {
+  let text = "";
+  const map = [];
+  for (let i = 0; i < original.length; i++) {
+    let ch = original[i];
+    if (DROPPED.test(ch)) continue;
+    const a = AR_INDIC.indexOf(ch);
+    const e = EXT_INDIC.indexOf(ch);
+    if (a >= 0) ch = String(a);
+    else if (e >= 0) ch = String(e);
+    else if (SAME_LENGTH.has(ch)) ch = SAME_LENGTH.get(ch);
+    else {
+      const low = ch.toLowerCase();
+      ch = low.length === 1 ? low : ch;
+    }
+    text += ch;
+    map.push(i);
+  }
+  map.push(original.length);
+  return { text, map };
+}
+
+/** Normalises a short string (a keyword, a pattern source) the same way as `normalise`. */
+function norm(s) {
+  return normalise(s).text;
+}
+
+/** Maps a [start, end) span of the normalised view back to the original string. */
+function originalSpan(view, start, end) {
+  const s = view.map[start] ?? 0;
+  const e = end > 0 ? (view.map[end - 1] ?? s) + 1 : s;
+  return [s, e];
+}
+
+/** Detects the dominant script of a passage: "ar", "latin" or "mixed". */
+function script(s) {
+  let ar = 0, la = 0;
+  for (const ch of s) {
+    if (/[؀-ۿ]/.test(ch)) ar++;
+    else if (/[A-Za-zÀ-ÿ]/.test(ch)) la++;
+  }
+  if (ar + la === 0) return "none";
+  if (ar / (ar + la) > 0.6) return "ar";
+  if (la / (ar + la) > 0.6) return "latin";
+  return "mixed";
+}
+
+/** Guesses the language of a passage among Arabic, French and English. */
+function guessLanguage(s) {
+  if (script(s) === "ar") return "ar";
+  const t = ` ${norm(s)} `;
+  const fr = (t.match(/ (le|la|les|des|du|une|est|sont|dans|pour|qui|que|aux|ou|au|par|sur|avec|cette|ces) /g) || []).length;
+  const en = (t.match(/ (the|of|and|to|in|is|are|for|which|that|by|on|with|this|these|shall|may) /g) || []).length;
+  return fr > en ? "fr" : "en";
+}
+
+/** Escapes a string for use inside a regular expression. */
+function escapeRe(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/** Builds a regular expression from alternatives that are first normalised. */
+function wordsRe(alternatives, flags = "g") {
+  const body = [...new Set(alternatives.map(norm))]
+    .sort((a, b) => b.length - a.length)
+    .map(escapeRe)
+    .join("|");
+  return new RegExp(`(?<![\\p{L}\\p{N}])(?:${body})(?![\\p{L}\\p{N}])`, flags.includes("u") ? flags : flags + "u");
+}
+
+/**
+ * Like wordsRe, but Arabic alternatives may carry the proclitics of everyday drafting:
+ * و / ف (and), ب / ك / ل (by, as, for), with "ل + ال" written "لل" (للمورد, بالدرهم, وللبند).
+ */
+function wordsReClitic(alternatives, flags = "g") {
+  const latin = [], arabic = [];
+  for (const a of new Set(alternatives.map(norm))) (/[\u0600-\u06FF]/.test(a) ? arabic : latin).push(a);
+  const byLen = xs => xs.sort((a, b) => b.length - a.length);
+  const parts = [];
+  if (latin.length) parts.push(byLen(latin).map(escapeRe).join("|"));
+  for (const a of byLen(arabic)) {
+    parts.push(a.startsWith("ال") ? `[وف]?(?:[بك]?ال|لل)${escapeRe(a.slice(2))}` : `[وف]?[بكل]?${escapeRe(a)}`);
+  }
+  return new RegExp(`(?<![\\p{L}\\p{N}])(?:${parts.join("|")})(?![\\p{L}\\p{N}])`, flags.includes("u") ? flags : flags + "u");
+}
+
+/** Removes the Arabic proclitics wordsReClitic allows, to look a match up in a lexicon. */
+function stripClitics(s, known) {
+  if (known.has(s)) return s;
+  const tries = [];
+  const m = /^([وف]?)(.*)$/u.exec(s);
+  let rest = m[2];
+  tries.push(rest);
+  if (/^[بك]ال/u.test(rest)) tries.push(rest.slice(1));
+  if (/^لل/u.test(rest)) tries.push("ال" + rest.slice(2));
+  if (/^[بكل]/u.test(rest)) tries.push(rest.slice(1));
+  for (const t of tries) if (known.has(t)) return t;
+  return s;
+}
+
+/** Returns a short excerpt of the original text around a span, for evidence. */
+function excerpt(original, start, end, radius = 60) {
+  const a = Math.max(0, start - radius);
+  const b = Math.min(original.length, end + radius);
+  const pre = a > 0 ? "…" : "";
+  const post = b < original.length ? "…" : "";
+  return (pre + original.slice(a, b) + post).replace(/\s+/g, " ").trim();
+}
+
+return { asciiDigits: asciiDigits, normalise: normalise, norm: norm, originalSpan: originalSpan, script: script, guessLanguage: guessLanguage, escapeRe: escapeRe, wordsRe: wordsRe, wordsReClitic: wordsReClitic, stripClitics: stripClitics, excerpt: excerpt };
+},
+"cp:engine/extract.mjs": function () {
+// courtproof — the facts a judge checks first in a clause: amounts, currencies, percentages,
+// dates, periods, cross-references, who must do what, negations, exclusivity, forum and law.
+// Copyright (c) 2026 ILYES M. TRAD — MIT licence.
+
+const { normalise, norm, wordsRe, wordsReClitic, stripClitics, originalSpan } = __load("cp:engine/text.mjs");
+const { findQuantities } = __load("cp:engine/numbers.mjs");
+const { findDates } = __load("cp:engine/dates.mjs");
+// ─────────────────────────────────────────────────────────────── lexicons ──
+
+const CURRENCIES = {
+  AED: ["aed", "dhs", "dh", "dirham", "dirhams", "uae dirham", "uae dirhams", "dirham des émirats", "dirhams des émirats", "درهم", "دراهم", "درهما", "درهم اماراتي", "دراهم اماراتيه", "درهما اماراتيا", "الدرهم", "الدرهم الاماراتي", "د.ا"],
+  SAR: ["sar", "sr", "saudi riyal", "saudi riyals", "riyal saoudien", "riyals saoudiens", "ريال سعودي", "ريالات سعوديه", "ريالا سعوديا", "الريال السعودي", "ر.س"],
+  QAR: ["qar", "qr", "qatari riyal", "qatari riyals", "riyal qatari", "ريال قطري", "ريالات قطريه", "ريالا قطريا", "الريال القطري", "ر.ق"],
+  OMR: ["omr", "omani rial", "omani rials", "rial omanais", "ريال عماني", "ريالا عمانيا", "الريال العماني", "ر.ع"],
+  KWD: ["kwd", "kd", "kuwaiti dinar", "kuwaiti dinars", "dinar koweïtien", "دينار كويتي", "دنانير كويتيه", "دينارا كويتيا", "الدينار الكويتي", "د.ك"],
+  BHD: ["bhd", "bd", "bahraini dinar", "bahraini dinars", "dinar bahreïni", "دينار بحريني", "دينارا بحرينيا", "الدينار البحريني", "د.ب"],
+  TND: ["tnd", "dt", "dinar tunisien", "dinars tunisiens", "tunisian dinar", "tunisian dinars", "دينار تونسي", "الدينار التونسي"],
+  USD: ["usd", "us$", "$", "us dollar", "us dollars", "dollar", "dollars", "dollar américain", "dollars américains", "دولار", "دولارات", "دولار امريكي", "دولارا امريكيا", "الدولار", "الدولار الامريكي"],
+  EUR: ["eur", "€", "euro", "euros", "يورو", "اليورو"],
+  GBP: ["gbp", "£", "pound sterling", "pounds sterling", "livre sterling", "livres sterling", "جنيه استرليني", "الجنيه الاسترليني"],
+  "RIYAL?": ["riyal", "riyals", "rial", "rials", "ريال", "ريالات", "ريالا", "الريال"],
+  "DINAR?": ["dinar", "dinars", "دينار", "دنانير", "الدينار"],
+};
+const CUR_INDEX = new Map();
+for (const [code, names] of Object.entries(CURRENCIES)) for (const n of names) CUR_INDEX.set(norm(n), code);
+// Symbols ($, €, £) have no word boundary of their own; names do, and Arabic names may carry clitics.
+const CUR_SYMBOLS = [...CUR_INDEX.keys()].filter(k => !/[\p{L}]/u.test(k));
+const CUR_NAMES_RE = wordsReClitic([...CUR_INDEX.keys()].filter(k => /[\p{L}]/u.test(k)));
+const CUR_RE = new RegExp(`${CUR_NAMES_RE.source}|(?:${CUR_SYMBOLS.map(k => k.replace(/[.*+?^${}()|[\]\\$]/g, "\\$&")).join("|")})`, "gu");
+const CUR_KEYS = new Set(CUR_INDEX.keys());
+const curCode = text => CUR_INDEX.get(stripClitics(text, CUR_KEYS)) ?? null;
+
+const PERCENT_AFTER = /^\s*\)?\s*(%|per\s*cent|percent|pour\s*cent|pourcent|بالمائه|بالمئه|في المائه|في المئه|بالمايه|في المايه)/u;
+
+const UNIT_WORDS = {
+  business_day: ["business day", "business days", "working day", "working days", "jour ouvré", "jours ouvrés", "jour ouvrable", "jours ouvrables", "يوم عمل", "ايام عمل", "يوما من ايام العمل", "ايام العمل", "يوم عمل رسمي", "ايام عمل رسميه"],
+  day: ["day", "days", "calendar day", "calendar days", "jour", "jours", "jour calendaire", "jours calendaires", "jours francs", "يوم", "يوما", "ايام", "يومين", "يومان", "يوما تقويميا", "ايام تقويميه"],
+  week: ["week", "weeks", "semaine", "semaines", "اسبوع", "اسابيع", "اسبوعا", "اسبوعين"],
+  month: ["month", "months", "mois", "شهر", "شهرا", "اشهر", "شهور", "شهرين", "شهران"],
+  year: ["year", "years", "contract year", "contract years", "an", "ans", "année", "années", "année contractuelle", "années contractuelles", "سنه", "سنوات", "عام", "اعوام", "سنتين", "سنتان", "عاما", "سنه تعاقديه", "سنوات تعاقديه"],
+};
+const UNIT_INDEX = new Map();
+for (const [u, names] of Object.entries(UNIT_WORDS)) for (const n of names) UNIT_INDEX.set(norm(n), u);
+// An adjective may sit between the number and the unit: "two (2) consecutive Contract Years",
+// "thirty (30) full days", "trente (30) jours francs" (the last one is a unit of its own).
+const UNIT_ADJ = "(?:(?:consecutive|successive|full|clear|complete|additional|further|entire|consécutifs?|consécutives?|pleins?|entiers?|supplémentaires?|hijri|lunar|gregorian|hégiriens?|lunaires?|grégoriens?)\\s+)?";
+const UNIT_RE = new RegExp(`^\\s*\\)?\\s*(${UNIT_ADJ})(${[...UNIT_INDEX.keys()].sort((a, b) => b.length - a.length).join("|")})(?![\\p{L}])`, "u");
+const HIJRI_AFTER = /^\s*\(?\s*(هجري|هجريه|قمري|قمريه|hijri|lunar|hégiriens?|hégiriennes?|lunaires?|according to the hijri calendar|selon le calendrier hégirien|وفقا للتقويم الهجري|بالتقويم الهجري|حسب التقويم الهجري)/u;
+// Arabic duals carry the number in the noun: "سنتين" (two years), "شهرين", "يومين".
+const AR_DUALS = { "يومين": "day", "يومان": "day", "يومي عمل": "business_day", "يوما عمل": "business_day", "اسبوعين": "week", "اسبوعان": "week", "شهرين": "month", "شهران": "month", "سنتين": "year", "سنتان": "year", "عامين": "year", "عامان": "year" };
+const AR_DUAL_RE = new RegExp(`(?<![\\p{L}])(${Object.keys(AR_DUALS).sort((a, b) => b.length - a.length).join("|")})(?![\\p{L}])(\\s*(?:(?:اثنين|اثنتين|اثنان|اثنتان)\\s*)?\\(\\s*2\\s*\\))?`, "gu");
+// Arabic puts "one" and "two" after the noun: "سنة واحدة (1)", "شهر واحد".
+const UNIT_BEFORE_RE = new RegExp(`(?<![\\p{L}])(${[...UNIT_INDEX.keys()].sort((a, b) => b.length - a.length).join("|")})\\s*$`, "u");
+
+const REF_EN = /(?<![\p{L}])(clause|clauses|section|sections|article|articles|paragraph|paragraphs|sub-clause|schedule|schedules|annex|annexes|appendix|exhibit|annexe|paragraphe)s?\s+(\d{1,3}(?:\.\d{1,3}){0,4})(?:\s*\(([a-z]|[ivx]{1,4}|\d)\))?/gu;
+const REF_AR = /(?<![\p{L}])[وف]?(?:[بك]?ال|لل)?(ماده|مادتين|بند|بندين|بنود|فقره|ملحق|مواد)\s*(?:رقم\s*)?[(\[]?\s*(\d{1,3}(?:[.\-/]\d{1,3}){0,4})\s*[)\]]?/gu;
+const REF_KIND = (w) => (/schedule|annex|appendix|exhibit|annexe|ملحق/.test(w) ? "annex" : "clause");
+
+/** Like wordsRe, but an Arabic word may carry the conjunction و or ف glued in front. */
+function arWordsRe(alternatives) {
+  const re = wordsRe(alternatives);
+  return new RegExp(re.source.replace("(?<![\\p{L}\\p{N}])(?:", "(?<![\\p{L}\\p{N}])(?:و|ف)?(?:"), re.flags);
+}
+
+const MODAL = {
+  en: {
+    prohibition: wordsRe(["shall not", "must not", "may not", "will not", "is not permitted to", "are not permitted to", "is prohibited from", "are prohibited from", "shall in no event", "shall in no case"]),
+    obligation: wordsRe(["shall", "must", "is required to", "are required to", "undertakes to", "undertake to", "agrees to", "agree to", "is obliged to", "are obliged to"]),
+    permission: wordsRe(["may", "is entitled to", "are entitled to", "shall be entitled to", "is permitted to", "are permitted to", "has the right to", "have the right to", "shall have the right to", "has the option to", "have the option to", "shall have the option to", "is free to", "are free to"]),
+  },
+  fr: {
+    prohibition: /(?<![\p{L}])(ne|n')\s*(peut|peuvent|pourra|pourront|doit|doivent|devra|devront)\s+(pas|en aucun cas|jamais)|s'interdit|s'interdisent|est interdit|sont interdits|est interdite/gu,
+    obligation: wordsRe(["doit", "doivent", "devra", "devront", "s'engage à", "s'engagent à", "est tenu de", "sont tenus de", "est tenue de", "s'oblige à", "s'obligent à"]),
+    permission: wordsRe(["peut", "peuvent", "pourra", "pourront", "est autorisé à", "sont autorisés à", "a le droit de", "ont le droit de", "est en droit de"]),
+  },
+  ar: {
+    prohibition: arWordsRe(["لا يجوز", "لا يحق", "يحظر", "يحظر علي", "يمتنع", "يمتنع علي", "ممنوع", "لا يسمح"]),
+    obligation: arWordsRe(["يلتزم", "تلتزم", "يلتزمان", "يتعهد", "تتعهد", "يتعهدان", "يجب", "يتعين", "وجب", "يقع علي عاتق"]),
+    permission: arWordsRe(["يجوز", "جاز", "يحق", "حق", "له الحق", "لها الحق", "يكون له الحق", "يكون لها الحق", "بامكان", "يملك"]),
+  },
+};
+// "يجوز" inside "لا يجوز" must not count as a permission: prohibitions are masked first.
+
+// Arabic often grants a right with a lam and "أن" and no verb at all: "للمورد أن ينهي" (the
+// Supplier may terminate), "لكل طرف أن", "له أن". Counted unless a modal verb comes just before.
+const AR_LAM_PERMISSION = /(?<![\p{L}])(?:و|ف)?(?:لل[\p{L}]{2,20}|لكل\s+[\p{L}]{2,12}|لاي\s+[\p{L}]{2,12}(?:\s+[\p{L}]{2,12})?|له|لها|لهما)\s+(?:وحده\s+|وحدها\s+)?ان(?![\p{L}])/gu;
+const AR_MODAL_BEFORE = /(يجوز|يحق|يجب|يتعين|يحظر|يسمح|يمكن|يمتنع|يلزم|حق)\s*$/u;
+// "as the case may be", "such place as the Buyer may designate", "losses that may arise":
+// "may" there is not a permission granted to a party.
+const EN_MAY_NOISE = /(?<![\p{L}])(?:as the case may be|as (?:[\p{L}'’-]+\s+){0,4}may\s+[\p{L}]+|(?:that|which|who|whom|whatever|whichever)\s+may)(?![\p{L}])/gu;
+
+// Bounds are not negations: "not less than", "no later than", "لا يقل عن", "لا يتجاوز".
+// They are compared as bounds (minimum or maximum), because "not less than" turned into
+// "لا يزيد عن" (not more than) reverses the clause.
+const BOUNDS = {
+  en: {
+    min: wordsRe(["not less than", "no less than", "at least", "a minimum of", "minimum of", "not fewer than", "no fewer than", "not earlier than", "no earlier than", "not before"]),
+    max: wordsRe(["not more than", "no more than", "not exceeding", "not to exceed", "shall not exceed", "up to", "a maximum of", "maximum of", "at most", "not later than", "no later than", "not after", "in no event later than"]),
+  },
+  fr: {
+    min: wordsRe(["au moins", "pas moins de", "au minimum", "minimum de", "au plus tôt", "pas avant", "ne peut être inférieur à", "ne peut être inférieure à", "ne pourra être inférieur à", "ne pourra être inférieure à"]),
+    max: wordsRe(["au plus", "pas plus de", "au maximum", "maximum de", "au plus tard", "ne dépassant pas", "n'excédant pas", "dans la limite de", "jusqu'à concurrence de", "ne peut excéder", "ne pourra excéder", "ne peut dépasser", "ne pourra dépasser"]),
+  },
+  ar: {
+    min: arWordsRe(["لا يقل عن", "لا تقل عن", "لا يقل", "لا تقل", "على الأقل", "كحد أدنى", "بحد أدنى", "حد أدنى", "لا يسبق", "ليس قبل"]),
+    max: arWordsRe(["لا يزيد عن", "لا تزيد عن", "لا يزيد على", "لا تزيد على", "لا يزيد", "لا تزيد", "لا يتجاوز", "لا تتجاوز", "لا يتعدى", "لا تتعدى", "أقصاه", "أقصاها", "كحد أقصى", "بحد أقصى", "حد أقصى", "على الأكثر", "في موعد لا يتجاوز", "في موعد أقصاه", "ليس بعد"]),
+  },
+};
+
+// The period of a rate: "8% per annum", "1% par mois", "بمعدل 8% سنوياً".
+const RATE_PERIODS = {
+  year: wordsReClitic(["per annum", "per year", "a year", "annually", "par an", "l'an", "annuellement", "سنويا", "في العام", "بالسنه"]),
+  month: wordsReClitic(["per month", "a month", "monthly", "par mois", "mensuellement", "شهريا", "بالشهر"]),
+  week: wordsReClitic(["per week", "a week", "weekly", "par semaine", "hebdomadairement", "اسبوعيا"]),
+  day: wordsReClitic(["per day", "a day", "daily", "par jour", "quotidiennement", "يوميا", "باليوم"]),
+};
+
+// Prefix negations ("indirect", "غير مباشر", "عدم الدفع", "non-exclusive") are not counted:
+// they change a word, not the polarity of the sentence, and languages do not mirror them.
+// Counted: plain negations, "unless", "fail to", and the nouns of negation ("non-payment",
+// "عدم الدفع", "défaut de paiement"), which the other language often renders with a verb.
+const NEGATION = {
+  en: /(?<![\p{L}])(?:(?:not|no|never|neither|nor|without|none|nothing|cannot|unless|fails? to|failed to|failure to)(?![\p{L}])|non-(?!exclusive)(?=\p{L}))/gu,
+  fr: /(?<![\p{L}])(?:(?:ne|aucun|aucune|jamais|sans|ni|rien|à moins que|sauf si|à défaut de|défaut de)(?![\p{L}])|(?:n'|à moins qu'|à défaut d')|non-(?!exclusi)(?=\p{L}))/gu,
+  ar: arWordsRe(["لا", "لم", "لن", "ليس", "ليست", "دون", "بدون", "عدم", "بعدم", "الا اذا"]),
+};
+// "No. 5", "n° 3": abbreviations of "number", not negations.
+const NUMBER_ABBR = /(?<![\p{L}])(no\.?|n°|nos\.?)\s*(?=\d)/gu;
+
+const EXCLUSIVITY = {
+  non: wordsRe(["non-exclusive", "non exclusive", "nonexclusive", "non-exclusif", "non exclusif", "non-exclusive", "non exclusive", "غير حصري", "غير حصريه", "بصفه غير حصريه", "بشكل غير حصري"]),
+  exclusive: wordsRe(["exclusive", "exclusif", "exclusive", "exclusivité", "exclusivity", "sole and exclusive", "حصري", "حصريه", "حصريا", "بصفه حصريه", "بشكل حصري", "الحصري", "الحصريه"]),
+  // "exclusive of VAT", "hors taxes": about prices, not about exclusivity.
+  noise: wordsRe(["exclusive of", "exclusive or inclusive of", "inclusive or exclusive of"]),
+};
+
+const ENTITIES = {
+  "courts:dubai": ["courts of dubai", "dubai courts", "courts of the emirate of dubai", "محاكم دبي", "محاكم اماره دبي", "tribunaux de dubaï"],
+  "courts:difc": ["difc courts", "courts of the dubai international financial centre", "dubai international financial centre courts", "محاكم مركز دبي المالي العالمي"],
+  "courts:abudhabi": ["abu dhabi courts", "courts of abu dhabi", "محاكم ابوظبي", "محاكم ابو ظبي"],
+  "courts:adgm": ["adgm courts", "abu dhabi global market courts", "courts of the abu dhabi global market", "محاكم سوق ابوظبي العالمي"],
+  "courts:riyadh": ["courts of riyadh", "riyadh courts", "commercial court in riyadh", "محاكم الرياض", "المحكمه التجاريه بالرياض", "المحكمه التجاريه في الرياض"],
+  "courts:qatar": ["courts of qatar", "qatari courts", "محاكم قطر", "المحاكم القطريه"],
+  "courts:qicdrc": ["qatar international court", "qicdrc", "محكمه قطر الدوليه"],
+  "courts:england": ["courts of england and wales", "english courts", "high court of england and wales", "محاكم انجلترا وويلز", "المحاكم الانجليزيه", "tribunaux anglais"],
+  "courts:paris": ["courts of paris", "tribunal de commerce de paris", "tribunal des activités économiques de paris", "tribunaux de paris", "tribunal judiciaire de paris", "محاكم باريس"],
+  "arb:diac": ["dubai international arbitration centre", "diac", "مركز دبي للتحكيم الدولي"],
+  "arb:icc": ["international chamber of commerce", "icc", "chambre de commerce internationale", "cci", "غرفه التجاره الدوليه"],
+  "arb:lcia": ["lcia", "london court of international arbitration"],
+  "arb:scca": ["saudi center for commercial arbitration", "saudi centre for commercial arbitration", "scca", "المركز السعودي للتحكيم التجاري"],
+  "arb:qicca": ["qicca", "qatar international center for conciliation and arbitration", "مركز قطر الدولي للتوفيق والتحكيم"],
+  "arb:bcdr": ["bcdr", "bahrain chamber for dispute resolution", "غرفه البحرين لتسويه المنازعات"],
+  "arb:adcca": ["abu dhabi commercial conciliation and arbitration centre", "adcca", "arbitrateAD", "abu dhabi international arbitration centre", "مركز ابوظبي للتوفيق والتحكيم التجاري", "مركز ابوظبي الدولي للتحكيم"],
+  "law:uae": ["laws of the united arab emirates", "laws of the uae", "uae law", "federal laws of the united arab emirates", "federal laws of the uae", "قوانين دوله الامارات العربيه المتحده", "قوانين دوله الامارات", "القوانين الاتحاديه لدوله الامارات العربيه المتحده", "القوانين الاتحاديه لدوله الامارات", "القانون الاماراتي", "droit des émirats arabes unis", "droit émirien", "lois fédérales des émirats arabes unis"],
+  "law:dubai": ["laws of the emirate of dubai", "قوانين اماره دبي"],
+  "law:ksa": ["laws of the kingdom of saudi arabia", "saudi law", "saudi arabian law", "انظمه المملكه العربيه السعوديه", "الانظمه السعوديه", "النظام السعودي", "droit saoudien"],
+  "law:qatar": ["laws of the state of qatar", "qatari law", "قوانين دوله قطر", "القانون القطري"],
+  "law:france": ["french law", "laws of france", "droit français", "loi française", "القانون الفرنسي"],
+  "law:england": ["english law", "laws of england and wales", "القانون الانجليزي", "قوانين انجلترا وويلز", "droit anglais"],
+  "place:difc": ["dubai international financial centre", "dubai international financial center", "difc", "centre financier international de dubaï", "مركز دبي المالي العالمي"],
+  "place:adgm": ["abu dhabi global market", "adgm", "سوق ابوظبي العالمي"],
+  "mode:arbitration": ["arbitration", "arbitral", "arbitrator", "arbitrators", "arbitrage", "arbitral", "arbitre", "arbitres", "التحكيم", "تحكيم", "هيئه التحكيم", "المحكم", "المحكمين"],
+};
+const ENTITY_RES = Object.fromEntries(Object.entries(ENTITIES).map(([k, v]) => [k, wordsReClitic(v)]));
+
+// Which version prevails: "the Arabic version shall prevail", "يعتد بالنص العربي", "la version française prévaudra".
+const PREVAIL = [
+  { re: /(arabic|english|french)\s+(?:version|text|language)\s+(?:of this agreement\s+)?(?:shall|will|is to)?\s*(?:prevail|govern|control)/u, map: { arabic: "ar", english: "en", french: "fr" } },
+  { re: /(?:prevail|governs?|control)\s+(?:shall be given to\s+)?(?:the\s+)?(arabic|english|french)/u, map: { arabic: "ar", english: "en", french: "fr" } },
+  { re: /(?:يعتد|يعمل|تكون الغلبه|الغلبه|يرجح|يسود|تسود|الاولويه|يؤخذ)\s+(?:بالنص|للنص|النص|بالنسخه|للنسخه|بالصيغه|للصيغه)\s+(العربي|العربيه|الانجليزي|الانجليزيه|الانكليزي|الفرنسي|الفرنسيه)/u, map: { "العربي": "ar", "العربيه": "ar", "الانجليزي": "en", "الانجليزيه": "en", "الانكليزي": "en", "الفرنسي": "fr", "الفرنسيه": "fr" } },
+  { re: /(?:version|texte)\s+(arabe|anglaise|anglais|française|français)\s+(?:prévaudra|prévaut|fera foi|fait foi|primera|prime)/u, map: { arabe: "ar", anglaise: "en", anglais: "en", "française": "fr", "français": "fr" } },
+];
+
+// ──────────────────────────────────────────────────────────── extraction ──
+
+function matchAll(re, text) {
+  re.lastIndex = 0;
+  const out = [];
+  let m;
+  while ((m = re.exec(text))) { out.push({ start: m.index, end: m.index + m[0].length, text: m[0], groups: m.slice(1) }); if (m[0].length === 0) re.lastIndex++; }
+  return out;
+}
+
+function nearestCurrency(text, q) {
+  const window = 40;
+  let best = null;
+  for (const c of matchAll(CUR_RE, text.slice(Math.max(0, q.start - window), q.end + window))) {
+    const s = c.start + Math.max(0, q.start - window), e = c.end + Math.max(0, q.start - window);
+    const between = s >= q.end ? text.slice(q.end, s) : e <= q.start ? text.slice(e, q.start) : "";
+    if (/[.;:،؛\n]/.test(between) && !/^[\s(]*\)?\s*$/.test(between)) continue;
+    if (/\d/.test(between)) continue;
+    const dist = s >= q.end ? s - q.end : e <= q.start ? q.start - e : 0;
+    const code = curCode(c.text);
+    if (code && (!best || dist < best.dist)) best = { code, dist };
+  }
+  return best?.code ?? null;
+}
+
+/**
+ * Extracts the facts of a passage. `lang` is "ar", "en" or "fr".
+ * All spans are offsets in the original passage.
+ */
+function extractFacts(original, lang) {
+  const view = normalise(original);
+  const t = view.text;
+  const span = (s, e) => originalSpan(view, s, e);
+  const masked = [];
+  const facts = { lang, refs: [], dates: [], amounts: [], percents: [], durations: [], numbers: [], bounds: {}, modality: {}, negations: 0, polarity: 0, exclusivity: [], entities: [], currencies: [], ratePeriods: [], inconsistencies: [] };
+
+  // 1. Cross-references.
+  for (const m of matchAll(lang === "ar" ? REF_AR : REF_EN, t)) {
+    const id = m.groups[1].replace(/[-/]/g, ".").split(".").map(x => String(Number(x))).join(".");
+    facts.refs.push({ kind: REF_KIND(m.groups[0]), id, sub: m.groups[2] ?? null, span: span(m.start, m.end) });
+    masked.push([m.start, m.end]);
+  }
+  // 2. Dates.
+  for (const d of findDates(t, masked)) {
+    facts.dates.push({ iso: d.iso, cal: d.cal, valid: d.valid, raw: original.slice(...span(d.start, d.end)), span: span(d.start, d.end) });
+    masked.push([d.start, d.end]);
+  }
+  const rateHits = [];
+  // 3. Arabic duals ("لمدة سنتين (2)"), then quantities and their unit.
+  if (lang === "ar") {
+    for (const m of matchAll(AR_DUAL_RE, t)) {
+      if (masked.some(([a, b]) => m.start < b && m.end > a)) continue;
+      const rest = t.slice(m.end, m.end + 30);
+      facts.durations.push({ value: 2, alternatives: [], span: span(m.start, m.end), raw: original.slice(...span(m.start, m.end)), unit: AR_DUALS[m.groups[0]], hijri: HIJRI_AFTER.test(rest) });
+      masked.push([m.start, m.end]);
+    }
+  }
+  for (const q of findQuantities(t, lang, masked)) {
+    const after = t.slice(q.end, q.end + 40);
+    const pct = PERCENT_AFTER.exec(after) || (q.digits && /^\s*%/.test(t.slice(q.digits.end, q.digits.end + 3)));
+    const base = { value: q.value, alternatives: q.alternatives, span: span(q.start, q.end), raw: original.slice(...span(q.start, q.end)) };
+    if (!q.consistent) facts.inconsistencies.push({ type: "words-vs-figures", digits: q.digits.value, words: q.words.value, span: base.span, raw: base.raw });
+    const rateNear = () => {
+      const near = t.slice(q.end, q.end + 45).split(/[.;:؛\n]/)[0];
+      for (const [k, re] of Object.entries(RATE_PERIODS)) { re.lastIndex = 0; if (re.test(near)) rateHits.push(k); }
+    };
+    if (pct) { facts.percents.push(base); rateNear(); continue; }
+    const unitM = UNIT_RE.exec(after);
+    if (unitM) {
+      const unit = UNIT_INDEX.get(unitM[2]);
+      const rest = after.slice(unitM.index + unitM[0].length);
+      facts.durations.push({ ...base, unit, hijri: /hijri|lunar|hégirien|lunaire/u.test(unitM[1]) || HIJRI_AFTER.test(rest) });
+      continue;
+    }
+    if (lang === "ar" && q.value <= 2) {
+      const before = UNIT_BEFORE_RE.exec(t.slice(Math.max(0, q.start - 30), q.start));
+      if (before) {
+        facts.durations.push({ ...base, unit: UNIT_INDEX.get(before[1]), hijri: HIJRI_AFTER.test(after) });
+        continue;
+      }
+    }
+    const cur = nearestCurrency(t, q);
+    if (cur) { facts.amounts.push({ ...base, currency: cur }); rateNear(); continue; }
+    if (q.wordsOnly) continue; // a lone word-number without unit is too weak to compare
+    facts.numbers.push(base);
+  }
+  // 4. Bounds, masked before modality and negations are counted.
+  const mask = (str, hits) => { for (const p of hits) str = str.slice(0, p.start) + " ".repeat(p.end - p.start) + str.slice(p.end); return str; };
+  const bounds = BOUNDS[lang] ?? BOUNDS.en;
+  const bMin = matchAll(bounds.min, t), bMax = matchAll(bounds.max, t);
+  facts.bounds = { min: bMin.length, max: bMax.length };
+  // Dates, references and figures already read are masked too: "3 May 2027" is not a permission.
+  let rest = mask(mask(mask(t, masked.map(([a, b]) => ({ start: a, end: b }))), bMin), bMax);
+  // 5. Modality (prohibitions are masked before obligations and permissions are counted).
+  const modal = MODAL[lang] ?? MODAL.en;
+  const prohib = matchAll(modal.prohibition, rest);
+  rest = mask(rest, prohib);
+  if (lang === "en") rest = mask(rest, matchAll(EN_MAY_NOISE, rest));
+  let permission = matchAll(modal.permission, rest).length;
+  if (lang === "ar") permission += matchAll(AR_LAM_PERMISSION, rest).filter(m => !AR_MODAL_BEFORE.test(t.slice(Math.max(0, m.start - 16), m.start))).length;
+  facts.modality = {
+    prohibition: prohib.length,
+    obligation: matchAll(modal.obligation, rest).length,
+    permission,
+  };
+  // 6. Negations (outside bounds and prohibitions, which already carry one). Polarity = both together.
+  let restNeg = rest.replace(NUMBER_ABBR, m => " ".repeat(m.length));
+  restNeg = mask(restNeg, matchAll(EXCLUSIVITY.non, restNeg));
+  facts.negations = matchAll(NEGATION[lang] ?? NEGATION.en, restNeg).length;
+  facts.polarity = facts.negations + facts.modality.prohibition;
+  // 7. Exclusivity.
+  let ex = mask(t, matchAll(EXCLUSIVITY.noise, t));
+  const non = matchAll(EXCLUSIVITY.non, ex);
+  for (const p of non) ex = ex.slice(0, p.start) + " ".repeat(p.end - p.start) + ex.slice(p.end);
+  if (non.length) facts.exclusivity.push("non-exclusive");
+  if (matchAll(EXCLUSIVITY.exclusive, ex).length) facts.exclusivity.push("exclusive");
+  // 8. Forum, seat and governing law.
+  for (const [k, re] of Object.entries(ENTITY_RES)) if (matchAll(re, t).length) facts.entities.push(k);
+  for (const p of PREVAIL) { const m = p.re.exec(t); if (m && p.map[m[1]]) { facts.entities.push(`prevails:${p.map[m[1]]}`); break; } }
+  // 9. Periods of rates ("per annum" / "شهرياً"), read just after a percentage or an amount.
+  facts.ratePeriods = [...new Set(rateHits)];
+  // 10. Currencies named anywhere (not only next to an amount): "prices are expressed in euros".
+  facts.currencies = [...new Set(matchAll(CUR_RE, t).map(c => curCode(c.text)).filter(Boolean))];
+  return facts;
+}
+
+// Defined terms that are not parties.
+const GENERIC_TERMS = /^(party|parties|partie|parties|طرف|الطرف|الطرفين|الطرفان|الاطراف|agreement|contract|contrat|accord|convention|الاتفاقيه|الاتفاق|العقد|effective date|commencement date|date d'effet|date d'entree en vigueur|تاريخ النفاذ|تاريخ السريان|تاريخ البدء|territory|territoire|الاقليم|المنطقه|products?|produits?|المنتجات|services|الخدمات|term|duree|المده|confidential information|informations confidentielles|المعلومات السريه)$/u;
+
+/** Defined party roles of a contract, in order of definition: ("the Supplier"), («le Fournisseur»), ("المورد"). */
+function definedRoles(original) {
+  const view = normalise(original);
+  const re = /(?:hereinafter|ci-après|ويشار اليه|ويشار اليها|المشار اليه|المشار اليها|يشار اليه|يشار اليها|referred to as|dénommée?|denommee?)?[^"«»\n]{0,40}["«]\s*(?:the |le |la |l')?([^"«»\n]{2,40}?)\s*["»]\s*\)/gu;
+  const roles = [];
+  let m;
+  while ((m = re.exec(view.text))) {
+    const r = m[1].trim();
+    if (r.split(/\s+/).length <= 4 && !roles.includes(r) && !GENERIC_TERMS.test(r)) roles.push(r);
+  }
+  return roles;
+}
+
+
+return { CURRENCIES: CURRENCIES, extractFacts: extractFacts, definedRoles: definedRoles };
+},
+"cp:engine/numbers.mjs": function () {
+// courtproof — numbers written in digits and in words, in Arabic, English and French.
+// Copyright (c) 2026 ILYES M. TRAD — MIT licence.
+//
+// Contracts state the same figure twice ("thirty (30) days", "ثلاثين (30) يوماً",
+// "1 250 000 € (un million deux cent cinquante mille euros)"). This module reads both
+// forms, pairs them, and reports when they disagree.
+
+const { norm } = __load("cp:engine/text.mjs");
+// ─────────────────────────────────────────────────────────────── lexicons ──
+
+const EN = {
+  zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9,
+  ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16,
+  seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40, fifty: 50,
+  sixty: 60, seventy: 70, eighty: 80, ninety: 90,
+};
+const EN_MULT = { hundred: 100, thousand: 1e3, million: 1e6, billion: 1e9 };
+
+const FR = {
+  zero: 0, "zéro": 0, un: 1, une: 1, deux: 2, trois: 3, quatre: 4, cinq: 5, six: 6, sept: 7,
+  huit: 8, neuf: 9, dix: 10, onze: 11, douze: 12, treize: 13, quatorze: 14, quinze: 15,
+  seize: 16, vingt: 20, vingts: 20, trente: 30, quarante: 40, cinquante: 50, soixante: 60,
+  septante: 70, huitante: 80, octante: 80, nonante: 90,
+};
+const FR_MULT = { cent: 100, cents: 100, mille: 1e3, million: 1e6, millions: 1e6, milliard: 1e9, milliards: 1e9 };
+
+// Arabic lexicon, written plainly and normalised at load time (أ→ا, ة→ه, ى→ي, ئ→ي…).
+const AR_RAW = {
+  "واحد": 1, "واحدة": 1, "اثنان": 2, "اثنين": 2, "اثنتان": 2, "اثنتين": 2, "اثنا": 2, "اثني": 2,
+  "اثنتا": 2, "اثنتي": 2, "ثلاث": 3, "ثلاثة": 3, "أربع": 4, "أربعة": 4, "خمس": 5, "خمسة": 5,
+  "ست": 6, "ستة": 6, "سبع": 7, "سبعة": 7, "ثمان": 8, "ثماني": 8, "ثمانية": 8, "تسع": 9, "تسعة": 9,
+  "عشر": 10, "عشرة": 10,
+  "عشرون": 20, "عشرين": 20, "ثلاثون": 30, "ثلاثين": 30, "أربعون": 40, "أربعين": 40,
+  "خمسون": 50, "خمسين": 50, "ستون": 60, "ستين": 60, "سبعون": 70, "سبعين": 70,
+  "ثمانون": 80, "ثمانين": 80, "تسعون": 90, "تسعين": 90,
+  "مائتان": 200, "مائتين": 200, "مئتان": 200, "مئتين": 200,
+  "ثلاثمائة": 300, "ثلاثمئة": 300, "أربعمائة": 400, "أربعمئة": 400, "خمسمائة": 500, "خمسمئة": 500,
+  "ستمائة": 600, "ستمئة": 600, "سبعمائة": 700, "سبعمئة": 700, "ثمانمائة": 800, "ثمانمئة": 800,
+  "تسعمائة": 900, "تسعمئة": 900,
+};
+const AR_HUNDRED_RAW = ["مائة", "مئة", "مائه", "مئه"];
+const AR_MULT_RAW = {
+  "ألف": 1e3, "ألفاً": 1e3, "ألفا": 1e3, "آلاف": 1e3, "ألوف": 1e3, "مليون": 1e6, "مليوناً": 1e6, "مليونا": 1e6,
+  "ملايين": 1e6, "مليار": 1e9, "ملياراً": 1e9, "مليارا": 1e9, "مليارات": 1e9,
+};
+const AR_FIXED_RAW = { "ألفان": 2e3, "ألفين": 2e3, "مليونان": 2e6, "مليونين": 2e6 };
+const AR_TEEN_PREFIX_RAW = ["أحد", "إحدى", "احدى"]; // only meaningful before عشر / عشرة
+
+const AR = Object.fromEntries(Object.entries(AR_RAW).map(([k, v]) => [norm(k), v]));
+const AR_HUNDRED = new Set(AR_HUNDRED_RAW.map(norm));
+const AR_MULT = Object.fromEntries(Object.entries(AR_MULT_RAW).map(([k, v]) => [norm(k), v]));
+const AR_FIXED = Object.fromEntries(Object.entries(AR_FIXED_RAW).map(([k, v]) => [norm(k), v]));
+const AR_TEEN_PREFIX = new Set(AR_TEEN_PREFIX_RAW.map(norm));
+const AR_TEN = new Set([norm("عشر"), norm("عشرة")]);
+
+// ─────────────────────────────────────────────────────────── word numbers ──
+
+function arValue(token) {
+  if (AR[token] !== undefined) return { kind: "n", v: AR[token] };
+  if (AR_HUNDRED.has(token)) return { kind: "h", v: 100 };
+  if (AR_MULT[token] !== undefined) return { kind: "m", v: AR_MULT[token] };
+  if (AR_FIXED[token] !== undefined) return { kind: "f", v: AR_FIXED[token] };
+  if (AR_TEEN_PREFIX.has(token)) return { kind: "t", v: 1 };
+  return null;
+}
+
+/** Reads one Arabic token, allowing the conjunction و glued to the front. */
+function arToken(token) {
+  const direct = arValue(token);
+  if (direct) return { ...direct, and: false };
+  if (token.startsWith("و") && token.length > 1) {
+    const rest = arValue(token.slice(1));
+    if (rest) return { ...rest, and: true };
+  }
+  return null;
+}
+
+function combineAr(items) {
+  let total = 0, group = 0, lastUnit = null;
+  for (let i = 0; i < items.length; i++) {
+    const it = items[i];
+    const next = items[i + 1];
+    if (it.kind === "t") { // أحد / إحدى : before عشر (11), or before "و" + tens (إحدى وعشرين = 21)
+      if (next && next.kind === "n" && next.v === 10 && !next.and) { group += 11; i++; lastUnit = null; continue; }
+      if (next && next.kind === "n" && next.and && next.v >= 20 && next.v <= 90 && next.v % 10 === 0) { group += 1; lastUnit = null; continue; }
+      return null;
+    }
+    if (it.kind === "n") {
+      if (it.v >= 1 && it.v <= 9 && next && next.kind === "n" && next.v === 10 && !next.and && AR_TEN.has(next.word)) {
+        group += it.v + 10; i++; lastUnit = null; continue;
+      }
+      group += it.v;
+      lastUnit = it.v <= 9 ? it.v : null;
+      continue;
+    }
+    if (it.kind === "h") {
+      if (lastUnit !== null && group === lastUnit) group = lastUnit * 100; else group += 100;
+      lastUnit = null;
+      continue;
+    }
+    if (it.kind === "f") { total += it.v; lastUnit = null; continue; }
+    if (it.kind === "m") { total += (group || 1) * it.v; group = 0; lastUnit = null; continue; }
+  }
+  return total + group;
+}
+
+function combineEnglish(words) {
+  let total = 0, group = 0;
+  for (const w of words) {
+    if (EN[w] !== undefined) { group += EN[w]; continue; }
+    const m = EN_MULT[w];
+    if (m === undefined) continue; // connector ("and")
+    if (m === 100) group = (group || 1) * 100;
+    else { total += (group || 1) * m; group = 0; }
+  }
+  return total + group;
+}
+
+const LATIN_CONNECTORS = { en: new Set(["and"]), fr: new Set(["et"]) };
+
+/**
+ * Finds runs of number words in a normalised view.
+ * Returns [{ start, end, value, words }] with spans in the normalised view.
+ */
+function findWordNumbers(text, lang) {
+  const out = [];
+  const tokens = [];
+  const re = /\p{L}+/gu;
+  let m;
+  while ((m = re.exec(text))) tokens.push({ w: m[0], start: m.index, end: m.index + m[0].length });
+
+  if (lang === "ar") {
+    let run = [];
+    const flush = () => {
+      if (run.length) {
+        const value = combineAr(run.map(r => r.item));
+        if (value !== null && value > 0) {
+          out.push({ start: run[0].start, end: run[run.length - 1].end, value, words: run.map(r => r.w) });
+        }
+      }
+      run = [];
+    };
+    for (let i = 0; i < tokens.length; i++) {
+      const t = tokens[i];
+      const item = arToken(t.w);
+      const gapOk = run.length === 0 || /^\s*(و\s*)?$/.test(text.slice(run[run.length - 1].end, t.start));
+      if (item && gapOk) { item.word = item.and ? t.w.slice(1) : t.w; run.push({ ...t, item }); }
+      else if (t.w === "و" && run.length) continue;
+      else { flush(); if (item) { item.word = item.and ? t.w.slice(1) : t.w; run.push({ ...t, item }); } }
+    }
+    flush();
+    return out.filter(r => !(r.words.length === 1 && AR_TEEN_PREFIX.has(r.words[0])));
+  }
+
+  const units = lang === "fr" ? FR : EN;
+  const mults = lang === "fr" ? FR_MULT : EN_MULT;
+  const conn = LATIN_CONNECTORS[lang] ?? new Set();
+  let run = [];
+  const flush = () => {
+    while (run.length && conn.has(run[run.length - 1].w)) run.pop();
+    if (run.some(r => units[r.w] !== undefined || mults[r.w] !== undefined)) {
+      const words = run.map(r => r.w);
+      const value = lang === "fr" ? frenchValue(words) : combineEnglish(words);
+      out.push({ start: run[0].start, end: run[run.length - 1].end, value, words });
+    }
+    run = [];
+  };
+  for (const t of tokens) {
+    const isNum = units[t.w] !== undefined || mults[t.w] !== undefined;
+    const isConn = conn.has(t.w) && run.length > 0;
+    const gapOk = run.length === 0 || /^[\s-]*$/.test(text.slice(run[run.length - 1].end, t.start));
+    if ((isNum || isConn) && gapOk) run.push(t);
+    else { flush(); if (isNum) run.push(t); }
+  }
+  flush();
+  return out;
+}
+
+/** French has the irregular quatre-vingt(s); computed separately for clarity. */
+function frenchValue(words) {
+  let total = 0, group = 0;
+  for (let i = 0; i < words.length; i++) {
+    const w = words[i];
+    if (w === "quatre" && (words[i + 1] === "vingt" || words[i + 1] === "vingts")) { group += 80; i++; continue; }
+    if (FR[w] !== undefined) { group += FR[w]; continue; }
+    const m = FR_MULT[w];
+    if (m === undefined) continue;
+    if (m === 100) {
+      // "deux cents" multiplies the small number just before; "cent" alone is 100.
+      const lastSmall = group % 100;
+      group = group - lastSmall + (lastSmall || 1) * 100;
+    } else { total += (group || 1) * m; group = 0; }
+  }
+  return total + group;
+}
+
+// ───────────────────────────────────────────────────────── digit numbers ──
+
+/**
+ * Parses a number written in digits. Returns { value, alternatives } where alternatives
+ * lists other plausible readings when the separators are ambiguous (1.250 / 1,250).
+ */
+function parseDigits(raw, lang = "en") {
+  const s = raw.replace(/\s+/g, " ").trim();
+  const spaced = /^\d{1,3}( \d{3})+([.,]\d+)?$/.test(s);
+  if (spaced) {
+    const [intPart, dec] = s.split(/[.,](?=\d+$)/);
+    const v = Number(intPart.replace(/ /g, "") + (dec ? "." + dec : ""));
+    return { value: v, alternatives: [] };
+  }
+  const hasDot = s.includes("."), hasComma = s.includes(",");
+  if (hasDot && hasComma) {
+    const lastDot = s.lastIndexOf("."), lastComma = s.lastIndexOf(",");
+    const dec = lastDot > lastComma ? "." : ",";
+    const thou = dec === "." ? "," : ".";
+    return { value: Number(s.split(thou).join("").replace(dec, ".")), alternatives: [] };
+  }
+  const sep = hasDot ? "." : hasComma ? "," : null;
+  if (!sep) return { value: Number(s), alternatives: [] };
+  const parts = s.split(sep);
+  const groupsOf3 = parts.slice(1).every(p => p.length === 3);
+  if (parts.length > 2) {
+    return groupsOf3 ? { value: Number(parts.join("")), alternatives: [] } : { value: NaN, alternatives: [] };
+  }
+  const asThousands = Number(parts.join(""));
+  const asDecimal = Number(parts[0] + "." + parts[1]);
+  if (!groupsOf3) return { value: asDecimal, alternatives: [] };
+  // One separator followed by exactly three digits: genuinely ambiguous.
+  const decimalFirst = (sep === "," && lang === "fr") || (sep === "." && lang !== "fr");
+  return decimalFirst
+    ? { value: asDecimal, alternatives: [asThousands] }
+    : { value: asThousands, alternatives: [asDecimal] };
+}
+
+// Between a figure and its spelling in words: at most a currency (three short words or a
+// symbol), then an opening parenthesis. No digits, no sentence punctuation.
+const GAP_TO_WORDS = /^\s*(?:[^\d\s().;:،؛]{1,12}\s*){0,3}\(\s*$/u;
+
+const DIGITS_RE = /(?<![\p{L}\p{N}])(?:\d{1,3}(?:[ ,.]\d{3})+(?:[.,]\d+)?|\d+(?:[.,]\d+)?)(?![\p{N}])/gu;
+
+/** Finds numbers written in digits in a normalised view. */
+function findDigitNumbers(text, lang = "en") {
+  const out = [];
+  let m;
+  DIGITS_RE.lastIndex = 0;
+  while ((m = DIGITS_RE.exec(text))) {
+    let raw = m[0];
+    let end = m.index + raw.length;
+    // A trailing separator followed by a non-digit is punctuation, not part of the number.
+    if (/[.,]$/.test(raw)) { raw = raw.slice(0, -1); end--; }
+    const { value, alternatives } = parseDigits(raw, lang);
+    if (!Number.isFinite(value)) continue;
+    out.push({ start: m.index, end, value, alternatives, raw });
+  }
+  return out;
+}
+
+// ───────────────────────────────────────────────── words and digits paired ──
+
+/**
+ * Finds every quantity in a normalised view, pairing "words (digits)", "(digits) words"
+ * and "digits (words)". Each result: { start, end, value, alternatives, digits, words,
+ * consistent } where `consistent` is false when the two spellings disagree.
+ */
+function findQuantities(text, lang = "en", masked = []) {
+  const blocked = (s, e) => masked.some(([a, b]) => s < b && e > a);
+  const digits = findDigitNumbers(text, lang).filter(d => !blocked(d.start, d.end));
+  const words = findWordNumbers(text, lang).filter(w => !blocked(w.start, w.end));
+  const used = new Set();
+  const out = [];
+
+  for (const d of digits) {
+    const open = /\(\s*$/.exec(text.slice(Math.max(0, d.start - 3), d.start));
+    const close = /^\s*\)/.exec(text.slice(d.end, d.end + 3));
+    const inParens = Boolean(open && close);
+    const parenStart = inParens ? d.start - open[0].length : d.start;
+    const parenEnd = inParens ? d.end + close[0].length : d.end;
+    let partner = null;
+    if (inParens) {
+      // "words (digits)" — the words end just before the opening parenthesis…
+      partner = words.find(w => !used.has(w) && w.end <= parenStart && /^\s*$/.test(text.slice(w.end, parenStart)))
+        // …or "(digits) words" — the words start just after the closing parenthesis.
+        ?? words.find(w => !used.has(w) && w.start >= parenEnd && /^\s*$/.test(text.slice(parenEnd, w.start)));
+    } else {
+      // "digits (words …)", possibly with a currency in between: "1 250 000 € (un million…)".
+      partner = words.find(w => !used.has(w) && w.start > d.end && GAP_TO_WORDS.test(text.slice(d.end, w.start))) ?? null;
+    }
+    if (!partner && inParens) {
+      // "(1,250,000) درهم (مليون … ألف درهم)": digits in parentheses, a currency, then words.
+      partner = words.find(w => !used.has(w) && w.start > parenEnd && GAP_TO_WORDS.test(text.slice(parenEnd, w.start))) ?? null;
+    }
+    if (partner) used.add(partner);
+    const start = partner ? Math.min(parenStart, partner.start) : d.start;
+    const end = partner ? Math.max(parenEnd, partner.end) : d.end;
+    const consistent = partner ? partner.value === d.value || d.alternatives.includes(partner.value) : true;
+    const value = partner && !consistent ? d.value : (partner && d.alternatives.includes(partner.value) ? partner.value : d.value);
+    out.push({
+      start, end, value,
+      alternatives: partner && d.alternatives.includes(partner.value) ? [] : d.alternatives,
+      digits: { value: d.value, raw: d.raw, start: d.start, end: d.end },
+      words: partner ? { value: partner.value, start: partner.start, end: partner.end, text: text.slice(partner.start, partner.end) } : null,
+      consistent,
+    });
+  }
+  for (const w of words) {
+    if (used.has(w)) continue;
+    // A lone "one", "un", "une" is usually an article ("one of the parties"): ignore it.
+    if (w.value === 1 && w.words.length === 1) continue;
+    out.push({ start: w.start, end: w.end, value: w.value, alternatives: [], digits: null,
+      words: { value: w.value, start: w.start, end: w.end, text: text.slice(w.start, w.end) }, consistent: true, wordsOnly: true });
+  }
+  return out.sort((a, b) => a.start - b.start);
+}
+
+// ─────────────────────────────────────────────────────── number to words ──
+
+const EN_SMALL = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+  "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+const EN_TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+
+/** English words for an integer (used by the challenge generator). */
+function enWords(n) {
+  if (n < 20) return EN_SMALL[n];
+  if (n < 100) return EN_TENS[Math.floor(n / 10)] + (n % 10 ? "-" + EN_SMALL[n % 10] : "");
+  if (n < 1000) return EN_SMALL[Math.floor(n / 100)] + " hundred" + (n % 100 ? " and " + enWords(n % 100) : "");
+  for (const [v, w] of [[1e9, "billion"], [1e6, "million"], [1e3, "thousand"]]) {
+    if (n >= v) {
+      const rest = n % v;
+      return enWords(Math.floor(n / v)) + " " + w + (rest ? (rest < 100 ? " and " : " ") + enWords(rest) : "");
+    }
+  }
+  return String(n);
+}
+
+const FR_SMALL = ["zéro", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix",
+  "onze", "douze", "treize", "quatorze", "quinze", "seize", "dix-sept", "dix-huit", "dix-neuf"];
+const FR_TENS = ["", "", "vingt", "trente", "quarante", "cinquante", "soixante", "soixante", "quatre-vingt", "quatre-vingt"];
+
+/** French words for an integer (orthographe traditionnelle). */
+function frWords(n) {
+  if (n < 20) return FR_SMALL[n];
+  if (n < 100) {
+    const t = Math.floor(n / 10), u = n % 10;
+    if (t === 7 || t === 9) return FR_TENS[t] + (t === 7 && u === 1 ? " et " : "-") + FR_SMALL[10 + u];
+    if (u === 0) return t === 8 ? "quatre-vingts" : FR_TENS[t];
+    return FR_TENS[t] + (u === 1 && t !== 8 ? " et un" : "-" + FR_SMALL[u]);
+  }
+  if (n < 1000) {
+    const h = Math.floor(n / 100), r = n % 100;
+    const head = h === 1 ? "cent" : FR_SMALL[h] + " cent" + (r === 0 ? "s" : "");
+    return head + (r ? " " + frWords(r) : "");
+  }
+  if (n < 1e6) {
+    const th = Math.floor(n / 1000), r = n % 1000;
+    return (th === 1 ? "mille" : frWords(th) + " mille") + (r ? " " + frWords(r) : "");
+  }
+  if (n < 1e9) {
+    const mi = Math.floor(n / 1e6), r = n % 1e6;
+    return frWords(mi) + (mi > 1 ? " millions" : " million") + (r ? " " + frWords(r) : "");
+  }
+  return String(n);
+}
+
+const AR_UNITS = ["", "واحد", "اثنان", "ثلاثة", "أربعة", "خمسة", "ستة", "سبعة", "ثمانية", "تسعة"];
+const AR_TENS_ACC = ["", "عشرة", "عشرين", "ثلاثين", "أربعين", "خمسين", "ستين", "سبعين", "ثمانين", "تسعين"];
+const AR_TEENS = ["عشرة", "أحد عشر", "اثنا عشر", "ثلاثة عشر", "أربعة عشر", "خمسة عشر", "ستة عشر",
+  "سبعة عشر", "ثمانية عشر", "تسعة عشر"];
+const AR_HUNDREDS = ["", "مائة", "مائتين", "ثلاثمائة", "أربعمائة", "خمسمائة", "ستمائة", "سبعمائة", "ثمانمائة", "تسعمائة"];
+
+function arUnder1000(n) {
+  const parts = [];
+  const h = Math.floor(n / 100), r = n % 100;
+  if (h) parts.push(AR_HUNDREDS[h]);
+  if (r) {
+    if (r < 10) parts.push(AR_UNITS[r]);
+    else if (r < 20) parts.push(AR_TEENS[r - 10]);
+    else {
+      const u = r % 10, t = Math.floor(r / 10);
+      parts.push(u ? `${AR_UNITS[u]} و${AR_TENS_ACC[t]}` : AR_TENS_ACC[t]);
+    }
+  }
+  return parts.join(" و");
+}
+
+/** Arabic words for an integer, in the accusative/genitive form common in contracts. */
+function arWords(n) {
+  if (n === 0) return "صفر";
+  const parts = [];
+  const scales = [[1e9, "مليار", "مليارين", "مليارات"], [1e6, "مليون", "مليونين", "ملايين"], [1e3, "ألف", "ألفين", "آلاف"]];
+  let rest = n;
+  for (const [v, one, two, plural] of scales) {
+    const q = Math.floor(rest / v);
+    if (!q) continue;
+    if (q === 1) parts.push(one);
+    else if (q === 2) parts.push(two);
+    else if (q <= 10) parts.push(`${arUnder1000(q)} ${plural}`);
+    else parts.push(`${arUnder1000(q)} ${one}`);
+    rest %= v;
+  }
+  if (rest) parts.push(arUnder1000(rest));
+  return parts.join(" و");
+}
+
+return { findWordNumbers: findWordNumbers, parseDigits: parseDigits, findDigitNumbers: findDigitNumbers, findQuantities: findQuantities, enWords: enWords, frWords: frWords, arWords: arWords };
+},
+"cp:engine/dates.mjs": function () {
+// courtproof — dates written in Arabic, English and French, Gregorian or Hijri.
+// Copyright (c) 2026 ILYES M. TRAD — MIT licence.
+//
+// Every date found is converted to its Gregorian ISO form, so that "1 March 2027" in the
+// English version and "22 رمضان 1448هـ" in the Arabic version can be compared directly.
+
+const { norm, escapeRe } = __load("cp:engine/text.mjs");
+const { fromHijri, toHijri } = __load("cp:engine/hijri.mjs");
+const MONTHS_RAW = {
+  g: [
+    ["january", "jan", "janvier", "يناير", "كانون الثاني", "جانفي"],
+    ["february", "feb", "février", "fevrier", "فبراير", "شباط", "فيفري"],
+    ["march", "mar", "mars", "مارس", "آذار"],
+    ["april", "apr", "avril", "أبريل", "ابريل", "إبريل", "نيسان", "أفريل"],
+    ["may", "mai", "مايو", "أيار", "ماي"],
+    ["june", "jun", "juin", "يونيو", "يونيه", "حزيران", "جوان"],
+    ["july", "jul", "juillet", "يوليو", "يوليه", "تموز", "جويلية"],
+    ["august", "aug", "août", "aout", "أغسطس", "اغسطس", "آب", "أوت"],
+    ["september", "sep", "sept", "septembre", "سبتمبر", "أيلول"],
+    ["october", "oct", "octobre", "أكتوبر", "اكتوبر", "تشرين الأول"],
+    ["november", "nov", "novembre", "نوفمبر", "تشرين الثاني"],
+    ["december", "dec", "décembre", "decembre", "ديسمبر", "كانون الأول"],
+  ],
+  h: [
+    ["muharram", "moharram", "mouharram", "محرم", "المحرم"],
+    ["safar", "صفر"],
+    ["rabi al-awwal", "rabi' al-awwal", "rabi al awwal", "rabi ul awwal", "rabi i", "rabia al-awal", "ربيع الأول", "ربيع الاول"],
+    ["rabi al-akhir", "rabi al-thani", "rabi' al-thani", "rabi al thani", "rabi ul akhir", "rabi ii", "rabia al-thani", "ربيع الآخر", "ربيع الاخر", "ربيع الثاني"],
+    ["jumada al-ula", "jumada al-awwal", "jumada al-oula", "jumada i", "joumada al-oula", "جمادى الأولى", "جمادى الاولى", "جمادي الاولي"],
+    ["jumada al-akhirah", "jumada al-thani", "jumada al-akhira", "jumada ii", "joumada al-thania", "جمادى الآخرة", "جمادى الاخرة", "جمادى الثانية", "جمادي الاخره"],
+    ["rajab", "رجب"],
+    ["shaban", "sha'ban", "shaaban", "chaabane", "شعبان"],
+    ["ramadan", "ramadhan", "رمضان"],
+    ["shawwal", "chawwal", "شوال"],
+    ["dhu al-qadah", "dhu al-qi'dah", "dhul qadah", "dhu al-qida", "dhou al-qi'da", "ذو القعدة", "ذي القعدة"],
+    ["dhu al-hijjah", "dhul hijjah", "dhu al-hijja", "dhou al-hijja", "ذو الحجة", "ذي الحجة"],
+  ],
+};
+
+const MONTH_INDEX = new Map(); // normalised name → { cal, m }
+for (const cal of ["g", "h"]) {
+  MONTHS_RAW[cal].forEach((names, i) => names.forEach(n => MONTH_INDEX.set(norm(n), { cal, m: i + 1 })));
+}
+const MONTH_ALT = [...MONTH_INDEX.keys()].sort((a, b) => b.length - a.length).map(escapeRe).join("|");
+
+// Suffixes: م (Gregorian), هـ / ه / هجري (Hijri), AH / H (Hijri), AD / CE (Gregorian).
+const SUFFIX = String.raw`(?:\s*(م|ميلادي|ميلاديه|هجري|هجريه|ه|a\.?h\.?|h|c\.?e\.?|a\.?d\.?)(?![\p{L}]))?`;
+const DAY = String.raw`(\d{1,2})(?:st|nd|rd|th|er|e)?`;
+
+const PATTERNS = [
+  // 2027-03-01, 2027/03/01م, 1448/09/01هـ
+  { re: new RegExp(String.raw`(?<!\d|\d[/.-])(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})(?!\d|[/.-]\d)${SUFFIX}`, "gu"), order: "ymd" },
+  // 01/03/2027, 01-03-2027, 15/09/1448هـ
+  { re: new RegExp(String.raw`(?<!\d|\d[/.-])(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})(?!\d|[/.-]\d)${SUFFIX}`, "gu"), order: "dmy" },
+  // 1 March 2027, 1er mars 2027, 1 مارس 2027م, 22 رمضان 1448هـ, 1st of March 2027
+  { re: new RegExp(String.raw`(?<![\d])${DAY}\s*(?:of\s+|de\s+|من\s+(?:شهر\s+)?)?(${MONTH_ALT})\s*,?\s*(?:سنه\s+|عام\s+|de l'an\s+)?(\d{4})${SUFFIX}`, "gu"), order: "dMy" },
+  // March 1, 2027
+  { re: new RegExp(String.raw`(${MONTH_ALT})\s+${DAY},?\s+(\d{4})${SUFFIX}`, "gu"), order: "Mdy" },
+];
+
+const pad = n => String(n).padStart(2, "0");
+
+function validGregorian(y, m, d) {
+  const t = new Date(Date.UTC(y, m - 1, d));
+  return t.getUTCFullYear() === y && t.getUTCMonth() === m - 1 && t.getUTCDate() === d;
+}
+
+function suffixCalendar(s) {
+  if (!s) return null;
+  if (/^(ه|هجري|هجريه|a\.?h\.?|h)$/.test(s)) return "h";
+  return "g";
+}
+
+/**
+ * Finds dates in a normalised view. Each result:
+ * { start, end, cal: "g"|"h", y, m, d, iso, hijri, valid, raw }
+ */
+function findDates(text, masked = []) {
+  const out = [];
+  const taken = [...masked];
+  const overlaps = (s, e) => taken.some(([a, b]) => s < b && e > a);
+  for (const { re, order } of PATTERNS) {
+    re.lastIndex = 0;
+    let m;
+    while ((m = re.exec(text))) {
+      const start = m.index, end = m.index + m[0].length;
+      if (overlaps(start, end)) continue;
+      let y, mo, d, cal = null;
+      if (order === "ymd") [y, mo, d] = [m[1], m[2], m[3]].map(Number);
+      else if (order === "dmy") [d, mo, y] = [m[1], m[2], m[3]].map(Number);
+      else if (order === "dMy") { d = Number(m[1]); const k = MONTH_INDEX.get(m[2]); mo = k.m; cal = k.cal; y = Number(m[3]); }
+      else { const k = MONTH_INDEX.get(m[1]); mo = k.m; cal = k.cal; d = Number(m[2]); y = Number(m[3]); }
+      const suffix = m[m.length - 1];
+      cal = cal ?? suffixCalendar(suffix) ?? (y >= 1300 && y < 1700 ? "h" : "g");
+      if (cal === "h" && suffixCalendar(suffix) === "g") cal = "h"; // a Hijri month name wins
+      let iso = null, valid = false, hijri = null;
+      if (cal === "g") {
+        valid = mo >= 1 && mo <= 12 && validGregorian(y, mo, d);
+        iso = valid ? `${y}-${pad(mo)}-${pad(d)}` : null;
+        if (valid && y >= 1937 && y <= 2077) hijri = toHijri(iso);
+      } else {
+        try { iso = fromHijri(y, mo, d); } catch { iso = null; }
+        valid = Boolean(iso);
+        hijri = { y, m: mo, d };
+      }
+      out.push({ start, end, cal, y, m: mo, d, iso, hijri, valid, raw: m[0] });
+      taken.push([start, end]);
+    }
+  }
+  return out.sort((a, b) => a.start - b.start);
+}
+
+/** Formats an ISO date with its weekday, in English, French or Arabic. */
+function describeDate(iso, lang = "en") {
+  const t = new Date(`${iso}T00:00:00Z`);
+  const locale = lang === "ar" ? "ar-u-nu-latn" : lang === "fr" ? "fr-FR" : "en-GB";
+  return new Intl.DateTimeFormat(locale, { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(t);
+}
+
+return { findDates: findDates, describeDate: describeDate };
+},
+"cp:engine/hijri.mjs": function () {
+// courtproof — the Umm al-Qura Hijri calendar (the official civil calendar of Saudi Arabia).
+// Copyright (c) 2026 ILYES M. TRAD — MIT licence.
+//
+// Conversions use the Umm al-Qura implementation of the ICU library, which ships with
+// Node.js and with every major browser (Intl "islamic-umalqura" calendar). The test suite
+// checks it against officially announced Saudi dates. Religious holidays are fixed by
+// moon sighting and may differ by a day from the computed calendar: courtproof always
+// says when a date depends on that.
+
+const FORMAT = new Intl.DateTimeFormat("en-u-ca-islamic-umalqura-nu-latn", {
+  year: "numeric", month: "numeric", day: "numeric", timeZone: "UTC",
+});
+const DAY_MS = 86400000;
+
+/** Gregorian ISO date (YYYY-MM-DD) → { y, m, d } in the Umm al-Qura calendar. */
+function toHijri(iso) {
+  const parts = Object.fromEntries(FORMAT.formatToParts(new Date(`${iso}T00:00:00Z`)).map(p => [p.type, p.value]));
+  return { y: Number(parts.year), m: Number(parts.month), d: Number(parts.day) };
+}
+
+const isoOf = t => new Date(t).toISOString().slice(0, 10);
+const monthStartCache = new Map();
+
+/** Gregorian ISO date of the first day of a Hijri month. */
+function hijriMonthStart(y, m) {
+  const key = `${y}-${m}`;
+  if (monthStartCache.has(key)) return monthStartCache.get(key);
+  // Estimate from the mean lunar month, then walk to the exact day.
+  const approxDays = (y - 1) * 354.36667 + (m - 1) * 29.530589;
+  let t = Date.UTC(622, 6, 16) + Math.round(approxDays) * DAY_MS;
+  for (let i = 0; i < 40; i++) {
+    const h = toHijri(isoOf(t));
+    const diffMonths = (y - h.y) * 12 + (m - h.m);
+    if (diffMonths === 0) { t -= (h.d - 1) * DAY_MS; break; }
+    t += diffMonths * 29 * DAY_MS + (diffMonths > 0 ? 0 : -DAY_MS);
+  }
+  const iso = isoOf(t);
+  const check = toHijri(iso);
+  if (check.y !== y || check.m !== m || check.d !== 1) throw new Error(`Hijri month ${m}/${y} could not be located`);
+  monthStartCache.set(key, iso);
+  return iso;
+}
+
+/** Number of days (29 or 30) of a Hijri month. */
+function hijriMonthLength(y, m) {
+  const next = m === 12 ? hijriMonthStart(y + 1, 1) : hijriMonthStart(y, m + 1);
+  return Math.round((Date.parse(next) - Date.parse(hijriMonthStart(y, m))) / DAY_MS);
+}
+
+/** { y, m, d } Hijri → Gregorian ISO date, or null if the day does not exist. */
+function fromHijri(y, m, d) {
+  if (!(m >= 1 && m <= 12 && d >= 1 && d <= 30)) return null;
+  if (d > hijriMonthLength(y, m)) return null;
+  return isoOf(Date.parse(hijriMonthStart(y, m)) + (d - 1) * DAY_MS);
+}
+
+/**
+ * Adds Hijri months to a Hijri date. A day that does not exist in the target month
+ * becomes the last day of that month (the same rule as for Gregorian months).
+ */
+function addHijriMonths({ y, m, d }, n) {
+  const index = y * 12 + (m - 1) + n;
+  const ty = Math.floor(index / 12), tm = (index % 12) + 1;
+  const len = hijriMonthLength(ty, tm);
+  return { y: ty, m: tm, d: Math.min(d, len), clamped: d > len };
+}
+
+/** True when the runtime really implements Umm al-Qura (a known anchor date). */
+function umalquraAvailable() {
+  try {
+    const h = toHijri("2025-03-30"); // 1 Shawwal 1446 (Eid al-Fitr 2025 in Saudi Arabia)
+    return h.y === 1446 && h.m === 10 && h.d === 1;
+  } catch { return false; }
+}
+
+/** The years for which courtproof treats Umm al-Qura dates as published, not projected. */
+const PUBLISHED_RANGE = { from: 1356, to: 1450 };
+
+const HIJRI_MONTHS = {
+  ar: ["محرم", "صفر", "ربيع الأول", "ربيع الآخر", "جمادى الأولى", "جمادى الآخرة", "رجب", "شعبان", "رمضان", "شوال", "ذو القعدة", "ذو الحجة"],
+  en: ["Muharram", "Safar", "Rabi al-Awwal", "Rabi al-Akhir", "Jumada al-Ula", "Jumada al-Akhirah", "Rajab", "Shaban", "Ramadan", "Shawwal", "Dhu al-Qadah", "Dhu al-Hijjah"],
+  fr: ["Mouharram", "Safar", "Rabia al-Awal", "Rabia al-Thani", "Joumada al-Oula", "Joumada al-Thania", "Rajab", "Chaabane", "Ramadan", "Chawwal", "Dhou al-Qi'da", "Dhou al-Hijja"],
+};
+
+/** Human-readable Hijri date, e.g. "1 Ramadan 1448 AH" or "1 رمضان 1448هـ". */
+function formatHijri({ y, m, d }, lang = "en") {
+  if (lang === "ar") return `${d} ${HIJRI_MONTHS.ar[m - 1]} ${y}هـ`;
+  return `${d} ${HIJRI_MONTHS[lang === "fr" ? "fr" : "en"][m - 1]} ${y} AH`;
+}
+
+return { toHijri: toHijri, hijriMonthStart: hijriMonthStart, hijriMonthLength: hijriMonthLength, fromHijri: fromHijri, addHijriMonths: addHijriMonths, umalquraAvailable: umalquraAvailable, PUBLISHED_RANGE: PUBLISHED_RANGE, HIJRI_MONTHS: HIJRI_MONTHS, formatHijri: formatHijri };
+},
+"cp:engine/triage.mjs": function () {
+// courtproof — NDA triage helpers for an in-house team: the playbook's issue codes and their
+// severity, the routing that follows from them (GREEN / YELLOW / RED), and the check that every
+// quote a reviewer relies on is really in the document (English or Arabic). No model here: the
+// reviewer — a lawyer or a language model — decides which issues exist; these functions make the
+// routing consistent and the quotes verifiable.
+// Copyright (c) 2026 ILYES M. TRAD — MIT licence.
+
+const { norm } = __load("cp:engine/text.mjs");
+/** The default playbook's issue codes. RED needs a lawyer; YELLOW needs counsel review; none is GREEN. */
+const NDA_ISSUES = {
+  UNILATERAL: { severity: "RED", label: "Only our side is bound, although we also disclose or the playbook requires a mutual NDA" },
+  CARVEOUT_MISSING: { severity: "RED", label: "One of the five standard exclusions is missing (public, prior knowledge, independent development, third party, legal compulsion)" },
+  PERPETUAL: { severity: "RED", label: "Confidentiality obligations without end" },
+  NON_SOLICIT: { severity: "RED", label: "Non-solicitation or no-hire covenant" },
+  NON_COMPETE: { severity: "RED", label: "Non-compete or exclusivity restriction" },
+  LIQUIDATED_DAMAGES: { severity: "RED", label: "Pre-agreed (liquidated) damages or penalty" },
+  TRANSLATION_MISMATCH: { severity: "RED", label: "The English and Arabic versions differ in substance" },
+  TERM_TOO_LONG: { severity: "YELLOW", label: "Agreement term longer than 3 years" },
+  SURVIVAL_TOO_LONG: { severity: "YELLOW", label: "Confidentiality survives more than 5 years after the end (but not forever)" },
+  RESIDUALS_BROAD: { severity: "YELLOW", label: "Residuals clause not limited to unaided memory, or allowing use for any purpose" },
+  NO_RETENTION_EXCEPTION: { severity: "YELLOW", label: "Return or destruction without an exception for copies kept by law or in back-ups" },
+  GOVERNING_LAW: { severity: "YELLOW", label: "Governing law or forum outside DIFC, ADGM, UAE onshore or England and Wales" },
+};
+
+const RANK = { GREEN: 0, YELLOW: 1, RED: 2 };
+
+/**
+ * The default severities adjusted to a team's own playbook — for instance the NDA triage positions
+ * of a Claude for Legal practice profile: { CODE: "RED" | "YELLOW" | "GREEN" }. A code the default
+ * playbook does not know is added with the team's severity.
+ */
+function issuesWith(severities = {}) {
+  const out = { ...NDA_ISSUES };
+  for (const [k, v] of Object.entries(severities ?? {})) {
+    const code = String(k).trim().toUpperCase(), severity = String(v).trim().toUpperCase();
+    if (!/^[A-Z][A-Z0-9_]*$/.test(code)) throw new Error(`invalid issue code: ${k}`);
+    if (!(severity in RANK)) throw new Error(`the severity of ${code} must be GREEN, YELLOW or RED`);
+    out[code] = { ...(out[code] ?? { label: "Issue defined by the team's playbook" }), severity };
+  }
+  return out;
+}
+
+/** GREEN, YELLOW or RED from the issue codes, under the playbook's severities. */
+function classifyNda(codes, issues = NDA_ISSUES) {
+  const known = [...new Set(codes.map(c => String(c).trim().toUpperCase()))];
+  const unknown = known.filter(c => !issues[c]);
+  const byCode = known.filter(c => issues[c]).map(c => ({ code: c, ...issues[c] }));
+  const classification = byCode.reduce((m, x) => (RANK[x.severity] > RANK[m] ? x.severity : m), "GREEN");
+  return { classification, byCode, unknown, routing: { GREEN: "Standard approval under delegated authority.", YELLOW: "Counsel review of the flagged points.", RED: "Full legal review before any signature." }[classification] };
+}
+
+const flat = s => norm(String(s ?? "")).replace(/[ً-ٰٟـ]/g, "").replace(/["'“”‘’«»]/g, "").replace(/\s+/g, " ").trim();
+
+/** Which quotes appear word for word (case, spacing, quote marks, Arabic diacritics and digits aside) in the texts. */
+function verifyQuotes(quotes, texts) {
+  const hay = texts.map(flat);
+  const results = quotes.map(q => {
+    const f = flat(q);
+    const i = f.length >= 8 ? hay.findIndex(h => h.includes(f)) : -1;
+    return { quote: q, found: i >= 0, in: i >= 0 ? i : null };
+  });
+  return { results, allFound: results.every(r => r.found) };
+}
+
+return { NDA_ISSUES: NDA_ISSUES, issuesWith: issuesWith, classifyNda: classifyNda, verifyQuotes: verifyQuotes };
+},
+"cpb:bench/nda/cases.mjs": function () {
+// courtproof — NDA triage benchmark: twelve NDAs received by the legal team of a Dubai company,
+// five in English and seven in English and Arabic. Each case sets the terms of the NDA and, for
+// some bilingual ones, a difference between the two versions; the answer key (issue codes and
+// routing) is written by hand from the playbook (bench/nda/playbook.md). The documents are rendered
+// from the terms, with varied wording.
+// Copyright (c) 2026 ILYES M. TRAD — MIT licence.
+
+const NUM_EN = { 1: "one (1)", 2: "two (2)", 3: "three (3)", 5: "five (5)", 7: "seven (7)", 12: "twelve (12)" };
+const YEARS_AR = { 1: "سنة واحدة (1)", 2: "سنتين (2)", 3: "ثلاث (3) سنوات", 5: "خمس (5) سنوات", 7: "سبع (7) سنوات" };
+const LAW = {
+  difc: { en: ["the laws of the Dubai International Financial Centre", "the DIFC Courts"], ar: ["قوانين مركز دبي المالي العالمي", "محاكم مركز دبي المالي العالمي"] },
+  england: { en: ["the laws of England and Wales", "the courts of England and Wales"], ar: ["قوانين إنجلترا وويلز", "محاكم إنجلترا وويلز"] },
+  dubai: { en: ["the laws of the Emirate of Dubai and the federal laws of the United Arab Emirates", "the courts of Dubai"], ar: ["قوانين إمارة دبي والقوانين الاتحادية لدولة الإمارات العربية المتحدة", "محاكم دبي"] },
+  cyprus: { en: ["the laws of the Republic of Cyprus", "the courts of Nicosia"], ar: ["قوانين جمهورية قبرص", "محاكم نيقوسيا"] },
+};
+const PURPOSE = { supply: ["a possible supply agreement", "اتفاقية توريد محتملة"], tech: ["a possible technology partnership", "شراكة تقنية محتملة"], services: ["a possible logistics services agreement", "اتفاقية خدمات لوجستية محتملة"] };
+const US = "Gulf Horizon Holding LLC";
+
+const CASES = [
+  { id: "n1", bilingual: false, cp: "Nordlicht Technologies GmbH", purpose: "tech", term: 2, surv: 3, law: "difc", key: { classification: "GREEN", issues: [] } },
+  { id: "n2", bilingual: true, cp: "Saqr Logistics LLC", purpose: "services", term: 2, surv: 3, law: "dubai", key: { classification: "GREEN", issues: [] } },
+  { id: "n3", bilingual: false, cp: "Brightwater Analytics Ltd", purpose: "tech", term: 2, surv: 3, law: "england", nonSolicit: 12, key: { classification: "RED", issues: ["NON_SOLICIT"] } },
+  { id: "n4", bilingual: true, cp: "Al Waha Foods Company", purpose: "supply", term: 2, surv: 3, law: "dubai", ar: { term: 5 }, key: { classification: "RED", issues: ["TRANSLATION_MISMATCH"] } },
+  { id: "n5", bilingual: false, cp: "Meridian Pharma Ltd", purpose: "supply", term: 3, surv: 5, law: "england", drop: 3, ld: "500,000", key: { classification: "RED", issues: ["CARVEOUT_MISSING", "LIQUIDATED_DAMAGES"] } },
+  { id: "n6", bilingual: true, cp: "Kyrenia Shipping Ltd", purpose: "services", term: 2, surv: 3, law: "cyprus", noRetention: true, key: { classification: "YELLOW", issues: ["GOVERNING_LAW", "NO_RETENTION_EXCEPTION"] } },
+  { id: "n7", bilingual: true, cp: "Najm Industrial Company", purpose: "supply", term: 2, surv: 3, law: "difc", ar: { nonCompete: true }, key: { classification: "RED", issues: ["TRANSLATION_MISMATCH"] } },
+  { id: "n8", bilingual: false, cp: "Helix Software Inc.", purpose: "tech", term: 5, surv: 7, law: "difc", key: { classification: "YELLOW", issues: ["TERM_TOO_LONG", "SURVIVAL_TOO_LONG"] } },
+  { id: "n9", bilingual: true, cp: "Sahara Retail Group LLC", purpose: "supply", term: 2, surv: "perpetual", law: "dubai", residuals: true, key: { classification: "RED", issues: ["PERPETUAL", "RESIDUALS_BROAD"] } },
+  { id: "n10", bilingual: true, cp: "Dhow Capital Partners Ltd", purpose: "services", term: 2, surv: 3, law: "difc", ar: { drop: 3 }, key: { classification: "RED", issues: ["TRANSLATION_MISMATCH"] } },
+  { id: "n11", bilingual: true, cp: "Thames Engineering Ltd", purpose: "tech", term: 3, surv: 5, law: "england", key: { classification: "GREEN", issues: [] } },
+  { id: "n12", bilingual: true, cp: "Corniche Medical LLC", purpose: "supply", term: 2, surv: 3, law: "difc", ar: { law: "dubai" }, key: { classification: "RED", issues: ["TRANSLATION_MISMATCH"] } },
+];
+
+function rng(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 2 ** 32); }
+const pick = (r, xs) => xs[Math.floor(r() * xs.length)];
+
+const CARVE = [
+  ["is or becomes publicly available through no fault of the Receiving Party;", "تكون متاحة للعامة أو تصبح كذلك دون خطأ من الطرف المتلقي؛"],
+  ["was lawfully known to the Receiving Party before its disclosure;", "كانت معلومة للطرف المتلقي بصورة مشروعة قبل الإفصاح عنها؛"],
+  ["is independently developed by the Receiving Party without use of the Confidential Information;", "يطوّرها الطرف المتلقي بصورة مستقلة دون استخدام المعلومات السرية؛"],
+  ["is rightfully received from a third party without a duty of confidentiality;", "يتلقاها الطرف المتلقي بصورة مشروعة من طرف ثالث غير ملزم بواجب السرية؛"],
+  ["must be disclosed by law, regulation or court order, provided that the Receiving Party gives prompt notice where lawful.", "يجب الإفصاح عنها بموجب القانون أو اللوائح أو أمر قضائي، شريطة أن يخطر الطرف المتلقي الطرف المفصح فوراً متى كان ذلك جائزاً قانوناً."],
+];
+
+/** Renders the NDA in English, or in Arabic with the case's differences applied to the Arabic side. */
+function render(c, lang = "en", seed = 11) {
+  const ar = lang === "ar";
+  const t = ar ? { ...c, ...(c.ar ?? {}) } : c;
+  const r = rng(seed * 131 + Number(c.id.slice(1)));
+  const out = [];
+  let n = 0;
+  const H = (en, arTitle) => { n++; out.push(ar ? `البند (${n}): ${arTitle}` : `${n}. ${en}`, ""); };
+  const P = (en, arText) => out.push(ar ? arText : en, "");
+  out.push(ar ? "اتفاقية عدم إفصاح متبادلة" : "MUTUAL NON-DISCLOSURE AGREEMENT", "");
+  P(`This Mutual Non-Disclosure Agreement (the "Agreement") is made on 3 November 2026 between ${US}, a limited liability company licensed in Dubai ("Gulf Horizon"), and ${c.cp} (the "Counterparty"), each a "Party".`,
+    `أُبرمت اتفاقية عدم الإفصاح المتبادلة هذه ("الاتفاقية") بتاريخ 3 نوفمبر 2026 بين شركة ${US}، شركة ذات مسؤولية محدودة مرخصة في دبي ("جلف هورايزن")، و${c.cp} ("الطرف المقابل")، ويُشار إلى كل منهما بـ"الطرف".`);
+  H("Purpose", "الغرض");
+  P(`The Parties wish to exchange information to evaluate ${PURPOSE[c.purpose][0]} (the "Purpose").`, `يرغب الطرفان في تبادل المعلومات لتقييم ${PURPOSE[c.purpose][1]} ("الغرض").`);
+  H("Confidential Information", "المعلومات السرية");
+  P(`"Confidential Information" means all non-public information disclosed by a Party (the "Disclosing Party") to the other Party (the "Receiving Party") in connection with the Purpose, in writing, orally or by any other means, that is marked as confidential or would reasonably be understood to be confidential.`,
+    `"المعلومات السرية" تعني جميع المعلومات غير المتاحة للعامة التي يفصح عنها أحد الطرفين ("الطرف المفصح") للطرف الآخر ("الطرف المتلقي") فيما يتعلق بالغرض، كتابةً أو شفاهةً أو بأي وسيلة أخرى، والتي تحمل علامة السرية أو يُفهم بشكل معقول أنها سرية.`);
+  H("Obligations", "الالتزامات");
+  const v3 = r() < 0.5;
+  P(v3 ? "The Receiving Party shall use the Confidential Information only for the Purpose and shall protect it with at least the same degree of care it uses for its own confidential information, and no less than reasonable care." : "The Receiving Party shall not use the Confidential Information for any purpose other than the Purpose, and shall protect it with no less than reasonable care and at least the care it gives its own confidential information.",
+    v3 ? "يلتزم الطرف المتلقي باستخدام المعلومات السرية للغرض فقط، وبحمايتها بدرجة العناية ذاتها التي يبذلها لحماية معلوماته السرية على الأقل، وبما لا يقل عن العناية المعقولة." : "لا يجوز للطرف المتلقي استخدام المعلومات السرية لأي غرض غير الغرض، ويلتزم بحمايتها بعناية لا تقل عن العناية المعقولة وعن العناية التي يوليها لمعلوماته السرية على الأقل.");
+  H("Exceptions", "الاستثناءات");
+  P("The obligations in this Agreement do not apply to information that:", "لا تسري الالتزامات الواردة في هذه الاتفاقية على المعلومات التي:");
+  const sub = n;
+  let k = 0;
+  CARVE.forEach(([en, a], i) => {
+    const no = i + 1;
+    if (c.drop === no) return;            // both versions omit it: the list is renumbered
+    if (ar && c.ar?.drop === no) return;  // only the Arabic omits it: the numbering is kept
+    k = c.drop ? k + 1 : no;
+    P(`${sub}.${k} ${en}`, `${sub}.${k} ${a}`);
+  });
+  H("Permitted disclosures", "الإفصاحات المسموح بها");
+  P(pick(r, ["The Receiving Party may disclose Confidential Information to its employees, officers, affiliates, professional advisers and contractors who need to know it for the Purpose and are bound by confidentiality obligations no less protective than this Agreement.", "Confidential Information may be shared with the Receiving Party's employees, officers, affiliates, professional advisers and contractors who need it for the Purpose, provided they are bound by obligations of confidentiality at least as protective as these."]),
+    "يجوز للطرف المتلقي الإفصاح عن المعلومات السرية لموظفيه ومسؤوليه والشركات التابعة له ومستشاريه المهنيين ومقاوليه الذين يحتاجون إليها لتحقيق الغرض والملتزمين بواجبات سرية لا تقل حماية عن هذه الاتفاقية.");
+  H("Return or destruction", "الإعادة أو الإتلاف");
+  P(`On written request, the Receiving Party shall promptly return or destroy all Confidential Information${t.noRetention ? "" : ", except copies it must keep by law or that are held in automatic back-up systems, which remain subject to this Agreement"}.`,
+    `يلتزم الطرف المتلقي، بناءً على طلب كتابي، بأن يعيد جميع المعلومات السرية أو يتلفها دون تأخير${t.noRetention ? "" : "، باستثناء النسخ التي يتعين عليه الاحتفاظ بها بموجب القانون أو المحفوظة في أنظمة النسخ الاحتياطي التلقائي، والتي تظل خاضعة لهذه الاتفاقية"}.`);
+  H("Term", "المدة");
+  const survEn = t.surv === "perpetual" ? "The obligations of confidentiality survive the end of this Agreement indefinitely." : `The obligations of confidentiality survive for ${NUM_EN[t.surv]} years after it ends.`;
+  const survAr = t.surv === "perpetual" ? "وتظل التزامات السرية سارية بعد انتهاء هذه الاتفاقية إلى أجل غير مسمى." : `وتظل التزامات السرية سارية لمدة ${YEARS_AR[t.surv]} بعد انتهائها.`;
+  P(`This Agreement lasts for ${NUM_EN[t.term]} years from its date. ${survEn}`, `تسري هذه الاتفاقية لمدة ${YEARS_AR[t.term]} من تاريخها. ${survAr}`);
+  H("No licence", "عدم منح ترخيص");
+  P("Nothing in this Agreement grants any licence or right in the Confidential Information or in any intellectual property.",
+    `لا يمنح أي نص في هذه الاتفاقية أي ترخيص أو حق في المعلومات السرية أو في أي ملكية فكرية.${t.nonCompete ? " كما يلتزم الطرف المتلقي، لمدة سنة واحدة بعد انتهاء هذه الاتفاقية، بعدم مزاولة أي نشاط منافس للطرف المفصح في دولة الإمارات العربية المتحدة." : ""}`);
+  H("Remedies", "سبل الانتصاف");
+  P(`Each Party acknowledges that damages may not be an adequate remedy for a breach of this Agreement and that the other Party may seek injunctive relief.${t.ld ? ` In addition, the breaching Party shall pay the other Party AED ${t.ld} as liquidated damages for each breach.` : ""}`,
+    `يقر كل طرف بأن التعويض قد لا يكون كافياً لجبر الإخلال بهذه الاتفاقية وبأنه يجوز للطرف الآخر طلب الأوامر القضائية المستعجلة.${t.ld ? ` وبالإضافة إلى ذلك، يلتزم الطرف المخل بأن يدفع للطرف الآخر مبلغ ${t.ld} درهم إماراتي على سبيل التعويض الاتفاقي عن كل إخلال.` : ""}`);
+  if (t.nonSolicit) {
+    H("Non-solicitation", "عدم الاستقطاب");
+    P(`For ${NUM_EN[t.nonSolicit]} months after this Agreement ends, neither Party shall solicit or hire any employee of the other Party with whom it had contact in connection with the Purpose.`,
+      `يلتزم كل طرف، لمدة اثني عشر (12) شهراً بعد انتهاء هذه الاتفاقية، بعدم استقطاب أو توظيف أي موظف لدى الطرف الآخر تواصل معه فيما يتعلق بالغرض.`);
+  }
+  if (t.residuals) {
+    H("Residuals", "المعلومات المتبقية في الذاكرة");
+    P("Either Party may use for any purpose any information retained in the unaided memory of its personnel, including Confidential Information.",
+      "يجوز لأي من الطرفين أن يستخدم لأي غرض أي معلومات تبقى في الذاكرة غير المعززة لموظفيه، بما في ذلك المعلومات السرية.");
+  }
+  H("Governing law and jurisdiction", "القانون الواجب التطبيق والاختصاص القضائي");
+  const L = LAW[t.law];
+  P(`This Agreement is governed by ${L.en[0]}, and ${L.en[1]} have exclusive jurisdiction over any dispute arising out of it.`, `تخضع هذه الاتفاقية لـ${L.ar[0]}، وتختص ${L.ar[1]} حصرياً بنظر أي نزاع ينشأ عنها.`);
+  if (c.bilingual) {
+    H("Language", "اللغة");
+    P("This Agreement is made in English and Arabic. Both versions are equally authentic.", "حُررت هذه الاتفاقية باللغتين الإنجليزية والعربية، ولكلا النصين الحجية ذاتها.");
+  } else {
+    H("Entire agreement", "كامل الاتفاق");
+    P("This Agreement is the entire agreement between the Parties about its subject matter and may be amended only in writing signed by both Parties.", "تمثل هذه الاتفاقية كامل الاتفاق بين الطرفين بشأن موضوعها، ولا يجوز تعديلها إلا كتابةً بتوقيع الطرفين.");
+  }
+  out.push(ar ? `عن ${US}: ____________          عن ${c.cp}: ____________` : `Signed for ${US}: ____________          Signed for ${c.cp}: ____________`);
+  return out.join("\n");
+}
+
+const CODES = ["UNILATERAL", "CARVEOUT_MISSING", "PERPETUAL", "NON_SOLICIT", "NON_COMPETE", "LIQUIDATED_DAMAGES", "TRANSLATION_MISMATCH", "TERM_TOO_LONG", "SURVIVAL_TOO_LONG", "RESIDUALS_BROAD", "NO_RETENTION_EXCEPTION", "GOVERNING_LAW"];
+
+return { CASES: CASES, render: render, CODES: CODES };
+},
+"tz:suites/nda-boundary/cases.mjs": function () {
+// tamyiz — the "boundary NDA" suite: clauses a playbook does not settle on its own.
+// Each pattern is a question of interpretation that a careful reader can answer two ways under the
+// same playbook (bench playbook of Gulf Horizon Holding LLC, Dubai). Every pattern has two wordings:
+// wording A is used to find the disagreements, wording B is held out to test whether a ruling on A
+// carries over to a new text. Two control NDAs (one clean, one plainly wrong) check for drift.
+// `key` is what the General Counsel's rulings (caselaw/gulf-horizon/rulings.json) decide.
+// Copyright (c) 2026 ILYES M. TRAD — MIT licence.
+
+const US = "Gulf Horizon Holding LLC";
+
+/** The clauses of a clean mutual NDA under the playbook; a variant replaces or adds one of them. */
+const BASE = {
+  intro: cp => `This Mutual Non-Disclosure Agreement (the "Agreement") is made on 3 November 2026 between ${US}, a limited liability company licensed in Dubai ("Gulf Horizon"), and ${cp} (the "Counterparty"), each a "Party".`,
+  purpose: "The Parties wish to exchange information to evaluate a possible technology partnership (the \"Purpose\").",
+  definition: "\"Confidential Information\" means all non-public information disclosed by a Party (the \"Disclosing Party\") to the other Party (the \"Receiving Party\") in connection with the Purpose, in writing, orally or by any other means, that is marked as confidential or would reasonably be understood to be confidential.",
+  obligations: "Each Party, as Receiving Party, shall use the Disclosing Party's Confidential Information only for the Purpose and shall protect it with at least the care it gives its own confidential information, and no less than reasonable care.",
+  exceptions: [
+    "is or becomes publicly available through no fault of the Receiving Party;",
+    "was lawfully known to the Receiving Party before its disclosure;",
+    "is independently developed by the Receiving Party without use of the Confidential Information;",
+    "is rightfully received from a third party without a duty of confidentiality;",
+    "must be disclosed by law, regulation or court order, provided that the Receiving Party gives prompt notice where lawful.",
+  ],
+  permitted: "The Receiving Party may disclose Confidential Information to its employees, officers, affiliates, professional advisers and contractors who need to know it for the Purpose and are bound by confidentiality obligations no less protective than this Agreement.",
+  returnClause: "On request, the Receiving Party shall return or destroy the Confidential Information, except copies it must keep by law and copies held in automatic back-up systems, which remain subject to this Agreement.",
+  term: "This Agreement lasts for two (2) years from its date.",
+  survival: "The obligations of confidentiality survive for three (3) years after the end of this Agreement.",
+  remedies: "Each Party acknowledges that damages may not be an adequate remedy for a breach and that the Disclosing Party may seek injunctive relief.",
+  extra: [],
+  noOther: "Nothing in this Agreement obliges either Party to enter into any further agreement, and no licence is granted under any intellectual property right.",
+  law: "This Agreement is governed by the laws of the Dubai International Financial Centre, and the DIFC Courts have exclusive jurisdiction over any dispute arising from it.",
+  entire: "This Agreement is the entire agreement of the Parties on its subject matter. It is made in English.",
+};
+
+/** Patterns: the question, the playbook position it turns on, two wordings (A to mine, B held out). */
+const PATTERNS = [
+  { id: "P1", position: "term", question: "Does a three-year term that renews automatically for one-year periods, unless a Party gives notice, exceed the three-year limit?",
+    A: { term: "This Agreement has an initial term of three (3) years and renews automatically for successive periods of one (1) year unless either Party gives thirty (30) days' written notice of non-renewal." },
+    B: { term: "This Agreement shall remain in force for thirty-six (36) months and shall thereafter be extended by successive twelve-month periods, unless a Party notifies the other in writing, at least one month before the end of the then-current period, that it does not wish to extend it." } },
+  { id: "P2", position: "survival", question: "Is a protection of trade secrets for as long as they remain trade secrets a perpetual confidentiality obligation?",
+    A: { survival: "The obligations of confidentiality survive for five (5) years after the end of this Agreement, except that information which constitutes a trade secret shall be protected for as long as it remains a trade secret under applicable law." },
+    B: { survival: "Each Party's duties under the Obligations clause continue for a period of five (5) years after expiry or termination; for any Confidential Information that qualifies as a trade secret, those duties continue for so long as such information retains that status." } },
+  { id: "P3", position: "exclusions", question: "Is the fifth standard exclusion present when disclosure required by law is excluded without any duty to notify the other Party?",
+    A: { exception5: "must be disclosed by law, regulation or court order." },
+    B: { exception5: "is required to be disclosed under any applicable law or by order of a competent authority." } },
+  { id: "P4", position: "restrictions", question: "Is a narrow, mutual, time-limited covenant not to solicit staff met during the Purpose, with an exception for general advertisements, a non-solicitation covenant?",
+    A: { extra: ["Non-solicitation. During the term of this Agreement and for twelve (12) months after it, neither Party shall solicit for employment any employee of the other Party with whom it had contact in connection with the Purpose, provided that general advertisements not targeted at such employees are not a breach."] },
+    B: { extra: ["Staff. For one year after the date of this Agreement, each Party agrees not to approach, with a view to hiring, any member of the other Party's staff it has dealt with in relation to the Purpose; responses to public job postings are excluded."] } },
+  { id: "P5", position: "restrictions", question: "Is a residuals clause limited to unaided memory, with no licence under patents or copyrights, a broad residuals clause?",
+    A: { extra: ["Residuals. Nothing in this Agreement restricts either Party from using, for any purpose, ideas, concepts, know-how or techniques retained in the unaided memory of its personnel who had access to Confidential Information, provided that this does not grant any licence under patents or copyrights."] },
+    B: { extra: ["Retained knowledge. Each Party may freely use general skills, knowledge and experience, including information retained in the unassisted memory of its employees, for any purpose; no licence under intellectual property rights is granted."] } },
+  { id: "P6", position: "law", question: "Is arbitration seated in the DIFC or in Dubai, under an accepted governing law, an accepted forum?",
+    A: { law: "This Agreement is governed by the laws of the Dubai International Financial Centre. Any dispute arising from it shall be finally resolved by arbitration under the Arbitration Rules of the Dubai International Arbitration Centre, seated in the DIFC." },
+    B: { law: "The laws of the Emirate of Dubai and the federal laws of the United Arab Emirates govern this Agreement. Disputes shall be referred to arbitration administered by the Dubai International Arbitration Centre, with its seat in Dubai." } },
+  { id: "P7", position: "remedies", question: "Is an amount fixed in advance for a breach, called agreed compensation and open to adjustment by the court, liquidated damages?",
+    A: { remedies: "Each Party acknowledges that damages may not be an adequate remedy for a breach and that the Disclosing Party may seek injunctive relief. If a Party breaches the Obligations clause, it shall pay the other Party agreed compensation of AED 250,000, without prejudice to the court's power to adjust it under the applicable law." },
+    B: { remedies: "The Disclosing Party may seek injunctive relief. The Parties agree in advance that a breach of confidentiality causes damage which they assess at AED 150,000, payable on demand by the breaching Party." } },
+  { id: "P8", position: "return", question: "Does an exception for copies the law requires, without back-up copies, satisfy the return-or-destruction position?",
+    A: { returnClause: "On request, the Receiving Party shall return or destroy all Confidential Information, except copies it must keep to comply with applicable law." },
+    B: { returnClause: "Upon the Disclosing Party's written request, all Confidential Information shall be returned or destroyed, save to the extent retention is mandated by law or regulation." } },
+  { id: "P9", position: "mutual", question: "Is an NDA titled mutual, under which only Gulf Horizon is bound while both Parties exchange information, unilateral?",
+    A: { definition: "\"Confidential Information\" means all non-public information disclosed by the Counterparty to Gulf Horizon in connection with the Purpose, in writing, orally or by any other means.", obligations: "Gulf Horizon, as Receiving Party, shall use the Counterparty's Confidential Information only for the Purpose and shall protect it with no less than reasonable care.", permitted: "Gulf Horizon may disclose Confidential Information to its employees, officers, affiliates, professional advisers and contractors who need to know it for the Purpose and are bound by confidentiality obligations no less protective than this Agreement.", returnClause: "On request, Gulf Horizon shall return or destroy the Confidential Information, except copies it must keep by law and copies held in automatic back-up systems, which remain subject to this Agreement." },
+    B: { definition: "In this Agreement, \"Recipient\" means Gulf Horizon and \"Discloser\" means the Counterparty. \"Confidential Information\" means all non-public information the Discloser provides to the Recipient in connection with the Purpose.", obligations: "The Recipient shall hold the Discloser's Confidential Information in confidence, use it only for the Purpose and protect it with no less than reasonable care.", permitted: "The Recipient may disclose Confidential Information to its employees, officers, affiliates, professional advisers and contractors who need to know it for the Purpose and are bound by confidentiality obligations no less protective than this Agreement.", returnClause: "On request, the Recipient shall return or destroy the Confidential Information, except copies it must keep by law and copies held in automatic back-up systems, which remain subject to this Agreement." } },
+  { id: "P10", position: "law", question: "Is an accepted governing law combined with another accepted forum (English law, DIFC or ADGM Courts) acceptable?",
+    A: { law: "This Agreement is governed by the laws of England and Wales, and the courts of the Dubai International Financial Centre have exclusive jurisdiction over any dispute arising from it." },
+    B: { law: "English law governs this Agreement. The Parties submit to the exclusive jurisdiction of the ADGM Courts." } },
+];
+
+/** What the General Counsel's rulings decide for each pattern (both wordings). */
+const KEYS = {
+  P1: { classification: "GREEN", issues: [] },
+  P2: { classification: "GREEN", issues: [] },
+  P3: { classification: "GREEN", issues: [] },
+  P4: { classification: "RED", issues: ["NON_SOLICIT"] },
+  P5: { classification: "YELLOW", issues: ["RESIDUALS_BROAD"] },
+  P6: { classification: "GREEN", issues: [] },
+  P7: { classification: "RED", issues: ["LIQUIDATED_DAMAGES"] },
+  P8: { classification: "YELLOW", issues: ["NO_RETENTION_EXCEPTION"] },
+  P9: { classification: "RED", issues: ["UNILATERAL"] },
+  P10: { classification: "GREEN", issues: [] },
+};
+
+const COUNTERPARTIES = ["Nordlicht Technologies GmbH", "Saqr Logistics LLC", "Brightwater Analytics Ltd", "Al Waha Foods Company", "Meridian Pharma Ltd", "Kyrenia Shipping Ltd", "Najm Industrial Company", "Helix Software Inc.", "Sahara Retail Group LLC", "Dhow Capital Partners Ltd", "Thames Engineering Ltd", "Corniche Medical LLC"];
+
+const CASES = [
+  ...PATTERNS.flatMap((p, i) => ["A", "B"].map(w => ({
+    id: `${p.id}${w}`, pattern: p.id, split: w === "A" ? "mine" : "test", cp: COUNTERPARTIES[(i * 2 + (w === "B" ? 1 : 0)) % COUNTERPARTIES.length],
+    variant: p[w], key: KEYS[p.id],
+  }))),
+  { id: "C1", pattern: null, split: "control", cp: "Oasis Media FZ-LLC", variant: {}, key: { classification: "GREEN", issues: [] } },
+  { id: "C2", pattern: null, split: "control", cp: "Falcon Security Systems LLC", variant: { survival: "The obligations of confidentiality survive indefinitely after the end of this Agreement." }, key: { classification: "RED", issues: ["PERPETUAL"] } },
+  // Guards, added after the first runs and before any ruling was written: a ruling on P1 or P2
+  // must not reach these clauses, which stay outside the playbook whatever the rulings say.
+  { id: "C3", pattern: null, split: "control", guards: "P1", cp: "Lusail Data Services WLL", variant: { term: "This Agreement has an initial term of five (5) years and renews automatically for successive periods of one (1) year unless either Party gives thirty (30) days' written notice of non-renewal." }, key: { classification: "YELLOW", issues: ["TERM_TOO_LONG"] } },
+  { id: "C4", pattern: null, split: "control", guards: "P2", cp: "Red Sea Ventures Ltd", variant: { survival: "The obligations of confidentiality survive for five (5) years after the end of this Agreement, except that information which constitutes a trade secret, and any information marked \"highly confidential\", shall be protected indefinitely." }, key: { classification: "RED", issues: ["PERPETUAL"] } },
+  { id: "C5", pattern: null, split: "control", guards: "P1", cp: "Jebel Ali Freight FZE", variant: { term: "This Agreement has an initial term of three (3) years and is renewed automatically for further periods of three (3) years; it cannot be terminated before the end of a period." }, key: { classification: "YELLOW", issues: ["TERM_TOO_LONG"] } },
+];
+
+const CODES = ["UNILATERAL", "CARVEOUT_MISSING", "PERPETUAL", "NON_SOLICIT", "NON_COMPETE", "LIQUIDATED_DAMAGES", "TRANSLATION_MISMATCH", "TERM_TOO_LONG", "SURVIVAL_TOO_LONG", "RESIDUALS_BROAD", "NO_RETENTION_EXCEPTION", "GOVERNING_LAW"];
+
+/** Renders the NDA of a case in English. */
+function render(c) {
+  const v = { ...BASE, ...c.variant };
+  const exceptions = [...BASE.exceptions];
+  if (v.exception5) exceptions[4] = v.exception5;
+  const out = ["MUTUAL NON-DISCLOSURE AGREEMENT", "", BASE.intro(c.cp), ""];
+  let n = 0;
+  const clause = (title, ...paras) => { n++; out.push(`${n}. ${title}`, "", ...paras.flatMap(p => [p, ""])); return n; };
+  clause("Purpose", v.purpose);
+  clause("Confidential Information", v.definition);
+  const obligationsNo = clause("Obligations", v.obligations);
+  n++;
+  out.push(`${n}. Exceptions`, "", "The obligations in this Agreement do not apply to information that:", "", ...exceptions.flatMap((e, i) => [`${n}.${i + 1} ${e}`, ""]));
+  clause("Permitted disclosures", v.permitted);
+  clause("Return or destruction", v.returnClause);
+  clause("Term and survival", `${v.term} ${v.survival}`);
+  clause("Remedies", v.remedies);
+  for (const x of v.extra ?? []) { const [title, ...rest] = x.split(". "); clause(title, rest.join(". ")); }
+  clause("No other obligations", v.noOther);
+  clause("Governing law and forum", v.law);
+  clause("Entire agreement and language", v.entire);
+  return out.join("\n").replace(/the Obligations clause/g, `clause ${obligationsNo} (Obligations)`);
+}
+
+return { PATTERNS: PATTERNS, CASES: CASES, CODES: CODES, render: render };
+},
+"tz:engine/mine.mjs": function () {
+// tamyiz — finding the questions a playbook leaves open. Several independent reviewers (AI tools,
+// or people) triage the same documents; wherever they do not reach the same answer, the playbook
+// can be read two ways on that point. Each disagreement becomes a question for the General Counsel,
+// listed with the competing readings and who held them. No model here: only the comparison.
+// Copyright (c) 2026 ILYES M. TRAD — MIT licence.
+
+/** One reviewer's answer reduced to what a lawyer acts on: the routing and the set of issue codes. */
+function signature(answer) {
+  if (!answer || !answer.classification) return "unanswered";
+  const codes = [...new Set((answer.issues ?? []).map(i => String(i.code ?? i).trim().toUpperCase()))].sort();
+  return `${String(answer.classification).toUpperCase()}|${codes.join(",")}`;
+}
+
+/** Reads a signature back into its routing and codes. */
+function readSignature(sig) {
+  if (sig === "unanswered") return { classification: null, codes: [] };
+  const [classification, codes] = sig.split("|");
+  return { classification, codes: codes ? codes.split(",") : [] };
+}
+
+/**
+ * Compares the reviewers case by case.
+ * answers: { reviewerName: { caseId: answer } } — an answer is { classification, issues: [{code}] }.
+ * Returns, for every case, the readings (groups of reviewers that agree) and, for the cases where they
+ * differ, the codes in dispute: the codes some reviewers raised and others did not.
+ */
+function mine(answers, caseIds) {
+  const reviewers = Object.keys(answers);
+  const cases = caseIds.map(id => {
+    const groups = new Map();
+    for (const r of reviewers) {
+      const sig = signature(answers[r][id]);
+      groups.set(sig, [...(groups.get(sig) ?? []), r]);
+    }
+    const readings = [...groups.entries()].map(([sig, who]) => ({ ...readSignature(sig), reviewers: who })).sort((a, b) => b.reviewers.length - a.reviewers.length);
+    const answered = readings.filter(x => x.classification);
+    const all = new Set(answered.flatMap(x => x.codes));
+    const common = answered.length ? answered.map(x => new Set(x.codes)).reduce((a, b) => new Set([...a].filter(k => b.has(k)))) : new Set();
+    const disputed = [...all].filter(k => !common.has(k)).sort();
+    const routings = new Set(answered.map(x => x.classification));
+    return { id, unanimous: readings.length === 1, readings, disputedCodes: disputed, routingInDispute: routings.size > 1 };
+  });
+  const pairs = [];
+  for (let i = 0; i < reviewers.length; i++) for (let j = i + 1; j < reviewers.length; j++) {
+    const a = reviewers[i], b = reviewers[j];
+    const same = caseIds.filter(id => signature(answers[a][id]) === signature(answers[b][id])).length;
+    pairs.push({ a, b, agree: same, of: caseIds.length });
+  }
+  return {
+    reviewers,
+    cases,
+    unanimous: cases.filter(c => c.unanimous).length,
+    questions: cases.filter(c => !c.unanimous),
+    pairwise: pairs,
+    pairwiseRate: pairs.length ? pairs.reduce((s, p) => s + p.agree, 0) / pairs.reduce((s, p) => s + p.of, 0) : 1,
+  };
+}
+
+/** Accuracy of one reviewer against keys: right routing, and exactly the right codes. */
+function score(answer, key) {
+  const sig = signature(answer), want = `${key.classification}|${[...key.issues].sort().join(",")}`;
+  const got = readSignature(sig);
+  return { routing: got.classification === key.classification, exact: sig === want, missed: key.issues.filter(k => !got.codes.includes(k)), extra: got.codes.filter(k => !key.issues.includes(k)) };
+}
+
+return { signature: signature, readSignature: readSignature, mine: mine, score: score };
+},
+"tz:engine/caselaw.mjs": function () {
+// tamyiz — a legal team's internal case law. A ruling answers one question of interpretation of the
+// team's playbook, once, with its reasons; it then binds every reviewer, human or AI. Rulings carry
+// their date, the playbook positions and the legal facts they rest on, and a status, so that a
+// change in the playbook or in the law flags the rulings to review — to confirm, overturn or retire.
+// Copyright (c) 2026 ILYES M. TRAD — MIT licence.
+
+const STATUSES = ["in_force", "overturned", "retired"];
+const ISO = /^\d{4}-\d{2}-\d{2}$/;
+
+/** Checks every ruling: required fields, dates, statuses, references to rulings that exist. */
+function validateCaselaw(cl) {
+  const errors = [];
+  const ids = new Set();
+  for (const r of cl.rulings ?? []) {
+    const where = r.id ?? "(no id)";
+    for (const f of ["id", "date", "question", "holding", "reasons", "positions", "status"]) if (r[f] == null || r[f] === "" || (Array.isArray(r[f]) && !r[f].length && f !== "reasons")) errors.push(`${where}: ${f} is missing`);
+    if (ids.has(r.id)) errors.push(`${where}: duplicate id`);
+    ids.add(r.id);
+    if (r.date && !ISO.test(r.date)) errors.push(`${where}: date must be YYYY-MM-DD`);
+    if (r.status && !STATUSES.includes(r.status)) errors.push(`${where}: status must be one of ${STATUSES.join(", ")}`);
+    if (r.status === "overturned" && !r.overturned_by) errors.push(`${where}: an overturned ruling names the ruling that overturned it`);
+    for (const lf of r.law ?? []) if (!lf.source) errors.push(`${where}: every legal fact it rests on needs a source`);
+  }
+  for (const r of cl.rulings ?? []) {
+    if (r.overturned_by && !ids.has(r.overturned_by)) errors.push(`${r.id}: overturned_by ${r.overturned_by} does not exist`);
+    for (const s of r.supersedes ?? []) if (!ids.has(s)) errors.push(`${r.id}: supersedes ${s}, which does not exist`);
+  }
+  return { ok: errors.length === 0, errors };
+}
+
+/** The rulings that bind on a date: issued on or before it, and still in force. */
+function inForce(cl, date = new Date().toISOString().slice(0, 10)) {
+  return (cl.rulings ?? []).filter(r => r.status === "in_force" && r.date <= date);
+}
+
+/** The binding rulings as text, ready to sit under the playbook in any tool's instructions. */
+function compileInstructions(cl, date) {
+  const rs = inForce(cl, date);
+  if (!rs.length) return "";
+  return [
+    `## Rulings of the General Counsel — binding (${cl.team})`,
+    "",
+    "Each ruling settles how the playbook applies to a question it did not answer on its own. Apply the holding to every document it covers, whatever the wording.",
+    "",
+    ...rs.flatMap(r => [`- **${r.id} (${r.date}) — ${r.question}** ${r.holding}`]),
+    "",
+  ].join("\n");
+}
+
+/**
+ * Which rulings to review after a change: of a playbook position (e.g. "term"), or of a legal fact
+ * (by its source id, e.g. "uae-cta-2025-art340"). Returns the rulings in force that rest on it.
+ */
+function affectedBy(cl, change) {
+  return inForce(cl, "9999-12-31").filter(r => (change.position && (r.positions ?? []).includes(change.position)) || (change.source && (r.law ?? []).some(l => l.source === change.source)));
+}
+
+/** Overturns a ruling with a new one (a revirement): the old one stays in the record, with its successor. */
+function overturn(cl, oldId, newRuling) {
+  const rulings = cl.rulings.map(r => (r.id === oldId ? { ...r, status: "overturned", overturned_by: newRuling.id } : r));
+  return { ...cl, rulings: [...rulings, { ...newRuling, supersedes: [...(newRuling.supersedes ?? []), oldId], status: "in_force" }] };
+}
+
+return { STATUSES: STATUSES, validateCaselaw: validateCaselaw, inForce: inForce, compileInstructions: compileInstructions, affectedBy: affectedBy, overturn: overturn };
+}
+};
+const __cache = {};
+function __load(id) { if (!__cache[id]) __cache[id] = __defs[id](); return __cache[id]; }
+</script>
+<script>
+(() => {
+  "use strict";
+  const PARITY = __load("cp:engine/parity.mjs"), TRIAGE = __load("cp:engine/triage.mjs"), HIJRI = __load("cp:engine/hijri.mjs");
+  const BILINGUAL = __load("cpb:bench/nda/cases.mjs"), EDGE = __load("tz:suites/nda-boundary/cases.mjs"), CASELAW = __load("tz:engine/caselaw.mjs");
+  const DEFAULT_PLAYBOOK = "# NDA playbook — Gulf Horizon Holding LLC (Dubai)\n\n## Standard positions\n- **Mutual.** Both parties must be bound. Only our side bound → `UNILATERAL` (RED).\n- **Term.** Up to 3 years. Longer → `TERM_TOO_LONG` (YELLOW).\n- **Survival.** Confidentiality may survive up to 5 years after the end. Longer → `SURVIVAL_TOO_LONG` (YELLOW). Without end → `PERPETUAL` (RED).\n- **Standard exclusions.** All five must be present: publicly available; already known to the recipient; independently developed; received from a third party; disclosure required by law. Any missing → `CARVEOUT_MISSING` (RED).\n- **Permitted disclosures.** To employees, officers, affiliates, professional advisers and contractors who need to know: standard.\n- **Return or destruction.** Must allow keeping copies required by law or held in back-ups → otherwise `NO_RETENTION_EXCEPTION` (YELLOW).\n- **Remedies.** Injunctive relief is acceptable. Liquidated damages or a penalty → `LIQUIDATED_DAMAGES` (RED).\n- **Restrictions.** No non-solicitation or no-hire → `NON_SOLICIT` (RED). No non-compete or exclusivity → `NON_COMPETE` (RED). A residuals clause that lets information kept in memory be used for any purpose → `RESIDUALS_BROAD` (YELLOW).\n- **Governing law and forum.** DIFC, ADGM, UAE onshore (Dubai, Abu Dhabi) or England and Wales. Anything else → `GOVERNING_LAW` (YELLOW).\n- **Bilingual NDAs.** The English and Arabic versions are equally authentic and must say the same thing. Any substantive difference — a period, an obligation, an exclusion, a restriction, the governing law or the forum — → `TRANSLATION_MISMATCH` (RED). Report the other codes only for terms that both versions contain; a term found in one version only is reported as `TRANSLATION_MISMATCH`.\n\n## Routing\nRED if any RED issue (full legal review); YELLOW if only YELLOW issues (counsel review); GREEN if none (standard approval).\n";
+  const TEAM = "Gulf Horizon Holding LLC";
+  const CODES = Object.keys(TRIAGE.NDA_ISSUES);
+  const POSITIONS = ["mutual", "term", "survival", "exclusions", "permitted", "return", "remedies", "restrictions", "law", "bilingual", "other"];
+  const ROUTING = { GREEN: "Standard approval", YELLOW: "Counsel review", RED: "Full legal review" };
+
+  // ---------- small DOM helpers (text only: nothing from a document or a model becomes markup) ----------
+  const $ = s => document.querySelector(s);
+  function h(tag, attrs, ...kids) {
+    const el = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs ?? {})) {
+      if (v == null || v === false) continue;
+      if (k === "class") el.className = v; else if (k.startsWith("on")) el.addEventListener(k.slice(2), v); else el.setAttribute(k, v === true ? "" : String(v));
+    }
+    for (const k of kids.flat()) if (k != null && k !== false) el.append(k instanceof Node ? k : String(k));
+    return el;
+  }
+  const clear = el => { while (el.firstChild) el.firstChild.remove(); return el; };
+  const say = (el, text, error = false) => { el.textContent = text ?? ""; el.classList.toggle("error", !!error); };
+  const iso = (d = new Date()) => d.toISOString().slice(0, 10);
+  function dual(isoDate) {
+    let hijri = "";
+    try { hijri = HIJRI.formatHijri(HIJRI.toHijri(isoDate), "en"); } catch { /* the Umm al-Qura calendar is not available here */ }
+    const g = new Date(isoDate + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+    return { g, hijri };
+  }
+  const isArabic = s => /[؀-ۿ]/.test(String(s ?? ""));
+
+  // ---------- state ----------
+  const S = { tab: "desk", playbook: { text: DEFAULT_PLAYBOOK, severities: {} }, playbookSaved: false, rulings: [], questions: [], register: [], probes: {}, confirmed: {}, user: null, db: null, sample: null, uid: null, canEdit: false, canWrite: null, last: null };
+  const severities = () => Object.fromEntries(CODES.map(c => [c, S.playbook.severities?.[c] ?? TRIAGE.NDA_ISSUES[c].severity]));
+  const issuesMap = () => TRIAGE.issuesWith(severities());
+  const inForce = () => S.rulings.filter(r => r.status === "in_force").sort((a, b) => String(a.id).localeCompare(String(b.id)));
+  const caselawText = () => CASELAW.compileInstructions({ team: `${TEAM}, legal department`, rulings: inForce() }, "9999-12-31");
+
+  // ---------- header ----------
+  { const t = dual(iso()); $("#today").textContent = t.hijri ? `${t.g} · ${t.hijri}` : t.g; }
+
+  // ---------- tabs ----------
+  function show(tab) {
+    S.tab = tab;
+    for (const b of document.querySelectorAll(".rail button")) b.setAttribute("aria-selected", String(b.dataset.tab === tab));
+    for (const id of ["desk", "register", "questions", "caselaw", "probes", "playbook"]) $(`#p-${id}`).hidden = id !== tab;
+    try { localStorage.setItem("tamyiz-tab", tab); } catch { /* no storage here */ }
+  }
+  for (const b of document.querySelectorAll(".rail button")) b.addEventListener("click", () => show(b.dataset.tab));
+  try { const t = localStorage.getItem("tamyiz-tab"); if (t && $(`#p-${t}`)) show(t); } catch { /* no storage here */ }
+
+  // ---------- examples ----------
+  const EXAMPLES = [
+    { id: "", label: "Choose an example…" },
+    { id: "bi-term", label: "Bilingual NDA, the Arabic gives another term", get: () => { const c = BILINGUAL.CASES.find(x => x.id === "n4"); return { cp: c.cp, en: BILINGUAL.render(c, "en"), ar: BILINGUAL.render(c, "ar") }; } },
+    { id: "bi-forum", label: "Bilingual NDA, the Arabic names other courts", get: () => { const c = BILINGUAL.CASES.find(x => x.id === "n12"); return { cp: c.cp, en: BILINGUAL.render(c, "en"), ar: BILINGUAL.render(c, "ar") }; } },
+    { id: "bi-clean", label: "Bilingual NDA, both versions agree", get: () => { const c = BILINGUAL.CASES.find(x => x.id === "n2"); return { cp: c.cp, en: BILINGUAL.render(c, "en"), ar: BILINGUAL.render(c, "ar") }; } },
+    ...[["P1A", "Edge: a three-year term that renews automatically"], ["P2A", "Edge: trade secrets protected while they stay secret"], ["P7A", "Edge: agreed compensation the court may adjust"], ["P8A", "Edge: an exception for legal copies only"]].map(([id, label]) => { const c = EDGE.CASES.find(x => x.id === id); return { id, label, get: () => ({ cp: c.cp, en: EDGE.render(c), ar: "" }) }; }),
+  ];
+  for (const e of EXAMPLES) $("#example").append(h("option", { value: e.id }, e.label));
+  $("#example").addEventListener("change", () => {
+    const e = EXAMPLES.find(x => x.id === $("#example").value);
+    if (!e?.get) return;
+    const v = e.get();
+    $("#cp").value = v.cp; $("#en").value = v.en; $("#ar").value = v.ar;
+    clear($("#result")); say($("#st"), "Example loaded: a fictional NDA of the benchmark.");
+  });
+
+  // ---------- deterministic checks ----------
+  function parityOf(en, ar) {
+    if (!en || !ar) return null;
+    const r = PARITY.parity(en, ar, { langA: "en", langB: "ar" });
+    return r.findings.map(f => ({ clause: f.clause, type: f.type, confidence: f.confidence, detail: f.detail, en: f.a?.excerpt ?? "", ar: f.b?.excerpt ?? "" }));
+  }
+  const verify = (quotes, en, ar) => TRIAGE.verifyQuotes(quotes.map(String), [en, ...(ar ? [ar] : [])]).results.map(r => ({ quote: r.quote, found: r.found, in: r.found ? (r.in === 0 ? "English" : "Arabic") : null }));
+  const route = codes => TRIAGE.classifyNda(codes, issuesMap());
+
+  // ---------- result rendering ----------
+  function renderParity(findings) {
+    if (!findings) return null;
+    const strong = findings.filter(f => f.confidence !== "check");
+    return h("div", { class: "sheet fade" },
+      h("div", { class: "row", style: "justify-content:space-between" }, h("h3", {}, "The two versions, compared by code"), h("span", { class: "note" }, `${strong.length} certain or likely, ${findings.length - strong.length} to check`)),
+      findings.length ? h("div", {}, findings.slice(0, 40).map(f => h("div", { class: "finding" },
+        h("div", {}, h("div", { class: `conf ${f.confidence}` }, f.confidence), h("div", { class: "mono muted" }, `cl. ${f.clause ?? "—"}`)),
+        h("div", { style: "display:flex;flex-direction:column;gap:6px;min-width:0" }, h("span", {}, f.detail), h("div", { class: "excerpts" }, h("span", {}, f.en), h("span", { lang: "ar", dir: "rtl" }, f.ar)))))) : h("p", { class: "note" }, "No difference found between the two versions."));
+  }
+
+  function renderResult(r) {
+    const box = clear($("#result"));
+    const parts = [];
+    if (r.routing) {
+      const issues = r.issues;
+      parts.push(h("div", { class: "sheet fade" },
+        h("div", { class: "row", style: "justify-content:space-between" },
+          h("span", { class: `stamp ${r.routing.classification}` }, r.routing.classification, h("small", {}, ROUTING[r.routing.classification])),
+          h("span", { class: "note" }, `Routing computed by code from the codes found, with the team's severities. ${r.rulingsApplied.length ? `Rulings applied: ${r.rulingsApplied.join(", ")}.` : "No ruling applied."}`)),
+        issues.length ? h("div", { class: "issues" }, issues.map(i => h("div", { class: "issue" },
+          h("div", {}, h("div", { class: "code" }, i.code), h("span", { class: `pill ${severities()[i.code] ?? "YELLOW"}` }, severities()[i.code] ?? "?")),
+          h("div", { style: "display:flex;flex-direction:column;gap:6px;min-width:0" },
+            i.quote ? h("blockquote", { lang: isArabic(i.quote) ? "ar" : "en", dir: isArabic(i.quote) ? "rtl" : "ltr" }, i.quote) : null,
+            h("span", { class: `check ${i.found ? "ok" : "bad"}` }, i.quote ? (i.found ? `Quote found word for word in the ${i.in} text` : "Quote not found in the NDA: check it before relying on it") : "No quote given"),
+            i.reason ? h("span", { class: "muted" }, i.reason) : null)))) : h("p", {}, "No issue under the playbook and the rulings in force."),
+        r.notes.length ? h("div", {}, h("span", { class: "label" }, "Notes for the lawyer"), h("ul", { class: "readings" }, r.notes.map(n => h("li", {}, n)))) : null,
+        h("div", { class: "row" }, h("button", { class: "btn", id: "save", onclick: saveReview, disabled: !S.db }, "Save to the register"), h("span", { class: "status", id: "saveSt" }, S.db ? "" : "The register is not available in this view."))));
+    }
+    if (r.questions?.length) parts.push(h("div", { class: "sheet fade" },
+      h("h3", {}, "Points the playbook leaves open"),
+      h("p", { class: "note" }, "Claude found these readings both defensible. Send one to the General Counsel to settle it for every later NDA."),
+      r.questions.map((q, k) => h("div", { class: "question" },
+        h("strong", {}, q.question),
+        q.readings?.length ? h("ol", { class: "readings" }, q.readings.map(x => h("li", {}, x))) : null,
+        h("div", { class: "row" }, h("span", { class: "chip" }, q.position || "other"), h("button", { class: "btn", disabled: !S.db, onclick: e => raise(q, e.currentTarget) }, "Send to the General Counsel"))))));
+    const p = renderParity(r.parity);
+    if (p) parts.push(p);
+    box.append(...parts);
+  }
+
+  // ---------- Claude ----------
+  function codesBlock() { const sv = severities(); return CODES.map(c => `- ${c} (${sv[c]}): ${TRIAGE.NDA_ISSUES[c].label}`).join("\n"); }
+  function triagePrompt({ cp, en, ar }, { probe = false, tools = true, parity = null } = {}) {
+    const cl = caselawText();
+    const head = `You review an NDA for the in-house legal team of ${TEAM}, Dubai. The business sent it from ${cp}${ar ? ", in English and Arabic, both versions equally authentic" : ", in English"}. Apply the team's playbook and its binding rulings exactly: a ruling settles how the playbook applies to the question it answers, whatever the wording of the NDA.`;
+    const tail = `Codes, with the team's severities:
+${codesBlock()}
+
+=== PLAYBOOK ===
+${S.playbook.text}
+=== RULINGS IN FORCE ===
+${cl || "None yet."}
+=== NDA, ENGLISH ===
+${en}
+=== END ===${ar ? `\n=== NDA, ARABIC ===\n${ar}\n=== END ===` : ""}`;
+    if (probe) return `${head}\n\nGo through the playbook position by position. Final answer, JSON only:\n{"issues":[{"code":"...","quote":"exact words","reason":"one sentence"}],"rulings_applied":["R-..."]}\n\n${tail}`;
+    if (!tools) return `${head}\n\nGo through the playbook position by position${ar ? ", on the English version and on the Arabic where it differs" : ""}. For each issue, note its code and copy a quote word for word. A term found in one version only is a TRANSLATION_MISMATCH, not a second code. As questions, list only the points where the playbook and the rulings can reasonably be read two ways for this NDA, each with its two readings; leave out what a ruling already settles.${parity ? `\n\nThe two versions were compared by code. Findings (certain and likely are candidate mismatches to confirm; check is only a lead):\n${JSON.stringify(parity.slice(0, 40).map(f => ({ clause: f.clause, type: f.type, confidence: f.confidence, detail: f.detail })))}` : ""}\n\nFinal answer, JSON only:\n{"issues":[{"code":"...","quote":"exact words","reason":"one sentence"}],"rulings_applied":["R-..."],"questions":[{"question":"...","readings":["...","..."],"position":"${POSITIONS.join("|")}"}],"notes":["..."]}\n\n${tail}`;
+    return `${head}
+
+How to work:
+${ar ? "1. Call check_bilingual_parity. A finding marked certain or likely is a candidate TRANSLATION_MISMATCH: read the two clauses and confirm it; a finding marked check is only a lead. Then read every clause pair yourself.\n" : ""}${ar ? "2" : "1"}. Go through the playbook position by position${ar ? " on the English version and on the Arabic where it differs" : ""}. For each issue, note its code and copy a quote word for word. A term found in one version only is a TRANSLATION_MISMATCH, not a second code.
+${ar ? "3" : "2"}. Call verify_quotes with all your quotes; correct or drop any quote that is not found.
+${ar ? "4" : "3"}. Call route with your codes.
+${ar ? "5" : "4"}. As questions, list only the points where the playbook and the rulings can reasonably be read two ways for this NDA, each with its two readings. Leave out what a ruling already settles.
+
+Final answer, JSON only:
+{"issues":[{"code":"...","quote":"exact words","reason":"one sentence"}],"rulings_applied":["R-..."],"questions":[{"question":"...","readings":["...","..."],"position":"${POSITIONS.join("|")}"}],"notes":["..."]}
+
+${tail}`;
+  }
+  const ERRORS = {
+    not_granted: "Claude is not allowed for this page. The two versions can still be compared by code.",
+    sampling_disabled: "Claude is not available for this account.",
+    rate_limited: "Too many requests for now. Try again in a little while.",
+    prompt_too_large: "The NDA is too long for one review. Paste the clauses that matter.",
+    invalid_json: "Claude's answer could not be read. Try again.",
+    refused: "Claude declined this text.",
+    session_expired: "Sign in to Claude again, then try again.",
+    tools_unavailable: "This view cannot run the checks as Claude's tools.",
+  };
+  const errText = e => ERRORS[e?.code] ?? "The review was interrupted. Try again.";
+
+  let ctl = null;
+  async function review() {
+    const cp = $("#cp").value.trim() || "the counterparty", en = $("#en").value.trim(), ar = $("#ar").value.trim();
+    if (!en) { say($("#st"), "Paste the English version first.", true); return; }
+    const parity = parityOf(en, ar);
+    if (!S.sample) { renderResult({ parity, issues: [], questions: [], notes: [], rulingsApplied: [] }); say($("#st"), "Claude is not available in this view: only the code checks ran.", true); return; }
+    ctl = new AbortController();
+    $("#go").disabled = true; $("#stop").hidden = false;
+    say($("#st"), "Claude is reading the NDA…");
+    const tools = [
+      { name: "verify_quotes", description: "Checks that each quote appears word for word in the NDA (English or Arabic), ignoring spacing, quote marks, digits and Arabic diacritics. Returns, for each quote, found and the version it was found in.", inputSchema: { type: "object", properties: { quotes: { type: "array", items: { type: "string" } } }, required: ["quotes"] }, execute: ({ quotes }) => { say($("#st"), `Checking ${Array.isArray(quotes) ? quotes.length : 0} quotes…`); return verify(Array.isArray(quotes) ? quotes : [], en, ar); } },
+      { name: "route", description: "Routes the NDA from the issue codes found, under the team's severities: GREEN (standard approval), YELLOW (counsel review) or RED (full legal review). Returns the routing and the severity of each code.", inputSchema: { type: "object", properties: { codes: { type: "array", items: { type: "string" } } }, required: ["codes"] }, execute: ({ codes }) => { say($("#st"), "Routing…"); const r = route(Array.isArray(codes) ? codes : []); return { classification: r.classification, codes: r.byCode.map(x => ({ code: x.code, severity: x.severity })), unknown: r.unknown }; } },
+    ];
+    if (ar) tools.unshift({ name: "check_bilingual_parity", description: "Compares the English and Arabic versions clause by clause, by code: figures, periods, dates, parties, forum and governing law, exclusions, negations. Returns findings marked certain, likely or check.", execute: () => { say($("#st"), "Comparing the two versions…"); return (parity ?? []).slice(0, 40).map(f => ({ clause: f.clause, type: f.type, confidence: f.confidence, detail: f.detail })); } });
+    try {
+      const lim = await S.sample.limits().catch(() => null);
+      const withTools = !!lim?.tools;
+      const out = withTools
+        ? await S.sample.json(triagePrompt({ cp, en, ar }), { tools, signal: ctl.signal })
+        : await S.sample.json(triagePrompt({ cp, en, ar }, { tools: false, parity }), { signal: ctl.signal, cache: false });
+      const raw = Array.isArray(out?.issues) ? out.issues : [];
+      const issues = raw.map(i => ({ code: String(i.code ?? "").trim().toUpperCase(), quote: String(i.quote ?? ""), reason: String(i.reason ?? "") })).filter(i => CODES.includes(i.code) || /^[A-Z][A-Z0-9_]*$/.test(i.code));
+      const checked = verify(issues.map(i => i.quote).filter(Boolean), en, ar);
+      for (const i of issues) { const v = checked.find(x => x.quote === i.quote); i.found = !!v?.found; i.in = v?.in ?? null; }
+      const routing = route(issues.map(i => i.code));
+      const known = new Set(inForce().map(r => r.id));
+      S.last = { cp, routing, issues, parity, rulingsApplied: (Array.isArray(out?.rulings_applied) ? out.rulings_applied : []).map(String).filter(x => known.has(x)), questions: Array.isArray(out?.questions) ? out.questions.filter(q => q && q.question).map(q => ({ question: String(q.question), readings: (Array.isArray(q.readings) ? q.readings : []).map(String).slice(0, 3), position: POSITIONS.includes(q.position) ? q.position : "other" })) : [], notes: (Array.isArray(out?.notes) ? out.notes : []).map(String).slice(0, 6) };
+      renderResult(S.last);
+      say($("#st"), `Reviewed. ${issues.filter(i => i.quote && !i.found).length ? "Some quotes were not found: they are marked." : "Every quote was found in the text."}`);
+    } catch (e) {
+      if (e?.code === "cancelled") say($("#st"), "Stopped.");
+      else { renderResult({ parity, issues: [], questions: [], notes: [], rulingsApplied: [] }); say($("#st"), errText(e), true); }
+    } finally { $("#go").disabled = false; $("#stop").hidden = true; ctl = null; }
+  }
+  $("#go").addEventListener("click", review);
+  $("#stop").addEventListener("click", () => ctl?.abort());
+  $("#check").addEventListener("click", () => {
+    const en = $("#en").value.trim(), ar = $("#ar").value.trim();
+    if (!en || !ar) { say($("#st"), "Paste both versions to compare them.", true); return; }
+    S.last = null;
+    renderResult({ parity: parityOf(en, ar), issues: [], questions: [], notes: [], rulingsApplied: [] });
+    say($("#st"), "Compared by code, without Claude.");
+  });
+
+  // ---------- shared data ----------
+  async function saveReview() {
+    const st = $("#saveSt");
+    if (!S.db || !S.last) return;
+    $("#save").disabled = true;
+    try {
+      const year = iso().slice(0, 4);
+      const n = S.register.filter(x => String(x.docket ?? "").includes(`-${year}-`)).length + 1;
+      const r = S.last;
+      await S.db.collection("register").add({ docket: `NDA-${year}-${String(n).padStart(4, "0")}`, counterparty: r.cp.slice(0, 160), routing: r.routing.classification, codes: r.issues.map(i => i.code), issues: r.issues.map(i => ({ code: i.code, quote: i.quote.slice(0, 400), found: i.found, reason: i.reason.slice(0, 400) })), rulings_applied: r.rulingsApplied, parity: r.parity ? { certain: r.parity.filter(f => f.confidence === "certain").length, likely: r.parity.filter(f => f.confidence === "likely").length } : null, questions: r.questions.length, at: new Date().toISOString(), by: S.uid ?? null });
+      say(st, "Saved to the register.");
+    } catch (e) { say(st, e?.code === "invalid_argument" ? "Your access to this page does not allow saving." : "Not saved: try again.", true); $("#save").disabled = false; }
+  }
+  async function raise(q, btn) {
+    if (!S.db) return;
+    btn.disabled = true;
+    try {
+      await S.db.collection("questions").add({ question: q.question.slice(0, 1200), readings: (q.readings ?? []).map(x => String(x).slice(0, 600)), position: q.position ?? "other", from: S.last?.cp?.slice(0, 160) ?? null, raised_by: q.manual ? "person" : "Claude, during a review", status: "open", at: new Date().toISOString(), by: S.uid ?? null });
+      btn.textContent = "Sent";
+    } catch (e) { btn.disabled = false; btn.textContent = e?.code === "invalid_argument" ? "Not allowed" : "Try again"; }
+  }
+  $("#askGo").addEventListener("click", async () => {
+    const text = $("#askText").value.trim();
+    if (!text) { say($("#askSt"), "Write the question first.", true); return; }
+    await raise({ question: text, readings: [], position: "other", manual: true }, $("#askGo"));
+    $("#askText").value = ""; say($("#askSt"), "Sent to the General Counsel.");
+    setTimeout(() => { $("#askGo").disabled = false; $("#askGo").textContent = "Send to the General Counsel"; }, 1200);
+  });
+
+  function nextRulingId() {
+    const year = iso().slice(0, 4);
+    const nums = S.rulings.map(r => String(r.id)).filter(id => id.startsWith(`R-${year}-`)).map(id => Number(id.split("-")[2]) || 0);
+    return `R-${year}-${String((nums.length ? Math.max(...nums) : 0) + 1).padStart(2, "0")}`;
+  }
+  async function writeRuling({ question, holding, reasons, position, raised_by, supersedes, examples, pattern }) {
+    const id = nextRulingId();
+    const ruling = { id, date: iso(), question, holding, reasons, positions: [position || "other"], raised_by: raised_by ?? "General Counsel", status: "in_force", supersedes: supersedes ? [supersedes] : [], examples: examples ?? [], pattern: pattern ?? null, author: S.uid ?? null, at: new Date().toISOString() };
+    await S.db.doc(`caselaw/${id}`).set(ruling);
+    if (supersedes) await S.db.doc(`caselaw/${supersedes}`).update({ status: "overturned", overturned_by: id });
+    return id;
+  }
+  function rulingForm({ title, question, position, onDone, supersedes, examples, pattern }) {
+    const qId = `rf-q-${Math.random().toString(36).slice(2, 8)}`;
+    const q = h("textarea", { id: qId }); q.value = question ?? "";
+    const hold = h("textarea", { id: `${qId}-h`, placeholder: "The holding: what the playbook means on this point, for every later NDA" });
+    const why = h("textarea", { id: `${qId}-r`, placeholder: "The reasons, in one or two sentences" });
+    const pos = h("select", { id: `${qId}-p`, style: "width:auto" }, POSITIONS.map(p => h("option", { value: p, selected: p === position }, p)));
+    const st = h("span", { class: "status" });
+    const go = h("button", { class: "btn primary", onclick: async () => {
+      if (!hold.value.trim()) { say(st, "Write the holding.", true); return; }
+      go.disabled = true;
+      try { const id = await writeRuling({ question: q.value.trim(), holding: hold.value.trim(), reasons: why.value.trim(), position: pos.value, supersedes, examples, pattern, raised_by: pattern ? `edge probe ${examples?.[0] ?? pattern}` : undefined }); say(st, `Ruling ${id} is in force.`); onDone?.(id); }
+      catch (e) { go.disabled = false; say(st, e?.code === "invalid_argument" ? "Only an editor of this page can rule." : "Not saved: try again.", true); }
+    } }, supersedes ? "Overturn and rule" : "Rule");
+    return h("div", { class: "form fade" }, h("span", { class: "label" }, title), h("label", { for: qId }, "Question"), q, h("label", { for: `${qId}-h` }, "Holding"), hold, h("label", { for: `${qId}-r` }, "Reasons"), why, h("div", { class: "row" }, h("label", { for: `${qId}-p` }, "Playbook position"), pos), h("div", { class: "row" }, go, st));
+  }
+
+  // ---------- renderers for shared data ----------
+  function renderRegister() {
+    $("#c-register").textContent = String(S.register.length);
+    const box = clear($("#register"));
+    if (!S.db) { box.append(h("div", { class: "empty" }, "The register is not available in this view.")); return; }
+    if (!S.register.length) { box.append(h("div", { class: "empty" }, "No review saved yet. Review an NDA, then choose “Save to the register”.")); return; }
+    box.append(h("div", { class: "scroll" }, h("table", {}, h("thead", {}, h("tr", {}, ["Docket", "Counterparty", "Routing", "Issues", "Rulings", "Date"].map(x => h("th", {}, x)))),
+      h("tbody", {}, S.register.map(r => h("tr", {}, h("td", { class: "mono" }, r.docket ?? "—"), h("td", {}, r.counterparty ?? ""), h("td", {}, h("span", { class: `pill ${r.routing}` }, r.routing ?? "")), h("td", { class: "mono" }, (r.codes ?? []).join(", ") || "none"), h("td", { class: "mono" }, (r.rulings_applied ?? []).join(", ") || "—"), h("td", { class: "tab-nums" }, String(r.at ?? "").slice(0, 10))))))));
+  }
+  function renderQuestions() {
+    const open = S.questions.filter(q => q.status === "open");
+    $("#c-questions").textContent = String(open.length);
+    $("#ask").hidden = !S.db;
+    const box = clear($("#questions"));
+    if (!S.db) { box.append(h("div", { class: "empty" }, "Questions are not available in this view.")); return; }
+    if (!S.questions.length) { box.append(h("div", { class: "empty" }, "No question yet. Claude raises them during reviews, and anyone can raise one above.")); return; }
+    for (const q of [...S.questions].sort((a, b) => String(b.at).localeCompare(String(a.at)))) {
+      const slot = h("div");
+      const actions = q.status === "open" && S.canEdit ? h("div", { class: "row" },
+        h("button", { class: "btn primary", onclick: () => { clear(slot).append(rulingForm({ title: "Rule on this question", question: q.question, position: q.position, onDone: id => S.db.doc(`questions/${q._id}`).update({ status: "ruled", ruling: id }).catch(() => {}) })); } }, "Rule"),
+        h("button", { class: "btn", onclick: e => { e.currentTarget.disabled = true; S.db.doc(`questions/${q._id}`).update({ status: "dismissed" }).catch(() => { e.currentTarget.disabled = false; }); } }, "Dismiss")) : null;
+      box.append(h("div", { class: "question" },
+        h("div", { class: "row", style: "justify-content:space-between" }, h("strong", {}, q.question), h("span", { class: `chip ${q.status === "ruled" ? "seal" : ""}` }, q.status === "ruled" ? `ruled: ${q.ruling}` : q.status)),
+        q.readings?.length ? h("ol", { class: "readings" }, q.readings.map(x => h("li", {}, x))) : null,
+        h("span", { class: "note" }, `${q.raised_by ?? ""}${q.from ? ` · NDA from ${q.from}` : ""} · ${String(q.at ?? "").slice(0, 10)}`),
+        actions, slot));
+    }
+  }
+  function renderCaselaw() {
+    $("#c-caselaw").textContent = String(inForce().length);
+    const box = clear($("#caselaw"));
+    if (!S.db) { box.append(h("div", { class: "empty" }, "The case law is not available in this view: reviews run on the playbook alone.")); return; }
+    if (!S.rulings.length) { box.append(h("div", { class: "empty" }, "No ruling yet. Questions from reviews and edge probes land under Questions; each ruling the General Counsel writes appears here.")); return; }
+    for (const r of [...S.rulings].sort((a, b) => String(b.id).localeCompare(String(a.id)))) {
+      const d = dual(r.date ?? iso());
+      const slot = h("div");
+      box.append(h("article", { class: `ruling ${r.status !== "in_force" ? "overturned" : ""}` },
+        h("div", { class: "cite" }, h("span", {}, r.id), h("span", {}, d.g), d.hijri ? h("span", { class: "hijri" }, d.hijri) : null),
+        h("div", { style: "display:flex;flex-direction:column;gap:6px;min-width:0" },
+          h("p", { class: "q" }, r.question), h("p", { class: "h" }, r.holding), r.reasons ? h("p", { class: "r" }, r.reasons) : null,
+          h("div", { class: "chips" }, r.example ? h("span", { class: "chip" }, "example") : null, (r.positions ?? []).map(p => h("span", { class: "chip" }, p)), h("span", { class: `chip ${r.status === "in_force" ? "seal" : ""}` }, r.status === "in_force" ? "in force" : `overturned by ${r.overturned_by ?? "a later ruling"}`), (r.supersedes ?? []).length ? h("span", { class: "chip" }, `overturns ${r.supersedes.join(", ")}`) : null, r.raised_by ? h("span", { class: "chip" }, r.raised_by) : null),
+          r.status === "in_force" && S.canEdit ? h("div", {}, h("button", { class: "btn", onclick: () => clear(slot).append(rulingForm({ title: `Overturn ${r.id}`, question: r.question, position: r.positions?.[0], supersedes: r.id })) }, "Overturn")) : null,
+          slot)));
+    }
+  }
+  $("#copyCl").addEventListener("click", async () => {
+    const text = caselawText() || "No ruling in force.";
+    try { await navigator.clipboard.writeText(`${S.playbook.text}\n\n${text}`); say($("#clSt"), "Copied: the playbook and the rulings in force, ready to paste into another AI tool's instructions."); }
+    catch { const t = h("textarea", { readonly: true, style: "min-height:160px" }); t.value = `${S.playbook.text}\n\n${text}`; clear($("#clSt")).append(t); t.select(); }
+  });
+
+  // ---------- edge probes ----------
+  const PROBES = EDGE.CASES.filter(c => c.split === "mine");
+  function teamPosition(c) {
+    const r = inForce().find(x => (x.examples ?? []).includes(c.id) || x.pattern === c.pattern);
+    if (r) return { kind: "ruling", text: r.id };
+    const conf = S.confirmed[c.pattern];
+    if (conf) return { kind: "confirmed", text: `confirmed: ${conf.reading}` };
+    return null;
+  }
+  function renderProbes() {
+    const tb = clear($("#probes tbody"));
+    for (const c of PROBES) {
+      const p = EDGE.PATTERNS.find(x => x.id === c.pattern);
+      const res = S.probes[c.id];
+      const pos = teamPosition(c);
+      const slot = h("div");
+      tb.append(h("tr", {},
+        h("td", { style: "min-width:220px" }, h("div", { class: "mono muted" }, c.id), p.question, slot),
+        h("td", {}, res ? h("div", {}, h("span", { class: `pill ${res.classification}` }, res.classification), " ", h("span", { class: "mono" }, (res.codes ?? []).join(", ") || "no issue"), h("div", { class: "note" }, `${String(res.at ?? "").slice(0, 10)}${res.rulings?.length ? ` · with ${res.rulings.join(", ")}` : ""}`)) : h("span", { class: "muted" }, "not run")),
+        h("td", {}, pos ? h("span", { class: `chip ${pos.kind === "ruling" ? "seal" : ""}` }, pos.text) : h("span", { class: "muted" }, "not settled")),
+        h("td", {}, h("div", { style: "display:flex;flex-direction:column;gap:6px" },
+          h("button", { class: "btn", disabled: !S.sample, onclick: e => runProbes([c], e.currentTarget) }, "Run"),
+          S.canEdit && res ? h("button", { class: "btn", onclick: e => { e.currentTarget.disabled = true; S.db.doc(`confirmed/${c.pattern}`).set({ pattern: c.pattern, reading: `${res.classification}${res.codes?.length ? `, ${res.codes.join(", ")}` : ""}`, at: new Date().toISOString(), by: S.uid ?? null }).catch(() => { e.currentTarget.disabled = false; }); } }, "This is our reading") : null,
+          S.canEdit ? h("button", { class: "btn", onclick: () => clear(slot).append(rulingForm({ title: "Rule on this edge", question: p.question, position: p.position, examples: [c.id], pattern: c.pattern })) }, "Rule otherwise") : null))));
+    }
+  }
+  let probeCtl = null;
+  async function runProbes(list, btn) {
+    if (!S.sample) return;
+    probeCtl = new AbortController();
+    $("#probeAll").disabled = true; $("#probeStop").hidden = false; if (btn) btn.disabled = true;
+    let k = 0;
+    try {
+      for (const c of list) {
+        if (probeCtl.signal.aborted) break;
+        say($("#prSt"), `Probe ${++k} of ${list.length}: ${c.id}…`);
+        const prompt = triagePrompt({ cp: c.cp, en: EDGE.render(c), ar: "" }, { probe: true });
+        const out = await S.sample.json(prompt, { signal: probeCtl.signal, cache: false });
+        const codes = [...new Set((Array.isArray(out?.issues) ? out.issues : []).map(i => String(i.code ?? "").trim().toUpperCase()).filter(Boolean))].sort();
+        const res = { case: c.id, pattern: c.pattern, classification: route(codes).classification, codes, rulings: (Array.isArray(out?.rulings_applied) ? out.rulings_applied : []).map(String), at: new Date().toISOString(), by: S.uid ?? null };
+        S.probes[c.id] = res; renderProbes();
+        if (S.db) S.db.doc(`probes/${c.id}`).set(res).catch(() => {});
+      }
+      say($("#prSt"), probeCtl.signal.aborted ? "Stopped." : "Done. Rule where the reading is not the team's; confirm where it is.");
+    } catch (e) { say($("#prSt"), e?.code === "cancelled" ? "Stopped." : errText(e), e?.code !== "cancelled"); }
+    finally { $("#probeAll").disabled = !S.sample; $("#probeStop").hidden = true; if (btn) btn.disabled = false; probeCtl = null; }
+  }
+  $("#probeAll").addEventListener("click", () => runProbes(PROBES));
+  $("#probeStop").addEventListener("click", () => probeCtl?.abort());
+
+  // ---------- playbook ----------
+  function renderPlaybook() {
+    $("#pbText").textContent = S.playbook.text;
+    $("#pbWho").textContent = S.playbook.example || !S.playbookSaved ? "Example playbook of the benchmark's fictional company" : `Saved ${String(S.playbook.at ?? "").slice(0, 10)}`;
+    const edit = $("#pbEdit");
+    edit.hidden = !(S.canEdit && S.db);
+    if (!edit.hidden && !edit.dataset.ready) {
+      $("#pbArea").value = S.playbook.text;
+      const sv = severities();
+      for (const c of CODES) $("#sev").append(h("label", { for: `sev-${c}` }, c, h("select", { id: `sev-${c}` }, ["RED", "YELLOW", "GREEN"].map(x => h("option", { value: x, selected: sv[c] === x }, x)))));
+      edit.dataset.ready = "1";
+    }
+  }
+  $("#pbSave").addEventListener("click", async () => {
+    const text = $("#pbArea").value.trim();
+    if (!text) { say($("#pbSt"), "The playbook cannot be empty.", true); return; }
+    const sev = Object.fromEntries(CODES.map(c => [c, $(`#sev-${c}`).value]));
+    try { await S.db.doc("config/playbook").set({ text, severities: sev, at: new Date().toISOString(), by: S.uid ?? null }); say($("#pbSt"), "Saved. Every later review uses it."); }
+    catch (e) { say($("#pbSt"), e?.code === "invalid_argument" ? "Only an editor of this page can change the playbook." : "Not saved: try again.", true); }
+  });
+
+  // ---------- first paint, then capabilities ----------
+  function paint() { renderRegister(); renderQuestions(); renderCaselaw(); renderProbes(); renderPlaybook(); }
+  paint();
+  if (!window.claude?.use) { say($("#st"), "Open this page in Claude to review with Claude; the two versions can still be compared here."); $("#go").disabled = true; $("#probeAll").disabled = true; return; }
+
+  claude.use("user").then(async u => {
+    S.user = u;
+    if (!u) return;
+    try { S.uid = await u.id(); } catch { S.uid = null; }
+    try { S.canEdit = !!(await u.canEdit()); } catch { S.canEdit = false; }
+    $("#role").textContent = S.canEdit ? "General Counsel (editor)" : "Team member";
+    $("#role").classList.toggle("gc", S.canEdit);
+    paint();
+  });
+  claude.use("sample").then(s => {
+    S.sample = s;
+    $("#go").disabled = !s; $("#probeAll").disabled = !s;
+    if (!s) say($("#st"), "Claude is not available in this view: the two versions can still be compared by code.");
+    renderProbes();
+  });
+  claude.use("db").then(db => {
+    S.db = db;
+    if (!db) { paint(); return; }
+    const timer = setTimeout(() => say($("#clSt"), "The team's data cannot be reached yet."), 10000);
+    const done = () => { clearTimeout(timer); if ($("#clSt").textContent.startsWith("The team's data")) say($("#clSt"), ""); };
+    const list = snap => snap.docs.map(d => ({ _id: d.id, ...d.data() }));
+    db.doc("config/playbook").onSnapshot(d => { if (!d.metadata.fromCache) done(); if (d.exists) { const v = d.data(); if (typeof v.text === "string" && v.text.trim()) { S.playbook = { text: v.text, severities: v.severities ?? {}, at: v.at, example: !!v.example }; S.playbookSaved = true; } } renderPlaybook(); }, () => done());
+    db.collection("caselaw").onSnapshot(s => { done(); S.rulings = list(s); renderCaselaw(); renderProbes(); }, () => done());
+    db.collection("questions").onSnapshot(s => { S.questions = list(s); renderQuestions(); }, () => {});
+    db.collection("register").orderBy("at", "desc").limit(200).onSnapshot(s => { S.register = list(s); renderRegister(); }, () => {});
+    db.collection("probes").onSnapshot(s => { S.probes = Object.fromEntries(list(s).map(p => [p.case, p])); renderProbes(); }, () => {});
+    db.collection("confirmed").onSnapshot(s => { S.confirmed = Object.fromEntries(list(s).map(p => [p.pattern, p])); renderProbes(); }, () => {});
+    paint();
+  });
+})();
+</script>

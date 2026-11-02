@@ -1,0 +1,354 @@
+{
+  "meta": {
+    "model": "haiku",
+    "effort": null,
+    "mode": "system",
+    "condition": "after",
+    "as_of": "2026-11-02"
+  },
+  "runs": [
+    [
+      {
+        "case": "P1B",
+        "result": "```json\n{\"classification\": \"GREEN\",\n \"issues\": [],\n \"notes\": [\n   \"Only the English version was provided. The NDA is English-only (clause 11: 'It is made in English'), so the bilingual parity check did not apply. If an Arabic version is produced later, it must be checked against this text before signature.\",\n   \"Clause 7 (term): the 36-month initial term renews for 12-month periods, and either Party can stop renewal by written notice at least one month before the end of a period. Under R-2026-01 the term measured against the three-year limit is the 36-month initial term, so TERM_TOO_LONG does not apply.\",\n   \"Clause 7 (survival): confidentiality survives 3 years after the end, within the 5-year limit. No trade-secret carve-out appears, so R-2026-02 is not engaged.\",\n   \"All five standard exclusions are present: 4.1 (publicly available), 4.2 (lawfully known before disclosure), 4.3 (independently developed), 4.4 (received from a third party), 4.5 (required by law, regulation or court order).\",\n   \"Clause 6 keeps the required-by-law and automatic back-up copies. Clause 8 allows injunctive relief with no liquidated damages. Clauses 3 and 9 contain no non-solicitation, no-hire, non-compete, exclusivity or residuals restriction.\",\n   \"Clause 10 selects DIFC law and exclusive DIFC Courts jurisdiction, which is an accepted forum. Counterparty is Saqr Logistics LLC; confirm its entity details and that it is a proper signatory before sending for signature.\"\n ]}\n```",
+        "answer": {
+          "classification": "GREEN",
+          "issues": [],
+          "notes": [
+            "Only the English version was provided. The NDA is English-only (clause 11: 'It is made in English'), so the bilingual parity check did not apply. If an Arabic version is produced later, it must be checked against this text before signature.",
+            "Clause 7 (term): the 36-month initial term renews for 12-month periods, and either Party can stop renewal by written notice at least one month before the end of a period. Under R-2026-01 the term measured against the three-year limit is the 36-month initial term, so TERM_TOO_LONG does not apply.",
+            "Clause 7 (survival): confidentiality survives 3 years after the end, within the 5-year limit. No trade-secret carve-out appears, so R-2026-02 is not engaged.",
+            "All five standard exclusions are present: 4.1 (publicly available), 4.2 (lawfully known before disclosure), 4.3 (independently developed), 4.4 (received from a third party), 4.5 (required by law, regulation or court order).",
+            "Clause 6 keeps the required-by-law and automatic back-up copies. Clause 8 allows injunctive relief with no liquidated damages. Clauses 3 and 9 contain no non-solicitation, no-hire, non-compete, exclusivity or residuals restriction.",
+            "Clause 10 selects DIFC law and exclusive DIFC Courts jurisdiction, which is an accepted forum. Counterparty is Saqr Logistics LLC; confirm its entity details and that it is a proper signatory before sending for signature."
+          ]
+        },
+        "cost_usd": 0.00271933,
+        "duration_ms": 9518,
+        "turns": 2
+      },
+      {
+        "case": "P2B",
+        "result": "```json\n{\"classification\": \"GREEN\",\n \"issues\": [],\n \"notes\": [\"Only the English version was supplied, and clause 11 says the agreement is made in English. No Arabic text exists to compare, so no TRANSLATION_MISMATCH check was possible. If Al Waha later produces an Arabic version, run a bilingual parity check before signing.\",\n \"Clause 7 applies the five-year survival period only to the duties under clause 3 (Obligations). Clauses 5 (permitted disclosures) and 6 (return or destruction) do not state whether they survive expiry. The lawyer may want to confirm that they do, or to add them to clause 7.\",\n \"Clause 7 keeps trade-secret protection for as long as the information retains that status. This is accepted under R-2026-02, so it does not raise PERPETUAL.\",\n \"Clause 7 sets a term of two years with no automatic renewal, which is within the three-year limit under the playbook and R-2026-01.\",\n \"Clause 10 selects the DIFC as governing law and the DIFC Courts as the exclusive forum, which the playbook accepts.\",\n \"This is a triage result, not legal advice. It supports the lawyer's decision.\"]}\n```",
+        "answer": {
+          "classification": "GREEN",
+          "issues": [],
+          "notes": [
+            "Only the English version was supplied, and clause 11 says the agreement is made in English. No Arabic text exists to compare, so no TRANSLATION_MISMATCH check was possible. If Al Waha later produces an Arabic version, run a bilingual parity check before signing.",
+            "Clause 7 applies the five-year survival period only to the duties under clause 3 (Obligations). Clauses 5 (permitted disclosures) and 6 (return or destruction) do not state whether they survive expiry. The lawyer may want to confirm that they do, or to add them to clause 7.",
+            "Clause 7 keeps trade-secret protection for as long as the information retains that status. This is accepted under R-2026-02, so it does not raise PERPETUAL.",
+            "Clause 7 sets a term of two years with no automatic renewal, which is within the three-year limit under the playbook and R-2026-01.",
+            "Clause 10 selects the DIFC as governing law and the DIFC Courts as the exclusive forum, which the playbook accepts.",
+            "This is a triage result, not legal advice. It supports the lawyer's decision."
+          ]
+        },
+        "cost_usd": 0.0026629600000000002,
+        "duration_ms": 9124,
+        "turns": 2
+      },
+      {
+        "case": "P3B",
+        "result": "```json\n{\"classification\": \"GREEN\",\n \"issues\": [],\n \"notes\": [\n  \"Only the English version was provided and the NDA says it 'is made in English', so no bilingual parity check applies. If an Arabic version is circulated later, it must be checked against this text before signature.\",\n  \"Term (section 7): 2 years, within the 3-year limit. Survival (section 7): 3 years after the end, so at most about 5 years from signing, within the 5-year limit. Confidentiality is not without end, so PERPETUAL does not apply. Trade-secret protection under R-2026-02 is not in the text, so no ruling is engaged.\",\n  \"All five standard exclusions are present (sections 4.1 to 4.5). Return or destruction (section 6) keeps the law-required copies and back-ups. Governing law is DIFC with exclusive DIFC Courts jurisdiction (section 10). Restrictions: no non-solicitation, non-compete or residuals clause.\",\n  \"The counterparty's details are incomplete: Kyrenia Shipping Ltd has no registered number, jurisdiction of incorporation or address in the NDA. The business should confirm the correct legal entity before signature.\",\n  \"Routed GREEN under classify_nda: standard approval under delegated authority.\"\n ]}\n```\n\nNot legal advice: the triage supports a lawyer's decision.",
+        "answer": {
+          "classification": "GREEN",
+          "issues": [],
+          "notes": [
+            "Only the English version was provided and the NDA says it 'is made in English', so no bilingual parity check applies. If an Arabic version is circulated later, it must be checked against this text before signature.",
+            "Term (section 7): 2 years, within the 3-year limit. Survival (section 7): 3 years after the end, so at most about 5 years from signing, within the 5-year limit. Confidentiality is not without end, so PERPETUAL does not apply. Trade-secret protection under R-2026-02 is not in the text, so no ruling is engaged.",
+            "All five standard exclusions are present (sections 4.1 to 4.5). Return or destruction (section 6) keeps the law-required copies and back-ups. Governing law is DIFC with exclusive DIFC Courts jurisdiction (section 10). Restrictions: no non-solicitation, non-compete or residuals clause.",
+            "The counterparty's details are incomplete: Kyrenia Shipping Ltd has no registered number, jurisdiction of incorporation or address in the NDA. The business should confirm the correct legal entity before signature.",
+            "Routed GREEN under classify_nda: standard approval under delegated authority."
+          ]
+        },
+        "cost_usd": 0.0026298399999999996,
+        "duration_ms": 8959,
+        "turns": 2
+      },
+      {
+        "case": "P4B",
+        "result": "```json\n{\"classification\": \"RED\",\n \"issues\": [{\"code\": \"NON_SOLICIT\", \"quote\": \"For one year after the date of this Agreement, each Party agrees not to approach, with a view to hiring, any member of the other Party's staff it has dealt with in relation to the Purpose; responses to public job postings are excluded.\", \"reason\": \"Section 9 is a no-hire covenant binding both parties for one year; the public job-posting carve-out does not remove the restriction on approaching staff with a view to hiring.\"}],\n \"notes\": [\"The NDA is English-only and states it is 'made in English', with no Arabic version, so the bilingual parity check does not apply and no TRANSLATION_MISMATCH is raised. If an Arabic version is ever produced, it must be checked against this one.\",\n \"Mutual: both parties are bound (Sections 2–3 apply to each Party as Receiving Party), so no UNILATERAL issue.\",\n \"Term 2 years (Section 7) is within the 3-year limit; survival 3 years after the end (Section 7) is within the 5-year limit, so no TERM_TOO_LONG or SURVIVAL_TOO_LONG. The General Counsel rulings R-2026-01 and R-2026-02 do not change this because there is no auto-renewal and no trade-secret protection.\",\n \"All five standard exclusions are present (Section 4.1–4.5); permitted disclosures (Section 5), return or destruction with the law and back-up exception (Section 6), injunctive relief (Section 8), and DIFC law with exclusive DIFC Courts jurisdiction (Section 11) are all within the playbook.\",\n \"No liquidated damages, non-compete or exclusivity, or residuals clause was found.\",\n \"Staff non-solicitation (Section 9) is the only RED issue and is the item for full legal review. Options include deleting Section 9 or narrowing it, for example to solicitation using Confidential Information, which the playbook does not treat as an automatic issue; any change is for the lawyer to decide.\",\n \"Not legal advice; this triage supports the lawyer's decision.\"]}\n```",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "NON_SOLICIT",
+              "quote": "For one year after the date of this Agreement, each Party agrees not to approach, with a view to hiring, any member of the other Party's staff it has dealt with in relation to the Purpose; responses to public job postings are excluded.",
+              "reason": "Section 9 is a no-hire covenant binding both parties for one year; the public job-posting carve-out does not remove the restriction on approaching staff with a view to hiring."
+            }
+          ],
+          "notes": [
+            "The NDA is English-only and states it is 'made in English', with no Arabic version, so the bilingual parity check does not apply and no TRANSLATION_MISMATCH is raised. If an Arabic version is ever produced, it must be checked against this one.",
+            "Mutual: both parties are bound (Sections 2–3 apply to each Party as Receiving Party), so no UNILATERAL issue.",
+            "Term 2 years (Section 7) is within the 3-year limit; survival 3 years after the end (Section 7) is within the 5-year limit, so no TERM_TOO_LONG or SURVIVAL_TOO_LONG. The General Counsel rulings R-2026-01 and R-2026-02 do not change this because there is no auto-renewal and no trade-secret protection.",
+            "All five standard exclusions are present (Section 4.1–4.5); permitted disclosures (Section 5), return or destruction with the law and back-up exception (Section 6), injunctive relief (Section 8), and DIFC law with exclusive DIFC Courts jurisdiction (Section 11) are all within the playbook.",
+            "No liquidated damages, non-compete or exclusivity, or residuals clause was found.",
+            "Staff non-solicitation (Section 9) is the only RED issue and is the item for full legal review. Options include deleting Section 9 or narrowing it, for example to solicitation using Confidential Information, which the playbook does not treat as an automatic issue; any change is for the lawyer to decide.",
+            "Not legal advice; this triage supports the lawyer's decision."
+          ]
+        },
+        "cost_usd": 0.003977950000000001,
+        "duration_ms": 14081,
+        "turns": 3
+      },
+      {
+        "case": "P5B",
+        "result": "```json\n{\"classification\": \"YELLOW\",\n \"issues\": [{\"code\": \"RESIDUALS_BROAD\", \"quote\": \"including information retained in the unassisted memory of its employees, for any purpose\", \"reason\": \"Section 9 lets each Party use information retained in its employees' unassisted memory for any purpose, which the playbook treats as a broad residuals clause.\"}],\n \"notes\": [\"The NDA is English only, with no Arabic version (section 12 says it is made in English), so bilingual parity does not apply.\", \"Mutual: both parties are bound as Receiving Party in section 3. Term is 2 years, within the 3-year limit, and it has no renewal clause, so R-2026-01 does not apply.\", \"Survival is 3 years after the end, within the 5-year limit. No trade secret protection is mentioned, so R-2026-02 does not apply and there is no PERPETUAL issue.\", \"All five standard exclusions are present (sections 4.1 to 4.5). Return or destruction has the law and back-up exception (section 6). Remedies are injunctive only, with no liquidated damages. There is no non-solicitation, no-hire, or non-compete. Governing law is DIFC (section 11), which is an accepted forum.\", \"Lawyer's point on section 9: the residuals clause is the only issue. Consider asking the counterparty to limit it to unaided memory and to exclude use of Confidential Information for any purpose, or to remove it.\", \"Lawyer's point on section 6: the back-up exception keeps copies subject to the Agreement. Check that the Agreement's confidentiality still applies to those copies after the survival period ends.\", \"Lawyer's point on the Counterparty: the NDA does not state Dhow Capital Partners Ltd's jurisdiction of incorporation or registration details. Confirm these before signature.\", \"Not legal advice: the triage supports a lawyer's decision.\"]}\n```",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "RESIDUALS_BROAD",
+              "quote": "including information retained in the unassisted memory of its employees, for any purpose",
+              "reason": "Section 9 lets each Party use information retained in its employees' unassisted memory for any purpose, which the playbook treats as a broad residuals clause."
+            }
+          ],
+          "notes": [
+            "The NDA is English only, with no Arabic version (section 12 says it is made in English), so bilingual parity does not apply.",
+            "Mutual: both parties are bound as Receiving Party in section 3. Term is 2 years, within the 3-year limit, and it has no renewal clause, so R-2026-01 does not apply.",
+            "Survival is 3 years after the end, within the 5-year limit. No trade secret protection is mentioned, so R-2026-02 does not apply and there is no PERPETUAL issue.",
+            "All five standard exclusions are present (sections 4.1 to 4.5). Return or destruction has the law and back-up exception (section 6). Remedies are injunctive only, with no liquidated damages. There is no non-solicitation, no-hire, or non-compete. Governing law is DIFC (section 11), which is an accepted forum.",
+            "Lawyer's point on section 9: the residuals clause is the only issue. Consider asking the counterparty to limit it to unaided memory and to exclude use of Confidential Information for any purpose, or to remove it.",
+            "Lawyer's point on section 6: the back-up exception keeps copies subject to the Agreement. Check that the Agreement's confidentiality still applies to those copies after the survival period ends.",
+            "Lawyer's point on the Counterparty: the NDA does not state Dhow Capital Partners Ltd's jurisdiction of incorporation or registration details. Confirm these before signature.",
+            "Not legal advice: the triage supports a lawyer's decision."
+          ]
+        },
+        "cost_usd": 0.00402485,
+        "duration_ms": 14991,
+        "turns": 3
+      },
+      {
+        "case": "P6B",
+        "result": "```json\n{\"classification\": \"GREEN\",\n \"issues\": [],\n \"notes\": [\n  \"The NDA is in English only and states 'It is made in English' (clause 11). There is no Arabic version, so no TRANSLATION_MISMATCH check applied. If Corniche Medical or a UAE authority needs an Arabic version, it must be checked against this text for parity before signature.\",\n  \"Term is 2 years from 3 November 2026 with no renewal. Confidentiality survives 3 years after the end, so the outside date is about 5 years from signature. Both are within the playbook limits (3 years for the term, 5 years for survival).\",\n  \"All five standard exclusions are present in clause 4 (4.1 to 4.5). Clause 4.5 is conditioned on 'prompt notice where lawful', which is a reasonable drafting choice and not a playbook issue.\",\n  \"Clause 2 protects only information that is marked confidential or 'would reasonably be understood to be confidential'. This is a scope point, not a playbook code. Unmarked oral disclosures are covered only if the reasonable-understanding test is met, so the business should mark material it discloses.\",\n  \"Clause 6 keeps back-up copies subject to the Agreement and allows copies required by law. These are the required exceptions to return or destruction.\",\n  \"Governing law is Dubai and federal UAE law, with DIAC arbitration seated in Dubai. This is within the playbook's accepted forums.\",\n  \"Routed GREEN under delegated authority (classify_nda with no codes). Not legal advice; this supports the lawyer's decision.\"\n ]}\n```",
+        "answer": {
+          "classification": "GREEN",
+          "issues": [],
+          "notes": [
+            "The NDA is in English only and states 'It is made in English' (clause 11). There is no Arabic version, so no TRANSLATION_MISMATCH check applied. If Corniche Medical or a UAE authority needs an Arabic version, it must be checked against this text for parity before signature.",
+            "Term is 2 years from 3 November 2026 with no renewal. Confidentiality survives 3 years after the end, so the outside date is about 5 years from signature. Both are within the playbook limits (3 years for the term, 5 years for survival).",
+            "All five standard exclusions are present in clause 4 (4.1 to 4.5). Clause 4.5 is conditioned on 'prompt notice where lawful', which is a reasonable drafting choice and not a playbook issue.",
+            "Clause 2 protects only information that is marked confidential or 'would reasonably be understood to be confidential'. This is a scope point, not a playbook code. Unmarked oral disclosures are covered only if the reasonable-understanding test is met, so the business should mark material it discloses.",
+            "Clause 6 keeps back-up copies subject to the Agreement and allows copies required by law. These are the required exceptions to return or destruction.",
+            "Governing law is Dubai and federal UAE law, with DIAC arbitration seated in Dubai. This is within the playbook's accepted forums.",
+            "Routed GREEN under delegated authority (classify_nda with no codes). Not legal advice; this supports the lawyer's decision."
+          ]
+        },
+        "cost_usd": 0.0026656199999999996,
+        "duration_ms": 10199,
+        "turns": 2
+      },
+      {
+        "case": "P7B",
+        "result": "```json\n{\"classification\": \"RED\",\n \"issues\": [{\"code\": \"LIQUIDATED_DAMAGES\", \"quote\": \"The Parties agree in advance that a breach of confidentiality causes damage which they assess at AED 150,000, payable on demand by the breaching Party.\", \"reason\": \"Clause 8 fixes a pre-agreed sum of AED 150,000 payable on any breach, which is a liquidated damages or penalty clause that the playbook classes as RED.\"}],\n \"notes\": [\"The NDA is in English only, with no Arabic version, so the bilingual parity check does not apply and no TRANSLATION_MISMATCH is raised. Clause 11 says the agreement is made in English.\", \"Clauses 1 to 7 and 9 to 10 were checked against the playbook and raise no issue: mutual obligations, a 2-year term, 3-year survival, all five standard exclusions, the standard permitted disclosures, a return or destruction exception for legally required copies and back-ups, no restrictive covenants, and DIFC law and courts. Neither General Counsel ruling (R-2026-01, R-2026-02) is engaged, because there is no auto-renewal and no trade-secret protection without end.\", \"The AED 150,000 figure applies to the breaching party, and the governing law is DIFC, so the lawyer may want to confirm whether the amount is a genuine pre-estimate of loss or a penalty. Under the playbook it is RED regardless, and the lawyer should decide whether to delete clause 8's damages sentence or negotiate it.\", \"Not legal advice: the triage supports a lawyer's decision.\"]}\n```",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "LIQUIDATED_DAMAGES",
+              "quote": "The Parties agree in advance that a breach of confidentiality causes damage which they assess at AED 150,000, payable on demand by the breaching Party.",
+              "reason": "Clause 8 fixes a pre-agreed sum of AED 150,000 payable on any breach, which is a liquidated damages or penalty clause that the playbook classes as RED."
+            }
+          ],
+          "notes": [
+            "The NDA is in English only, with no Arabic version, so the bilingual parity check does not apply and no TRANSLATION_MISMATCH is raised. Clause 11 says the agreement is made in English.",
+            "Clauses 1 to 7 and 9 to 10 were checked against the playbook and raise no issue: mutual obligations, a 2-year term, 3-year survival, all five standard exclusions, the standard permitted disclosures, a return or destruction exception for legally required copies and back-ups, no restrictive covenants, and DIFC law and courts. Neither General Counsel ruling (R-2026-01, R-2026-02) is engaged, because there is no auto-renewal and no trade-secret protection without end.",
+            "The AED 150,000 figure applies to the breaching party, and the governing law is DIFC, so the lawyer may want to confirm whether the amount is a genuine pre-estimate of loss or a penalty. Under the playbook it is RED regardless, and the lawyer should decide whether to delete clause 8's damages sentence or negotiate it.",
+            "Not legal advice: the triage supports a lawyer's decision."
+          ]
+        },
+        "cost_usd": 0.00385034,
+        "duration_ms": 14115,
+        "turns": 3
+      },
+      {
+        "case": "P8B",
+        "result": "```json\n{\"classification\": \"YELLOW\",\n \"issues\": [{\"code\": \"NO_RETENTION_EXCEPTION\", \"quote\": \"save to the extent retention is mandated by law or regulation\", \"reason\": \"The return-or-destruction exception covers copies kept under law or regulation but not copies held in back-ups, which the playbook requires.\"}],\n \"notes\": [\"Only the English version was provided and the NDA says it is made in English, so no Arabic comparison was possible and TRANSLATION_MISMATCH was not raised. Ask Al Waha whether an Arabic version will be attached, because the playbook treats bilingual NDAs as equally authentic.\",\n \"Checked and compliant: mutual obligations (sections 3 and 2); a two-year term with no renewal (R-2026-01 not engaged); confidentiality surviving three years after the end (within the five-year limit); all five standard exclusions present (4.1 to 4.5); standard permitted disclosures (section 5); injunctive relief only (section 8); no non-solicitation, non-compete or residuals clause; DIFC law and DIFC Courts (section 10).\",\n \"Suggested fix for the lawyer: add back-up copies to the section 6 exception, for example 'save to the extent retention is mandated by law or regulation or held in routine electronic back-up systems'.\",\n \"Not legal advice: the triage supports a lawyer's decision.\"]}\n```",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "NO_RETENTION_EXCEPTION",
+              "quote": "save to the extent retention is mandated by law or regulation",
+              "reason": "The return-or-destruction exception covers copies kept under law or regulation but not copies held in back-ups, which the playbook requires."
+            }
+          ],
+          "notes": [
+            "Only the English version was provided and the NDA says it is made in English, so no Arabic comparison was possible and TRANSLATION_MISMATCH was not raised. Ask Al Waha whether an Arabic version will be attached, because the playbook treats bilingual NDAs as equally authentic.",
+            "Checked and compliant: mutual obligations (sections 3 and 2); a two-year term with no renewal (R-2026-01 not engaged); confidentiality surviving three years after the end (within the five-year limit); all five standard exclusions present (4.1 to 4.5); standard permitted disclosures (section 5); injunctive relief only (section 8); no non-solicitation, non-compete or residuals clause; DIFC law and DIFC Courts (section 10).",
+            "Suggested fix for the lawyer: add back-up copies to the section 6 exception, for example 'save to the extent retention is mandated by law or regulation or held in routine electronic back-up systems'.",
+            "Not legal advice: the triage supports a lawyer's decision."
+          ]
+        },
+        "cost_usd": 0.00374531,
+        "duration_ms": 14005,
+        "turns": 3
+      },
+      {
+        "case": "P9B",
+        "result": "```json\n{\"classification\": \"RED\",\n \"issues\": [{\"code\": \"UNILATERAL\", \"quote\": \"The Recipient shall hold the Discloser's Confidential Information in confidence\", \"reason\": \"Section 2 defines \\\"Recipient\\\" as Gulf Horizon only and \\\"Discloser\\\" as the Counterparty only, and the sole confidentiality obligation in section 3 binds only the Recipient, so Kyrenia Shipping is not bound even though the title says \\\"Mutual\\\" and the parties exchange information.\"}],\n \"notes\": [\"The title and recitals say \\\"Mutual\\\", but the operative clauses are one-way. Counsel should expect the counterparty to resist, since the business is likely to receive information from them too. A fix would be to define both parties as Recipient and Discloser, or to add a reciprocal obligation.\",\n   \"Checked and within the playbook, so no issue raised: the term is a fixed two years with no renewal (section 7); confidentiality survives three years after the end (section 7); all five standard exclusions are present (section 4.1 to 4.5); permitted disclosures are standard (section 5); return or destruction has the law and back-up exception (section 6); remedies allow injunctive relief with no liquidated damages (section 8); there is no non-solicit, non-compete or residuals clause (sections 8 and 9); governing law is the DIFC with DIFC Courts jurisdiction (section 10).\",\n   \"Drafting points, not playbook codes: section 4.1 and 4.5 use \\\"Receiving Party\\\" and section 8 uses \\\"Disclosing Party\\\", but the agreement defines only \\\"Recipient\\\" and \\\"Discloser\\\". Fix these with the mutual redraft.\",\n   \"The NDA is in English only, with no Arabic version, so no bilingual parity check applied. Section 11 says it is made in English, which is consistent with that.\",\n   \"Not legal advice: this triage supports the lawyer's decision.\"]}\n```",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "UNILATERAL",
+              "quote": "The Recipient shall hold the Discloser's Confidential Information in confidence",
+              "reason": "Section 2 defines \"Recipient\" as Gulf Horizon only and \"Discloser\" as the Counterparty only, and the sole confidentiality obligation in section 3 binds only the Recipient, so Kyrenia Shipping is not bound even though the title says \"Mutual\" and the parties exchange information."
+            }
+          ],
+          "notes": [
+            "The title and recitals say \"Mutual\", but the operative clauses are one-way. Counsel should expect the counterparty to resist, since the business is likely to receive information from them too. A fix would be to define both parties as Recipient and Discloser, or to add a reciprocal obligation.",
+            "Checked and within the playbook, so no issue raised: the term is a fixed two years with no renewal (section 7); confidentiality survives three years after the end (section 7); all five standard exclusions are present (section 4.1 to 4.5); permitted disclosures are standard (section 5); return or destruction has the law and back-up exception (section 6); remedies allow injunctive relief with no liquidated damages (section 8); there is no non-solicit, non-compete or residuals clause (sections 8 and 9); governing law is the DIFC with DIFC Courts jurisdiction (section 10).",
+            "Drafting points, not playbook codes: section 4.1 and 4.5 use \"Receiving Party\" and section 8 uses \"Disclosing Party\", but the agreement defines only \"Recipient\" and \"Discloser\". Fix these with the mutual redraft.",
+            "The NDA is in English only, with no Arabic version, so no bilingual parity check applied. Section 11 says it is made in English, which is consistent with that.",
+            "Not legal advice: this triage supports the lawyer's decision."
+          ]
+        },
+        "cost_usd": 0.0038584500000000002,
+        "duration_ms": 15158,
+        "turns": 3
+      },
+      {
+        "case": "P10B",
+        "result": "```json\n{\"classification\": \"GREEN\",\n \"issues\": [],\n \"notes\": [\n   \"The NDA is in English only. No Arabic version was provided, so the bilingual parity rule (TRANSLATION_MISMATCH) was not applied. If the counterparty expects or later adds an Arabic version, run a parity check before signing.\",\n   \"Clause 10 combines English law with the exclusive jurisdiction of the ADGM Courts. Both are on the playbook's accepted list (England and Wales; ADGM), so no GOVERNING_LAW issue was raised. Confirm this mixed choice is intended.\",\n   \"Clause 7 sets a 2-year term with no renewal and 3 years of survival after the end, so the total confidentiality period is at most 5 years from signing. This is within the playbook limits.\",\n   \"Clause 4 contains all five standard exclusions (4.1 to 4.5). Clause 6 keeps the legal-retention and back-up exceptions.\",\n   \"The document is dated 3 November 2026 and the triage date is 2 November 2026. Confirm the signing date before the NDA is executed.\",\n   \"The NDA contains no trade-secret protection clause, so ruling R-2026-02 was not needed.\",\n   \"Routed by classify_nda as standard approval under delegated authority (GREEN).\"\n ]}\n```",
+        "answer": {
+          "classification": "GREEN",
+          "issues": [],
+          "notes": [
+            "The NDA is in English only. No Arabic version was provided, so the bilingual parity rule (TRANSLATION_MISMATCH) was not applied. If the counterparty expects or later adds an Arabic version, run a parity check before signing.",
+            "Clause 10 combines English law with the exclusive jurisdiction of the ADGM Courts. Both are on the playbook's accepted list (England and Wales; ADGM), so no GOVERNING_LAW issue was raised. Confirm this mixed choice is intended.",
+            "Clause 7 sets a 2-year term with no renewal and 3 years of survival after the end, so the total confidentiality period is at most 5 years from signing. This is within the playbook limits.",
+            "Clause 4 contains all five standard exclusions (4.1 to 4.5). Clause 6 keeps the legal-retention and back-up exceptions.",
+            "The document is dated 3 November 2026 and the triage date is 2 November 2026. Confirm the signing date before the NDA is executed.",
+            "The NDA contains no trade-secret protection clause, so ruling R-2026-02 was not needed.",
+            "Routed by classify_nda as standard approval under delegated authority (GREEN)."
+          ]
+        },
+        "cost_usd": 0.002876,
+        "duration_ms": 10851,
+        "turns": 2
+      },
+      {
+        "case": "C1",
+        "result": "```json\n{\"classification\": \"GREEN\",\n \"issues\": [],\n \"notes\": [\"The NDA is English-only (clause 11: 'It is made in English') and there is no Arabic version, so the bilingual parity check does not apply. If Oasis Media or a Dubai authority requires an Arabic version, it must be reviewed for parity before signature.\",\n \"Mutual: both Parties are bound as Receiving Party (clauses 3 and 5), so the UNILATERAL test is met.\",\n \"Term and survival: the 2-year term (clause 7) is within the 3-year limit, and confidentiality survives 3 years after the end, a maximum of about 5 years in total. Both are within the playbook. No trade-secret carve-out appears, so Ruling R-2026-02 is not engaged.\",\n \"All five standard exclusions are present (clause 4.1 to 4.5). Clause 4.5 requires prompt notice 'where lawful', which is acceptable.\",\n \"Return or destruction (clause 6) keeps the legal-retention and back-up exceptions. Remedies (clause 8) allow injunctive relief only. There is no liquidated damages clause, non-solicitation, non-compete or residuals clause.\",\n \"Governing law and forum (clause 10) are DIFC law and DIFC Courts, which the playbook accepts.\",\n \"Not playbook items, for the lawyer's judgement: the Agreement has no clause on what happens to Confidential Information when the Agreement ends (beyond clause 6 on request), no data-protection or personal-data wording, and no express non-reliance or no-warranty clause. The Confidential Information definition (clause 2) depends on marking or what a reasonable person would understand, which the business should be able to meet in practice. The classification is routing only (standard approval under delegated authority) and is not legal advice.\"]}\n```",
+        "answer": {
+          "classification": "GREEN",
+          "issues": [],
+          "notes": [
+            "The NDA is English-only (clause 11: 'It is made in English') and there is no Arabic version, so the bilingual parity check does not apply. If Oasis Media or a Dubai authority requires an Arabic version, it must be reviewed for parity before signature.",
+            "Mutual: both Parties are bound as Receiving Party (clauses 3 and 5), so the UNILATERAL test is met.",
+            "Term and survival: the 2-year term (clause 7) is within the 3-year limit, and confidentiality survives 3 years after the end, a maximum of about 5 years in total. Both are within the playbook. No trade-secret carve-out appears, so Ruling R-2026-02 is not engaged.",
+            "All five standard exclusions are present (clause 4.1 to 4.5). Clause 4.5 requires prompt notice 'where lawful', which is acceptable.",
+            "Return or destruction (clause 6) keeps the legal-retention and back-up exceptions. Remedies (clause 8) allow injunctive relief only. There is no liquidated damages clause, non-solicitation, non-compete or residuals clause.",
+            "Governing law and forum (clause 10) are DIFC law and DIFC Courts, which the playbook accepts.",
+            "Not playbook items, for the lawyer's judgement: the Agreement has no clause on what happens to Confidential Information when the Agreement ends (beyond clause 6 on request), no data-protection or personal-data wording, and no express non-reliance or no-warranty clause. The Confidential Information definition (clause 2) depends on marking or what a reasonable person would understand, which the business should be able to meet in practice. The classification is routing only (standard approval under delegated authority) and is not legal advice."
+          ]
+        },
+        "cost_usd": 0.00297226,
+        "duration_ms": 11647,
+        "turns": 2
+      },
+      {
+        "case": "C2",
+        "result": "```json\n{\"classification\": \"RED\",\n \"issues\": [{\"code\": \"PERPETUAL\", \"quote\": \"The obligations of confidentiality survive indefinitely after the end of this Agreement.\", \"reason\": \"Clause 7 makes all confidentiality obligations survive without end, and General Counsel ruling R-2026-02 only accepts an open-ended period for trade secrets, which this clause does not limit to.\"}],\n \"notes\": [\"Only the English version was provided and clause 11 says the Agreement is made in English, so no bilingual parity check applies. If an Arabic version exists, it needs checking against this one.\",\n\"Mutual: both Parties are bound (clause 3 and the 'each a Party' wording), so no UNILATERAL issue.\",\n\"Term: two years from the date, under the three-year limit. No renewal clause, so R-2026-01 does not come into play.\",\n\"Standard exclusions: all five are present (clauses 4.1 to 4.5). Return or destruction keeps the legal-retention and back-up exception (clause 6). Remedies allow injunctive relief only, with no liquidated damages. Governing law is the DIFC, with exclusive DIFC Courts jurisdiction (clause 10).\",\n\"No non-solicitation, non-compete or residuals clause appears in the text.\",\n\"Suggested fix for negotiation: replace 'indefinitely' with a fixed period of up to five years after the end, with trade secrets protected for as long as they remain trade secrets. This would bring the clause within the playbook, which a lawyer should confirm.\",\n\"Not legal advice: the triage supports a lawyer's decision.\"]}\n```",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "PERPETUAL",
+              "quote": "The obligations of confidentiality survive indefinitely after the end of this Agreement.",
+              "reason": "Clause 7 makes all confidentiality obligations survive without end, and General Counsel ruling R-2026-02 only accepts an open-ended period for trade secrets, which this clause does not limit to."
+            }
+          ],
+          "notes": [
+            "Only the English version was provided and clause 11 says the Agreement is made in English, so no bilingual parity check applies. If an Arabic version exists, it needs checking against this one.",
+            "Mutual: both Parties are bound (clause 3 and the 'each a Party' wording), so no UNILATERAL issue.",
+            "Term: two years from the date, under the three-year limit. No renewal clause, so R-2026-01 does not come into play.",
+            "Standard exclusions: all five are present (clauses 4.1 to 4.5). Return or destruction keeps the legal-retention and back-up exception (clause 6). Remedies allow injunctive relief only, with no liquidated damages. Governing law is the DIFC, with exclusive DIFC Courts jurisdiction (clause 10).",
+            "No non-solicitation, non-compete or residuals clause appears in the text.",
+            "Suggested fix for negotiation: replace 'indefinitely' with a fixed period of up to five years after the end, with trade secrets protected for as long as they remain trade secrets. This would bring the clause within the playbook, which a lawyer should confirm.",
+            "Not legal advice: the triage supports a lawyer's decision."
+          ]
+        },
+        "cost_usd": 0.00352623,
+        "duration_ms": 13157,
+        "turns": 3
+      },
+      {
+        "case": "C3",
+        "result": "```json\n{\"classification\": \"YELLOW\",\n \"issues\": [{\"code\": \"TERM_TOO_LONG\", \"quote\": \"This Agreement has an initial term of five (5) years\", \"reason\": \"The initial term is five years, longer than the three-year limit in the playbook; under GC ruling R-2026-01 the automatic renewal, which either Party can stop by notice, is not counted and the initial term is what is measured.\"}],\n \"notes\": [\"The NDA is in English only, with no Arabic version, so no bilingual parity check or TRANSLATION_MISMATCH review applies.\", \"Mutuality, the five standard exclusions (clauses 4.1 to 4.5), permitted disclosures, return or destruction with its legal and back-up exception, remedies, the absence of non-solicitation, non-compete or residuals terms, and DIFC governing law and forum all conform to the playbook.\", \"Survival is three years after termination (clause 7), within the five-year limit, and there is no PERPETUAL obligation.\", \"Counsel may want to negotiate the initial term down to three years or less. Clause 7 also means a Party cannot end the term early, only at the end of an initial or renewal period, so the five-year commitment is fixed unless the parties agree otherwise.\", \"Not legal advice: the triage supports a lawyer's decision.\"]}\n```",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "TERM_TOO_LONG",
+              "quote": "This Agreement has an initial term of five (5) years",
+              "reason": "The initial term is five years, longer than the three-year limit in the playbook; under GC ruling R-2026-01 the automatic renewal, which either Party can stop by notice, is not counted and the initial term is what is measured."
+            }
+          ],
+          "notes": [
+            "The NDA is in English only, with no Arabic version, so no bilingual parity check or TRANSLATION_MISMATCH review applies.",
+            "Mutuality, the five standard exclusions (clauses 4.1 to 4.5), permitted disclosures, return or destruction with its legal and back-up exception, remedies, the absence of non-solicitation, non-compete or residuals terms, and DIFC governing law and forum all conform to the playbook.",
+            "Survival is three years after termination (clause 7), within the five-year limit, and there is no PERPETUAL obligation.",
+            "Counsel may want to negotiate the initial term down to three years or less. Clause 7 also means a Party cannot end the term early, only at the end of an initial or renewal period, so the five-year commitment is fixed unless the parties agree otherwise.",
+            "Not legal advice: the triage supports a lawyer's decision."
+          ]
+        },
+        "cost_usd": 0.0033212199999999997,
+        "duration_ms": 11019,
+        "turns": 3
+      },
+      {
+        "case": "C4",
+        "result": "```json\n{\"classification\": \"RED\",\n \"issues\": [\n  {\"code\": \"PERPETUAL\", \"quote\": \"any information marked \\\"highly confidential\\\", shall be protected indefinitely\", \"reason\": \"Information marked \\\"highly confidential\\\" is protected without end, which is not a trade secret and so falls outside the General Counsel's R-2026-02 exception; the playbook treats it as PERPETUAL (RED).\"}\n ],\n \"notes\": [\n  \"Only the English version is provided and clause 11 says the Agreement is made in English, so no bilingual parity check or TRANSLATION_MISMATCH applies.\",\n  \"Mutual: both parties are bound (clauses 1, 3 and 6 refer to 'each Party' and 'the Receiving Party'). Term is 2 years with no renewal clause, so TERM_TOO_LONG and R-2026-01 do not arise.\",\n  \"Survival: the general 5-year post-termination period is within the playbook limit, so SURVIVAL_TOO_LONG does not apply.\",\n  \"Trade secrets are also protected 'indefinitely' in the same sentence. Under R-2026-02 protection for as long as information remains a trade secret is accepted, but the wording does not say protection ends when the trade-secret status ends. Consider tying it to 'for as long as it remains a trade secret'. This is not a separate code.\",\n  \"All five standard exclusions are present (clauses 4.1 to 4.5). Return or destruction has the law and back-up exception (clause 6). Permitted disclosures, remedies (injunctive relief only), and the absence of non-solicitation, non-compete and residuals terms all comply.\",\n  \"Governing law is DIFC with DIFC Courts jurisdiction (clause 10), which is an accepted forum.\",\n  \"Fix to request from Red Sea Ventures: delete 'and any information marked \\\"highly confidential\\\", shall be protected indefinitely', or limit it to the survival period. Re-triage after any change.\",\n  \"Not legal advice: the triage supports a lawyer's decision.\"\n ]}\n```",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "PERPETUAL",
+              "quote": "any information marked \"highly confidential\", shall be protected indefinitely",
+              "reason": "Information marked \"highly confidential\" is protected without end, which is not a trade secret and so falls outside the General Counsel's R-2026-02 exception; the playbook treats it as PERPETUAL (RED)."
+            }
+          ],
+          "notes": [
+            "Only the English version is provided and clause 11 says the Agreement is made in English, so no bilingual parity check or TRANSLATION_MISMATCH applies.",
+            "Mutual: both parties are bound (clauses 1, 3 and 6 refer to 'each Party' and 'the Receiving Party'). Term is 2 years with no renewal clause, so TERM_TOO_LONG and R-2026-01 do not arise.",
+            "Survival: the general 5-year post-termination period is within the playbook limit, so SURVIVAL_TOO_LONG does not apply.",
+            "Trade secrets are also protected 'indefinitely' in the same sentence. Under R-2026-02 protection for as long as information remains a trade secret is accepted, but the wording does not say protection ends when the trade-secret status ends. Consider tying it to 'for as long as it remains a trade secret'. This is not a separate code.",
+            "All five standard exclusions are present (clauses 4.1 to 4.5). Return or destruction has the law and back-up exception (clause 6). Permitted disclosures, remedies (injunctive relief only), and the absence of non-solicitation, non-compete and residuals terms all comply.",
+            "Governing law is DIFC with DIFC Courts jurisdiction (clause 10), which is an accepted forum.",
+            "Fix to request from Red Sea Ventures: delete 'and any information marked \"highly confidential\", shall be protected indefinitely', or limit it to the survival period. Re-triage after any change.",
+            "Not legal advice: the triage supports a lawyer's decision."
+          ]
+        },
+        "cost_usd": 0.004184149999999999,
+        "duration_ms": 15933,
+        "turns": 3
+      },
+      {
+        "case": "C5",
+        "result": "```json\n{\"classification\": \"YELLOW\",\n \"issues\": [{\"code\": \"TERM_TOO_LONG\", \"quote\": \"This Agreement has an initial term of three (3) years and is renewed automatically for further periods of three (3) years; it cannot be terminated before the end of a period.\", \"reason\": \"Under R-2026-01 the term is measured by its renewals because neither Party can stop renewal by notice, so the agreement runs open-ended in three-year blocks and exceeds the three-year limit.\"}],\n \"notes\": [\"No Arabic version was provided, and clause 11 says the Agreement is made in English, so the bilingual parity check (TRANSLATION_MISMATCH) does not apply. If the counterparty expects an Arabic version, that needs a separate review.\",\n \"All five standard exclusions (4.1 to 4.5) are present. Permitted disclosures, return or destruction with the law and back-up exception, and injunctive relief are all within the playbook.\",\n \"Survival is three years after the end of the Agreement, which is within the five-year limit. There is no trade secret carve-out, so R-2026-02 does not arise.\",\n \"No non-solicitation, no-hire, non-compete, exclusivity or residuals clause appears in the text.\",\n \"Governing law is the DIFC with exclusive DIFC Courts jurisdiction, which is an accepted forum.\",\n \"Possible fix for counsel: add a notice right to end the renewal (or cap the total term at three years), which would bring the agreement within the playbook. This is a suggestion for the lawyer to consider, not a playbook requirement.\"]}\n```",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "TERM_TOO_LONG",
+              "quote": "This Agreement has an initial term of three (3) years and is renewed automatically for further periods of three (3) years; it cannot be terminated before the end of a period.",
+              "reason": "Under R-2026-01 the term is measured by its renewals because neither Party can stop renewal by notice, so the agreement runs open-ended in three-year blocks and exceeds the three-year limit."
+            }
+          ],
+          "notes": [
+            "No Arabic version was provided, and clause 11 says the Agreement is made in English, so the bilingual parity check (TRANSLATION_MISMATCH) does not apply. If the counterparty expects an Arabic version, that needs a separate review.",
+            "All five standard exclusions (4.1 to 4.5) are present. Permitted disclosures, return or destruction with the law and back-up exception, and injunctive relief are all within the playbook.",
+            "Survival is three years after the end of the Agreement, which is within the five-year limit. There is no trade secret carve-out, so R-2026-02 does not arise.",
+            "No non-solicitation, no-hire, non-compete, exclusivity or residuals clause appears in the text.",
+            "Governing law is the DIFC with exclusive DIFC Courts jurisdiction, which is an accepted forum.",
+            "Possible fix for counsel: add a notice right to end the renewal (or cap the total term at three years), which would bring the agreement within the playbook. This is a suggestion for the lawyer to consider, not a playbook requirement."
+          ]
+        },
+        "cost_usd": 0.00373178,
+        "duration_ms": 12771,
+        "turns": 3
+      }
+    ]
+  ]
+}

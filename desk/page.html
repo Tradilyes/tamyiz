@@ -1,0 +1,688 @@
+<title>Tamyiz NDA Desk</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap">
+<style>
+/* Layout: a registry desk. A narrow docket rail names the register's sections; the open file sits
+   beside it. Rulings read like a law report: citation in the margin, question, holding, reasons. */
+:root {
+  --paper: #f3f5f4;
+  --sheet: #ffffff;
+  --ink: #17202a;
+  --muted: #5a6571;
+  --rule: #d8dde1;
+  --seal: #2e3c9a;
+  --seal-soft: #e6e9fa;
+  --go: #1d7650;
+  --go-soft: #e2f2e9;
+  --warn: #8f5a00;
+  --warn-soft: #faefd6;
+  --stop: #b2271f;
+  --stop-soft: #fae3e1;
+  --focus: #2e3c9a;
+  --display: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --body: "IBM Plex Sans", "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --arabic: "IBM Plex Sans Arabic", "Noto Naskh Arabic", "Geeza Pro", Tahoma, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e1317; --sheet: #151c22; --ink: #e6ebef; --muted: #9ba7b2; --rule: #27323b;
+    --seal: #98a8ff; --seal-soft: #1b2242; --go: #4fc48c; --go-soft: #12251c; --warn: #e6b04c; --warn-soft: #2a2111;
+    --stop: #ff7d72; --stop-soft: #2d1513; --focus: #98a8ff; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0e1317; --sheet: #151c22; --ink: #e6ebef; --muted: #9ba7b2; --rule: #27323b;
+  --seal: #98a8ff; --seal-soft: #1b2242; --go: #4fc48c; --go-soft: #12251c; --warn: #e6b04c; --warn-soft: #2a2111;
+  --stop: #ff7d72; --stop-soft: #2d1513; --focus: #98a8ff; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 15px/1.55 var(--body); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 48px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+h1 { font-size: 1.65rem; font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; font-weight: 600; }
+h3 { font-size: 1.05rem; font-weight: 600; }
+p { margin: 0; }
+a { color: var(--seal); }
+.muted { color: var(--muted); }
+.mono { font-family: var(--mono); font-size: 0.85em; }
+.label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+button, select, input, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* Masthead */
+.mast { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: end; justify-content: space-between; border-bottom: 1px solid var(--rule); padding-bottom: 14px; }
+.mast .who { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.mast .date { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+.role { border: 1px solid var(--rule); border-radius: 999px; padding: 2px 10px; font-size: 0.78rem; color: var(--muted); }
+.role.gc { border-color: var(--seal); color: var(--seal); }
+.tag { color: var(--muted); max-width: 62ch; margin-top: 6px; }
+
+/* Desk */
+.desk { display: grid; grid-template-columns: 188px minmax(0, 1fr); gap: 28px; margin-top: 20px; }
+.rail { display: flex; flex-direction: column; gap: 2px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); align-self: start; }
+.rail button { text-align: left; background: none; border: 0; border-left: 2px solid transparent; padding: 8px 12px; border-radius: 0; cursor: pointer; color: var(--muted); display: flex; justify-content: space-between; gap: 8px; }
+.rail button[aria-selected="true"] { color: var(--ink); border-left-color: var(--seal); background: var(--sheet); font-weight: 600; }
+.rail button:hover { color: var(--ink); }
+.count { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
+.panel { min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.sheet { background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field label { font-weight: 500; font-size: 0.9rem; }
+input[type="text"], textarea, select { background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 8px 10px; width: 100%; min-width: 0; max-width: 100%; }
+.pick { display: flex; gap: 8px; align-items: center; min-width: 0; flex: 1 1 260px; justify-content: flex-end; }
+.pick select { width: auto; flex: 0 1 auto; text-overflow: ellipsis; }
+textarea { min-height: 220px; resize: vertical; line-height: 1.5; font-size: 0.88rem; }
+textarea[lang="ar"] { font-family: var(--arabic); font-size: 0.95rem; }
+.btn { border: 1px solid var(--rule); background: var(--sheet); padding: 7px 14px; border-radius: 4px; cursor: pointer; }
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--seal); border-color: var(--seal); color: var(--sheet); font-weight: 600; }
+.btn:disabled { opacity: 0.55; cursor: default; }
+.note { font-size: 0.86rem; color: var(--muted); }
+.status { font-size: 0.88rem; min-height: 1.3em; }
+.status.error { color: var(--stop); }
+
+/* Routing stamp and findings */
+.stamp { display: inline-flex; gap: 10px; align-items: baseline; padding: 6px 14px; border: 2px solid currentColor; border-radius: 4px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.9rem; }
+.stamp small { font-weight: 500; letter-spacing: 0.02em; text-transform: none; font-size: 0.85rem; }
+.GREEN { color: var(--go); background: var(--go-soft); }
+.YELLOW { color: var(--warn); background: var(--warn-soft); }
+.RED { color: var(--stop); background: var(--stop-soft); }
+.pill { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.03em; }
+.issues { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--rule); }
+.issue { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 6px 16px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.issue .code { font-family: var(--mono); font-size: 0.82rem; font-weight: 500; }
+.issue blockquote { margin: 0; padding-left: 10px; border-left: 2px solid var(--rule); font-family: var(--display); font-size: 0.97rem; overflow-wrap: anywhere; }
+.issue blockquote[lang="ar"] { font-family: var(--arabic); border-left: 0; border-right: 2px solid var(--rule); padding-left: 0; padding-right: 10px; }
+.check { font-size: 0.78rem; font-weight: 600; }
+.check.ok { color: var(--go); }
+.check.bad { color: var(--stop); }
+.finding { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 4px 12px; padding: 8px 0; border-bottom: 1px dashed var(--rule); font-size: 0.9rem; }
+.conf { font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; }
+.conf.certain { color: var(--stop); } .conf.likely { color: var(--warn); } .conf.check { color: var(--muted); }
+.excerpts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; color: var(--muted); font-size: 0.84rem; }
+.excerpts [lang="ar"] { font-family: var(--arabic); text-align: right; }
+.question { border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+.readings { margin: 0; padding-left: 18px; }
+
+/* Register */
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+.scroll { overflow-x: auto; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+td.num, .tab-nums { font-variant-numeric: tabular-nums; }
+
+/* Law report */
+.report { display: flex; flex-direction: column; }
+.ruling { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 8px 20px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+.ruling:first-child { padding-top: 4px; }
+.cite { font-family: var(--mono); font-size: 0.82rem; color: var(--seal); display: flex; flex-direction: column; gap: 4px; }
+.cite .hijri { color: var(--muted); font-size: 0.74rem; }
+.ruling .q { font-family: var(--display); font-weight: 600; font-size: 1.04rem; }
+.ruling .h { font-family: var(--display); font-size: 1rem; }
+.ruling .r { color: var(--muted); font-size: 0.92rem; }
+.ruling.overturned .q, .ruling.overturned .h { text-decoration: line-through; text-decoration-color: var(--muted); color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1px solid var(--rule); border-radius: 999px; padding: 1px 9px; font-size: 0.76rem; color: var(--muted); }
+.chip.seal { border-color: var(--seal); color: var(--seal); }
+.form { display: flex; flex-direction: column; gap: 10px; border: 1px dashed var(--seal); border-radius: 6px; padding: 14px; background: var(--seal-soft); }
+.form textarea { min-height: 90px; background: var(--sheet); }
+.empty { padding: 18px; border: 1px dashed var(--rule); border-radius: 6px; color: var(--muted); }
+pre.playbook { white-space: pre-wrap; font-family: var(--body); font-size: 0.9rem; margin: 0; overflow-wrap: anywhere; }
+.sev { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px 16px; }
+.sev label { display: flex; justify-content: space-between; gap: 10px; align-items: center; font-family: var(--mono); font-size: 0.8rem; }
+.sev select { width: auto; }
+
+@media (max-width: 820px) {
+  .desk { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .rail { position: static; flex-direction: row; overflow-x: auto; gap: 4px; border-bottom: 1px solid var(--rule); }
+  .rail button { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; padding: 8px 10px; }
+  .rail button[aria-selected="true"] { border-bottom-color: var(--seal); background: none; }
+  .grid2, .excerpts { grid-template-columns: minmax(0, 1fr); }
+  .issue, .ruling, .finding { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: no-preference) { .fade { animation: fade 0.25s ease-out; } @keyframes fade { from { opacity: 0.4; } to { opacity: 1; } } }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <h1>Tamyiz NDA Desk</h1>
+      <p class="tag">Claude reads each NDA against the team's playbook and the General Counsel's rulings; code checks the two language versions, every quote and the routing. Where the playbook can be read two ways, the question goes to the General Counsel, and the ruling binds every later review.</p>
+    </div>
+    <div class="who">
+      <span class="date" id="today"></span>
+      <span class="role" id="role">Viewer</span>
+    </div>
+  </header>
+
+  <div class="desk">
+    <nav class="rail" role="tablist" aria-label="Sections">
+      <button role="tab" id="t-desk" aria-selected="true" data-tab="desk">Review an NDA</button>
+      <button role="tab" id="t-register" aria-selected="false" data-tab="register">Register <span class="count" id="c-register">0</span></button>
+      <button role="tab" id="t-questions" aria-selected="false" data-tab="questions">Questions <span class="count" id="c-questions">0</span></button>
+      <button role="tab" id="t-caselaw" aria-selected="false" data-tab="caselaw">Case law <span class="count" id="c-caselaw">0</span></button>
+      <button role="tab" id="t-probes" aria-selected="false" data-tab="probes">Edge probes</button>
+      <button role="tab" id="t-playbook" aria-selected="false" data-tab="playbook">Playbook</button>
+    </nav>
+
+    <main class="panel">
+      <!-- Review an NDA -->
+      <section id="p-desk" class="panel">
+        <div class="sheet">
+          <div class="row" style="justify-content: space-between;">
+            <h2>Review an NDA</h2>
+            <div class="pick">
+              <label class="label" for="example">Example</label>
+              <select id="example"></select>
+            </div>
+          </div>
+          <div class="field"><label for="cp">Counterparty</label><input type="text" id="cp" placeholder="Name of the other party"></div>
+          <div class="grid2">
+            <div class="field"><label for="en">English version</label><textarea id="en" spellcheck="false" placeholder="Paste the English text of the NDA"></textarea></div>
+            <div class="field"><label for="ar">Arabic version <span class="muted">(optional)</span></label><textarea id="ar" lang="ar" dir="rtl" spellcheck="false" placeholder="ألصق النص العربي هنا إن وجد"></textarea></div>
+          </div>
+          <div class="row">
+            <button class="btn primary" id="go">Review with Claude</button>
+            <button class="btn" id="check">Compare the two versions only</button>
+            <button class="btn" id="stop" hidden>Stop</button>
+            <span class="status" id="st"></span>
+          </div>
+          <p class="note">Nothing is saved until you choose to. Claude runs on your own Claude account; the checks run in this page.</p>
+        </div>
+        <div id="result"></div>
+      </section>
+
+      <!-- Register -->
+      <section id="p-register" class="panel" hidden>
+        <div class="sheet">
+          <h2>Register</h2>
+          <p class="note">Reviews saved by the team. Only the routing, the issues and their quotes are kept, never the full NDA. Everyone who can open this page can read them.</p>
+          <div id="register"></div>
+        </div>
+      </section>
+
+      <!-- Questions -->
+      <section id="p-questions" class="panel" hidden>
+        <div class="sheet">
+          <h2>Questions for the General Counsel</h2>
+          <p class="note">Points where the playbook can be read two ways. A ruling answers one of them once, for every later review. Anyone can raise a question; the General Counsel, as an editor of this page, rules.</p>
+          <div id="ask" class="form" hidden>
+            <label class="label" for="askText">Raise a question</label>
+            <textarea id="askText" placeholder="For example: is a non-solicitation limited to staff we met during the talks still a non-solicitation?"></textarea>
+            <div class="row"><button class="btn" id="askGo">Send to the General Counsel</button><span class="status" id="askSt"></span></div>
+          </div>
+          <div id="questions"></div>
+        </div>
+      </section>
+
+      <!-- Case law -->
+      <section id="p-caselaw" class="panel" hidden>
+        <div class="sheet">
+          <div class="row" style="justify-content: space-between;">
+            <h2>Case law of the team</h2>
+            <button class="btn" id="copyCl">Copy as instructions for any AI tool</button>
+          </div>
+          <p class="note">Rulings in force are added to every review as binding precedents. A ruling is never erased: when the team changes its mind, a new ruling overturns it, and both stay in the record.</p>
+          <span class="status" id="clSt"></span>
+          <div id="caselaw" class="report"></div>
+        </div>
+      </section>
+
+      <!-- Edge probes -->
+      <section id="p-probes" class="panel" hidden>
+        <div class="sheet">
+          <h2>Edge probes</h2>
+          <p class="note">Ten NDAs written at the edge of the playbook. Run them to see how Claude reads each one today, under the playbook and the rulings in force. Where its reading is not the team's, rule; where it is, confirm it, so a later model cannot drift from it unnoticed.</p>
+          <div class="row"><button class="btn primary" id="probeAll">Run the ten probes</button><button class="btn" id="probeStop" hidden>Stop</button><span class="status" id="prSt"></span></div>
+          <div class="scroll"><table id="probes"><thead><tr><th>Edge clause</th><th>Claude's reading</th><th>Team position</th><th></th></tr></thead><tbody></tbody></table></div>
+        </div>
+      </section>
+
+      <!-- Playbook -->
+      <section id="p-playbook" class="panel" hidden>
+        <div class="sheet">
+          <div class="row" style="justify-content: space-between;"><h2>Playbook</h2><span class="note" id="pbWho"></span></div>
+          <pre class="playbook" id="pbText"></pre>
+          <div id="pbEdit" class="form" hidden>
+            <label class="label" for="pbArea">Edit the playbook</label>
+            <textarea id="pbArea" style="min-height:260px"></textarea>
+            <span class="label">Severity of each code</span>
+            <div class="sev" id="sev"></div>
+            <div class="row"><button class="btn primary" id="pbSave">Save the playbook</button><span class="status" id="pbSt"></span></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+/*__BUNDLE__*/
+</script>
+<script>
+(() => {
+  "use strict";
+  const PARITY = __load("cp:engine/parity.mjs"), TRIAGE = __load("cp:engine/triage.mjs"), HIJRI = __load("cp:engine/hijri.mjs");
+  const BILINGUAL = __load("cpb:bench/nda/cases.mjs"), EDGE = __load("tz:suites/nda-boundary/cases.mjs"), CASELAW = __load("tz:engine/caselaw.mjs");
+  const DEFAULT_PLAYBOOK = __PLAYBOOK__;
+  const TEAM = "Gulf Horizon Holding LLC";
+  const CODES = Object.keys(TRIAGE.NDA_ISSUES);
+  const POSITIONS = ["mutual", "term", "survival", "exclusions", "permitted", "return", "remedies", "restrictions", "law", "bilingual", "other"];
+  const ROUTING = { GREEN: "Standard approval", YELLOW: "Counsel review", RED: "Full legal review" };
+
+  // ---------- small DOM helpers (text only: nothing from a document or a model becomes markup) ----------
+  const $ = s => document.querySelector(s);
+  function h(tag, attrs, ...kids) {
+    const el = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs ?? {})) {
+      if (v == null || v === false) continue;
+      if (k === "class") el.className = v; else if (k.startsWith("on")) el.addEventListener(k.slice(2), v); else el.setAttribute(k, v === true ? "" : String(v));
+    }
+    for (const k of kids.flat()) if (k != null && k !== false) el.append(k instanceof Node ? k : String(k));
+    return el;
+  }
+  const clear = el => { while (el.firstChild) el.firstChild.remove(); return el; };
+  const say = (el, text, error = false) => { el.textContent = text ?? ""; el.classList.toggle("error", !!error); };
+  const iso = (d = new Date()) => d.toISOString().slice(0, 10);
+  function dual(isoDate) {
+    let hijri = "";
+    try { hijri = HIJRI.formatHijri(HIJRI.toHijri(isoDate), "en"); } catch { /* the Umm al-Qura calendar is not available here */ }
+    const g = new Date(isoDate + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+    return { g, hijri };
+  }
+  const isArabic = s => /[؀-ۿ]/.test(String(s ?? ""));
+
+  // ---------- state ----------
+  const S = { tab: "desk", playbook: { text: DEFAULT_PLAYBOOK, severities: {} }, playbookSaved: false, rulings: [], questions: [], register: [], probes: {}, confirmed: {}, user: null, db: null, sample: null, uid: null, canEdit: false, canWrite: null, last: null };
+  const severities = () => Object.fromEntries(CODES.map(c => [c, S.playbook.severities?.[c] ?? TRIAGE.NDA_ISSUES[c].severity]));
+  const issuesMap = () => TRIAGE.issuesWith(severities());
+  const inForce = () => S.rulings.filter(r => r.status === "in_force").sort((a, b) => String(a.id).localeCompare(String(b.id)));
+  const caselawText = () => CASELAW.compileInstructions({ team: `${TEAM}, legal department`, rulings: inForce() }, "9999-12-31");
+
+  // ---------- header ----------
+  { const t = dual(iso()); $("#today").textContent = t.hijri ? `${t.g} · ${t.hijri}` : t.g; }
+
+  // ---------- tabs ----------
+  function show(tab) {
+    S.tab = tab;
+    for (const b of document.querySelectorAll(".rail button")) b.setAttribute("aria-selected", String(b.dataset.tab === tab));
+    for (const id of ["desk", "register", "questions", "caselaw", "probes", "playbook"]) $(`#p-${id}`).hidden = id !== tab;
+    try { localStorage.setItem("tamyiz-tab", tab); } catch { /* no storage here */ }
+  }
+  for (const b of document.querySelectorAll(".rail button")) b.addEventListener("click", () => show(b.dataset.tab));
+  try { const t = localStorage.getItem("tamyiz-tab"); if (t && $(`#p-${t}`)) show(t); } catch { /* no storage here */ }
+
+  // ---------- examples ----------
+  const EXAMPLES = [
+    { id: "", label: "Choose an example…" },
+    { id: "bi-term", label: "Bilingual NDA, the Arabic gives another term", get: () => { const c = BILINGUAL.CASES.find(x => x.id === "n4"); return { cp: c.cp, en: BILINGUAL.render(c, "en"), ar: BILINGUAL.render(c, "ar") }; } },
+    { id: "bi-forum", label: "Bilingual NDA, the Arabic names other courts", get: () => { const c = BILINGUAL.CASES.find(x => x.id === "n12"); return { cp: c.cp, en: BILINGUAL.render(c, "en"), ar: BILINGUAL.render(c, "ar") }; } },
+    { id: "bi-clean", label: "Bilingual NDA, both versions agree", get: () => { const c = BILINGUAL.CASES.find(x => x.id === "n2"); return { cp: c.cp, en: BILINGUAL.render(c, "en"), ar: BILINGUAL.render(c, "ar") }; } },
+    ...[["P1A", "Edge: a three-year term that renews automatically"], ["P2A", "Edge: trade secrets protected while they stay secret"], ["P7A", "Edge: agreed compensation the court may adjust"], ["P8A", "Edge: an exception for legal copies only"]].map(([id, label]) => { const c = EDGE.CASES.find(x => x.id === id); return { id, label, get: () => ({ cp: c.cp, en: EDGE.render(c), ar: "" }) }; }),
+  ];
+  for (const e of EXAMPLES) $("#example").append(h("option", { value: e.id }, e.label));
+  $("#example").addEventListener("change", () => {
+    const e = EXAMPLES.find(x => x.id === $("#example").value);
+    if (!e?.get) return;
+    const v = e.get();
+    $("#cp").value = v.cp; $("#en").value = v.en; $("#ar").value = v.ar;
+    clear($("#result")); say($("#st"), "Example loaded: a fictional NDA of the benchmark.");
+  });
+
+  // ---------- deterministic checks ----------
+  function parityOf(en, ar) {
+    if (!en || !ar) return null;
+    const r = PARITY.parity(en, ar, { langA: "en", langB: "ar" });
+    return r.findings.map(f => ({ clause: f.clause, type: f.type, confidence: f.confidence, detail: f.detail, en: f.a?.excerpt ?? "", ar: f.b?.excerpt ?? "" }));
+  }
+  const verify = (quotes, en, ar) => TRIAGE.verifyQuotes(quotes.map(String), [en, ...(ar ? [ar] : [])]).results.map(r => ({ quote: r.quote, found: r.found, in: r.found ? (r.in === 0 ? "English" : "Arabic") : null }));
+  const route = codes => TRIAGE.classifyNda(codes, issuesMap());
+
+  // ---------- result rendering ----------
+  function renderParity(findings) {
+    if (!findings) return null;
+    const strong = findings.filter(f => f.confidence !== "check");
+    return h("div", { class: "sheet fade" },
+      h("div", { class: "row", style: "justify-content:space-between" }, h("h3", {}, "The two versions, compared by code"), h("span", { class: "note" }, `${strong.length} certain or likely, ${findings.length - strong.length} to check`)),
+      findings.length ? h("div", {}, findings.slice(0, 40).map(f => h("div", { class: "finding" },
+        h("div", {}, h("div", { class: `conf ${f.confidence}` }, f.confidence), h("div", { class: "mono muted" }, `cl. ${f.clause ?? "—"}`)),
+        h("div", { style: "display:flex;flex-direction:column;gap:6px;min-width:0" }, h("span", {}, f.detail), h("div", { class: "excerpts" }, h("span", {}, f.en), h("span", { lang: "ar", dir: "rtl" }, f.ar)))))) : h("p", { class: "note" }, "No difference found between the two versions."));
+  }
+
+  function renderResult(r) {
+    const box = clear($("#result"));
+    const parts = [];
+    if (r.routing) {
+      const issues = r.issues;
+      parts.push(h("div", { class: "sheet fade" },
+        h("div", { class: "row", style: "justify-content:space-between" },
+          h("span", { class: `stamp ${r.routing.classification}` }, r.routing.classification, h("small", {}, ROUTING[r.routing.classification])),
+          h("span", { class: "note" }, `Routing computed by code from the codes found, with the team's severities. ${r.rulingsApplied.length ? `Rulings applied: ${r.rulingsApplied.join(", ")}.` : "No ruling applied."}`)),
+        issues.length ? h("div", { class: "issues" }, issues.map(i => h("div", { class: "issue" },
+          h("div", {}, h("div", { class: "code" }, i.code), h("span", { class: `pill ${severities()[i.code] ?? "YELLOW"}` }, severities()[i.code] ?? "?")),
+          h("div", { style: "display:flex;flex-direction:column;gap:6px;min-width:0" },
+            i.quote ? h("blockquote", { lang: isArabic(i.quote) ? "ar" : "en", dir: isArabic(i.quote) ? "rtl" : "ltr" }, i.quote) : null,
+            h("span", { class: `check ${i.found ? "ok" : "bad"}` }, i.quote ? (i.found ? `Quote found word for word in the ${i.in} text` : "Quote not found in the NDA: check it before relying on it") : "No quote given"),
+            i.reason ? h("span", { class: "muted" }, i.reason) : null)))) : h("p", {}, "No issue under the playbook and the rulings in force."),
+        r.notes.length ? h("div", {}, h("span", { class: "label" }, "Notes for the lawyer"), h("ul", { class: "readings" }, r.notes.map(n => h("li", {}, n)))) : null,
+        h("div", { class: "row" }, h("button", { class: "btn", id: "save", onclick: saveReview, disabled: !S.db }, "Save to the register"), h("span", { class: "status", id: "saveSt" }, S.db ? "" : "The register is not available in this view."))));
+    }
+    if (r.questions?.length) parts.push(h("div", { class: "sheet fade" },
+      h("h3", {}, "Points the playbook leaves open"),
+      h("p", { class: "note" }, "Claude found these readings both defensible. Send one to the General Counsel to settle it for every later NDA."),
+      r.questions.map((q, k) => h("div", { class: "question" },
+        h("strong", {}, q.question),
+        q.readings?.length ? h("ol", { class: "readings" }, q.readings.map(x => h("li", {}, x))) : null,
+        h("div", { class: "row" }, h("span", { class: "chip" }, q.position || "other"), h("button", { class: "btn", disabled: !S.db, onclick: e => raise(q, e.currentTarget) }, "Send to the General Counsel"))))));
+    const p = renderParity(r.parity);
+    if (p) parts.push(p);
+    box.append(...parts);
+  }
+
+  // ---------- Claude ----------
+  function codesBlock() { const sv = severities(); return CODES.map(c => `- ${c} (${sv[c]}): ${TRIAGE.NDA_ISSUES[c].label}`).join("\n"); }
+  function triagePrompt({ cp, en, ar }, { probe = false, tools = true, parity = null } = {}) {
+    const cl = caselawText();
+    const head = `You review an NDA for the in-house legal team of ${TEAM}, Dubai. The business sent it from ${cp}${ar ? ", in English and Arabic, both versions equally authentic" : ", in English"}. Apply the team's playbook and its binding rulings exactly: a ruling settles how the playbook applies to the question it answers, whatever the wording of the NDA.`;
+    const tail = `Codes, with the team's severities:
+${codesBlock()}
+
+=== PLAYBOOK ===
+${S.playbook.text}
+=== RULINGS IN FORCE ===
+${cl || "None yet."}
+=== NDA, ENGLISH ===
+${en}
+=== END ===${ar ? `\n=== NDA, ARABIC ===\n${ar}\n=== END ===` : ""}`;
+    if (probe) return `${head}\n\nGo through the playbook position by position. Final answer, JSON only:\n{"issues":[{"code":"...","quote":"exact words","reason":"one sentence"}],"rulings_applied":["R-..."]}\n\n${tail}`;
+    if (!tools) return `${head}\n\nGo through the playbook position by position${ar ? ", on the English version and on the Arabic where it differs" : ""}. For each issue, note its code and copy a quote word for word. A term found in one version only is a TRANSLATION_MISMATCH, not a second code. As questions, list only the points where the playbook and the rulings can reasonably be read two ways for this NDA, each with its two readings; leave out what a ruling already settles.${parity ? `\n\nThe two versions were compared by code. Findings (certain and likely are candidate mismatches to confirm; check is only a lead):\n${JSON.stringify(parity.slice(0, 40).map(f => ({ clause: f.clause, type: f.type, confidence: f.confidence, detail: f.detail })))}` : ""}\n\nFinal answer, JSON only:\n{"issues":[{"code":"...","quote":"exact words","reason":"one sentence"}],"rulings_applied":["R-..."],"questions":[{"question":"...","readings":["...","..."],"position":"${POSITIONS.join("|")}"}],"notes":["..."]}\n\n${tail}`;
+    return `${head}
+
+How to work:
+${ar ? "1. Call check_bilingual_parity. A finding marked certain or likely is a candidate TRANSLATION_MISMATCH: read the two clauses and confirm it; a finding marked check is only a lead. Then read every clause pair yourself.\n" : ""}${ar ? "2" : "1"}. Go through the playbook position by position${ar ? " on the English version and on the Arabic where it differs" : ""}. For each issue, note its code and copy a quote word for word. A term found in one version only is a TRANSLATION_MISMATCH, not a second code.
+${ar ? "3" : "2"}. Call verify_quotes with all your quotes; correct or drop any quote that is not found.
+${ar ? "4" : "3"}. Call route with your codes.
+${ar ? "5" : "4"}. As questions, list only the points where the playbook and the rulings can reasonably be read two ways for this NDA, each with its two readings. Leave out what a ruling already settles.
+
+Final answer, JSON only:
+{"issues":[{"code":"...","quote":"exact words","reason":"one sentence"}],"rulings_applied":["R-..."],"questions":[{"question":"...","readings":["...","..."],"position":"${POSITIONS.join("|")}"}],"notes":["..."]}
+
+${tail}`;
+  }
+  const ERRORS = {
+    not_granted: "Claude is not allowed for this page. The two versions can still be compared by code.",
+    sampling_disabled: "Claude is not available for this account.",
+    rate_limited: "Too many requests for now. Try again in a little while.",
+    prompt_too_large: "The NDA is too long for one review. Paste the clauses that matter.",
+    invalid_json: "Claude's answer could not be read. Try again.",
+    refused: "Claude declined this text.",
+    session_expired: "Sign in to Claude again, then try again.",
+    tools_unavailable: "This view cannot run the checks as Claude's tools.",
+  };
+  const errText = e => ERRORS[e?.code] ?? "The review was interrupted. Try again.";
+
+  let ctl = null;
+  async function review() {
+    const cp = $("#cp").value.trim() || "the counterparty", en = $("#en").value.trim(), ar = $("#ar").value.trim();
+    if (!en) { say($("#st"), "Paste the English version first.", true); return; }
+    const parity = parityOf(en, ar);
+    if (!S.sample) { renderResult({ parity, issues: [], questions: [], notes: [], rulingsApplied: [] }); say($("#st"), "Claude is not available in this view: only the code checks ran.", true); return; }
+    ctl = new AbortController();
+    $("#go").disabled = true; $("#stop").hidden = false;
+    say($("#st"), "Claude is reading the NDA…");
+    const tools = [
+      { name: "verify_quotes", description: "Checks that each quote appears word for word in the NDA (English or Arabic), ignoring spacing, quote marks, digits and Arabic diacritics. Returns, for each quote, found and the version it was found in.", inputSchema: { type: "object", properties: { quotes: { type: "array", items: { type: "string" } } }, required: ["quotes"] }, execute: ({ quotes }) => { say($("#st"), `Checking ${Array.isArray(quotes) ? quotes.length : 0} quotes…`); return verify(Array.isArray(quotes) ? quotes : [], en, ar); } },
+      { name: "route", description: "Routes the NDA from the issue codes found, under the team's severities: GREEN (standard approval), YELLOW (counsel review) or RED (full legal review). Returns the routing and the severity of each code.", inputSchema: { type: "object", properties: { codes: { type: "array", items: { type: "string" } } }, required: ["codes"] }, execute: ({ codes }) => { say($("#st"), "Routing…"); const r = route(Array.isArray(codes) ? codes : []); return { classification: r.classification, codes: r.byCode.map(x => ({ code: x.code, severity: x.severity })), unknown: r.unknown }; } },
+    ];
+    if (ar) tools.unshift({ name: "check_bilingual_parity", description: "Compares the English and Arabic versions clause by clause, by code: figures, periods, dates, parties, forum and governing law, exclusions, negations. Returns findings marked certain, likely or check.", execute: () => { say($("#st"), "Comparing the two versions…"); return (parity ?? []).slice(0, 40).map(f => ({ clause: f.clause, type: f.type, confidence: f.confidence, detail: f.detail })); } });
+    try {
+      const lim = await S.sample.limits().catch(() => null);
+      const withTools = !!lim?.tools;
+      const out = withTools
+        ? await S.sample.json(triagePrompt({ cp, en, ar }), { tools, signal: ctl.signal })
+        : await S.sample.json(triagePrompt({ cp, en, ar }, { tools: false, parity }), { signal: ctl.signal, cache: false });
+      const raw = Array.isArray(out?.issues) ? out.issues : [];
+      const issues = raw.map(i => ({ code: String(i.code ?? "").trim().toUpperCase(), quote: String(i.quote ?? ""), reason: String(i.reason ?? "") })).filter(i => CODES.includes(i.code) || /^[A-Z][A-Z0-9_]*$/.test(i.code));
+      const checked = verify(issues.map(i => i.quote).filter(Boolean), en, ar);
+      for (const i of issues) { const v = checked.find(x => x.quote === i.quote); i.found = !!v?.found; i.in = v?.in ?? null; }
+      const routing = route(issues.map(i => i.code));
+      const known = new Set(inForce().map(r => r.id));
+      S.last = { cp, routing, issues, parity, rulingsApplied: (Array.isArray(out?.rulings_applied) ? out.rulings_applied : []).map(String).filter(x => known.has(x)), questions: Array.isArray(out?.questions) ? out.questions.filter(q => q && q.question).map(q => ({ question: String(q.question), readings: (Array.isArray(q.readings) ? q.readings : []).map(String).slice(0, 3), position: POSITIONS.includes(q.position) ? q.position : "other" })) : [], notes: (Array.isArray(out?.notes) ? out.notes : []).map(String).slice(0, 6) };
+      renderResult(S.last);
+      say($("#st"), `Reviewed. ${issues.filter(i => i.quote && !i.found).length ? "Some quotes were not found: they are marked." : "Every quote was found in the text."}`);
+    } catch (e) {
+      if (e?.code === "cancelled") say($("#st"), "Stopped.");
+      else { renderResult({ parity, issues: [], questions: [], notes: [], rulingsApplied: [] }); say($("#st"), errText(e), true); }
+    } finally { $("#go").disabled = false; $("#stop").hidden = true; ctl = null; }
+  }
+  $("#go").addEventListener("click", review);
+  $("#stop").addEventListener("click", () => ctl?.abort());
+  $("#check").addEventListener("click", () => {
+    const en = $("#en").value.trim(), ar = $("#ar").value.trim();
+    if (!en || !ar) { say($("#st"), "Paste both versions to compare them.", true); return; }
+    S.last = null;
+    renderResult({ parity: parityOf(en, ar), issues: [], questions: [], notes: [], rulingsApplied: [] });
+    say($("#st"), "Compared by code, without Claude.");
+  });
+
+  // ---------- shared data ----------
+  async function saveReview() {
+    const st = $("#saveSt");
+    if (!S.db || !S.last) return;
+    $("#save").disabled = true;
+    try {
+      const year = iso().slice(0, 4);
+      const n = S.register.filter(x => String(x.docket ?? "").includes(`-${year}-`)).length + 1;
+      const r = S.last;
+      await S.db.collection("register").add({ docket: `NDA-${year}-${String(n).padStart(4, "0")}`, counterparty: r.cp.slice(0, 160), routing: r.routing.classification, codes: r.issues.map(i => i.code), issues: r.issues.map(i => ({ code: i.code, quote: i.quote.slice(0, 400), found: i.found, reason: i.reason.slice(0, 400) })), rulings_applied: r.rulingsApplied, parity: r.parity ? { certain: r.parity.filter(f => f.confidence === "certain").length, likely: r.parity.filter(f => f.confidence === "likely").length } : null, questions: r.questions.length, at: new Date().toISOString(), by: S.uid ?? null });
+      say(st, "Saved to the register.");
+    } catch (e) { say(st, e?.code === "invalid_argument" ? "Your access to this page does not allow saving." : "Not saved: try again.", true); $("#save").disabled = false; }
+  }
+  async function raise(q, btn) {
+    if (!S.db) return;
+    btn.disabled = true;
+    try {
+      await S.db.collection("questions").add({ question: q.question.slice(0, 1200), readings: (q.readings ?? []).map(x => String(x).slice(0, 600)), position: q.position ?? "other", from: S.last?.cp?.slice(0, 160) ?? null, raised_by: q.manual ? "person" : "Claude, during a review", status: "open", at: new Date().toISOString(), by: S.uid ?? null });
+      btn.textContent = "Sent";
+    } catch (e) { btn.disabled = false; btn.textContent = e?.code === "invalid_argument" ? "Not allowed" : "Try again"; }
+  }
+  $("#askGo").addEventListener("click", async () => {
+    const text = $("#askText").value.trim();
+    if (!text) { say($("#askSt"), "Write the question first.", true); return; }
+    await raise({ question: text, readings: [], position: "other", manual: true }, $("#askGo"));
+    $("#askText").value = ""; say($("#askSt"), "Sent to the General Counsel.");
+    setTimeout(() => { $("#askGo").disabled = false; $("#askGo").textContent = "Send to the General Counsel"; }, 1200);
+  });
+
+  function nextRulingId() {
+    const year = iso().slice(0, 4);
+    const nums = S.rulings.map(r => String(r.id)).filter(id => id.startsWith(`R-${year}-`)).map(id => Number(id.split("-")[2]) || 0);
+    return `R-${year}-${String((nums.length ? Math.max(...nums) : 0) + 1).padStart(2, "0")}`;
+  }
+  async function writeRuling({ question, holding, reasons, position, raised_by, supersedes, examples, pattern }) {
+    const id = nextRulingId();
+    const ruling = { id, date: iso(), question, holding, reasons, positions: [position || "other"], raised_by: raised_by ?? "General Counsel", status: "in_force", supersedes: supersedes ? [supersedes] : [], examples: examples ?? [], pattern: pattern ?? null, author: S.uid ?? null, at: new Date().toISOString() };
+    await S.db.doc(`caselaw/${id}`).set(ruling);
+    if (supersedes) await S.db.doc(`caselaw/${supersedes}`).update({ status: "overturned", overturned_by: id });
+    return id;
+  }
+  function rulingForm({ title, question, position, onDone, supersedes, examples, pattern }) {
+    const qId = `rf-q-${Math.random().toString(36).slice(2, 8)}`;
+    const q = h("textarea", { id: qId }); q.value = question ?? "";
+    const hold = h("textarea", { id: `${qId}-h`, placeholder: "The holding: what the playbook means on this point, for every later NDA" });
+    const why = h("textarea", { id: `${qId}-r`, placeholder: "The reasons, in one or two sentences" });
+    const pos = h("select", { id: `${qId}-p`, style: "width:auto" }, POSITIONS.map(p => h("option", { value: p, selected: p === position }, p)));
+    const st = h("span", { class: "status" });
+    const go = h("button", { class: "btn primary", onclick: async () => {
+      if (!hold.value.trim()) { say(st, "Write the holding.", true); return; }
+      go.disabled = true;
+      try { const id = await writeRuling({ question: q.value.trim(), holding: hold.value.trim(), reasons: why.value.trim(), position: pos.value, supersedes, examples, pattern, raised_by: pattern ? `edge probe ${examples?.[0] ?? pattern}` : undefined }); say(st, `Ruling ${id} is in force.`); onDone?.(id); }
+      catch (e) { go.disabled = false; say(st, e?.code === "invalid_argument" ? "Only an editor of this page can rule." : "Not saved: try again.", true); }
+    } }, supersedes ? "Overturn and rule" : "Rule");
+    return h("div", { class: "form fade" }, h("span", { class: "label" }, title), h("label", { for: qId }, "Question"), q, h("label", { for: `${qId}-h` }, "Holding"), hold, h("label", { for: `${qId}-r` }, "Reasons"), why, h("div", { class: "row" }, h("label", { for: `${qId}-p` }, "Playbook position"), pos), h("div", { class: "row" }, go, st));
+  }
+
+  // ---------- renderers for shared data ----------
+  function renderRegister() {
+    $("#c-register").textContent = String(S.register.length);
+    const box = clear($("#register"));
+    if (!S.db) { box.append(h("div", { class: "empty" }, "The register is not available in this view.")); return; }
+    if (!S.register.length) { box.append(h("div", { class: "empty" }, "No review saved yet. Review an NDA, then choose “Save to the register”.")); return; }
+    box.append(h("div", { class: "scroll" }, h("table", {}, h("thead", {}, h("tr", {}, ["Docket", "Counterparty", "Routing", "Issues", "Rulings", "Date"].map(x => h("th", {}, x)))),
+      h("tbody", {}, S.register.map(r => h("tr", {}, h("td", { class: "mono" }, r.docket ?? "—"), h("td", {}, r.counterparty ?? ""), h("td", {}, h("span", { class: `pill ${r.routing}` }, r.routing ?? "")), h("td", { class: "mono" }, (r.codes ?? []).join(", ") || "none"), h("td", { class: "mono" }, (r.rulings_applied ?? []).join(", ") || "—"), h("td", { class: "tab-nums" }, String(r.at ?? "").slice(0, 10))))))));
+  }
+  function renderQuestions() {
+    const open = S.questions.filter(q => q.status === "open");
+    $("#c-questions").textContent = String(open.length);
+    $("#ask").hidden = !S.db;
+    const box = clear($("#questions"));
+    if (!S.db) { box.append(h("div", { class: "empty" }, "Questions are not available in this view.")); return; }
+    if (!S.questions.length) { box.append(h("div", { class: "empty" }, "No question yet. Claude raises them during reviews, and anyone can raise one above.")); return; }
+    for (const q of [...S.questions].sort((a, b) => String(b.at).localeCompare(String(a.at)))) {
+      const slot = h("div");
+      const actions = q.status === "open" && S.canEdit ? h("div", { class: "row" },
+        h("button", { class: "btn primary", onclick: () => { clear(slot).append(rulingForm({ title: "Rule on this question", question: q.question, position: q.position, onDone: id => S.db.doc(`questions/${q._id}`).update({ status: "ruled", ruling: id }).catch(() => {}) })); } }, "Rule"),
+        h("button", { class: "btn", onclick: e => { e.currentTarget.disabled = true; S.db.doc(`questions/${q._id}`).update({ status: "dismissed" }).catch(() => { e.currentTarget.disabled = false; }); } }, "Dismiss")) : null;
+      box.append(h("div", { class: "question" },
+        h("div", { class: "row", style: "justify-content:space-between" }, h("strong", {}, q.question), h("span", { class: `chip ${q.status === "ruled" ? "seal" : ""}` }, q.status === "ruled" ? `ruled: ${q.ruling}` : q.status)),
+        q.readings?.length ? h("ol", { class: "readings" }, q.readings.map(x => h("li", {}, x))) : null,
+        h("span", { class: "note" }, `${q.raised_by ?? ""}${q.from ? ` · NDA from ${q.from}` : ""} · ${String(q.at ?? "").slice(0, 10)}`),
+        actions, slot));
+    }
+  }
+  function renderCaselaw() {
+    $("#c-caselaw").textContent = String(inForce().length);
+    const box = clear($("#caselaw"));
+    if (!S.db) { box.append(h("div", { class: "empty" }, "The case law is not available in this view: reviews run on the playbook alone.")); return; }
+    if (!S.rulings.length) { box.append(h("div", { class: "empty" }, "No ruling yet. Questions from reviews and edge probes land under Questions; each ruling the General Counsel writes appears here.")); return; }
+    for (const r of [...S.rulings].sort((a, b) => String(b.id).localeCompare(String(a.id)))) {
+      const d = dual(r.date ?? iso());
+      const slot = h("div");
+      box.append(h("article", { class: `ruling ${r.status !== "in_force" ? "overturned" : ""}` },
+        h("div", { class: "cite" }, h("span", {}, r.id), h("span", {}, d.g), d.hijri ? h("span", { class: "hijri" }, d.hijri) : null),
+        h("div", { style: "display:flex;flex-direction:column;gap:6px;min-width:0" },
+          h("p", { class: "q" }, r.question), h("p", { class: "h" }, r.holding), r.reasons ? h("p", { class: "r" }, r.reasons) : null,
+          h("div", { class: "chips" }, r.example ? h("span", { class: "chip" }, "example") : null, (r.positions ?? []).map(p => h("span", { class: "chip" }, p)), h("span", { class: `chip ${r.status === "in_force" ? "seal" : ""}` }, r.status === "in_force" ? "in force" : `overturned by ${r.overturned_by ?? "a later ruling"}`), (r.supersedes ?? []).length ? h("span", { class: "chip" }, `overturns ${r.supersedes.join(", ")}`) : null, r.raised_by ? h("span", { class: "chip" }, r.raised_by) : null),
+          r.status === "in_force" && S.canEdit ? h("div", {}, h("button", { class: "btn", onclick: () => clear(slot).append(rulingForm({ title: `Overturn ${r.id}`, question: r.question, position: r.positions?.[0], supersedes: r.id })) }, "Overturn")) : null,
+          slot)));
+    }
+  }
+  $("#copyCl").addEventListener("click", async () => {
+    const text = caselawText() || "No ruling in force.";
+    try { await navigator.clipboard.writeText(`${S.playbook.text}\n\n${text}`); say($("#clSt"), "Copied: the playbook and the rulings in force, ready to paste into another AI tool's instructions."); }
+    catch { const t = h("textarea", { readonly: true, style: "min-height:160px" }); t.value = `${S.playbook.text}\n\n${text}`; clear($("#clSt")).append(t); t.select(); }
+  });
+
+  // ---------- edge probes ----------
+  const PROBES = EDGE.CASES.filter(c => c.split === "mine");
+  function teamPosition(c) {
+    const r = inForce().find(x => (x.examples ?? []).includes(c.id) || x.pattern === c.pattern);
+    if (r) return { kind: "ruling", text: r.id };
+    const conf = S.confirmed[c.pattern];
+    if (conf) return { kind: "confirmed", text: `confirmed: ${conf.reading}` };
+    return null;
+  }
+  function renderProbes() {
+    const tb = clear($("#probes tbody"));
+    for (const c of PROBES) {
+      const p = EDGE.PATTERNS.find(x => x.id === c.pattern);
+      const res = S.probes[c.id];
+      const pos = teamPosition(c);
+      const slot = h("div");
+      tb.append(h("tr", {},
+        h("td", { style: "min-width:220px" }, h("div", { class: "mono muted" }, c.id), p.question, slot),
+        h("td", {}, res ? h("div", {}, h("span", { class: `pill ${res.classification}` }, res.classification), " ", h("span", { class: "mono" }, (res.codes ?? []).join(", ") || "no issue"), h("div", { class: "note" }, `${String(res.at ?? "").slice(0, 10)}${res.rulings?.length ? ` · with ${res.rulings.join(", ")}` : ""}`)) : h("span", { class: "muted" }, "not run")),
+        h("td", {}, pos ? h("span", { class: `chip ${pos.kind === "ruling" ? "seal" : ""}` }, pos.text) : h("span", { class: "muted" }, "not settled")),
+        h("td", {}, h("div", { style: "display:flex;flex-direction:column;gap:6px" },
+          h("button", { class: "btn", disabled: !S.sample, onclick: e => runProbes([c], e.currentTarget) }, "Run"),
+          S.canEdit && res ? h("button", { class: "btn", onclick: e => { e.currentTarget.disabled = true; S.db.doc(`confirmed/${c.pattern}`).set({ pattern: c.pattern, reading: `${res.classification}${res.codes?.length ? `, ${res.codes.join(", ")}` : ""}`, at: new Date().toISOString(), by: S.uid ?? null }).catch(() => { e.currentTarget.disabled = false; }); } }, "This is our reading") : null,
+          S.canEdit ? h("button", { class: "btn", onclick: () => clear(slot).append(rulingForm({ title: "Rule on this edge", question: p.question, position: p.position, examples: [c.id], pattern: c.pattern })) }, "Rule otherwise") : null))));
+    }
+  }
+  let probeCtl = null;
+  async function runProbes(list, btn) {
+    if (!S.sample) return;
+    probeCtl = new AbortController();
+    $("#probeAll").disabled = true; $("#probeStop").hidden = false; if (btn) btn.disabled = true;
+    let k = 0;
+    try {
+      for (const c of list) {
+        if (probeCtl.signal.aborted) break;
+        say($("#prSt"), `Probe ${++k} of ${list.length}: ${c.id}…`);
+        const prompt = triagePrompt({ cp: c.cp, en: EDGE.render(c), ar: "" }, { probe: true });
+        const out = await S.sample.json(prompt, { signal: probeCtl.signal, cache: false });
+        const codes = [...new Set((Array.isArray(out?.issues) ? out.issues : []).map(i => String(i.code ?? "").trim().toUpperCase()).filter(Boolean))].sort();
+        const res = { case: c.id, pattern: c.pattern, classification: route(codes).classification, codes, rulings: (Array.isArray(out?.rulings_applied) ? out.rulings_applied : []).map(String), at: new Date().toISOString(), by: S.uid ?? null };
+        S.probes[c.id] = res; renderProbes();
+        if (S.db) S.db.doc(`probes/${c.id}`).set(res).catch(() => {});
+      }
+      say($("#prSt"), probeCtl.signal.aborted ? "Stopped." : "Done. Rule where the reading is not the team's; confirm where it is.");
+    } catch (e) { say($("#prSt"), e?.code === "cancelled" ? "Stopped." : errText(e), e?.code !== "cancelled"); }
+    finally { $("#probeAll").disabled = !S.sample; $("#probeStop").hidden = true; if (btn) btn.disabled = false; probeCtl = null; }
+  }
+  $("#probeAll").addEventListener("click", () => runProbes(PROBES));
+  $("#probeStop").addEventListener("click", () => probeCtl?.abort());
+
+  // ---------- playbook ----------
+  function renderPlaybook() {
+    $("#pbText").textContent = S.playbook.text;
+    $("#pbWho").textContent = S.playbook.example || !S.playbookSaved ? "Example playbook of the benchmark's fictional company" : `Saved ${String(S.playbook.at ?? "").slice(0, 10)}`;
+    const edit = $("#pbEdit");
+    edit.hidden = !(S.canEdit && S.db);
+    if (!edit.hidden && !edit.dataset.ready) {
+      $("#pbArea").value = S.playbook.text;
+      const sv = severities();
+      for (const c of CODES) $("#sev").append(h("label", { for: `sev-${c}` }, c, h("select", { id: `sev-${c}` }, ["RED", "YELLOW", "GREEN"].map(x => h("option", { value: x, selected: sv[c] === x }, x)))));
+      edit.dataset.ready = "1";
+    }
+  }
+  $("#pbSave").addEventListener("click", async () => {
+    const text = $("#pbArea").value.trim();
+    if (!text) { say($("#pbSt"), "The playbook cannot be empty.", true); return; }
+    const sev = Object.fromEntries(CODES.map(c => [c, $(`#sev-${c}`).value]));
+    try { await S.db.doc("config/playbook").set({ text, severities: sev, at: new Date().toISOString(), by: S.uid ?? null }); say($("#pbSt"), "Saved. Every later review uses it."); }
+    catch (e) { say($("#pbSt"), e?.code === "invalid_argument" ? "Only an editor of this page can change the playbook." : "Not saved: try again.", true); }
+  });
+
+  // ---------- first paint, then capabilities ----------
+  function paint() { renderRegister(); renderQuestions(); renderCaselaw(); renderProbes(); renderPlaybook(); }
+  paint();
+  if (!window.claude?.use) { say($("#st"), "Open this page in Claude to review with Claude; the two versions can still be compared here."); $("#go").disabled = true; $("#probeAll").disabled = true; return; }
+
+  claude.use("user").then(async u => {
+    S.user = u;
+    if (!u) return;
+    try { S.uid = await u.id(); } catch { S.uid = null; }
+    try { S.canEdit = !!(await u.canEdit()); } catch { S.canEdit = false; }
+    $("#role").textContent = S.canEdit ? "General Counsel (editor)" : "Team member";
+    $("#role").classList.toggle("gc", S.canEdit);
+    paint();
+  });
+  claude.use("sample").then(s => {
+    S.sample = s;
+    $("#go").disabled = !s; $("#probeAll").disabled = !s;
+    if (!s) say($("#st"), "Claude is not available in this view: the two versions can still be compared by code.");
+    renderProbes();
+  });
+  claude.use("db").then(db => {
+    S.db = db;
+    if (!db) { paint(); return; }
+    const timer = setTimeout(() => say($("#clSt"), "The team's data cannot be reached yet."), 10000);
+    const done = () => { clearTimeout(timer); if ($("#clSt").textContent.startsWith("The team's data")) say($("#clSt"), ""); };
+    const list = snap => snap.docs.map(d => ({ _id: d.id, ...d.data() }));
+    db.doc("config/playbook").onSnapshot(d => { if (!d.metadata.fromCache) done(); if (d.exists) { const v = d.data(); if (typeof v.text === "string" && v.text.trim()) { S.playbook = { text: v.text, severities: v.severities ?? {}, at: v.at, example: !!v.example }; S.playbookSaved = true; } } renderPlaybook(); }, () => done());
+    db.collection("caselaw").onSnapshot(s => { done(); S.rulings = list(s); renderCaselaw(); renderProbes(); }, () => done());
+    db.collection("questions").onSnapshot(s => { S.questions = list(s); renderQuestions(); }, () => {});
+    db.collection("register").orderBy("at", "desc").limit(200).onSnapshot(s => { S.register = list(s); renderRegister(); }, () => {});
+    db.collection("probes").onSnapshot(s => { S.probes = Object.fromEntries(list(s).map(p => [p.case, p])); renderProbes(); }, () => {});
+    db.collection("confirmed").onSnapshot(s => { S.confirmed = Object.fromEntries(list(s).map(p => [p.pattern, p])); renderProbes(); }, () => {});
+    paint();
+  });
+})();
+</script>

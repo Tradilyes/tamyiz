@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Tradilyes/tamyiz/spec/caselaw.schema.json",
+  "title": "A legal team's internal case law",
+  "description": "The rulings by which a legal team settles how its playbook applies where the playbook alone can be read two ways. Every AI tool and every reviewer the team uses follows the rulings in force.",
+  "type": "object",
+  "required": ["team", "rulings"],
+  "properties": {
+    "team": { "type": "string", "description": "Whose case law this is." },
+    "playbook": { "type": "string", "description": "The playbook the rulings interpret (path or name)." },
+    "note": { "type": "string" },
+    "rulings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "date", "question", "holding", "reasons", "positions", "status"],
+        "properties": {
+          "id": { "type": "string", "description": "Citation, e.g. R-2026-01." },
+          "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "The day the ruling takes effect." },
+          "question": { "type": "string", "description": "The question of interpretation, as a reviewer would ask it." },
+          "holding": { "type": "string", "description": "The answer, written to apply to every document it covers, with its limit." },
+          "reasons": { "type": "string" },
+          "positions": { "type": "array", "items": { "type": "string" }, "minItems": 1, "description": "The playbook positions it interprets: a change to one of them flags the ruling for review." },
+          "law": {
+            "type": "array",
+            "description": "Legal facts the ruling rests on: a change in one of them flags the ruling for review.",
+            "items": { "type": "object", "required": ["source"], "properties": { "source": { "type": "string" }, "fact": { "type": "string" } } }
+          },
+          "examples": { "type": "array", "items": { "type": "string" }, "description": "The documents or edge cases it was decided on." },
+          "raised_by": { "type": "string", "description": "How the question arose: a disagreement between reviewers, an edge review, a person." },
+          "status": { "enum": ["in_force", "overturned", "retired"] },
+          "supersedes": { "type": "array", "items": { "type": "string" } },
+          "overturned_by": { "type": "string" }
+        }
+      }
+    },
+    "confirmed": {
+      "type": "array",
+      "description": "Readings the team checked and kept, recorded so that a later model's drift from them shows.",
+      "items": { "type": "object", "required": ["pattern", "reading", "date"], "properties": { "pattern": { "type": "string" }, "reading": { "type": "string" }, "date": { "type": "string" } } }
+    }
+  }
+}

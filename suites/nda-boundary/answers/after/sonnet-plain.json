@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "model": "sonnet",
+    "effort": null,
+    "mode": "plain",
+    "condition": "after",
+    "as_of": "2026-11-02"
+  },
+  "runs": [
+    [
+      {
+        "case": "P1B",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.0206613,
+        "duration_ms": 5443,
+        "turns": 1
+      },
+      {
+        "case": "P2B",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.0207824,
+        "duration_ms": 6621,
+        "turns": 1
+      },
+      {
+        "case": "P3B",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.018611700000000002,
+        "duration_ms": 3632,
+        "turns": 1
+      },
+      {
+        "case": "P4B",
+        "result": "{\"classification\":\"RED\",\"issues\":[{\"code\":\"NON_SOLICIT\",\"quote\":\"For one year after the date of this Agreement, each Party agrees not to approach, with a view to hiring, any member of the other Party's staff it has dealt with in relation to the Purpose; responses to public job postings are excluded.\",\"reason\":\"Section 9 is a staff non-solicitation restriction. It binds both parties for one year. The carve-out for responses to public job postings does not remove it, and the playbook treats any non-solicit as RED. This needs full legal review. The clause should be deleted.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "NON_SOLICIT",
+              "quote": "For one year after the date of this Agreement, each Party agrees not to approach, with a view to hiring, any member of the other Party's staff it has dealt with in relation to the Purpose; responses to public job postings are excluded.",
+              "reason": "Section 9 is a staff non-solicitation restriction. It binds both parties for one year. The carve-out for responses to public job postings does not remove it, and the playbook treats any non-solicit as RED. This needs full legal review. The clause should be deleted."
+            }
+          ]
+        },
+        "cost_usd": 0.022319300000000004,
+        "duration_ms": 4909,
+        "turns": 1
+      },
+      {
+        "case": "P5B",
+        "result": "{\"classification\":\"YELLOW\",\"issues\":[{\"code\":\"RESIDUALS_BROAD\",\"quote\":\"including information retained in the unassisted memory of its employees, for any purpose\",\"reason\":\"Clause 9 lets each Party freely use information kept in its employees' memory for any purpose. The playbook flags this as a broad residuals clause. The clause says no IP licence is granted, but that does not limit the use of the information itself. Counsel should narrow or delete the clause.\"}]}",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "RESIDUALS_BROAD",
+              "quote": "including information retained in the unassisted memory of its employees, for any purpose",
+              "reason": "Clause 9 lets each Party freely use information kept in its employees' memory for any purpose. The playbook flags this as a broad residuals clause. The clause says no IP licence is granted, but that does not limit the use of the information itself. Counsel should narrow or delete the clause."
+            }
+          ]
+        },
+        "cost_usd": 0.0226545,
+        "duration_ms": 5151,
+        "turns": 1
+      },
+      {
+        "case": "P6B",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.0203542,
+        "duration_ms": 4160,
+        "turns": 1
+      },
+      {
+        "case": "P7B",
+        "result": "{\"classification\": \"RED\", \"issues\": [{\"code\": \"LIQUIDATED_DAMAGES\", \"quote\": \"The Parties agree in advance that a breach of confidentiality causes damage which they assess at AED 150,000, payable on demand by the breaching Party.\", \"reason\": \"Clause 8 fixes a pre-agreed sum payable on demand if confidentiality is breached. This is liquidated damages or a penalty, which the playbook treats as RED. Injunctive relief on its own would be acceptable.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "LIQUIDATED_DAMAGES",
+              "quote": "The Parties agree in advance that a breach of confidentiality causes damage which they assess at AED 150,000, payable on demand by the breaching Party.",
+              "reason": "Clause 8 fixes a pre-agreed sum payable on demand if confidentiality is breached. This is liquidated damages or a penalty, which the playbook treats as RED. Injunctive relief on its own would be acceptable."
+            }
+          ]
+        },
+        "cost_usd": 0.020275500000000002,
+        "duration_ms": 4386,
+        "turns": 1
+      },
+      {
+        "case": "P8B",
+        "result": "{\"classification\":\"YELLOW\",\"issues\":[{\"code\":\"NO_RETENTION_EXCEPTION\",\"quote\":\"save to the extent retention is mandated by law or regulation\",\"reason\":\"The playbook requires the return or destruction clause to allow copies required by law and copies held in back-ups. Clause 6 allows only the legally mandated retention. It has no exception for back-up copies, so counsel review is needed.\"}]}",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "NO_RETENTION_EXCEPTION",
+              "quote": "save to the extent retention is mandated by law or regulation",
+              "reason": "The playbook requires the return or destruction clause to allow copies required by law and copies held in back-ups. Clause 6 allows only the legally mandated retention. It has no exception for back-up copies, so counsel review is needed."
+            }
+          ]
+        },
+        "cost_usd": 0.0221389,
+        "duration_ms": 10489,
+        "turns": 1
+      },
+      {
+        "case": "P9B",
+        "result": "{\"classification\":\"RED\",\"issues\":[{\"code\":\"UNILATERAL\",\"quote\":\"The Recipient shall hold the Discloser's Confidential Information in confidence, use it only for the Purpose and protect it with no less than reasonable care.\",\"reason\":\"The agreement is titled mutual, but \\\"Recipient\\\" is defined as Gulf Horizon only and \\\"Discloser\\\" as the Counterparty only (clause 2). Only Gulf Horizon is bound by the confidentiality obligations, and the Counterparty has none. The playbook treats this as unilateral, which is RED, so the NDA needs full legal review. The undefined terms \\\"Receiving Party\\\" and \\\"Disclosing Party\\\" in clauses 4 and 8 should also be cleaned up when the NDA is made properly mutual.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "UNILATERAL",
+              "quote": "The Recipient shall hold the Discloser's Confidential Information in confidence, use it only for the Purpose and protect it with no less than reasonable care.",
+              "reason": "The agreement is titled mutual, but \"Recipient\" is defined as Gulf Horizon only and \"Discloser\" as the Counterparty only (clause 2). Only Gulf Horizon is bound by the confidentiality obligations, and the Counterparty has none. The playbook treats this as unilateral, which is RED, so the NDA needs full legal review. The undefined terms \"Receiving Party\" and \"Disclosing Party\" in clauses 4 and 8 should also be cleaned up when the NDA is made properly mutual."
+            }
+          ]
+        },
+        "cost_usd": 0.0239013,
+        "duration_ms": 5111,
+        "turns": 1
+      },
+      {
+        "case": "P10B",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.019665300000000004,
+        "duration_ms": 4265,
+        "turns": 1
+      },
+      {
+        "case": "C1",
+        "result": "{\"classification\": \"GREEN\", \"issues\": []}",
+        "answer": {
+          "classification": "GREEN",
+          "issues": []
+        },
+        "cost_usd": 0.0199644,
+        "duration_ms": 5216,
+        "turns": 1
+      },
+      {
+        "case": "C2",
+        "result": "{\"classification\": \"RED\", \"issues\": [{\"code\": \"PERPETUAL\", \"quote\": \"The obligations of confidentiality survive indefinitely after the end of this Agreement.\", \"reason\": \"Confidentiality survives without end for all Confidential Information. There is no trade-secret limitation, so ruling R-2026-02 does not apply. The playbook allows survival of up to 5 years, and survival without end is RED.\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "PERPETUAL",
+              "quote": "The obligations of confidentiality survive indefinitely after the end of this Agreement.",
+              "reason": "Confidentiality survives without end for all Confidential Information. There is no trade-secret limitation, so ruling R-2026-02 does not apply. The playbook allows survival of up to 5 years, and survival without end is RED."
+            }
+          ]
+        },
+        "cost_usd": 0.019877600000000002,
+        "duration_ms": 3129,
+        "turns": 1
+      },
+      {
+        "case": "C3",
+        "result": "{\"classification\": \"YELLOW\", \"issues\": [{\"code\": \"TERM_TOO_LONG\", \"quote\": \"This Agreement has an initial term of five (5) years and renews automatically for successive periods of one (1) year unless either Party gives thirty (30) days' written notice of non-renewal.\", \"reason\": \"Under ruling R-2026-01, the term measured against the three-year limit is the initial term, because either Party can stop the renewal by notice. The initial term is five years, which is more than the three years the playbook accepts. Survival of three years after the end is within the five-year limit. The NDA is mutual, has all five exclusions, allows retention for legal and back-up copies, and has no restrictive covenants or liquidated damages. DIFC law and forum are acceptable, and the NDA is English-only, so no translation issue arises.\"}]}",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "TERM_TOO_LONG",
+              "quote": "This Agreement has an initial term of five (5) years and renews automatically for successive periods of one (1) year unless either Party gives thirty (30) days' written notice of non-renewal.",
+              "reason": "Under ruling R-2026-01, the term measured against the three-year limit is the initial term, because either Party can stop the renewal by notice. The initial term is five years, which is more than the three years the playbook accepts. Survival of three years after the end is within the five-year limit. The NDA is mutual, has all five exclusions, allows retention for legal and back-up copies, and has no restrictive covenants or liquidated damages. DIFC law and forum are acceptable, and the NDA is English-only, so no translation issue arises."
+            }
+          ]
+        },
+        "cost_usd": 0.0232355,
+        "duration_ms": 4802,
+        "turns": 1
+      },
+      {
+        "case": "C4",
+        "result": "{\"classification\":\"RED\",\"issues\":[{\"code\":\"PERPETUAL\",\"quote\":\"any information marked \\\"highly confidential\\\", shall be protected indefinitely\",\"reason\":\"Information marked \\\"highly confidential\\\" is protected indefinitely, with no end date, and that is not limited to trade secrets. Under ruling R-2026-02, protecting trade secrets only for as long as they remain trade secrets is acceptable, so that part of the clause is fine. The \\\"highly confidential\\\" category is a confidentiality obligation without end, and the playbook classes that as PERPETUAL (RED).\"}]}",
+        "answer": {
+          "classification": "RED",
+          "issues": [
+            {
+              "code": "PERPETUAL",
+              "quote": "any information marked \"highly confidential\", shall be protected indefinitely",
+              "reason": "Information marked \"highly confidential\" is protected indefinitely, with no end date, and that is not limited to trade secrets. Under ruling R-2026-02, protecting trade secrets only for as long as they remain trade secrets is acceptable, so that part of the clause is fine. The \"highly confidential\" category is a confidentiality obligation without end, and the playbook classes that as PERPETUAL (RED)."
+            }
+          ]
+        },
+        "cost_usd": 0.022604100000000002,
+        "duration_ms": 4806,
+        "turns": 1
+      },
+      {
+        "case": "C5",
+        "result": "{\"classification\":\"YELLOW\",\"issues\":[{\"code\":\"TERM_TOO_LONG\",\"quote\":\"is renewed automatically for further periods of three (3) years; it cannot be terminated before the end of a period\",\"reason\":\"The initial term is 3 years, which is within the playbook limit. But the Agreement renews automatically for further 3-year periods, and no clause lets either Party stop the renewal by notice. Under ruling R-2026-01, TERM_TOO_LONG applies when the renewal cannot be stopped by notice. The Agreement could therefore run indefinitely, and the 3-year survival period would never start to run.\"}]}",
+        "answer": {
+          "classification": "YELLOW",
+          "issues": [
+            {
+              "code": "TERM_TOO_LONG",
+              "quote": "is renewed automatically for further periods of three (3) years; it cannot be terminated before the end of a period",
+              "reason": "The initial term is 3 years, which is within the playbook limit. But the Agreement renews automatically for further 3-year periods, and no clause lets either Party stop the renewal by notice. Under ruling R-2026-01, TERM_TOO_LONG applies when the renewal cannot be stopped by notice. The Agreement could therefore run indefinitely, and the 3-year survival period would never start to run."
+            }
+          ]
+        },
+        "cost_usd": 0.0242331,
+        "duration_ms": 5530,
+        "turns": 1
+      }
+    ]
+  ]
+}

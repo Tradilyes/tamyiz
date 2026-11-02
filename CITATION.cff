@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use tamyiz or its results, please cite it as below."
+title: "tamyiz: a legal team's internal case law for its AI tools — edge probes, binding rulings and the tests that check every tool follows them"
+authors:
+  - family-names: "Trad"
+    given-names: "Ilyes M."
+version: 0.1.0
+date-released: 2026-11-02
+license: MIT
+repository-code: "https://github.com/Tradilyes/tamyiz"
+keywords: [legal AI, playbook, contract review, NDA, evaluation, case law, precedent, in-house legal, Claude for Legal, Arabic, Gulf]

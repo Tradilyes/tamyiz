@@ -6,7 +6,7 @@
 //   --condition before   the playbook only
 //   --condition after    the playbook and the General Counsel's rulings in force (caselaw/gulf-horizon)
 //   node suites/nda-boundary/run.mjs --arm opus-plain --mode plain --model opus --effort high --condition before [--split mine|test|control]
-//   node suites/nda-boundary/run.mjs --mine      the questions the reviewers disagree on (before, wording A)
+//   node suites/nda-boundary/run.mjs --mine      how the reviewers read the edge NDAs (before, wording A)
 //   node suites/nda-boundary/run.mjs --report    scores every arm, before and after, and writes RESULTS.md
 //   node suites/nda-boundary/run.mjs --prompt P1A [--condition after]     prints the task of one case
 //   node suites/nda-boundary/run.mjs --show-system cfl [--condition after] prints an arm's instructions
@@ -86,40 +86,45 @@ function load(condition) {
 // One answer per case per arm (the latest run).
 const byCase = data => Object.fromEntries(Object.entries(data).map(([arm, d]) => [arm, Object.fromEntries(d.runs.flat().map(x => [x.case, x.answer]))]));
 
-function mining() {
-  const before = byCase(load("before"));
-  const ids = CASES.filter(c => c.split === "mine").map(c => c.id);
-  const m = mine(before, ids);
-  return { ...m, questions: m.questions.map(q => ({ ...q, pattern: PATTERNS.find(p => `${p.id}A` === q.id) })) };
-}
-
 function report() {
+  const before = byCase(load("before")), after = byCase(load("after"));
+  const ORDER = ["opus-plain", "opus-cfl", "sonnet-plain", "haiku-system"];
+  const reviewers = Object.keys(before).sort((a, b) => (ORDER.indexOf(a) + 1 || 99) - (ORDER.indexOf(b) + 1 || 99));
+  const keySig = c => `${c.key.classification}|${[...c.key.issues].sort().join(",")}`;
+  const reading = r => `${r.classification ?? "no answer"}${r.codes.length ? ` · ${r.codes.join(", ")}` : ""}`;
   const L = ["# Boundary NDAs — results", "",
-    `Twenty-two NDAs of Gulf Horizon Holding LLC (Dubai): ten questions of interpretation the playbook does not settle on its own, each in two wordings (A, to find the disagreements; B, held out), and two controls. Same playbook, same task text for every reviewer; keys fixed before the first run (\`suites/nda-boundary/cases.mjs\`). *before*: the playbook only; *after*: the playbook and the General Counsel's rulings in force on ${AS_OF} (\`caselaw/gulf-horizon/rulings.json\`).`, ""];
-  const m = mining();
-  L.push("## 1. The questions the reviewers disagreed on (wording A, before any ruling)", "",
-    `Reviewers: ${m.reviewers.join(", ")}. Unanimous on ${m.unanimous} of ${m.cases.length} NDAs; pairwise agreement ${Math.round(m.pairwiseRate * 100)}%.`, "",
-    "| NDA | Question | Readings (routing · codes ← reviewers) |", "|---|---|---|",
-    ...m.cases.map(c => { const p = PATTERNS.find(x => `${x.id}A` === c.id); return `| ${c.id} | ${p?.question ?? ""} | ${c.unanimous ? "unanimous: " : ""}${c.readings.map(r => `${r.classification ?? "no answer"} · ${r.codes.join(", ") || "none"} ← ${r.reviewers.join(", ")}`).join("<br>")} |`; }), "");
-  for (const condition of ["before", "after"]) {
-    const data = byCase(load(condition));
-    if (!Object.keys(data).length) continue;
-    L.push(`## ${condition === "before" ? "2" : "3"}. Accuracy against the rulings, ${condition}`, "", "| Reviewer | Held-out NDAs (B): right routing | B: exactly right | Controls | Mining NDAs (A): exactly right |", "|---|---:|---:|---:|---:|");
-    for (const [arm, ans] of Object.entries(data)) {
-      const sc = split => CASES.filter(c => c.split === split && ans[c.id] !== undefined).map(c => score(ans[c.id], c.key));
-      const t = sc("test"), k = sc("control"), a = sc("mine");
-      const pct = (xs, f) => xs.length ? `${xs.filter(f).length}/${xs.length}` : "—";
-      L.push(`| ${arm} | ${pct(t, x => x.routing)} | ${pct(t, x => x.exact)} | ${pct(k, x => x.exact)} | ${pct(a, x => x.exact)} |`);
-    }
-    const ids = CASES.filter(c => c.split === "test").map(c => c.id).filter(id => Object.values(data).every(a => a[id] !== undefined));
-    if (ids.length) { const mm = mine(data, ids); L.push("", `Held-out NDAs: the reviewers were unanimous on ${mm.unanimous} of ${ids.length}; pairwise agreement ${Math.round(mm.pairwiseRate * 100)}%.`); }
-    L.push("");
+    `Twenty-five NDAs of Gulf Horizon Holding LLC (Dubai): ten questions of interpretation the playbook does not settle on its own, each in two wordings (A, reviewed by the General Counsel; B, held out), and five controls, three of which guard against a ruling reaching too far. Same playbook and same task text for every reviewer. Keys fixed before the first run (commit 1016822; guards in a9b6fc0); rulings written before any held-out run with them (b24726a). *before*: the playbook only. *after*: the playbook and the General Counsel's rulings in force on ${AS_OF} (\`caselaw/gulf-horizon/rulings.json\`).`, "",
+    `Reviewers: ${reviewers.join(", ")}.`, ""];
+  const mineIds = CASES.filter(c => c.split === "mine").map(c => c.id).filter(id => reviewers.every(r => before[r][id] !== undefined));
+  const m = mine(before, mineIds);
+  const sameAsTeam = m.cases.filter(c => c.unanimous && `${c.readings[0].classification}|${c.readings[0].codes.join(",")}` === keySig(CASES.find(x => x.id === c.id)));
+  const unanimousOther = m.cases.filter(c => c.unanimous && !sameAsTeam.includes(c));
+  L.push("## 1. How the reviewers read the edge NDAs, before any ruling (wording A)", "",
+    `Unanimous on ${m.unanimous} of ${m.cases.length}. Their common reading is the team's on ${sameAsTeam.length}; on ${unanimousOther.length} (${unanimousOther.map(c => c.id).join(", ") || "none"}) every reviewer read the playbook otherwise than the General Counsel meant — which no comparison between the reviewers can show.`, "",
+    "| NDA | Question | Reading (← reviewers) | Team's position | Same? |", "|---|---|---|---|---|",
+    ...m.cases.map(c => { const k = CASES.find(x => x.id === c.id); const p = PATTERNS.find(x => `${x.id}A` === c.id); const same = c.unanimous ? (sameAsTeam.includes(c) ? "yes" : "no — all reviewers") : "split"; return `| ${c.id} | ${p?.question ?? ""} | ${c.readings.map(r => `${reading(r)} ← ${r.reviewers.join(", ")}`).join("<br>")} | ${k.key.classification}${k.key.issues.length ? ` · ${k.key.issues.join(", ")}` : ""} | ${same} |`; }), "");
+  const guardIds = CASES.filter(c => c.split === "control").map(c => c.id).filter(id => reviewers.every(r => before[r][id] !== undefined));
+  const g = mine(before, guardIds);
+  L.push("## 2. Controls and guards, before any ruling", "",
+    "| NDA | Reading (← reviewers) | Key |", "|---|---|---|",
+    ...g.cases.map(c => { const k = CASES.find(x => x.id === c.id); return `| ${c.id}${k.guards ? ` (guards ${k.guards})` : ""} | ${c.readings.map(r => `${reading(r)} ← ${r.reviewers.join(", ")}`).join("<br>")} | ${k.key.classification}${k.key.issues.length ? ` · ${k.key.issues.join(", ")}` : ""} |`; }), "");
+  const ids = split => CASES.filter(c => c.split === split).map(c => c.id);
+  const exact = (ans, list) => list.filter(id => ans?.[id] !== undefined).map(id => score(ans[id], CASES.find(c => c.id === id).key));
+  const frac = xs => (xs.length ? `${xs.filter(x => x.exact).length}/${xs.length}` : "—");
+  L.push("## 3. Held-out NDAs and guards, before and after the rulings", "",
+    "*Exactly right*: the right routing and exactly the codes of the key, no more, no fewer.", "",
+    "| Reviewer | Held-out (B), before | Held-out (B), after | Controls and guards, before | Controls and guards, after |", "|---|---:|---:|---:|---:|",
+    ...reviewers.map(r => `| ${r} | ${frac(exact(before[r], ids("test")))} | ${frac(exact(after[r], ids("test")))} | ${frac(exact(before[r], ids("control")))} | ${frac(exact(after[r], ids("control")))} |`), "");
+  for (const [name, data] of [["before", before], ["after", after]]) {
+    const list = [...ids("test"), ...ids("control")].filter(id => reviewers.every(r => data[r]?.[id] !== undefined));
+    if (list.length) { const mm = mine(data, list); L.push(`- ${name}: the reviewers were unanimous on ${mm.unanimous} of ${list.length} held-out and control NDAs (pairwise agreement ${Math.round(mm.pairwiseRate * 100)}%).`); }
   }
+  L.push("");
   const costs = ["before", "after"].flatMap(cond => Object.entries(load(cond)).map(([arm, d]) => { const xs = d.runs.flat(); return `| ${arm} | ${cond} | ${xs.length} | ${(xs.reduce((s, x) => s + (x.cost_usd ?? 0), 0) / xs.length).toFixed(4)} | ${(xs.reduce((s, x) => s + (x.duration_ms ?? 0), 0) / xs.length / 1000).toFixed(1)} s |`; }));
-  L.push("## Cost and time", "", "| Reviewer | Condition | Reviews | Cost per NDA (USD) | Time per NDA |", "|---|---|---:|---:|---:|", ...costs, "",
-    "Costs and times are what `claude -p` reported. *Exactly right* means the right routing and exactly the codes of the key, no more, no fewer.", "");
+  L.push("## 4. Cost and time", "", "| Reviewer | Condition | Reviews | Cost per NDA (USD) | Time per NDA |", "|---|---|---:|---:|---:|", ...costs, "",
+    "Costs and times are what `claude -p` reported. One run per reviewer, NDA and condition.", "");
   writeFileSync(join(here, "RESULTS.md"), L.join("\n"));
-  writeFileSync(join(here, "mining.json"), JSON.stringify(m, null, 2) + "\n");
+  writeFileSync(join(here, "summary.json"), JSON.stringify({ reviewers, edge: m, guards: g, scores: Object.fromEntries(reviewers.map(r => [r, { testBefore: frac(exact(before[r], ids("test"))), testAfter: frac(exact(after[r], ids("test"))), controlsBefore: frac(exact(before[r], ids("control"))), controlsAfter: frac(exact(after[r], ids("control"))) }])) }, null, 2) + "\n");
   console.log(L.join("\n"));
 }
 
@@ -127,7 +132,7 @@ const main = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[
 if (main) {
   const condition = String(args.condition ?? "before");
   if (args.report) { report(); process.exit(0); }
-  if (args.mine) { console.log(JSON.stringify(mining(), null, 2)); process.exit(0); }
+  if (args.mine) { const b = byCase(load("before")); console.log(JSON.stringify(mine(b, CASES.filter(c => c.split === "mine").map(c => c.id)), null, 2)); process.exit(0); }
   if (args.prompt) { console.log(task(CASES.find(c => c.id === args.prompt), condition)); process.exit(0); }
   if (args["show-system"]) { console.log(system(String(args["show-system"]), condition)); process.exit(0); }
   const mode = String(args.mode ?? "plain");
