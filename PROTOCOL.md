@@ -1,7 +1,12 @@
-# Study A — protocol
+# Study A — protocol (set aside)
 
-Draft of 4 November 2026, to be reviewed by the author and registered on OSF before any reading is
-collected. After registration, every change is listed under "Deviations" with its date and reason.
+**Status, 4 November 2026: set aside, not registered.** This design needs a recruited panel of lawyers.
+The programme now relies only on studies its author can run alone, with references that need no
+panel: Study B ([suites/language-parity/](suites/language-parity/)) and, next, Study C, which takes
+its human reference from published decisions in which courts disagreed on the meaning of a contract
+clause. This draft is kept for the record.
+
+Draft of 4 November 2026.
 
 **Working title.** Unanimous machines, divided lawyers? How AI contract reviewers read the edges of a
 playbook, and whether a team's rulings change it.

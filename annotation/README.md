@@ -1,5 +1,7 @@
 # Reading instructions for the panel
 
+> Material for Study A, which is set aside (see [PROTOCOL.md](../PROTOCOL.md)). Kept for the record; no reading is being collected.
+
 Thank you for taking part. You will read short non-disclosure agreements and say how a company's legal
 team should route each of them under its playbook. There is no right answer we are waiting for: we
 record how qualified lawyers read the same clauses, including where they disagree.

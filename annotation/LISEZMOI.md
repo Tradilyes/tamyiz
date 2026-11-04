@@ -1,5 +1,7 @@
 # Consignes de lecture pour le collège
 
+> Matériel de l'étude A, mise de côté (voir [PROTOCOL.md](../PROTOCOL.md)). Conservé pour mémoire ; aucune lecture n'est recueillie.
+
 Merci de participer. Vous allez lire de courts accords de confidentialité (NDA) et dire comment
 l'équipe juridique d'une entreprise devrait traiter chacun d'eux selon ses règles internes (son
 « playbook »). Il n'y a pas de bonne réponse attendue : nous recueillons la lecture de juristes
