@@ -8,8 +8,9 @@ question and language, a pushback turn, and Opus with web search.
 
 Status: **registered on 4 November 2026, before any run** ([PROTOCOL.md](PROTOCOL.md)); run from
 19:01 that evening (first reply 29 seconds after the registration commit). The account's usage limit
-interrupted the runs twice; the last 74 replies of run 3 are asked after it resets. Results will be in
-[RESULTS.md](RESULTS.md), generated from the replies committed in `answers/`. The deviations, on the
+interrupted the runs twice; the last 74 replies of run 3 were asked after it reset, on 5 November
+between 00:51 and 00:53. 2,106 replies in all. Results in [RESULTS.md](RESULTS.md), generated from the
+replies committed in `answers/`. The deviations, on the
 order and timing of the runs only, are listed in the protocol. In the web condition, Claude Code reads web pages with Claude
 Haiku 5.5, which is why that model also appears in its replies.
 

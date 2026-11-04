@@ -131,9 +131,12 @@ Runs from 4 November 2026; analysis as soon as the runs are complete.
   with web search, then run 3, so that the two runs H1 needs come before the most expensive
   condition. Replies are kept with the time they were given.
 - **4 November 2026, 20:18.** The usage limit was reached again during run 3, after the web
-  condition was complete: 74 replies of run 3 were missing (Haiku 31, Opus 39, Sonnet 4). They are
-  asked after the limit resets, early on 5 November, with the same instructions; every reply keeps
-  its time.
+  condition was complete: 74 replies of run 3 were missing (Haiku 31, Opus 39, Sonnet 4). They were
+  asked after the limit reset, on 5 November between 00:51 and 00:53 (Paris time), with the same
+  instructions; every reply keeps its time.
+- **Note on run 1.** When a pushback turn failed, the runner asked both turns again; the first answer
+  then exists twice (3 questions for Haiku, 1 for Sonnet). The analysis uses the later one, the one
+  the pushback turn followed. Both stay in the reply files.
 
 ## 11. Use of AI
 
