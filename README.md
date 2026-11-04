@@ -1,132 +1,139 @@
 # tamyiz
 
-**A legal team's own case law, for every AI tool it uses.**
-Every AI reviewer — Claude for Legal's agents, a legal-tech product, a model with a good prompt —
-reads the team's playbook its own way. On the clear points they agree with each other and with the
-team. On the edges, where the playbook does not say enough, they still agree with each other — and
-can all be wrong about what the General Counsel meant. tamyiz finds those edges, puts each one to the
-General Counsel once, turns the answer into a ruling that binds every tool, and checks that they all
-follow it, today and after the next model update.
+A research programme on how AI systems read legal rules, and on how a legal team can make them read
+its rules its own way. It builds reference readings with a panel of lawyers, keeps their
+disagreements, and measures AI systems against them, in English, French and Arabic.
 
-In Arabic, *tamyīz* (تمييز) is discernment. It is also the name of the court of cassation in Dubai,
-Kuwait and Jordan: the court whose rulings make the law read the same way everywhere.
+Status: pilot done (2 November 2026); Study A in preparation, to be registered publicly before any
+run. Author: Ilyes M. Trad, doctoral researcher in law (artificial intelligence and legal technology),
+MANAR University.
 
-[Français](README.fr.md) · [العربية](README.ar.md)
+[Résumé en français](README.fr.md) · [ملخص بالعربية](README.ar.md)
 
----
+## Question
 
-## What it found
+A contract playbook tells a reviewer, human or AI, which clauses the organisation accepts. It cannot
+settle every case. Legal theory has long described this open texture: some cases fall in a penumbra
+where competent interpreters differ (Hart 1961), and choosing among the possible readings is a
+decision rather than a discovery (Kelsen 1960; Troper 2001). Recent empirical work finds that large
+language models answer questions of legal interpretation unstably and are at best moderately aligned
+with human judgments (Purushothama et al. 2025; Waldon et al. 2025), and that different models tend
+to make the same errors (Kim et al. 2025).
 
-**Twenty-five NDAs at the edge of a Dubai company's playbook**, read by four AI reviewers: Claude
-Opus 5.5 alone; Claude Opus 5.5 running Claude for Legal's NDA Triager, set up for the team as its
-interview would set it up; Claude Sonnet 5.5 alone; Claude Haiku 5.5 as an agent with
-[courtproof](https://github.com/Tradilyes/courtproof)'s checks. Ten questions of interpretation in two
-wordings each (one reviewed by the General Counsel, one held out), and five controls, three of which
-guard against a ruling reaching too far. Keys were committed before the first run, rulings before the
-runs that test them ([full results](suites/nda-boundary/RESULTS.md)).
+tamyiz asks two questions. Where qualified lawyers disagree on how a rule applies, do AI reviewers
+from different providers converge on one reading anyway, closing the question without anyone having
+decided it? And can a team's explicit rulings bring every reviewer to the team's reading, without
+reaching cases the rulings were not written for?
 
-1. **The four reviewers read all ten edge clauses the same way.** Eight as the General Counsel meant.
-   Two otherwise, all four together: an NDA of three years that renews unless a party gives notice
-   went to counsel review (term too long), and the usual protection of trade secrets "for as long as
-   they remain trade secrets" went to full legal review (perpetual). Comparing the tools with each
-   other shows nothing; only the General Counsel's review of the edges does.
+## Method
 
-2. **Two rulings fixed every tool at once**, the official agent included, because a ruling travels as
-   text into each tool's instructions:
+1. Each position of a playbook is placed at its limit in short contract clauses ("edge items"), in two
+   or three wordings.
+2. A panel of lawyers reads every item blind and gives a routing, issue codes and reasons. Their
+   disagreement is recorded, not settled by a vote: each item keeps its majority reading, its dissents
+   and the reasons for both, in the spirit of perspectivist annotation (Cabitza et al. 2023).
+3. AI reviewers from several providers read the same items, several times each, under the same
+   instructions.
+4. A team's rulings (short, reasoned decisions on the questions in dispute) are added to every
+   reviewer's instructions and tested on held-out wordings, and on guard items they must not change.
 
-   | Reviewer | Held-out NDAs, before | after two rulings | Controls and guards, before | after |
-   |---|---|---|---|---|
-   | Claude Opus 5.5 alone | 8 / 10 | **10 / 10** | 5 / 5 | 5 / 5 |
-   | Claude Opus 5.5 running Claude for Legal's NDA Triager | 8 / 10 | **10 / 10** | 5 / 5 | 5 / 5 |
-   | Claude Sonnet 5.5 alone | 8 / 10 | **10 / 10** | 4 / 5 | 5 / 5 |
-   | Claude Haiku 5.5 + courtproof, as an agent | 8 / 10 | **10 / 10** | 5 / 5 | 5 / 5 |
+## Pilot (2 November 2026)
 
-3. **The rulings did not reach further than they were written to.** A five-year term that renews,
-   a renewal nobody can stop, and "highly confidential" information protected forever stayed flagged
-   for every reviewer. The one real disagreement of the study — on the renewal nobody can stop, one
-   reviewer also saw a perpetual obligation — disappeared under the first ruling, which says what to
-   do with it.
+Twenty-five NDAs at the edge of the playbook of a fictional Dubai company: ten questions of
+interpretation in two wordings (A reviewed, B held out) and five controls, three of which guard
+against a ruling reaching too far. Four reviewers, all from one provider: Claude Opus 5.5 with the
+playbook; Claude Opus 5.5 running the NDA Triager of Anthropic's Claude for Legal; Claude Sonnet 5.5;
+Claude Haiku 5.5 with the deterministic checks of [courtproof](https://github.com/Tradilyes/courtproof).
+One run per reviewer and condition.
 
-The cost per NDA barely moved: the two rulings add under two hundred words to a prompt.
+| Measure | Result (95 % Wilson interval) |
+|---|---|
+| Edge items read the same way by the four reviewers | 10/10 (72–100 %) |
+| Edge items read as the stipulated key | 8/10 (49–94 %) |
+| Held-out wordings, each reviewer, before and after two rulings | 8/10 (49–94 %), then 10/10 (72–100 %); exact McNemar p = 0.50 |
+| Controls and guards after the rulings, each reviewer | 5/5 (57–100 %) |
 
-## How it works
+The four reviewers never disagreed with one another on the edge items. On two questions they all
+departed from the stated intention of the fictional General Counsel: a three-year NDA that renews
+unless a party gives notice, and the protection of trade secrets "for as long as they remain trade
+secrets". Two rulings changed both readings for every reviewer, and the guards were unaffected.
 
-```mermaid
-flowchart LR
-  P[Playbook<br/>the team's positions] --> E[Edge NDAs<br/>each position at its limit,<br/>two wordings]
-  E --> R1[Reviewer A] & R2[Reviewer B] & R3[Reviewer C]
-  R1 & R2 & R3 --> Q{"Readings<br/>split, or unlike<br/>the team's?"}
-  Q -- yes --> GC[General Counsel<br/>rules once, with reasons]
-  GC --> CL[(Case law<br/>dated, sourced,<br/>in force or overturned)]
-  CL --> I[Instructions of every tool]
-  CL --> T[Regression tests<br/>held-out wordings, guards]
-  L[Change in the law<br/>or in the playbook] --> CL
+None of this is a finding. The key was stipulated by the author, acting as the General Counsel; the
+reviewers' own reading of P1 and P2 is defensible. The sample is ten questions, one run and one
+provider. The keys were committed locally before the runs, but local commit dates prove nothing to a
+third party. The pilot motivates Study A; it does not test its hypotheses. Full re-analysis:
+[analysis/PILOT.md](analysis/PILOT.md). Original report: [suites/nda-boundary/RESULTS.md](suites/nda-boundary/RESULTS.md).
+
+## Study A (in preparation)
+
+- H1: on edge items, agreement among AI reviewers from different providers exceeds agreement among
+  lawyers.
+- H2 (descriptive): on a share of items, the reading most AI reviewers give differs from the reading
+  most lawyers give; on some items lawyers split while the AI reviewers are unanimous.
+- H3: rulings written on one wording raise agreement with the team's key on held-out wordings, and do
+  not lower it on guard items.
+
+At least 40 questions in three wordings, read by at least five lawyers and by at least four model
+families, three runs each; English, with French and Arabic versions of a subset; part of the items
+kept private so that they cannot be trained on. The protocol is in [PROTOCOL.md](PROTOCOL.md), the
+material for the panel in [annotation/](annotation/). Registration on OSF before any run; submission
+to ICAIL 2027.
+
+## Repository
+
+| Path | Content |
+|---|---|
+| `suites/nda-boundary/` | Pilot items, keys, runner and committed answers |
+| `caselaw/`, `spec/` | The fictional team's two rulings and the format of a ruling |
+| `engine/` | Rulings (validate, compile, overturn) and comparison of readers |
+| `analysis/` | Statistics, checked against published worked examples, and the pilot re-analysis |
+| `annotation/` | Instructions, codebook, reading form and consent text for the panel |
+| `desk/` | A working prototype of the governance layer: a Claude page where a team reviews NDAs, sends open questions to its General Counsel and applies the rulings |
+| `paper/` | Outline and checked references for the Study A paper |
+
 ```
-
-- **A ruling** answers one question, with its reasons, the playbook positions it interprets, the legal
-  facts it rests on, and a status ([format](spec/caselaw.schema.json)). It is never edited: a later
-  ruling overturns it, and the record keeps both.
-- **Compiled into every tool**: `compileInstructions` gives the rulings in force as text to put under
-  the playbook — in a Claude for Legal practice profile, a custom assistant, a legal-tech workflow.
-  The team's interpretation stays the team's, whichever vendor it uses next year.
-- **Checked**: each ruling comes with the wording it was decided on, a held-out wording and guards;
-  the suite runs again after every model or tool update.
-- **Kept current**: `affectedBy` lists the rulings to review when a playbook position or a legal fact
-  changes (with [compliance-atlas](https://github.com/Tradilyes/compliance-atlas)'s dated facts).
-
-## Use it
-
-**In Claude, as a page the team shares.** [`desk/`](desk/) builds the *Tamyiz NDA Desk*: Claude
-reviews an NDA in English and Arabic, with courtproof's checks as its tools (the two versions, every
-quote, the routing); points the playbook leaves open go to the General Counsel in one click; each
-ruling binds every later review; edge probes show how Claude reads the playbook today; the case law
-copies into any other tool's instructions. Claude runs on each viewer's own account.
-
-```
-node desk/build.mjs        # needs a courtproof checkout beside this one
-# then publish desk/artifact.html as an artifact in Claude
-```
-
-**From the command line, with any reviewer** (Claude Code runs the reviewers here):
-
-```
-node suites/nda-boundary/run.mjs --arm opus-plain --mode plain --model opus --effort high --condition before --split all
-node suites/nda-boundary/run.mjs --arm opus-cfl --mode cfl --model opus --effort high --condition after --split test
+node --test tests/*.test.mjs          # engine and statistics
+node analysis/pilot.mjs               # re-analysis of the pilot from the committed answers
 node suites/nda-boundary/run.mjs --report
-node suites/nda-boundary/run.mjs --show-system cfl --condition after   # what Claude for Legal's agent receives
 ```
 
-**In code**: `engine/caselaw.mjs` (validate, rulings in force on a date, compile, dependencies,
-overturn) and `engine/mine.mjs` (readings of several reviewers, codes in dispute, agreement). No
-dependencies.
+## Related work
 
-## What this does not show
+Arbel and Hoffman (2024) propose using language models to interpret contracts. Purushothama et al.
+(2025) and Waldon et al. (2025) test and criticise their use for the ordinary meaning of statutes;
+Kim et al. (2025) measure correlated errors across models; Chen and Zhang (2025) align human and AI
+decisions with precedents. Legal benchmarks such as LegalBench (Guha et al. 2023), ContractNLI
+(Koreeda and Manning 2021) and, in Arabic, ArabLegalEval (Hijazi et al. 2024) score models against a
+single answer. tamyiz differs in three ways: it studies the application of a contract playbook rather
+than the meaning of a statute; it compares agreement among machines with disagreement among lawyers
+on the same items; and it tests a remedy, the team's rulings, on held-out wordings and guard items.
 
-- One suite: NDAs, in English, twenty-five documents, one run per reviewer and condition. The
-  documents, the keys and the rulings are the author's, for a fictional company; another General
-  Counsel could rule the other way. The method does not decide what is right: it makes the team's
-  choice explicit, binding and tested.
-- Four reviewers, all on Claude models. Products of other vendors were not tested; more independent
-  reviewers surface more disagreements.
-- Edge NDAs are written by hand. Generating them from any playbook, in Arabic and French as well, is
-  the next step.
+## Use of AI in this work
 
-## Next
+The code, the pilot items, keys and rulings, and drafts of this text were written with Claude
+(Anthropic) under the author's direction. The research questions, the design and the decision to
+publish are the author's. Before Study A the author reviews, and where needed rewrites, the items,
+keys and rulings; the panel's readings are human. Every figure on this page is computed by code in
+this repository from committed data.
 
-- Edge NDAs generated from a playbook's positions, in English, Arabic and French — including the
-  questions only a bilingual contract raises (which version prevails, a term defined in one language).
-- A vendor-review suite from compliance-atlas, where the first two questions are already known: does
-  a no-training promise cover the outputs; does a host's certification cover the vendor.
-- Rulings that rest on a legal fact, flagged when compliance-atlas records a change in that fact.
-- The case law as a resource any MCP client can read.
+## References
 
-## Related
+- Arbel, Y. A. and Hoffman, D. A. (2024). Generative Interpretation. *New York University Law Review* 99, 451.
+- Cabitza, F., Campagner, A. and Basile, V. (2023). Toward a Perspectivist Turn in Ground Truthing for Predictive Computing. *Proceedings of the AAAI Conference on Artificial Intelligence* 37(6). doi:10.1609/aaai.v37i6.25840.
+- Chen, Q. Z. and Zhang, A. X. (2025). Case Law Grounding: Using Precedents to Align Decision-Making for Humans and AI. arXiv:2310.07019.
+- Guha, N. et al. (2023). LegalBench: A Collaboratively Built Benchmark for Measuring Legal Reasoning in Large Language Models. *NeurIPS 2023, Datasets and Benchmarks*.
+- Hart, H. L. A. (1961). *The Concept of Law*, ch. VII. Oxford: Clarendon Press.
+- Hijazi, F. et al. (2024). ArabLegalEval: A Multitask Benchmark for Assessing Arabic Legal Knowledge in Large Language Models. *Proceedings of ArabicNLP 2024*. doi:10.18653/v1/2024.arabicnlp-1.20.
+- Kelsen, H. (1960). *Reine Rechtslehre*, 2nd ed., ch. VIII. Vienna: Deuticke. French translation by Ch. Eisenmann, *Théorie pure du droit*, Dalloz, 1962.
+- Kim, E. M., Garg, A., Peng, K. and Garg, N. (2025). Correlated Errors in Large Language Models. *ICML 2025*, PMLR 267, 30038–30066.
+- Koreeda, Y. and Manning, C. D. (2021). ContractNLI: A Dataset for Document-level Natural Language Inference for Contracts. *Findings of EMNLP 2021*.
+- Purushothama, A., Min, J., Waldon, B. and Schneider, N. (2025). Not ready for the bench: LLM legal interpretation is unstable and out of step with human judgments. *NLLP 2025*. arXiv:2510.25356.
+- Troper, M. (2001). *La théorie du droit, le droit, l'État*. Paris: PUF.
+- Waldon, B., Schneider, N., Wilcox, E., Zeldes, A. and Tobia, K. (2025). Large Language Models for Legal Interpretation? Don't Take Their Word for It. *Georgetown Law Journal* 114, 115.
 
-- [courtproof](https://github.com/Tradilyes/courtproof): the checks the desk gives Claude as tools.
-- [compliance-atlas](https://github.com/Tradilyes/compliance-atlas): dated, sourced Gulf and EU data-protection facts.
+Full entries: [paper/references.bib](paper/references.bib).
 
----
+## Licence and citation
 
-Designed by **ILYES M. TRAD**, researcher in law and artificial intelligence. Written with the help of
-an AI assistant (Claude); every figure on this page comes from the code and answers in this repository.
-MIT licence; the Claude for Legal files in `baseline/` keep their Apache 2.0 licence.
+MIT; the Claude for Legal files in `baseline/` keep their Apache 2.0 licence. How to cite:
+[CITATION.cff](CITATION.cff).

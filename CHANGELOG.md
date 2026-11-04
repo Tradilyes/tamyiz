@@ -1,5 +1,21 @@
 # Changes
 
+## 0.2.0 — 4 November 2026
+
+- The repository becomes the home of a research programme. README rewritten as a research report:
+  question, method, pilot with 95 % intervals, related work, references, use of AI. French and Arabic
+  pages are now summaries of the English text.
+- `analysis/`: statistics (Wilson interval, exact McNemar test, Fleiss' kappa, Krippendorff's alpha),
+  each checked against a published worked example; re-analysis of the pilot from the committed answers
+  (`analysis/PILOT.md`).
+- `PROTOCOL.md`: the protocol of Study A, to be registered on OSF before any reading.
+- `annotation/`: instructions in English and French, codebook, reading form, consent text;
+  `spec/reading.schema.json` and `spec/adjudicated-item.schema.json`.
+- `paper/`: outline and checked references; `NOTE-METHODOLOGIQUE.md`: the plan of the note the author
+  writes himself.
+- Corrected: the keys and rulings of the pilot were committed locally before the runs, which is not
+  proof to a third party; the pages now say so. Removed `AGENTS.md`.
+
 ## 0.1.0 — 2 November 2026
 
 - Case law engine: rulings with their question, holding, reasons, playbook positions, legal facts and status;

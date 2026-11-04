@@ -1,11 +1,13 @@
 cff-version: 1.2.0
-message: "If you use tamyiz or its results, please cite it as below."
-title: "tamyiz: a legal team's internal case law for its AI tools — edge probes, binding rulings and the tests that check every tool follows them"
+message: "If you use tamyiz, its items or its results, please cite it as below."
+title: "tamyiz: reference readings by a panel of lawyers, and a test of whether AI contract reviewers settle what a playbook leaves open"
+abstract: "A research programme on how AI systems read legal rules. Edge items place each position of a contract playbook at its limit; a panel of lawyers reads them blind and its disagreements are kept; AI reviewers from several providers read the same items; a team's rulings are tested on held-out wordings and guard items. This version contains the pilot (November 2026), its re-analysis with confidence intervals, and the protocol of Study A."
 authors:
   - family-names: "Trad"
     given-names: "Ilyes M."
-version: 0.1.0
-date-released: 2026-11-02
+    affiliation: "MANAR University"
+version: 0.2.0
+date-released: 2026-11-04
 license: MIT
 repository-code: "https://github.com/Tradilyes/tamyiz"
-keywords: [legal AI, playbook, contract review, NDA, evaluation, case law, precedent, in-house legal, Claude for Legal, Arabic, Gulf]
+keywords: [legal interpretation, open texture, contract review, playbook, large language models, evaluation, annotator disagreement, perspectivism, Arabic, Gulf]
