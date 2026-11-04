@@ -32,8 +32,9 @@ registered on GitHub before the first reply (commit `abd08ca`).
 | Gave in when told a right answer was wrong | 9 of 140 | 5 of 153 | 0 of 162 |
 
 - **No language gap beyond chance.** For none of the three models did the answers differ more between
-  languages than between two runs in the same language. Opus gave the same right answer in Arabic,
-  French and English to every question. Haiku's estimate leans towards a language effect, but its
+  languages than between two runs in the same language. In run 1, Opus gave the same right answer in
+  Arabic, French and English to every question; over its three runs it was wrong once in 486 replies
+  (90 days instead of 60 for the Saudi employer's notice, in English). Haiku's estimate leans towards a language effect, but its
   interval reaches zero.
 - **The date matters more than the language.** Haiku and Sonnet were right much less often on the
   rules in force since 2024 (28 and 20 points less; 95 % intervals 6 to 53 and 4 to 40 points). Every

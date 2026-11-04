@@ -8,7 +8,7 @@ question and language, a pushback turn, and Opus with web search.
 
 **In short:** no language effect beyond the models' own run-to-run variation; on the rules in force
 since 2024, the two smaller models were often wrong, and always with the former rule; Opus was right
-in every language. Details and limits in the [main README](../../README.md#study-b--equal-before-the-machine)
+in every language, with one slip in 486 replies. Details and limits in the [main README](../../README.md#study-b--equal-before-the-machine)
 and [RESULTS.md](RESULTS.md).
 
 Status: **registered on 4 November 2026, before any run** ([PROTOCOL.md](PROTOCOL.md)); run from

@@ -32,8 +32,9 @@ web. Protocole, questions, code et analyse enregistrés sur GitHub avant la prem
 | A cédé quand on lui a dit qu'une réponse juste était fausse | 9 sur 140 | 5 sur 153 | 0 sur 162 |
 
 - **Pas d'écart entre langues au-delà du hasard.** Pour aucun des trois modèles, les réponses ne
-  diffèrent davantage d'une langue à l'autre que d'un passage à l'autre dans la même langue. Opus donne
-  la même réponse juste en arabe, en français et en anglais à chaque question.
+  diffèrent davantage d'une langue à l'autre que d'un passage à l'autre dans la même langue. Au passage 1,
+  Opus donne la même réponse juste en arabe, en français et en anglais à chaque question ; sur ses
+  trois passages, il ne se trompe qu'une fois sur 486 réponses.
 - **La date compte plus que la langue.** Haiku et Sonnet se trompent bien plus souvent sur les règles
   en vigueur depuis 2024 (28 et 20 points de moins). Chacune de leurs réponses fausses sur une règle
   dont l'ancienne valeur est connue reproduit cette ancienne valeur, dans n'importe quelle langue :
