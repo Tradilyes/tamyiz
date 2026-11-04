@@ -1,5 +1,13 @@
 # Changes
 
+## 0.3.0 — 4 November 2026
+
+- Study B, *Equal before the machine?*, registered before any run (`suites/language-parity/`): 54
+  labour-law questions on the UAE, Saudi Arabia and France, each in Arabic, French and English, with
+  keys checked against official sources; protocol, runner, parser and analysis committed together.
+- `analysis/stats.mjs`: seeded bootstrap, Cochran's Q, chi-square distribution, Holm adjustment, with
+  tests against textbook values and identities. `tests/parity.test.mjs`: the parser.
+
 ## 0.2.0 — 4 November 2026
 
 - The repository becomes the home of a research programme. README rewritten as a research report:

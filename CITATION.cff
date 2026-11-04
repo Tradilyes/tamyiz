@@ -1,12 +1,12 @@
 cff-version: 1.2.0
 message: "If you use tamyiz, its items or its results, please cite it as below."
 title: "tamyiz: reference readings by a panel of lawyers, and a test of whether AI contract reviewers settle what a playbook leaves open"
-abstract: "A research programme on how AI systems read legal rules. Edge items place each position of a contract playbook at its limit; a panel of lawyers reads them blind and its disagreements are kept; AI reviewers from several providers read the same items; a team's rulings are tested on held-out wordings and guard items. This version contains the pilot (November 2026), its re-analysis with confidence intervals, and the protocol of Study A."
+abstract: "A research programme on how AI systems read legal rules. Edge items place each position of a contract playbook at its limit; a panel of lawyers reads them blind and its disagreements are kept; AI reviewers from several providers read the same items; a team's rulings are tested on held-out wordings and guard items. This version contains the pilot (November 2026), its re-analysis with confidence intervals, the protocol of Study A, and Study B on whether AI answers to labour-law questions depend on the language of the question (Arabic, French, English), registered before any run."
 authors:
   - family-names: "Trad"
     given-names: "Ilyes M."
     affiliation: "MANAR University"
-version: 0.2.0
+version: 0.3.0
 date-released: 2026-11-04
 license: MIT
 repository-code: "https://github.com/Tradilyes/tamyiz"

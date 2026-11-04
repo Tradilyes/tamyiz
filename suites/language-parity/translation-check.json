@@ -1,0 +1,494 @@
+{
+ "model": "opus",
+ "model_ids": [
+  "claude-opus-5-5"
+ ],
+ "checks": {
+  "AE-01": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "Minor, optional: in the Arabic, 'الحد الأقصى لمدة فترة التجربة' or 'المدة القصوى لفترة التجربة' is more precise than 'الحد الأقصى لفترة التجربة', because it names the duration as the thing being capped. In both the Arabic and the French, 'في دولة الإمارات العربية المتحدة' and 'aux Émirats arabes unis' come straight after the law's title, so they read as part of it. They are not part of the official title ('مرسوم بقانون اتحادي رقم (33) لسنة 2021 بشأن تنظيم علاقات العمل'), but the reading is harmless and natural. The English puts 'UAE' before the title instead. Nothing else is unnatural."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"Minor, optional: in the Arabic, 'الحد الأقصى لمدة فترة التجربة' or 'المدة القصوى لفترة التجربة' is more precise than 'الحد الأقصى لفترة التجربة', because it names the duration as the thing being capped. In both the Arabic and the French, 'في دولة الإمارات العربية المتحدة' and 'aux Émirats arabes unis' come straight after the law's title, so they read as part of it. They are not part of the official title ('مرسوم بقانون اتحادي رقم (33) لسنة 2021 بشأن تنظيم علاقات العمل'), but the reading is harmless and natural. The English puts 'UAE' before the title instead. Nothing else is unnatural.\"}",
+   "at": "2026-11-04T17:54:55.725Z"
+  },
+  "AE-02": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "FR: « mettre fin au contrat » does not say whose contract it is, whereas EN says 'a worker's employment' and AR says « إنهاء خدمته ». The meaning is still clear from context. « mettre fin au contrat de travail du salarié » would be more precise. « donner un préavis » is acceptable, but « notifier un préavis écrit » is more idiomatic in legal French. The place name « aux Émirats arabes unis » sits after « relations de travail », so it grammatically attaches to that phrase rather than to the decree-law. Writing « du décret-loi fédéral des Émirats arabes unis n° 33 de 2021 » would avoid this. AR: « بالأيام » in the middle of the question repeats « أجب بعدد الأيام » at the end. One of them can be dropped, preferably the one in the middle. A jurist would more naturally write « ما مدة الإخطار الكتابي التي يجب على صاحب العمل مراعاتها (أو: أن يُخطر بها العامل) », because the duration (المدة) is what the employer observes, not what he sends. As written, « الذي يجب ... أن يوجّهه » refers back to الإخطار, which is grammatical but slightly awkward after « ما مدة »."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"FR: « mettre fin au contrat » does not say whose contract it is, whereas EN says 'a worker's employment' and AR says « إنهاء خدمته ». The meaning is still clear from context. « mettre fin au contrat de travail du salarié » would be more precise. « donner un préavis » is acceptable, but « notifier un préavis écrit » is more idiomatic in legal French. The place name « aux Émirats arabes unis » sits after « relations de travail », so it grammatically attaches to that phrase rather than to the decree-law. Writing « du décret-loi fédéral des Émirats arabes unis n° 33 de 2021 » would avoid this. AR: « بالأيام » in the middle of the question repeats « أجب بعدد الأيام » at the end. One of them can be dropped, preferably the one in the middle. A jurist would more naturally write « ما مدة الإخطار الكتابي التي يجب على صاحب العمل مراعاتها (أو: أن يُخطر بها العامل) », because the duration (المدة) is what the employer observes, not what he sends. As written, « الذي يجب ... أن يوجّهه » refers back to الإخطار, which is grammatical but slightly awkward after « ما مدة ».\"}",
+   "at": "2026-11-04T17:54:55.732Z"
+  },
+  "AE-03": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": ""
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"\"}",
+   "at": "2026-11-04T17:58:02.671Z"
+  },
+  "AE-04": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "EN: the official English title of the law is 'Federal Decree-Law No. 33 of 2021 on the Regulation of Labour Relations'. 'on the regulation of employment relations' is understandable, but it is not the standard citation. AR: 'العامل تحت التجربة' is acceptable but sounds informal. The law's own wording is 'العامل خلال فترة التجربة', and a jurist would expect that. FR: no issues."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"EN: the official English title of the law is 'Federal Decree-Law No. 33 of 2021 on the Regulation of Labour Relations'. 'on the regulation of employment relations' is understandable, but it is not the standard citation. AR: 'العامل تحت التجربة' is acceptable but sounds informal. The law's own wording is 'العامل خلال فترة التجربة', and a jurist would expect that. FR: no issues.\"}",
+   "at": "2026-11-04T17:58:02.676Z"
+  },
+  "AE-05": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "AR: «للمرسوم بقانون اتحادي» puts a definite noun before an indefinite adjective. Write «للمرسوم بقانون الاتحادي», or drop the article and use the official title form «لمرسوم بقانون اتحادي رقم (33) لسنة 2021 في شأن تنظيم علاقات العمل». The official title uses «في شأن» rather than «بشأن», though «بشأن» is acceptable. The law itself (Art. 43) says «فترة الإنذار»; «مدة الإنذار» is understandable but less faithful to the text. «خارج فترة التجربة» would read slightly more naturally than «في غير فترة التجربة». FR: acceptable; «Indiquez la réponse en jours» would be a little more idiomatic than «Répondez en jours»."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"AR: «للمرسوم بقانون اتحادي» puts a definite noun before an indefinite adjective. Write «للمرسوم بقانون الاتحادي», or drop the article and use the official title form «لمرسوم بقانون اتحادي رقم (33) لسنة 2021 في شأن تنظيم علاقات العمل». The official title uses «في شأن» rather than «بشأن», though «بشأن» is acceptable. The law itself (Art. 43) says «فترة الإنذار»; «مدة الإنذار» is understandable but less faithful to the text. «خارج فترة التجربة» would read slightly more naturally than «في غير فترة التجربة». FR: acceptable; «Indiquez la réponse en jours» would be a little more idiomatic than «Répondez en jours».\"}",
+   "at": "2026-11-04T17:54:55.752Z"
+  },
+  "AE-06": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "AR: the UAE decree-law uses 'مهلة الإخطار' (Art. 43). 'مدة الإنذار' is wording from the repealed Law No. 8 of 1980 and from other Arab labour codes. Prefer 'مهلة الإخطار'. AR: with the definite article, 'المرسوم بقانون الاتحادي رقم (33) لسنة 2021' is more correct than 'المرسوم بقانون اتحادي'. FR: 'n° 33 de 2021' is acceptable, but 'n° 33 du 2021' would be wrong and 'n° 33 de 2021' could also be written 'n° 33/2021' to match common usage. 'mettre fin au contrat de travail' is natural. EN: no issues."
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"\", \"wording\": \"AR: the UAE decree-law uses 'مهلة الإخطار' (Art. 43). 'مدة الإنذار' is wording from the repealed Law No. 8 of 1980 and from other Arab labour codes. Prefer 'مهلة الإخطار'. AR: with the definite article, 'المرسوم بقانون الاتحادي رقم (33) لسنة 2021' is more correct than 'المرسوم بقانون اتحادي'. FR: 'n° 33 de 2021' is acceptable, but 'n° 33 du 2021' would be wrong and 'n° 33 de 2021' could also be written 'n° 33/2021' to match common usage. 'mettre fin au contrat de travail' is natural. EN: no issues.\"}\n```",
+   "at": "2026-11-04T17:54:55.765Z"
+  },
+  "AE-07": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": ""
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"\", \"wording\": \"\"}\n```",
+   "at": "2026-11-04T17:55:07.887Z"
+  },
+  "AE-08": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "EN: 'counting the days on full pay and on half pay but no extension' reads awkwardly. More natural: 'including the days on full pay and on half pay, but excluding any extension'. FR and AR read naturally. The AR term 'إجازة الوضع' matches the statutory term in Article 30 of the Decree-Law."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"EN: 'counting the days on full pay and on half pay but no extension' reads awkwardly. More natural: 'including the days on full pay and on half pay, but excluding any extension'. FR and AR read naturally. The AR term 'إجازة الوضع' matches the statutory term in Article 30 of the Decree-Law.\"}",
+   "at": "2026-11-04T17:55:10.376Z"
+  },
+  "AE-09": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "FR: in French law, 'congé parental' usually means the long, mostly unpaid 'congé parental d'éducation'. A French jurist may find 'congé parental payé' odd. It still correctly translates the UAE 'إجازة والدية', but 'congé parental (إجازة والدية)' would remove any doubt. 'Jours ouvrés' is correct for 'working days' / 'أيام عمل'. AR: 'ما عدد أيام العمل من الإجازة الوالدية مدفوعة الأجر التي يستحقها العامل' is correct but a little heavy. A more natural wording is 'كم يوم عمل من الإجازة الوالدية مدفوعة الأجر يستحق العامل…', or 'ما مدة الإجازة الوالدية مدفوعة الأجر، بأيام العمل، التي يستحقها العامل…'. All three versions say 'after the birth' and leave out the statute's time limit for taking the leave (within six months of the birth), but they leave it out in the same way, so the answer is not affected."
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"\", \"wording\": \"FR: in French law, 'congé parental' usually means the long, mostly unpaid 'congé parental d'éducation'. A French jurist may find 'congé parental payé' odd. It still correctly translates the UAE 'إجازة والدية', but 'congé parental (إجازة والدية)' would remove any doubt. 'Jours ouvrés' is correct for 'working days' / 'أيام عمل'. AR: 'ما عدد أيام العمل من الإجازة الوالدية مدفوعة الأجر التي يستحقها العامل' is correct but a little heavy. A more natural wording is 'كم يوم عمل من الإجازة الوالدية مدفوعة الأجر يستحق العامل…', or 'ما مدة الإجازة الوالدية مدفوعة الأجر، بأيام العمل، التي يستحقها العامل…'. All three versions say 'after the birth' and leave out the statute's time limit for taking the leave (within six months of the birth), but they leave it out in the same way, so the answer is not affected.\"}\n```",
+   "at": "2026-11-04T17:55:11.690Z"
+  },
+  "AE-10": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": ""
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"\"}",
+   "at": "2026-11-04T17:55:11.901Z"
+  },
+  "AE-11": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "FR: 'avec et sans salaire confondus' is understandable but slightly loose; a French jurist would more naturally write 'rémunéré et non rémunéré confondus' or 'qu'il soit rémunéré ou non'. EN and AR read naturally, and the AR matches the official title and the law's own phrase 'بدون أجر'. One point applies to all three versions equally: the law has three tiers (full pay, half pay, unpaid), and 'with and without pay' does not name the half-pay tier. The word 'total' covers all of them, so the expected number is the same in every version."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"FR: 'avec et sans salaire confondus' is understandable but slightly loose; a French jurist would more naturally write 'rémunéré et non rémunéré confondus' or 'qu'il soit rémunéré ou non'. EN and AR read naturally, and the AR matches the official title and the law's own phrase 'بدون أجر'. One point applies to all three versions equally: the law has three tiers (full pay, half pay, unpaid), and 'with and without pay' does not name the half-pay tier. The word 'total' covers all of them, so the expected number is the same in every version.\"}",
+   "at": "2026-11-04T17:55:16.607Z"
+  },
+  "AE-12": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "EN: 'the end-of-service gratuity is the basic wage of how many days?' reads badly. A native lawyer would write 'the end-of-service gratuity is calculated on the basis of how many days' basic wage?' or 'is equal to how many days' basic wage?'. AR: 'تُحتسب مكافأة نهاية الخدمة بأجر كم يومٍ من الأجر الأساسي' says 'wage' twice (أجر ... من الأجر الأساسي) and sounds clumsy. More natural: 'تُحتسب مكافأة نهاية الخدمة على أساس أجر كم يومًا من الأجر الأساسي' or simply 'تُحتسب مكافأة نهاية الخدمة بأجر كم يومًا أساسيًّا'. Small point: 'في دولة الإمارات العربية المتحدة' is not part of the decree-law's official title. It works as context, but placing it after the title, separated by a comma, would avoid suggesting it is part of the name. FR: no problem."
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"\", \"wording\": \"EN: 'the end-of-service gratuity is the basic wage of how many days?' reads badly. A native lawyer would write 'the end-of-service gratuity is calculated on the basis of how many days' basic wage?' or 'is equal to how many days' basic wage?'. AR: 'تُحتسب مكافأة نهاية الخدمة بأجر كم يومٍ من الأجر الأساسي' says 'wage' twice (أجر ... من الأجر الأساسي) and sounds clumsy. More natural: 'تُحتسب مكافأة نهاية الخدمة على أساس أجر كم يومًا من الأجر الأساسي' or simply 'تُحتسب مكافأة نهاية الخدمة بأجر كم يومًا أساسيًّا'. Small point: 'في دولة الإمارات العربية المتحدة' is not part of the decree-law's official title. It works as context, but placing it after the title, separated by a comma, would avoid suggesting it is part of the name. FR: no problem.\"}\n```",
+   "at": "2026-11-04T17:55:16.893Z"
+  },
+  "AE-13": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "EN: 'the end-of-service gratuity is the basic wage of how many days?' is unnatural English; a native lawyer would write 'how many days' basic wage is the end-of-service gratuity?' or 'the end-of-service gratuity equals how many days' basic wage?'. AR: 'بأجر كم يومٍ من الأجر الأساسي' says 'wage' twice (أجر … الأجر الأساسي), which is clumsy. More natural: 'تُحتسب مكافأة نهاية الخدمة على أساس أجر كم يومًا من الأجر الأساسي؟' or 'كم يومًا من الأجر الأساسي تُحتسب عنها مكافأة نهاية الخدمة؟'. FR: no issue."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"EN: 'the end-of-service gratuity is the basic wage of how many days?' is unnatural English; a native lawyer would write 'how many days' basic wage is the end-of-service gratuity?' or 'the end-of-service gratuity equals how many days' basic wage?'. AR: 'بأجر كم يومٍ من الأجر الأساسي' says 'wage' twice (أجر … الأجر الأساسي), which is clumsy. More natural: 'تُحتسب مكافأة نهاية الخدمة على أساس أجر كم يومًا من الأجر الأساسي؟' or 'كم يومًا من الأجر الأساسي تُحتسب عنها مكافأة نهاية الخدمة؟'. FR: no issue.\"}",
+   "at": "2026-11-04T17:55:17.803Z"
+  },
+  "AE-14": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "AR: 'كنسبة مئوية' uses the comparative kāf in a way purists treat as a calque of 'as a percentage'. More idiomatic: 'معبَّرًا عنها بنسبة مئوية' or 'بوصفها نسبة مئوية'. EN: 'outside the hours of 10 pm to 4 am' is a little awkward. 'outside the period between 10 pm and 4 am' reads more naturally."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"AR: 'كنسبة مئوية' uses the comparative kāf in a way purists treat as a calque of 'as a percentage'. More idiomatic: 'معبَّرًا عنها بنسبة مئوية' or 'بوصفها نسبة مئوية'. EN: 'outside the hours of 10 pm to 4 am' is a little awkward. 'outside the period between 10 pm and 4 am' reads more naturally.\"}",
+   "at": "2026-11-04T17:55:23.967Z"
+  },
+  "AE-15": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "FR: 'durée normale maximale du travail' is understandable but sounds a little forced. For a French labour lawyer, 'durée maximale' usually means the absolute ceiling including overtime, while 'durée normale/légale' means the threshold before overtime starts, so putting the two together is slightly unclear. 'Nombre maximal d'heures normales de travail par semaine' or 'durée maximale du travail normal hebdomadaire' would follow EN 'normal working hours' and AR 'ساعات العمل العادية' more closely. Also minor: 'aux Émirats arabes unis' comes right after the title, so it reads as part of it; 'décret-loi fédéral des Émirats arabes unis n° 33 de 2021' reads more naturally. EN and AR: no issues."
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"\", \"wording\": \"FR: 'durée normale maximale du travail' is understandable but sounds a little forced. For a French labour lawyer, 'durée maximale' usually means the absolute ceiling including overtime, while 'durée normale/légale' means the threshold before overtime starts, so putting the two together is slightly unclear. 'Nombre maximal d'heures normales de travail par semaine' or 'durée maximale du travail normal hebdomadaire' would follow EN 'normal working hours' and AR 'ساعات العمل العادية' more closely. Also minor: 'aux Émirats arabes unis' comes right after the title, so it reads as part of it; 'décret-loi fédéral des Émirats arabes unis n° 33 de 2021' reads more naturally. EN and AR: no issues.\"}\n```",
+   "at": "2026-11-04T17:55:26.774Z"
+  },
+  "AE-16": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "Minor, optional: in the FR version, 'aux Émirats arabes unis' sits after 'relations de travail', so it grammatically modifies the relations of employment rather than the decree-law. 'du décret-loi fédéral des Émirats arabes unis n° 33 de 2021 relatif à la réglementation des relations de travail' would mirror the EN more closely. The meaning is not affected, and the AR places 'في دولة الإمارات العربية المتحدة' in the same position. 'Sur la réglementation' is also a common rendering of 'بشأن', but 'relatif à' is correct. The AR matches the official title and the statutory verb 'تشغيل'. The EN is natural."
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"\", \"wording\": \"Minor, optional: in the FR version, 'aux Émirats arabes unis' sits after 'relations de travail', so it grammatically modifies the relations of employment rather than the decree-law. 'du décret-loi fédéral des Émirats arabes unis n° 33 de 2021 relatif à la réglementation des relations de travail' would mirror the EN more closely. The meaning is not affected, and the AR places 'في دولة الإمارات العربية المتحدة' in the same position. 'Sur la réglementation' is also a common rendering of 'بشأن', but 'relatif à' is correct. The AR matches the official title and the statutory verb 'تشغيل'. The EN is natural.\"}\n```",
+   "at": "2026-11-04T17:55:26.854Z"
+  },
+  "AE-17": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "FR: « combien d'années après la fin de la relation de travail une action … n'est-elle plus recevable ? » is grammatical but heavy. A French jurist would more naturally write « au bout de combien d'années à compter de la fin de la relation de travail une action … devient-elle irrecevable ? » or « … se heurte-t-elle à une fin de non-recevoir ? ». AR: the sentence « ما المدة التي لا تُسمع بعد مضيّها، من تاريخ انتهاء علاقة العمل، الدعوى … » is awkward because the subject الدعوى comes last and the phrase between commas breaks it up. A smoother version that follows the statute: « ما المدة التي لا تُسمع الدعوى المتعلقة بأيٍّ من الحقوق المقرّرة في هذا المرسوم بقانون بعد مضيّها من تاريخ انتهاء علاقة العمل؟ ». EN: the official English title uses \"Regulation of Labour Relations\". \"employment relations\" is acceptable but not the official title. \"a claim for rights under this decree-law\" could be closer to the Arabic \"any of the rights\" (أيٍّ من الحقوق), for example \"a claim relating to any of the rights established by this decree-law\". This is a style point only: the meaning is the same."
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"\", \"wording\": \"FR: « combien d'années après la fin de la relation de travail une action … n'est-elle plus recevable ? » is grammatical but heavy. A French jurist would more naturally write « au bout de combien d'années à compter de la fin de la relation de travail une action … devient-elle irrecevable ? » or « … se heurte-t-elle à une fin de non-recevoir ? ». AR: the sentence « ما المدة التي لا تُسمع بعد مضيّها، من تاريخ انتهاء علاقة العمل، الدعوى … » is awkward because the subject الدعوى comes last and the phrase between commas breaks it up. A smoother version that follows the statute: « ما المدة التي لا تُسمع الدعوى المتعلقة بأيٍّ من الحقوق المقرّرة في هذا المرسوم بقانون بعد مضيّها من تاريخ انتهاء علاقة العمل؟ ». EN: the official English title uses \\\"Regulation of Labour Relations\\\". \\\"employment relations\\\" is acceptable but not the official title. \\\"a claim for rights under this decree-law\\\" could be closer to the Arabic \\\"any of the rights\\\" (أيٍّ من الحقوق), for example \\\"a claim relating to any of the rights established by this decree-law\\\". This is a style point only: the meaning is the same.\"}\n```",
+   "at": "2026-11-04T17:55:29.802Z"
+  },
+  "AE-18": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "1) EN: the official English title of the law is 'Federal Decree by Law No. 33 of 2021 Regarding the Regulation of Labour Relations'. 'On the regulation of employment relations' is understandable, but 'Labour Relations' would match the official title. 2) The 'final decision' wording is slightly off in all three languages, and differently in each. The amended Article 54 makes the Ministry's decision binding and enforceable, with the force of an executive instrument (سند تنفيذي), but a party can still challenge it before the court. In Arabic, 'قرار نهائي' suggests a decision that cannot be appealed. In French, 'décision définitive' is ambiguous: it can mean a decision that settles the merits but can still be appealed, or a decision with no further appeal ('en dernier ressort'). The English 'final' falls between the two. This does not change the expected number. Still, a native jurist would find wording closer to the law more natural: AR 'بقرار ملزم / له قوة السند التنفيذي', FR 'par une décision exécutoire', EN 'by a binding decision'. 3) AR: the law itself uses the plural 'المنازعات العمالية الفردية'. 'المنازعة العمالية الفردية' would follow the legal text more closely than 'النزاع العمالي الفردي', though the current phrase is acceptable."
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"\", \"wording\": \"1) EN: the official English title of the law is 'Federal Decree by Law No. 33 of 2021 Regarding the Regulation of Labour Relations'. 'On the regulation of employment relations' is understandable, but 'Labour Relations' would match the official title. 2) The 'final decision' wording is slightly off in all three languages, and differently in each. The amended Article 54 makes the Ministry's decision binding and enforceable, with the force of an executive instrument (سند تنفيذي), but a party can still challenge it before the court. In Arabic, 'قرار نهائي' suggests a decision that cannot be appealed. In French, 'décision définitive' is ambiguous: it can mean a decision that settles the merits but can still be appealed, or a decision with no further appeal ('en dernier ressort'). The English 'final' falls between the two. This does not change the expected number. Still, a native jurist would find wording closer to the law more natural: AR 'بقرار ملزم / له قوة السند التنفيذي', FR 'par une décision exécutoire', EN 'by a binding decision'. 3) AR: the law itself uses the plural 'المنازعات العمالية الفردية'. 'المنازعة العمالية الفردية' would follow the legal text more closely than 'النزاع العمالي الفردي', though the current phrase is acceptable.\"}\n```",
+   "at": "2026-11-04T17:58:02.681Z"
+  },
+  "FR-01": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "AR: 'للعمال والموظفين' is a weak rendering of 'ouvriers et employés'. In Arabic legal usage 'الموظفين' usually means public servants or civil-service staff, and 'العمال' means workers in general rather than manual workers. The French gloss in brackets prevents a real change in meaning, but a native jurist would prefer 'العمال اليدويين والمستخدمين' (or 'العمال والمستخدمين'). AR: 'عقد العمل غير محدد المدة' is acceptable, but 'عقد العمل لمدة غير محددة' is the more usual legal phrasing. EN: 'permanent contract' is common usage; 'open-ended (indefinite-term) contract' would be more precise for a CDI."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"AR: 'للعمال والموظفين' is a weak rendering of 'ouvriers et employés'. In Arabic legal usage 'الموظفين' usually means public servants or civil-service staff, and 'العمال' means workers in general rather than manual workers. The French gloss in brackets prevents a real change in meaning, but a native jurist would prefer 'العمال اليدويين والمستخدمين' (or 'العمال والمستخدمين'). AR: 'عقد العمل غير محدد المدة' is acceptable, but 'عقد العمل لمدة غير محددة' is the more usual legal phrasing. EN: 'permanent contract' is common usage; 'open-ended (indefinite-term) contract' would be more precise for a CDI.\"}",
+   "at": "2026-11-04T17:56:17.577Z"
+  },
+  "FR-02": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "EN: 'managers' is too narrow for 'cadres', which also covers executives and professional staff who manage no one. The gloss '(cadres)' removes the ambiguity, but 'executives/managerial staff (cadres)' would be more accurate. 'Permanent contract' is acceptable; 'open-ended contract (CDI)' or 'indefinite-term contract' is the more precise term. AR: 'للإطارات' is natural in Maghreb Arabic but less so in Mashreq usage, where 'الكوادر' or 'الأطر' is more common; the gloss '(cadres)' makes the meaning clear either way. 'عقد العمل غير محدد المدة' is understandable, but 'عقد العمل لمدة غير محددة' is the more idiomatic legal form. FR: no issues."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"EN: 'managers' is too narrow for 'cadres', which also covers executives and professional staff who manage no one. The gloss '(cadres)' removes the ambiguity, but 'executives/managerial staff (cadres)' would be more accurate. 'Permanent contract' is acceptable; 'open-ended contract (CDI)' or 'indefinite-term contract' is the more precise term. AR: 'للإطارات' is natural in Maghreb Arabic but less so in Mashreq usage, where 'الكوادر' or 'الأطر' is more common; the gloss '(cadres)' makes the meaning clear either way. 'عقد العمل غير محدد المدة' is understandable, but 'عقد العمل لمدة غير محددة' is the more idiomatic legal form. FR: no issues.\"}",
+   "at": "2026-11-04T17:56:19.753Z"
+  },
+  "FR-03": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "Minor points only. EN: 'managers' is narrower than the French 'cadres', which also covers non-managerial executives and professionals. The parenthetical '(cadres)' removes the ambiguity, so the meaning is unchanged. AR: 'الإطارات' for cadres is standard Maghrebi usage but sounds regional to Mashriqi jurists, who would expect 'الكوادر' or 'الإطارات العليا'. The French gloss again keeps it unambiguous. 'عقد العمل غير محدد المدة' is correct; 'عقد الشغل' would be more idiomatic in Maghrebi legal Arabic, but this is not an error."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"Minor points only. EN: 'managers' is narrower than the French 'cadres', which also covers non-managerial executives and professionals. The parenthetical '(cadres)' removes the ambiguity, so the meaning is unchanged. AR: 'الإطارات' for cadres is standard Maghrebi usage but sounds regional to Mashriqi jurists, who would expect 'الكوادر' or 'الإطارات العليا'. The French gloss again keeps it unambiguous. 'عقد العمل غير محدد المدة' is correct; 'عقد الشغل' would be more idiomatic in Maghrebi legal Arabic, but this is not an error.\"}",
+   "at": "2026-11-04T17:56:22.933Z"
+  },
+  "FR-04": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "EN and AR define jours ouvrables as all days except the weekly rest day and public holidays. FR gives no definition. This changes nothing in meaning, but the definition is slightly loose: jours ouvrables exclude only public holidays that are normally not worked (jours fériés chômés), not every public holiday. EN: the gloss would read more precisely as 'all days except the weekly rest day and public holidays not normally worked'. AR: 'الأيام المفتوحة للعمل' is an unnatural calque; most Arabic legal texts use 'أيام العمل' (with jours ouvrables in brackets to keep it apart from jours ouvrés). The repeated 'كم يومًا من الأيام ... من العطلة' is clumsy; 'كم يومَ عمل (jours ouvrables ...) من العطلة السنوية المدفوعة الأجر' reads better. 'العطل الرسمية' would be more exact as 'أيام العطل الرسمية غير المعمول بها'. FR: no issues."
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"\", \"wording\": \"EN and AR define jours ouvrables as all days except the weekly rest day and public holidays. FR gives no definition. This changes nothing in meaning, but the definition is slightly loose: jours ouvrables exclude only public holidays that are normally not worked (jours fériés chômés), not every public holiday. EN: the gloss would read more precisely as 'all days except the weekly rest day and public holidays not normally worked'. AR: 'الأيام المفتوحة للعمل' is an unnatural calque; most Arabic legal texts use 'أيام العمل' (with jours ouvrables in brackets to keep it apart from jours ouvrés). The repeated 'كم يومًا من الأيام ... من العطلة' is clumsy; 'كم يومَ عمل (jours ouvrables ...) من العطلة السنوية المدفوعة الأجر' reads better. 'العطل الرسمية' would be more exact as 'أيام العطل الرسمية غير المعمول بها'. FR: no issues.\"}\n```",
+   "at": "2026-11-04T17:56:24.756Z"
+  },
+  "FR-05": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "EN and AR: the explanation of jours ouvrables ('all days except the weekly rest day and public holidays' / 'عدا يوم الراحة الأسبوعية والعطل الرسمية') is a little loose. Strictly, only public holidays that are normally not worked (jours fériés habituellement chômés) are excluded. This does not change the answer, but a French jurist would say 'public holidays normally not worked'. AR: 'الأيام المفتوحة للعمل' is a calque. It is understandable, especially with the French term next to it, but it is not the usual legal term; 'أيام العمل' or 'الأيام القابلة للعمل' would read more naturally. EN: 'sick leave' works as a rendering of 'arrêt de travail pour maladie', though 'sick leave (arrêt de travail)' would match the French concept more closely. FR: no issues."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"EN and AR: the explanation of jours ouvrables ('all days except the weekly rest day and public holidays' / 'عدا يوم الراحة الأسبوعية والعطل الرسمية') is a little loose. Strictly, only public holidays that are normally not worked (jours fériés habituellement chômés) are excluded. This does not change the answer, but a French jurist would say 'public holidays normally not worked'. AR: 'الأيام المفتوحة للعمل' is a calque. It is understandable, especially with the French term next to it, but it is not the usual legal term; 'أيام العمل' or 'الأيام القابلة للعمل' would read more naturally. EN: 'sick leave' works as a rendering of 'arrêt de travail pour maladie', though 'sick leave (arrêt de travail)' would match the French concept more closely. FR: no issues.\"}",
+   "at": "2026-11-04T17:56:26.654Z"
+  },
+  "FR-06": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "AR: 'فترة الترحيل' is understandable, but it is accounting jargon for carrying a balance forward. 'فترة التأجيل' or 'فترة الإرجاء' would read more naturally to an Arabic-speaking jurist. 'قانون العمل' is acceptable for the Code du travail, but the usual names are 'مدونة الشغل' in Morocco, 'مجلة الشغل' in Tunisia, or 'تقنين العمل'."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"AR: 'فترة الترحيل' is understandable, but it is accounting jargon for carrying a balance forward. 'فترة التأجيل' or 'فترة الإرجاء' would read more naturally to an Arabic-speaking jurist. 'قانون العمل' is acceptable for the Code du travail, but the usual names are 'مدونة الشغل' in Morocco, 'مجلة الشغل' in Tunisia, or 'تقنين العمل'.\"}",
+   "at": "2026-11-04T17:56:26.720Z"
+  },
+  "FR-07": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "EN: 'statutory dismissal indemnity' is a calque of the French term. An English-speaking employment lawyer would more naturally write 'statutory severance pay'. Keeping the French term in brackets makes this acceptable. FR: the sentence has no subject ('faut-il… pour avoir droit'), unlike EN 'an employee' and AR 'العامل'. It reads idiomatically and does not change the meaning, though adding 'un salarié' would match the other two versions. AR: 'الأقدمية المتصلة' is understandable, but 'الأقدمية غير المنقطعة' is the more usual rendering of 'ancienneté ininterrompue'. 'الأقدمية' is a Maghrebi term, while 'الفصل' and 'العامل' are Mashriqi. A Maghrebi jurist would write 'التسريح' / 'الأجير', so the register is slightly mixed."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"EN: 'statutory dismissal indemnity' is a calque of the French term. An English-speaking employment lawyer would more naturally write 'statutory severance pay'. Keeping the French term in brackets makes this acceptable. FR: the sentence has no subject ('faut-il… pour avoir droit'), unlike EN 'an employee' and AR 'العامل'. It reads idiomatically and does not change the meaning, though adding 'un salarié' would match the other two versions. AR: 'الأقدمية المتصلة' is understandable, but 'الأقدمية غير المنقطعة' is the more usual rendering of 'ancienneté ininterrompue'. 'الأقدمية' is a Maghrebi term, while 'الفصل' and 'العامل' are Mashriqi. A Maghrebi jurist would write 'التسريح' / 'الأجير', so the register is slightly mixed.\"}",
+   "at": "2026-11-04T17:56:28.535Z"
+  },
+  "FR-08": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "AR: 'لا يقلّ عنه' describes a fact, while FR 'ne peut être inférieure à' states a legal minimum. 'لا يجوز أن يقلّ عنه' would match the normative tone better, and putting the question first would read more naturally: 'ما الكسر من أجر الشهر الذي لا يجوز أن يقلّ عنه التعويض القانوني عن الفصل عن كل سنة أقدمية حتى عشر سنوات؟'. Also, Maghrebi jurists usually say 'التعويض عن الطرد' rather than 'الفصل', though 'الفصل' is correct in Mashreq usage. FR: 'de mois de salaire' follows the wording of art. R1234-2 and is acceptable, but 'd'un mois de salaire' would read more smoothly in a question."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"AR: 'لا يقلّ عنه' describes a fact, while FR 'ne peut être inférieure à' states a legal minimum. 'لا يجوز أن يقلّ عنه' would match the normative tone better, and putting the question first would read more naturally: 'ما الكسر من أجر الشهر الذي لا يجوز أن يقلّ عنه التعويض القانوني عن الفصل عن كل سنة أقدمية حتى عشر سنوات؟'. Also, Maghrebi jurists usually say 'التعويض عن الطرد' rather than 'الفصل', though 'الفصل' is correct in Mashreq usage. FR: 'de mois de salaire' follows the wording of art. R1234-2 and is acceptable, but 'd'un mois de salaire' would read more smoothly in a question.\"}",
+   "at": "2026-11-04T17:56:29.718Z"
+  },
+  "FR-09": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "No difference in meaning between the three versions. All three cover the same jurisdiction (French Code du travail), the same rule (the minimum statutory dismissal indemnity), the same scope (each year of service beyond ten years), the same minimum condition ('at least equal to' / 'ne peut être inférieure à' / 'لا يقلّ عنه') and the same unit (a fraction of one month's salary). One issue is shared by all three versions, so it does not break equivalence: asking for 'a decimal number' when the expected fraction does not end as a decimal means people may round it differently (for example to 2 or 3 places). It would help to say how many decimal places to give, or to accept a fraction. Minor point: 'beyond ten years' / 'au-delà de dix ans' / 'تتجاوز العشر سنوات' does not quite match the code's own phrase 'à partir de dix ans'. All three versions use the same wording, though, so they agree with each other.",
+    "wording": "EN: 'statutory dismissal indemnity' is understandable, but it is a calque. A native jurist would more naturally write 'statutory severance pay' or 'statutory redundancy/dismissal compensation'. FR: 'à quelle fraction de mois de salaire' is a little stiff. 'à quelle fraction d'un mois de salaire' or 'à combien de mois de salaire' reads more naturally, even though 'de mois de salaire' follows the code's own wording. AR: the question is built awkwardly ('ما الكسر من أجر شهر الذي لا يقلّ عنه التعويض'). A more natural version would be 'ما الحدّ الأدنى للتعويض القانوني عن الفصل، معبَّرًا عنه بكسر من أجر شهر، عن كل سنة أقدمية تتجاوز عشر سنوات؟'. 'سنة أقدمية' is Maghrebi usage, while Mashriqi usage would be 'سنة خدمة'. 'العشر سنوات' is better written as 'عشر سنوات'. 'التعويض عن الفصل' could also be written 'التعويض عن الطرد' in Maghrebi usage. Both are acceptable."
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"No difference in meaning between the three versions. All three cover the same jurisdiction (French Code du travail), the same rule (the minimum statutory dismissal indemnity), the same scope (each year of service beyond ten years), the same minimum condition ('at least equal to' / 'ne peut être inférieure à' / 'لا يقلّ عنه') and the same unit (a fraction of one month's salary). One issue is shared by all three versions, so it does not break equivalence: asking for 'a decimal number' when the expected fraction does not end as a decimal means people may round it differently (for example to 2 or 3 places). It would help to say how many decimal places to give, or to accept a fraction. Minor point: 'beyond ten years' / 'au-delà de dix ans' / 'تتجاوز العشر سنوات' does not quite match the code's own phrase 'à partir de dix ans'. All three versions use the same wording, though, so they agree with each other.\", \"wording\": \"EN: 'statutory dismissal indemnity' is understandable, but it is a calque. A native jurist would more naturally write 'statutory severance pay' or 'statutory redundancy/dismissal compensation'. FR: 'à quelle fraction de mois de salaire' is a little stiff. 'à quelle fraction d'un mois de salaire' or 'à combien de mois de salaire' reads more naturally, even though 'de mois de salaire' follows the code's own wording. AR: the question is built awkwardly ('ما الكسر من أجر شهر الذي لا يقلّ عنه التعويض'). A more natural version would be 'ما الحدّ الأدنى للتعويض القانوني عن الفصل، معبَّرًا عنه بكسر من أجر شهر، عن كل سنة أقدمية تتجاوز عشر سنوات؟'. 'سنة أقدمية' is Maghrebi usage, while Mashriqi usage would be 'سنة خدمة'. 'العشر سنوات' is better written as 'عشر سنوات'. 'التعويض عن الفصل' could also be written 'التعويض عن الطرد' in Maghrebi usage. Both are acceptable.\"}\n```",
+   "at": "2026-11-04T17:56:38.495Z"
+  },
+  "FR-10": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "Strictly, what is signed is the agreement (convention de rupture), not the termination itself. A jurist would find 'la signature de la convention de rupture' more precise than 'la signature d'une rupture conventionnelle' in FR. The same applies to EN ('after the agreed termination agreement is signed') and AR ('بعد توقيع اتفاقية الإنهاء الاتفاقي'). The meaning is clear in all three, so this is a minor point. In EN, 'withdraw from it' is understandable but less idiomatic than 'exercise their right of withdrawal' (droit de rétractation). In AR, 'المهلة التي يملكها كل طرف' is slightly unnatural; 'المهلة المتاحة لكل طرف' or 'المهلة التي يتمتع بها كل طرف' reads better, and 'لممارسة حق العدول' would match the legal term more closely."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"Strictly, what is signed is the agreement (convention de rupture), not the termination itself. A jurist would find 'la signature de la convention de rupture' more precise than 'la signature d'une rupture conventionnelle' in FR. The same applies to EN ('after the agreed termination agreement is signed') and AR ('بعد توقيع اتفاقية الإنهاء الاتفاقي'). The meaning is clear in all three, so this is a minor point. In EN, 'withdraw from it' is understandable but less idiomatic than 'exercise their right of withdrawal' (droit de rétractation). In AR, 'المهلة التي يملكها كل طرف' is slightly unnatural; 'المهلة المتاحة لكل طرف' or 'المهلة التي يتمتع بها كل طرف' reads better, and 'لممارسة حق العدول' would match the legal term more closely.\"}",
+   "at": "2026-11-04T17:56:39.368Z"
+  },
+  "FR-11": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": ""
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"\"}",
+   "at": "2026-11-04T17:56:40.350Z"
+  },
+  "FR-12": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "AR: 'اتفاقية جماعية' is the usual Arabic term for 'convention collective'. 'اتفاق جماعي' is a closer match for 'accord collectif'. The meaning does not change, because the Code du travail (art. L3121-33) gives the default rate when there is no company agreement or, failing that, no branch agreement or convention, so any collective agreement counts. The phrase 'الساعات الإضافية الثماني الأولى' is acceptable. 'الساعات الثماني الأولى من الساعات الإضافية' would read more smoothly. EN and FR read naturally ('majoration de salaire' is the Code's own wording)."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"AR: 'اتفاقية جماعية' is the usual Arabic term for 'convention collective'. 'اتفاق جماعي' is a closer match for 'accord collectif'. The meaning does not change, because the Code du travail (art. L3121-33) gives the default rate when there is no company agreement or, failing that, no branch agreement or convention, so any collective agreement counts. The phrase 'الساعات الإضافية الثماني الأولى' is acceptable. 'الساعات الثماني الأولى من الساعات الإضافية' would read more smoothly. EN and FR read naturally ('majoration de salaire' is the Code's own wording).\"}",
+   "at": "2026-11-04T17:56:42.146Z"
+  },
+  "FR-13": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "Not a difference in meaning, just a small point. The EN 'beyond the first eight in the week' and the FR 'au-delà des huit premières de la semaine' only imply that 'eight' means eight overtime hours, which a reader works out from context. The AR states it outright ('الساعات الإضافية الثماني الأولى'). EN and FR could say this just as clearly by writing 'the first eight overtime hours' and 'des huit premières heures supplémentaires', which is the wording of art. L3121-36. In the AR, repeating 'الساعات الإضافية' is a little heavy but correct. Otherwise the terms are natural and match the legal vocabulary: 'overtime premium' / 'majoration de salaire' / 'الزيادة في الأجر', and 'absent a collective agreement' / 'à défaut d'accord collectif' / 'في غياب اتفاقية جماعية'."
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"\", \"wording\": \"Not a difference in meaning, just a small point. The EN 'beyond the first eight in the week' and the FR 'au-delà des huit premières de la semaine' only imply that 'eight' means eight overtime hours, which a reader works out from context. The AR states it outright ('الساعات الإضافية الثماني الأولى'). EN and FR could say this just as clearly by writing 'the first eight overtime hours' and 'des huit premières heures supplémentaires', which is the wording of art. L3121-36. In the AR, repeating 'الساعات الإضافية' is a little heavy but correct. Otherwise the terms are natural and match the legal vocabulary: 'overtime premium' / 'majoration de salaire' / 'الزيادة في الأجر', and 'absent a collective agreement' / 'à défaut d'accord collectif' / 'في غياب اتفاقية جماعية'.\"}\n```",
+   "at": "2026-11-04T17:58:02.708Z"
+  },
+  "FR-14": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "EN: 'child-reception leave' is a literal calque that an English-speaking jurist would find odd. The usual rendering is 'paternity and childcare leave' (or 'paternity and child-welcoming leave'). The French term in brackets prevents misreading. All three versions describe the separate birth leave as 'three days' without saying what kind of days. In the Code du travail it is three working days (jours ouvrables), not calendar days. This does not change the answer, since that leave is excluded. Since the 2026 reform (LFSS 2026), 'congé de naissance' can also mean the new additional birth leave. The 'three-day' qualifier separates the two in every version, so no difference results. AR: 'إجازة الميلاد' is understandable, but 'إجازة الولادة' is the more usual term. Both are clarified by the French term in brackets. 'ولادة طفل واحد' and 'الأيام التقويمية' are correct and natural. FR: 'naissance simple' is acceptable; 'naissance unique' would be slightly more usual."
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"\", \"wording\": \"EN: 'child-reception leave' is a literal calque that an English-speaking jurist would find odd. The usual rendering is 'paternity and childcare leave' (or 'paternity and child-welcoming leave'). The French term in brackets prevents misreading. All three versions describe the separate birth leave as 'three days' without saying what kind of days. In the Code du travail it is three working days (jours ouvrables), not calendar days. This does not change the answer, since that leave is excluded. Since the 2026 reform (LFSS 2026), 'congé de naissance' can also mean the new additional birth leave. The 'three-day' qualifier separates the two in every version, so no difference results. AR: 'إجازة الميلاد' is understandable, but 'إجازة الولادة' is the more usual term. Both are clarified by the French term in brackets. 'ولادة طفل واحد' and 'الأيام التقويمية' are correct and natural. FR: 'naissance simple' is acceptable; 'naissance unique' would be slightly more usual.\"}\n```",
+   "at": "2026-11-04T17:58:02.725Z"
+  },
+  "FR-15": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "AR: 'خلال أيّ أجل يجب رفع الدعوى' is understandable but reads like a word-for-word copy of the French. A native jurist would more likely write 'ما هو الأجل الذي يجب أن تُرفع خلاله الدعوى المتعلقة بإنهاء عقد العمل؟'. 'إنهاء عقد العمل' correctly covers every mode of 'rupture' (dismissal, resignation, rupture conventionnelle). Maghreb usage would also accept 'قطع عقد الشغل'. EN and FR are natural, and the FR follows the wording of the Code du travail ('action portant sur la rupture du contrat de travail')."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"AR: 'خلال أيّ أجل يجب رفع الدعوى' is understandable but reads like a word-for-word copy of the French. A native jurist would more likely write 'ما هو الأجل الذي يجب أن تُرفع خلاله الدعوى المتعلقة بإنهاء عقد العمل؟'. 'إنهاء عقد العمل' correctly covers every mode of 'rupture' (dismissal, resignation, rupture conventionnelle). Maghreb usage would also accept 'قطع عقد الشغل'. EN and FR are natural, and the FR follows the wording of the Code du travail ('action portant sur la rupture du contrat de travail').\"}",
+   "at": "2026-11-04T17:56:51.135Z"
+  },
+  "FR-16": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "AR: 'خلال أيّ أجل يجب رفع الدعوى' is understandable but a little awkward for a jurist. More natural phrasing would be 'في أيّ أجل يجب رفع الدعوى' or, closer to the concept of prescription, 'ما هو أجل تقادم الدعوى المتعلقة بتنفيذ عقد العمل؟'. EN and FR read naturally, and the FR follows the wording of the Code du travail ('action portant sur l'exécution du contrat de travail')."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"AR: 'خلال أيّ أجل يجب رفع الدعوى' is understandable but a little awkward for a jurist. More natural phrasing would be 'في أيّ أجل يجب رفع الدعوى' or, closer to the concept of prescription, 'ما هو أجل تقادم الدعوى المتعلقة بتنفيذ عقد العمل؟'. EN and FR read naturally, and the FR follows the wording of the Code du travail ('action portant sur l'exécution du contrat de travail').\"}",
+   "at": "2026-11-04T17:56:52.346Z"
+  },
+  "FR-17": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "AR: 'إجازة الميلاد' is understandable but less usual in Arabic legal writing than 'إجازة الولادة'. However, 'إجازة الولادة' is the usual term for maternity leave (congé de maternité), so the current wording plus the French term in brackets is acceptable and keeps the meaning clear. Optional, more natural rewording: 'ما المدة القصوى لإجازة الميلاد الإضافية (congé supplémentaire de naissance) لكلٍّ من الوالدين؟'. EN and FR read naturally."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"AR: 'إجازة الميلاد' is understandable but less usual in Arabic legal writing than 'إجازة الولادة'. However, 'إجازة الولادة' is the usual term for maternity leave (congé de maternité), so the current wording plus the French term in brackets is acceptable and keeps the meaning clear. Optional, more natural rewording: 'ما المدة القصوى لإجازة الميلاد الإضافية (congé supplémentaire de naissance) لكلٍّ من الوالدين؟'. EN and FR read naturally.\"}",
+   "at": "2026-11-04T17:56:54.062Z"
+  },
+  "FR-18": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "AR: 'إجازة الميلاد الإضافية' reads oddly, since 'الميلاد' usually means a birthday or Christmas. 'إجازة الولادة الإضافية' would be more natural. 'أخذ الإجازة' is also colloquial; a jurist would more likely write 'الاستفادة من الإجازة'. FR: 'dans quel délai … Répondez en mois' is correct, though 'dans combien de mois suivant la naissance' would match the EN and AR wording more closely. The EN reads naturally."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"AR: 'إجازة الميلاد الإضافية' reads oddly, since 'الميلاد' usually means a birthday or Christmas. 'إجازة الولادة الإضافية' would be more natural. 'أخذ الإجازة' is also colloquial; a jurist would more likely write 'الاستفادة من الإجازة'. FR: 'dans quel délai … Répondez en mois' is correct, though 'dans combien de mois suivant la naissance' would match the EN and AR wording more closely. The EN reads naturally.\"}",
+   "at": "2026-11-04T17:57:01.769Z"
+  },
+  "SA-01": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "The three versions do not differ in meaning. All three name the same jurisdiction and instrument (Royal Decree M/51 of 23/8/1426H, as amended), the same rule (the maximum probationary period) and the same unit (days). One ambiguity appears in all three versions, not in just one: under Art. 53 the probationary period may not exceed 90 days, but a written agreement can extend it to 180 days in total. 'Maximum length' could therefore mean 90 or 180 in every language. Adding 'without extension' or 'including any agreed extension' in all three would fix this.",
+    "wording": ""
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"The three versions do not differ in meaning. All three name the same jurisdiction and instrument (Royal Decree M/51 of 23/8/1426H, as amended), the same rule (the maximum probationary period) and the same unit (days). One ambiguity appears in all three versions, not in just one: under Art. 53 the probationary period may not exceed 90 days, but a written agreement can extend it to 180 days in total. 'Maximum length' could therefore mean 90 or 180 in every language. Adding 'without extension' or 'including any agreed extension' in all three would fix this.\", \"wording\": \"\"}\n```",
+   "at": "2026-11-04T17:55:31.637Z"
+  },
+  "SA-02": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "AR: 'ما مدة الإشعار التي يجب على العامل ... أن يوجّهها' is grammatically clumsy, because the relative clause makes the worker send the period (المدة) rather than the notice. More natural: 'ما مدة الإشعار الواجب على العامل الذي يتقاضى أجره شهريًا إذا كان إنهاء العقد من قِبله؟'. FR: 'quel préavis ... doit-il donner' is acceptable, but a French jurist would more naturally write 'quelle est la durée du préavis que doit respecter un travailleur'. The date style '23/8/1426 de l'Hégire' is better written '23/8/1426 H'. The word 'lui-même' adds emphasis that EN and AR do not have, but it does not change the meaning."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"AR: 'ما مدة الإشعار التي يجب على العامل ... أن يوجّهها' is grammatically clumsy, because the relative clause makes the worker send the period (المدة) rather than the notice. More natural: 'ما مدة الإشعار الواجب على العامل الذي يتقاضى أجره شهريًا إذا كان إنهاء العقد من قِبله؟'. FR: 'quel préavis ... doit-il donner' is acceptable, but a French jurist would more naturally write 'quelle est la durée du préavis que doit respecter un travailleur'. The date style '23/8/1426 de l'Hégire' is better written '23/8/1426 H'. The word 'lui-même' adds emphasis that EN and AR do not have, but it does not change the meaning.\"}",
+   "at": "2026-11-04T17:55:38.245Z"
+  },
+  "SA-03": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "AR: 'ما مدة الإشعار التي يجب على صاحب العمل أن يوجّهها' is awkward because the employer sends the notice (يوجّه الإشعار), not its length. More natural: 'ما مدة الإشعار التي يجب على صاحب العمل مراعاتها' or 'ما الحد الأدنى لمدة الإشعار الواجبة على صاحب العمل'. FR: 'dans un contrat à durée indéterminée' is slightly unidiomatic for the condition; 's'agissant d'un contrat à durée indéterminée' or 'lorsque le contrat est à durée indéterminée' is more natural. '23/8/1426 de l'Hégire' is acceptable but '23/8/1426 H' is the usual form. Minor point that applies to all three versions equally: the law sets a minimum notice period ('not less than' / 'لا تقل عن'), and none of the versions says 'minimum'. This does not create a difference between them."
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"\", \"wording\": \"AR: 'ما مدة الإشعار التي يجب على صاحب العمل أن يوجّهها' is awkward because the employer sends the notice (يوجّه الإشعار), not its length. More natural: 'ما مدة الإشعار التي يجب على صاحب العمل مراعاتها' or 'ما الحد الأدنى لمدة الإشعار الواجبة على صاحب العمل'. FR: 'dans un contrat à durée indéterminée' is slightly unidiomatic for the condition; 's'agissant d'un contrat à durée indéterminée' or 'lorsque le contrat est à durée indéterminée' is more natural. '23/8/1426 de l'Hégire' is acceptable but '23/8/1426 H' is the usual form. Minor point that applies to all three versions equally: the law sets a minimum notice period ('not less than' / 'لا تقل عن'), and none of the versions says 'minimum'. This does not create a difference between them.\"}\n```",
+   "at": "2026-11-04T17:55:39.548Z"
+  },
+  "SA-04": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "There is no difference in meaning between the three versions. They name the same statute (Royal Decree M/51 of 23/8/1426H, as amended), the same rule (fully paid maternity leave, Art. 151, which the Arabic text calls 'إجازة وضع') and the same unit (weeks). One ambiguity is shared by all three versions, so it does not break equivalence but could make the expected answer unclear. 'As amended / telle que modifiée / وتعديلاته' gives no reference date, and the fully paid period has changed through amendments (it was 10 weeks before the latest amendment, now 12 weeks). All three versions could also be read as covering the extra month on full pay granted when the newborn is sick or disabled. Consider adding a reference date, e.g. 'as in force on …', and stating that only the basic leave is meant.",
+    "wording": "FR: 'du 23/8/1426 de l'Hégire' reads awkwardly; French usage is 'du 23/8/1426 H' or 'du 23 chaabane 1426 H'. 'À plein salaire' is understandable, but 'congé de maternité rémunéré intégralement' or 'avec maintien intégral du salaire' is more idiomatic. The EN and AR wording is natural ('الصادر بالمرسوم الملكي رقم م/51 وتاريخ' is standard Saudi drafting)."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"There is no difference in meaning between the three versions. They name the same statute (Royal Decree M/51 of 23/8/1426H, as amended), the same rule (fully paid maternity leave, Art. 151, which the Arabic text calls 'إجازة وضع') and the same unit (weeks). One ambiguity is shared by all three versions, so it does not break equivalence but could make the expected answer unclear. 'As amended / telle que modifiée / وتعديلاته' gives no reference date, and the fully paid period has changed through amendments (it was 10 weeks before the latest amendment, now 12 weeks). All three versions could also be read as covering the extra month on full pay granted when the newborn is sick or disabled. Consider adding a reference date, e.g. 'as in force on …', and stating that only the basic leave is meant.\", \"wording\": \"FR: 'du 23/8/1426 de l'Hégire' reads awkwardly; French usage is 'du 23/8/1426 H' or 'du 23 chaabane 1426 H'. 'À plein salaire' is understandable, but 'congé de maternité rémunéré intégralement' or 'avec maintien intégral du salaire' is more idiomatic. The EN and AR wording is natural ('الصادر بالمرسوم الملكي رقم م/51 وتاريخ' is standard Saudi drafting).\"}",
+   "at": "2026-11-04T17:55:43.167Z"
+  },
+  "SA-05": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "FR: 'lorsqu'il en est le père' is redundant and heavy after 'son enfant'. It is only there to mark the worker as male. A French jurist would more naturally write 'un travailleur a-t-il droit à l'occasion de la naissance de son enfant', or start with 'un salarié père'. 'À la naissance' is acceptable, but 'à l'occasion de la naissance' is the usual legal phrasing for leave for family events. 'Loi saoudienne sur le travail' is understandable, but the usual name for the Saudi نظام العمل is 'Code du travail saoudien' (or 'Règlement du travail'). '1426 de l'Hégire' is usually shortened to '1426 H' in legal citations. AR: natural. Optionally, 'في حالة ولادة مولود له' would follow the statute's wording more closely than 'عند ولادة مولود له'. EN: natural."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"FR: 'lorsqu'il en est le père' is redundant and heavy after 'son enfant'. It is only there to mark the worker as male. A French jurist would more naturally write 'un travailleur a-t-il droit à l'occasion de la naissance de son enfant', or start with 'un salarié père'. 'À la naissance' is acceptable, but 'à l'occasion de la naissance' is the usual legal phrasing for leave for family events. 'Loi saoudienne sur le travail' is understandable, but the usual name for the Saudi نظام العمل is 'Code du travail saoudien' (or 'Règlement du travail'). '1426 de l'Hégire' is usually shortened to '1426 H' in legal citations. AR: natural. Optionally, 'في حالة ولادة مولود له' would follow the statute's wording more closely than 'عند ولادة مولود له'. EN: natural.\"}",
+   "at": "2026-11-04T17:58:02.685Z"
+  },
+  "SA-06": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "FR: 'loi saoudienne sur le travail' is understandable, but a French jurist would more often write 'le Code du travail saoudien' or 'le Règlement du travail saoudien' (from the Arabic 'نظام العمل'). '23/8/1426 de l'Hégire' reads more naturally as '23/8/1426 H' or 'du 23 chaabane 1426 H'. 'congé à plein salaire' is acceptable; 'congé rémunéré à plein salaire' or 'congé avec maintien intégral du salaire' is more idiomatic. EN and AR: no issues. The AR wording 'إجازة بأجر كامل' and 'وتعديلاته' follows Saudi legislative drafting."
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"\", \"wording\": \"FR: 'loi saoudienne sur le travail' is understandable, but a French jurist would more often write 'le Code du travail saoudien' or 'le Règlement du travail saoudien' (from the Arabic 'نظام العمل'). '23/8/1426 de l'Hégire' reads more naturally as '23/8/1426 H' or 'du 23 chaabane 1426 H'. 'congé à plein salaire' is acceptable; 'congé rémunéré à plein salaire' or 'congé avec maintien intégral du salaire' is more idiomatic. EN and AR: no issues. The AR wording 'إجازة بأجر كامل' and 'وتعديلاته' follows Saudi legislative drafting.\"}\n```",
+   "at": "2026-11-04T17:55:46.021Z"
+  },
+  "SA-07": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "FR: 'loi saoudienne sur le travail' is understandable, but French legal usage would say 'le Code du travail saoudien' or 'le Règlement du travail saoudien' (for the Arabic 'نظام العمل'). '23/8/1426 de l'Hégire' is heavy; '23/8/1426 H' or 'du 23 chaabane 1426 H' is the usual form. 'pour son mariage' is acceptable, but 'à l'occasion de son mariage' is more idiomatic and closer to the Arabic 'بمناسبة زواجه'. AR: 'كم يومًا من الإجازة بأجر كامل يستحقها العامل' is grammatical but slightly clumsy; 'كم يومَ إجازةٍ بأجر كامل يستحق العامل بمناسبة زواجه؟' or 'ما مدة الإجازة بأجر كامل التي يستحقها العامل بمناسبة زواجه؟' reads more naturally. EN: no issues."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"FR: 'loi saoudienne sur le travail' is understandable, but French legal usage would say 'le Code du travail saoudien' or 'le Règlement du travail saoudien' (for the Arabic 'نظام العمل'). '23/8/1426 de l'Hégire' is heavy; '23/8/1426 H' or 'du 23 chaabane 1426 H' is the usual form. 'pour son mariage' is acceptable, but 'à l'occasion de son mariage' is more idiomatic and closer to the Arabic 'بمناسبة زواجه'. AR: 'كم يومًا من الإجازة بأجر كامل يستحقها العامل' is grammatical but slightly clumsy; 'كم يومَ إجازةٍ بأجر كامل يستحق العامل بمناسبة زواجه؟' or 'ما مدة الإجازة بأجر كامل التي يستحقها العامل بمناسبة زواجه؟' reads more naturally. EN: no issues.\"}",
+   "at": "2026-11-04T17:55:50.293Z"
+  },
+  "SA-08": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "Only the EN says 'male worker'. FR 'un travailleur' and AR 'العامل' say just 'worker', but 'his wife' / 'son épouse' / 'زوجته' already makes it a male worker, so the meaning and the expected answer stay the same. FR: 'loi saoudienne sur le travail' is understandable, but a jurist would more often write 'Code du travail saoudien' or 'Règlement du travail saoudien', which is closer to 'نظام العمل'. The date reads better as '23/8/1426 H' or '23/8/1426 de l'hégire' (lower-case 'hégire') than '23/8/1426 de l'Hégire'. 'Congé à plein salaire' is acceptable, but 'congé rémunéré à plein salaire' or 'congé avec maintien intégral du salaire' is more idiomatic. AR and EN wording is natural."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"Only the EN says 'male worker'. FR 'un travailleur' and AR 'العامل' say just 'worker', but 'his wife' / 'son épouse' / 'زوجته' already makes it a male worker, so the meaning and the expected answer stay the same. FR: 'loi saoudienne sur le travail' is understandable, but a jurist would more often write 'Code du travail saoudien' or 'Règlement du travail saoudien', which is closer to 'نظام العمل'. The date reads better as '23/8/1426 H' or '23/8/1426 de l'hégire' (lower-case 'hégire') than '23/8/1426 de l'Hégire'. 'Congé à plein salaire' is acceptable, but 'congé rémunéré à plein salaire' or 'congé avec maintien intégral du salaire' is more idiomatic. AR and EN wording is natural.\"}",
+   "at": "2026-11-04T17:55:52.848Z"
+  },
+  "SA-09": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "FR: « loi saoudienne sur le travail » is understandable, but a French jurist would more naturally write « Code du travail saoudien » or « Règlement saoudien du travail », which is closer to the Arabic نظام. « du 23/8/1426 de l'Hégire » is heavy; « du 23/8/1426 H » is the usual form. EN and AR read naturally."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"FR: « loi saoudienne sur le travail » is understandable, but a French jurist would more naturally write « Code du travail saoudien » or « Règlement saoudien du travail », which is closer to the Arabic نظام. « du 23/8/1426 de l'Hégire » is heavy; « du 23/8/1426 H » is the usual form. EN and AR read naturally.\"}",
+   "at": "2026-11-04T17:55:54.701Z"
+  },
+  "SA-10": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "FR: 'loi saoudienne sur le travail' is a literal rendering. A francophone jurist would more naturally write 'Code du travail saoudien' or 'Nizam du travail saoudien', which echoes the Arabic نظام العمل. Also in FR, 'telle que modifiée' comes right after 'décret royal' (masculine), so it reads awkwardly even though it grammatically agrees with 'loi'. Placing ', telle que modifiée,' right after 'loi saoudienne sur le travail' would avoid this. 'Cinq années consécutives de service chez l'employeur' would read better as 'au service de l'employeur', which matches في خدمة صاحب العمل. 'Du 23/8/1426 de l'Hégire' is acceptable, but '23/8/1426 H' is more usual. EN and AR wording is natural."
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"\", \"wording\": \"FR: 'loi saoudienne sur le travail' is a literal rendering. A francophone jurist would more naturally write 'Code du travail saoudien' or 'Nizam du travail saoudien', which echoes the Arabic نظام العمل. Also in FR, 'telle que modifiée' comes right after 'décret royal' (masculine), so it reads awkwardly even though it grammatically agrees with 'loi'. Placing ', telle que modifiée,' right after 'loi saoudienne sur le travail' would avoid this. 'Cinq années consécutives de service chez l'employeur' would read better as 'au service de l'employeur', which matches في خدمة صاحب العمل. 'Du 23/8/1426 de l'Hégire' is acceptable, but '23/8/1426 H' is more usual. EN and AR wording is natural.\"}\n```",
+   "at": "2026-11-04T17:55:58.502Z"
+  },
+  "SA-11": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "FR: the phrase 'l'indemnité de fin de service complète correspond à combien de mois de salaire ?' places the interrogative at the end, which reads as conversational. A formal legal register would use 'à combien de mois de salaire correspond l'indemnité de fin de service complète ?'. Also, 'loi saoudienne sur le travail' is understandable, but French-language sources more usually call this instrument 'le Code du travail saoudien' or 'le Règlement du travail saoudien', because the Arabic term is نظام, not قانون. EN and AR read naturally: 'end-of-service award' and 'نظام العمل' are the standard terms, and 'كاملةً' correctly conveys 'full'."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"FR: the phrase 'l'indemnité de fin de service complète correspond à combien de mois de salaire ?' places the interrogative at the end, which reads as conversational. A formal legal register would use 'à combien de mois de salaire correspond l'indemnité de fin de service complète ?'. Also, 'loi saoudienne sur le travail' is understandable, but French-language sources more usually call this instrument 'le Code du travail saoudien' or 'le Règlement du travail saoudien', because the Arabic term is نظام, not قانون. EN and AR read naturally: 'end-of-service award' and 'نظام العمل' are the standard terms, and 'كاملةً' correctly conveys 'full'.\"}",
+   "at": "2026-11-04T17:55:58.784Z"
+  },
+  "SA-12": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "FR: putting 'combien' at the end ('l'indemnité de fin de service complète correspond à combien de mois de salaire ?') sounds spoken rather than legal. A jurist would write 'à combien de mois de salaire correspond l'indemnité de fin de service complète ?'. The date is also more natural as 'du 23/8/1426 H' (or '1426 de l'hégire', lowercase) than '1426 de l'Hégire'. 'Code du travail saoudien' is the more usual French name than 'loi saoudienne sur le travail', but the current form is acceptable. EN: 'Royal Decree No. M/51 dated 23/8/1426H' follows the official English wording more closely than 'of 23/8/1426H'. 'The full end-of-service award equals how many months' wage' is clumsy, and on a quick read it could suggest the total award. 'How many months' wage does the full end-of-service award amount to for each year of service after the first five?' would be clearer. AR: no issues. 'المكافأة كاملة' matches the wording of the law itself."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"FR: putting 'combien' at the end ('l'indemnité de fin de service complète correspond à combien de mois de salaire ?') sounds spoken rather than legal. A jurist would write 'à combien de mois de salaire correspond l'indemnité de fin de service complète ?'. The date is also more natural as 'du 23/8/1426 H' (or '1426 de l'hégire', lowercase) than '1426 de l'Hégire'. 'Code du travail saoudien' is the more usual French name than 'loi saoudienne sur le travail', but the current form is acceptable. EN: 'Royal Decree No. M/51 dated 23/8/1426H' follows the official English wording more closely than 'of 23/8/1426H'. 'The full end-of-service award equals how many months' wage' is clumsy, and on a quick read it could suggest the total award. 'How many months' wage does the full end-of-service award amount to for each year of service after the first five?' would be clearer. AR: no issues. 'المكافأة كاملة' matches the wording of the law itself.\"}",
+   "at": "2026-11-04T17:56:02.083Z"
+  },
+  "SA-13": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "No difference in meaning between the three versions. All three name the same law (Royal Decree M/51 of 23/8/1426H, as amended), the same situation (the worker resigns after three years of continuous service), the same base (the full award) and the same format (a decimal between 0 and 1). One weakness is shared by all three versions, so it is not a translation gap: the expected fraction (one third) has no exact decimal form, and no version says how many decimal places to give or how to round. The question also does not say whether 'three years' means exactly three years, though any reading from two to five years gives the same result.",
+    "wording": "AR: 'ما الكسر المستحق له' sounds unnatural to an Arabic jurist. 'ما نسبة ما يستحقه' or 'ما النسبة المستحقة له' would be more natural. Placing 'كاملةً' at the end in the accusative (as a ḥāl) is awkward and could be misread as 'what fraction is fully due to him'. Better: 'من كامل مكافأة نهاية الخدمة' or 'من مكافأة نهاية الخدمة الكاملة'. FR: in 'l'indemnité de fin de service complète', 'complète' could be read as qualifying 'service' rather than 'indemnité'. 'l'intégralité de l'indemnité de fin de service' is clearer. 'Code du travail saoudien' or 'le Règlement du travail saoudien' is the more usual way to say it than 'loi saoudienne sur le travail', and 'n° M/51 du 23/8/1426 H' is the standard form for the date. EN: acceptable. 'Labor Law' matches the official English name, and 'end-of-service award' is the standard term."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"No difference in meaning between the three versions. All three name the same law (Royal Decree M/51 of 23/8/1426H, as amended), the same situation (the worker resigns after three years of continuous service), the same base (the full award) and the same format (a decimal between 0 and 1). One weakness is shared by all three versions, so it is not a translation gap: the expected fraction (one third) has no exact decimal form, and no version says how many decimal places to give or how to round. The question also does not say whether 'three years' means exactly three years, though any reading from two to five years gives the same result.\", \"wording\": \"AR: 'ما الكسر المستحق له' sounds unnatural to an Arabic jurist. 'ما نسبة ما يستحقه' or 'ما النسبة المستحقة له' would be more natural. Placing 'كاملةً' at the end in the accusative (as a ḥāl) is awkward and could be misread as 'what fraction is fully due to him'. Better: 'من كامل مكافأة نهاية الخدمة' or 'من مكافأة نهاية الخدمة الكاملة'. FR: in 'l'indemnité de fin de service complète', 'complète' could be read as qualifying 'service' rather than 'indemnité'. 'l'intégralité de l'indemnité de fin de service' is clearer. 'Code du travail saoudien' or 'le Règlement du travail saoudien' is the more usual way to say it than 'loi saoudienne sur le travail', and 'n° M/51 du 23/8/1426 H' is the standard form for the date. EN: acceptable. 'Labor Law' matches the official English name, and 'end-of-service award' is the standard term.\"}",
+   "at": "2026-11-04T17:58:02.693Z"
+  },
+  "SA-14": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "No differences in meaning between the three versions. They name the same jurisdiction and statute (Royal Decree M/51 of 23/8/1426H, as amended), the same facts (resignation after seven years of continuous service), the same quantity (a fraction of the full end-of-service award) and the same answer format (a decimal between 0 and 1). One issue is shared by all three versions, so it is not a translation difference. The fraction this rule gives does not have a finite decimal form, and no version says how many decimal places to give. Answers may therefore differ by rounding in every language alike. Also, none of the versions excludes the special cases where a resigning worker gets the full award (force majeure, or a female worker shortly after marriage or childbirth). They all assume the general resignation rule in the same way.",
+    "wording": "AR: 'ما الكسر المستحق له من مكافأة نهاية الخدمة كاملةً' is awkward. 'الكسر' is a maths term, not a legal one; the law speaks of shares of the award (ثلث / ثلثا المكافأة). 'كاملةً' read as a ḥāl is clumsy. More natural: 'ما نسبة ما يستحقه من مكافأة نهاية الخدمة الكاملة؟'. FR: 'loi saoudienne sur le travail' is acceptable, but French usage more often says 'Code du travail saoudien' or 'Règlement du travail saoudien' ('nidham'). '23/8/1426 de l'Hégire' is more natural as '23/8/1426 H'. EN: no issues."
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"No differences in meaning between the three versions. They name the same jurisdiction and statute (Royal Decree M/51 of 23/8/1426H, as amended), the same facts (resignation after seven years of continuous service), the same quantity (a fraction of the full end-of-service award) and the same answer format (a decimal between 0 and 1). One issue is shared by all three versions, so it is not a translation difference. The fraction this rule gives does not have a finite decimal form, and no version says how many decimal places to give. Answers may therefore differ by rounding in every language alike. Also, none of the versions excludes the special cases where a resigning worker gets the full award (force majeure, or a female worker shortly after marriage or childbirth). They all assume the general resignation rule in the same way.\", \"wording\": \"AR: 'ما الكسر المستحق له من مكافأة نهاية الخدمة كاملةً' is awkward. 'الكسر' is a maths term, not a legal one; the law speaks of shares of the award (ثلث / ثلثا المكافأة). 'كاملةً' read as a ḥāl is clumsy. More natural: 'ما نسبة ما يستحقه من مكافأة نهاية الخدمة الكاملة؟'. FR: 'loi saoudienne sur le travail' is acceptable, but French usage more often says 'Code du travail saoudien' or 'Règlement du travail saoudien' ('nidham'). '23/8/1426 de l'Hégire' is more natural as '23/8/1426 H'. EN: no issues.\"}\n```",
+   "at": "2026-11-04T17:58:02.702Z"
+  },
+  "SA-15": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "FR: 'loi saoudienne sur le travail' is not how a jurist would usually name the text. The Arabic says 'نظام العمل', and in French the usual names are 'le Code du travail saoudien' or 'le Règlement (Nizam) du travail saoudien'. The date '23/8/1426 de l'Hégire' is understood, but '23/8/1426 H' or 'du 23 chaabane 1426 H' would read more naturally. EN: the official English title is simply 'the Labor Law', so 'the Saudi Labor Law' is acceptable but not the official name. AR: no issues."
+   },
+   "raw": "```json\n{\"equivalent\": true, \"problems\": \"\", \"wording\": \"FR: 'loi saoudienne sur le travail' is not how a jurist would usually name the text. The Arabic says 'نظام العمل', and in French the usual names are 'le Code du travail saoudien' or 'le Règlement (Nizam) du travail saoudien'. The date '23/8/1426 de l'Hégire' is understood, but '23/8/1426 H' or 'du 23 chaabane 1426 H' would read more naturally. EN: the official English title is simply 'the Labor Law', so 'the Saudi Labor Law' is acceptable but not the official name. AR: no issues.\"}\n```",
+   "at": "2026-11-04T17:56:07.085Z"
+  },
+  "SA-16": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": ""
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"\"}",
+   "at": "2026-11-04T17:56:09.808Z"
+  },
+  "SA-17": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": "FR: 'loi saoudienne sur le travail' is a literal rendering. A French jurist would more likely write 'le Code du travail saoudien' or 'le Règlement saoudien du travail', since the Arabic term is 'nizam' (regulation). It is not wrong, just less idiomatic. FR: 'du 23/8/1426 de l'Hégire' is slightly heavy; 'du 23/8/1426 H' or 'du 23 chaabane 1426 H' is the usual form. EN and AR read naturally; 'الصادر بالمرسوم الملكي رقم م/51 وتاريخ 23/8/1426هـ وتعديلاته' is the standard Saudi wording."
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"FR: 'loi saoudienne sur le travail' is a literal rendering. A French jurist would more likely write 'le Code du travail saoudien' or 'le Règlement saoudien du travail', since the Arabic term is 'nizam' (regulation). It is not wrong, just less idiomatic. FR: 'du 23/8/1426 de l'Hégire' is slightly heavy; 'du 23/8/1426 H' or 'du 23 chaabane 1426 H' is the usual form. EN and AR read naturally; 'الصادر بالمرسوم الملكي رقم م/51 وتاريخ 23/8/1426هـ وتعديلاته' is the standard Saudi wording.\"}",
+   "at": "2026-11-04T17:56:11.558Z"
+  },
+  "SA-18": {
+   "verdict": {
+    "equivalent": true,
+    "problems": "",
+    "wording": ""
+   },
+   "raw": "{\"equivalent\": true, \"problems\": \"\", \"wording\": \"\"}",
+   "at": "2026-11-04T17:56:17.183Z"
+  }
+ }
+}

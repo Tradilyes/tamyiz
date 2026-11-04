@@ -4,8 +4,9 @@ A research programme on how AI systems read legal rules, and on how a legal team
 its rules its own way. It builds reference readings with a panel of lawyers, keeps their
 disagreements, and measures AI systems against them, in English, French and Arabic.
 
-Status: pilot done (2 November 2026); Study A in preparation, to be registered publicly before any
-run. Author: Ilyes M. Trad, doctoral researcher in law (artificial intelligence and legal technology),
+Status: pilot done (2 November 2026); Study B, on whether the answer depends on the language of the
+question, registered on 4 November 2026 before any run ([suites/language-parity/](suites/language-parity/));
+Study A in preparation. Author: Ilyes M. Trad, doctoral researcher in law (artificial intelligence and legal technology),
 MANAR University.
 
 [Résumé en français](README.fr.md) · [ملخص بالعربية](README.ar.md)
