@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Tradilyes/tamyiz/spec/reading.schema.json",
+  "title": "A reading of one item by one reader, human or AI",
+  "type": "object",
+  "required": ["reader", "item", "routing", "codes"],
+  "properties": {
+    "reader": {
+      "type": "object",
+      "required": ["id", "kind"],
+      "properties": {
+        "id": { "type": "string", "description": "Pseudonym for a lawyer (R07); model family and configuration for an AI (gpt-plain)" },
+        "kind": { "enum": ["lawyer", "ai"] },
+        "model": { "type": "string", "description": "AI only: model name and version as reported" },
+        "interface": { "type": "string", "description": "AI only: API, chat interface, or agent runtime" },
+        "run": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "item": { "type": "string", "description": "Item id, such as P1B" },
+    "condition": { "enum": ["before", "after"], "default": "before" },
+    "routing": { "enum": ["GREEN", "YELLOW", "RED", "invalid"] },
+    "codes": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "reasons": { "type": "string" },
+    "confidence": { "type": "integer", "minimum": 1, "maximum": 5 },
+    "date": { "type": "string", "format": "date" }
+  }
+}

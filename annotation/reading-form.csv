@@ -1,0 +1,2 @@
+reader_id,item_id,routing,codes,reasons,confidence,minutes
+R00,EXAMPLE,YELLOW,TERM_TOO_LONG,"Initial term of three years is within the limit, but renewal makes the total open-ended; I would ask counsel whether notice suffices.",3,4

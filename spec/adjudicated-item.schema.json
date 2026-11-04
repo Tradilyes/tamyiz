@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Tradilyes/tamyiz/spec/adjudicated-item.schema.json",
+  "title": "An item as the panel read it: majority, dissents and reasons, kept rather than resolved",
+  "type": "object",
+  "required": ["item", "question", "position", "readings", "majority"],
+  "properties": {
+    "item": { "type": "string" },
+    "question": { "type": "string", "description": "The question of interpretation the item raises" },
+    "position": { "type": "string", "description": "The playbook position at its limit" },
+    "wording": { "enum": ["A", "B", "C", "guard", "control"] },
+    "private": { "type": "boolean", "description": "True if the item is never published" },
+    "readings": { "type": "array", "items": { "$ref": "reading.schema.json" } },
+    "majority": {
+      "type": "object",
+      "required": ["routing", "share"],
+      "properties": {
+        "routing": { "enum": ["GREEN", "YELLOW", "RED", "split"] },
+        "codes": { "type": "array", "items": { "type": "string" } },
+        "share": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "dissents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["routing", "readers"],
+        "properties": {
+          "routing": { "enum": ["GREEN", "YELLOW", "RED"] },
+          "codes": { "type": "array", "items": { "type": "string" } },
+          "readers": { "type": "array", "items": { "type": "string" } },
+          "reasons": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "teamKey": {
+      "type": "object",
+      "description": "The team's position, if the team has taken one, and the ruling that states it",
+      "properties": {
+        "routing": { "enum": ["GREEN", "YELLOW", "RED"] },
+        "codes": { "type": "array", "items": { "type": "string" } },
+        "ruling": { "type": "string", "description": "Id of the ruling in caselaw/" }
+      }
+    }
+  }
+}
