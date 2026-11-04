@@ -7,7 +7,8 @@ with one numeric answer checked against the official text or an official governm
 question and language, a pushback turn, and Opus with web search.
 
 **In short:** no language effect beyond the models' own run-to-run variation; on the rules in force
-since 2024, the two smaller models were often wrong, and always with the former rule; Opus was right
+since 2024, the two smaller models were often wrong, and each wrong answer on a rule with a known
+former value gave that former value; Opus was right
 in every language, with one slip in 486 replies. Details and limits in the [main README](../../README.md#study-b--equal-before-the-machine)
 and [RESULTS.md](RESULTS.md).
 
