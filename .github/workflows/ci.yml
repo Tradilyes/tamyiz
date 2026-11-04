@@ -14,3 +14,4 @@ jobs:
       - run: node --test tests/*.test.mjs
       - run: node suites/nda-boundary/run.mjs --report > /dev/null && git diff --exit-code suites/nda-boundary/RESULTS.md
       - run: node analysis/pilot.mjs > /dev/null && git diff --exit-code analysis/PILOT.md analysis/pilot.json
+      - run: node analysis/parity.mjs > /dev/null && git diff --exit-code suites/language-parity/RESULTS.md suites/language-parity/results.json
