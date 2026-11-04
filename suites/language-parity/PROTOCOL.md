@@ -130,6 +130,10 @@ Runs from 4 November 2026; analysis as soon as the runs are complete.
   (`msUntilReset` in `run.mjs`); and the order of execution became run 1 with pushback, run 2, Opus
   with web search, then run 3, so that the two runs H1 needs come before the most expensive
   condition. Replies are kept with the time they were given.
+- **4 November 2026, 20:18.** The usage limit was reached again during run 3, after the web
+  condition was complete: 74 replies of run 3 were missing (Haiku 31, Opus 39, Sonnet 4). They are
+  asked after the limit resets, early on 5 November, with the same instructions; every reply keeps
+  its time.
 
 ## 11. Use of AI
 
