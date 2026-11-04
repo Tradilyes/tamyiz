@@ -1,13 +1,13 @@
 cff-version: 1.2.0
 message: "If you use tamyiz, its items or its results, please cite it as below."
 title: "tamyiz: reference readings by a panel of lawyers, and a test of whether AI contract reviewers settle what a playbook leaves open"
-abstract: "A research programme on how AI systems read legal rules. Edge items place each position of a contract playbook at its limit; a panel of lawyers reads them blind and its disagreements are kept; AI reviewers from several providers read the same items; a team's rulings are tested on held-out wordings and guard items. This version contains the pilot (November 2026), its re-analysis with confidence intervals, the protocol of Study A, and Study B on whether AI answers to labour-law questions depend on the language of the question (Arabic, French, English), registered before any run."
+abstract: "A research programme on how AI systems read legal rules. Edge items place each position of a contract playbook at its limit; a panel of lawyers reads them blind and its disagreements are kept; AI reviewers from several providers read the same items; a team's rulings are tested on held-out wordings and guard items. This version contains the pilot (November 2026), its re-analysis with confidence intervals, the protocol of Study A, and Study B on whether AI answers to labour-law questions depend on the language of the question (Arabic, French, English), registered before any run: 2,106 replies from three Claude models, with no language effect beyond run-to-run variation and errors concentrated on rules changed since 2024, where every wrong answer with a known former value gave that former value."
 authors:
   - family-names: "Trad"
     given-names: "Ilyes M."
     affiliation: "MANAR University"
 version: 0.3.0
-date-released: 2026-11-04
+date-released: 2026-11-05
 license: MIT
 repository-code: "https://github.com/Tradilyes/tamyiz"
 keywords: [legal interpretation, open texture, contract review, playbook, large language models, evaluation, annotator disagreement, perspectivism, Arabic, Gulf]

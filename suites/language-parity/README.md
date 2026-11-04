@@ -6,6 +6,11 @@ with one numeric answer checked against the official text or an official governm
 4 November 2026; 11 of them on rules that took effect since 2024. Three Claude models, three runs per
 question and language, a pushback turn, and Opus with web search.
 
+**In short:** no language effect beyond the models' own run-to-run variation; on the rules in force
+since 2024, the two smaller models were often wrong, and always with the former rule; Opus was right
+in every language. Details and limits in the [main README](../../README.md#study-b--equal-before-the-machine)
+and [RESULTS.md](RESULTS.md).
+
 Status: **registered on 4 November 2026, before any run** ([PROTOCOL.md](PROTOCOL.md)); run from
 19:01 that evening (first reply 29 seconds after the registration commit). The account's usage limit
 interrupted the runs twice; the last 74 replies of run 3 were asked after it reset, on 5 November
