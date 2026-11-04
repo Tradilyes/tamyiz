@@ -43,7 +43,7 @@ Twenty-five NDAs at the edge of the playbook of a fictional Dubai company: ten q
 interpretation in two wordings (A reviewed, B held out) and five controls, three of which guard
 against a ruling reaching too far. Four reviewers, all from one provider: Claude Opus 5.5 with the
 playbook; Claude Opus 5.5 running the NDA Triager of Anthropic's Claude for Legal; Claude Sonnet 5.5;
-Claude Haiku 5.5 with the deterministic checks of [courtproof](https://github.com/Tradilyes/courtproof).
+Claude Haiku 5.5 with the deterministic checks of courtproof, a companion repository not yet public.
 One run per reviewer and condition.
 
 | Measure | Result (95 % Wilson interval) |
