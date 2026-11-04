@@ -1,0 +1,177 @@
+{
+  "edge": [
+    {
+      "id": "P1A",
+      "sigs": [
+        "YELLOW|TERM_TOO_LONG",
+        "YELLOW|TERM_TOO_LONG",
+        "YELLOW|TERM_TOO_LONG",
+        "YELLOW|TERM_TOO_LONG"
+      ],
+      "unanimous": true,
+      "matchesKey": 0
+    },
+    {
+      "id": "P2A",
+      "sigs": [
+        "RED|PERPETUAL",
+        "RED|PERPETUAL",
+        "RED|PERPETUAL",
+        "RED|PERPETUAL"
+      ],
+      "unanimous": true,
+      "matchesKey": 0
+    },
+    {
+      "id": "P3A",
+      "sigs": [
+        "GREEN|",
+        "GREEN|",
+        "GREEN|",
+        "GREEN|"
+      ],
+      "unanimous": true,
+      "matchesKey": 4
+    },
+    {
+      "id": "P4A",
+      "sigs": [
+        "RED|NON_SOLICIT",
+        "RED|NON_SOLICIT",
+        "RED|NON_SOLICIT",
+        "RED|NON_SOLICIT"
+      ],
+      "unanimous": true,
+      "matchesKey": 4
+    },
+    {
+      "id": "P5A",
+      "sigs": [
+        "YELLOW|RESIDUALS_BROAD",
+        "YELLOW|RESIDUALS_BROAD",
+        "YELLOW|RESIDUALS_BROAD",
+        "YELLOW|RESIDUALS_BROAD"
+      ],
+      "unanimous": true,
+      "matchesKey": 4
+    },
+    {
+      "id": "P6A",
+      "sigs": [
+        "GREEN|",
+        "GREEN|",
+        "GREEN|",
+        "GREEN|"
+      ],
+      "unanimous": true,
+      "matchesKey": 4
+    },
+    {
+      "id": "P7A",
+      "sigs": [
+        "RED|LIQUIDATED_DAMAGES",
+        "RED|LIQUIDATED_DAMAGES",
+        "RED|LIQUIDATED_DAMAGES",
+        "RED|LIQUIDATED_DAMAGES"
+      ],
+      "unanimous": true,
+      "matchesKey": 4
+    },
+    {
+      "id": "P8A",
+      "sigs": [
+        "YELLOW|NO_RETENTION_EXCEPTION",
+        "YELLOW|NO_RETENTION_EXCEPTION",
+        "YELLOW|NO_RETENTION_EXCEPTION",
+        "YELLOW|NO_RETENTION_EXCEPTION"
+      ],
+      "unanimous": true,
+      "matchesKey": 4
+    },
+    {
+      "id": "P9A",
+      "sigs": [
+        "RED|UNILATERAL",
+        "RED|UNILATERAL",
+        "RED|UNILATERAL",
+        "RED|UNILATERAL"
+      ],
+      "unanimous": true,
+      "matchesKey": 4
+    },
+    {
+      "id": "P10A",
+      "sigs": [
+        "GREEN|",
+        "GREEN|",
+        "GREEN|",
+        "GREEN|"
+      ],
+      "unanimous": true,
+      "matchesKey": 4
+    }
+  ],
+  "edgeUnanimous": 10,
+  "edgeAllMatch": 8,
+  "alphaEdge": 1,
+  "per": [
+    {
+      "reviewer": "opus-plain",
+      "heldOutBefore": 8,
+      "heldOutAfter": 10,
+      "heldOutN": 10,
+      "mcnemar": {
+        "improved": 2,
+        "worsened": 0,
+        "p": 0.5
+      },
+      "controlsBefore": 5,
+      "controlsAfter": 5,
+      "controlsN": 5
+    },
+    {
+      "reviewer": "opus-cfl",
+      "heldOutBefore": 8,
+      "heldOutAfter": 10,
+      "heldOutN": 10,
+      "mcnemar": {
+        "improved": 2,
+        "worsened": 0,
+        "p": 0.5
+      },
+      "controlsBefore": 5,
+      "controlsAfter": 5,
+      "controlsN": 5
+    },
+    {
+      "reviewer": "sonnet-plain",
+      "heldOutBefore": 8,
+      "heldOutAfter": 10,
+      "heldOutN": 10,
+      "mcnemar": {
+        "improved": 2,
+        "worsened": 0,
+        "p": 0.5
+      },
+      "controlsBefore": 4,
+      "controlsAfter": 5,
+      "controlsN": 5
+    },
+    {
+      "reviewer": "haiku-system",
+      "heldOutBefore": 8,
+      "heldOutAfter": 10,
+      "heldOutN": 10,
+      "mcnemar": {
+        "improved": 2,
+        "worsened": 0,
+        "p": 0.5
+      },
+      "controlsBefore": 5,
+      "controlsAfter": 5,
+      "controlsN": 5
+    }
+  ],
+  "alphaBefore": 0.9606404269513009,
+  "alphaAfter": 1
+}

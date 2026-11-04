@@ -13,3 +13,4 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: node --test tests/*.test.mjs
       - run: node suites/nda-boundary/run.mjs --report > /dev/null && git diff --exit-code suites/nda-boundary/RESULTS.md
+      - run: node analysis/pilot.mjs > /dev/null && git diff --exit-code analysis/PILOT.md analysis/pilot.json

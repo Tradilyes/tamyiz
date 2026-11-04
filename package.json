@@ -1,13 +1,16 @@
 {
   "name": "tamyiz",
-  "version": "0.1.0",
-  "description": "A legal team's internal case law for its AI tools: edge cases that show how every tool reads the playbook, rulings that bind them all, and the tests that check they follow.",
+  "version": "0.2.0",
+  "description": "Reference readings by a panel of lawyers, and a test of whether AI contract reviewers settle what a playbook leaves open; with a team's rulings as the remedy.",
   "type": "module",
   "license": "MIT",
   "author": "ILYES M. TRAD",
   "scripts": {
     "test": "node --test tests/*.test.mjs",
-    "desk": "node desk/build.mjs"
+    "desk": "node desk/build.mjs",
+    "pilot": "node analysis/pilot.mjs"
   },
-  "engines": { "node": ">=20" }
+  "engines": {
+    "node": ">=20"
+  }
 }

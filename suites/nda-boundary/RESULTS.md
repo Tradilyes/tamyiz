@@ -1,6 +1,6 @@
 # Boundary NDAs — results
 
-Twenty-five NDAs of Gulf Horizon Holding LLC (Dubai): ten questions of interpretation the playbook does not settle on its own, each in two wordings (A, reviewed by the General Counsel; B, held out), and five controls, three of which guard against a ruling reaching too far. Same playbook and same task text for every reviewer. Keys fixed before the first run (commit 1016822; guards in a9b6fc0); rulings written before any held-out run with them (b24726a). *before*: the playbook only. *after*: the playbook and the General Counsel's rulings in force on 2026-11-02 (`caselaw/gulf-horizon/rulings.json`).
+Twenty-five NDAs of Gulf Horizon Holding LLC (Dubai): ten questions of interpretation the playbook does not settle on its own, each in two wordings (A, reviewed by the General Counsel; B, held out), and five controls, three of which guard against a ruling reaching too far. Same playbook and same task text for every reviewer. Keys committed locally before the first run (commit 1016822; guards in a9b6fc0), rulings before any held-out run with them (b24726a); local commit dates are not proof to a third party (see analysis/PILOT.md). *before*: the playbook only. *after*: the playbook and the General Counsel's rulings in force on 2026-11-02 (`caselaw/gulf-horizon/rulings.json`).
 
 Reviewers: opus-plain, opus-cfl, sonnet-plain, haiku-system.
 
