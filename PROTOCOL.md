@@ -17,10 +17,10 @@ playbook, and whether a team's rulings change it.
 
 ## 2. Design
 
-Every item is read by every reader. Lawyers read each item once, with the playbook only. AI
-configurations read each item three times with the playbook only ("before"), and three times with the
-playbook and the team's rulings ("after"), the second condition on held-out wordings, controls and
-guards only.
+Lawyers read, once each and with the playbook only, wording A of every question, the guards and the
+controls: about 55 items, which fits two to three hours. AI configurations read every wording with the
+playbook only ("before"), then the held-out wordings, guards and controls with the playbook and the
+team's rulings ("after"). H1 and H2 compare lawyers and AI configurations on the wording-A items.
 
 Roles are separated:
 
@@ -55,10 +55,10 @@ in Tunisia, France and the Gulf; target five to ten. Each reader gets the items 
 reads alone, and declares not using any AI tool while reading.
 
 **AI configurations.** At least four families: Anthropic (Claude), OpenAI (GPT), Google (Gemini) and
-one open-weight family. The same task text for all; default sampling settings; three runs per item and
-condition. Model name, version, interface and date are recorded for every run. Where no API is
-available at no cost, the chat interface is used through the runner's paste mode, and this is
-recorded.
+one open-weight family. The same task text for all; default sampling settings. Three runs per item and
+condition for each family the study can call through an API at no cost; otherwise one run through the
+chat interface, using the runner's paste mode, and that run stands as the family's reading. Model
+name, version, interface and date are recorded for every run.
 
 ## 5. What is measured
 
@@ -80,8 +80,8 @@ recorded.
 ## 7. Sample size
 
 The study is sized for precision, not power. With 40 questions, a proportion of 0.80 has a 95 %
-interval of about 65 to 90 %; with the pilot's 10 it was 49 to 94 %. Five lawyers and four AI families
-on 40 questions give 200 human and 480 AI readings per condition.
+interval of about 65 to 90 %; with the pilot's 10 it was 49 to 94 %. Five lawyers reading 55 items give
+275 readings. Each AI family reads 135 items before the rulings and 95 after, once or three times.
 
 ## 8. Ethics and data
 
