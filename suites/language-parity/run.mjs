@@ -74,11 +74,23 @@ function readOutput(out, stream) {
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
+// "You've hit your 5-hour limit · resets 7:40pm (Etc/GMT-1)": milliseconds until that time, plus a margin.
+export function msUntilReset(text, now = Date.now()) {
+  const m = String(text).match(/resets\s+(\d{1,2})(?::(\d{2}))?\s*(am|pm)\s*\(Etc\/GMT([+-]\d+)\)/i);
+  if (!m) return 15 * 60000;
+  const h = (Number(m[1]) % 12) + (m[3].toLowerCase() === "pm" ? 12 : 0), offset = -Number(m[4]);
+  const d = new Date(now);
+  let t = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), h - offset, Number(m[2] ?? 0));
+  while (t <= now) t += 864e5;
+  while (t - now > 864e5) t -= 864e5;
+  return t - now + 90000;
+}
+
 async function ask(cfg, lang, input, opts = {}) {
   const cwd = opts.cwd ?? WORK;
   mkdirSync(cwd, { recursive: true });
-  let last = "";
-  for (let attempt = 1; attempt <= 8; attempt++) {
+  let last = "", waited = 0;
+  for (let attempt = 1; attempt <= 4;) {
     const t0 = Date.now();
     const { code, out, err } = await spawnClaude(argv(cfg, lang, opts), input, cwd, cfg.web ? 600000 : 240000);
     const { res, tools } = readOutput(out, cfg.web);
@@ -91,8 +103,16 @@ async function ask(cfg, lang, input, opts = {}) {
     }
     last = `${code} ${res?.subtype ?? ""} ${(res?.result ?? "").slice(0, 200)} ${err.slice(0, 300)}`.trim();
     if (/^error_max/.test(res?.subtype ?? "")) return { error: last.slice(0, 500), at: new Date(t0).toISOString(), cost_usd: res.total_cost_usd ?? null };
-    const limited = /usage limit|rate.?limit|429|overloaded|529/i.test(last);
-    await sleep(limited ? 10 * 60000 : 20000 * attempt);
+    // The account's usage limit: wait until it resets, without counting the attempt (at most 12 hours).
+    if ((res?.api_error_status === 429 || /hit your .*limit|usage limit|rate.?limit|overloaded/i.test(last)) && waited < 12 * 3600000) {
+      const ms = Math.min(msUntilReset(last), 6 * 3600000);
+      console.log(`  ${cfg.model}: limit reached at ${new Date().toISOString()}; waiting ${Math.round(ms / 60000)} min`);
+      waited += ms;
+      await sleep(ms);
+      continue;
+    }
+    attempt++;
+    await sleep(20000 * attempt);
   }
   return { error: last.slice(0, 500), at: new Date().toISOString() };
 }

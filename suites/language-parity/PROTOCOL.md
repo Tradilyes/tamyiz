@@ -123,7 +123,13 @@ Runs from 4 November 2026; analysis as soon as the runs are complete.
 
 ## 10. Deviations
 
-None yet.
+- **4 November 2026, 19:46 (Paris time).** The account's five-hour usage limit stopped every call from
+  19:02 to 19:40, about a minute after the runs began; 27 calls failed in that time and were asked
+  again later. Two changes followed, neither touching the questions, instructions, scoring or
+  analysis: the runner now waits for the limit to reset instead of giving up after eight attempts
+  (`msUntilReset` in `run.mjs`); and the order of execution became run 1 with pushback, run 2, Opus
+  with web search, then run 3, so that the two runs H1 needs come before the most expensive
+  condition. Replies are kept with the time they were given.
 
 ## 11. Use of AI
 
